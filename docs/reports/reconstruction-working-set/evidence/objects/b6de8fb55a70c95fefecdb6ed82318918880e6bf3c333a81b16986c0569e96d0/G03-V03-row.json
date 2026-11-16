@@ -1,0 +1,11 @@
+{
+  "id": "G03-V03-row",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "actual boundary status/row differs"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "actual boundary status/row differs"
+}

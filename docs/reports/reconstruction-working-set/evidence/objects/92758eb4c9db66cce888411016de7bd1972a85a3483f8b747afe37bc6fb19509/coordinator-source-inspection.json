@@ -1,0 +1,58 @@
+{
+  "schema": "WS116-coordinator-largest256-profile-remaining5-source-inspection-v1",
+  "status": "SOURCE_SUITABLE_UNEXECUTED_HOLD",
+  "findings": {
+    "blocking": [],
+    "nonblocking": [
+      {
+        "id": "C1-diagnostic-label",
+        "detail": "Line181 errorlabel says central profile but predicate stageconstant largest-profiles/selected256/fivecorrectIDs is correct. Diagnosticproseonly, no rewrite requested."
+      }
+    ]
+  },
+  "artifacts": {
+    "root-prepare-remaining5-largest256-profiles.py": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/root-prepare-remaining5-largest256-profiles.py",
+      "sha256": "2b31d4a9dc841b821db2f1fd328a7d2019ae1617c60fb7c6e77f264eb653d13e"
+    },
+    "source-manifest.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/source-manifest.json",
+      "sha256": "d5c1b9a803dd843d8c14c7c31d057eb4658ee4e0d061bcf9d19441e8e854016b"
+    },
+    "ROOT-preparation-inputs-DISABLED.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "3e305c4d0e82c90e37cc5f9afeaf7fd1691b1ccc6455799814b842ee80a24e32"
+    },
+    "README.md": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/README.md",
+      "sha256": "ef99ffc8518136f2dcc13fb3ac073a99b8a7b351248cbe4217acb6eb959ba008"
+    },
+    "source-handoff.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/source-handoff.json",
+      "sha256": "6025b55148e1774f9b32f85ee81f745fc562cc563ce96a38e40cc4b01bb4787d"
+    }
+  },
+  "source_lines_actual": 350,
+  "read_scope": "Whole350linehelper/115README/112disabledtemplate/74handoff read; manifest1804JSON parsed/topmetadata and allrepeatedruntime/proposal/prior/control maps compared static446/850.8immutablepins+4artifactpins/12closedcontrolsmallpins verified. Notclaimedwhole1804visual. No29012firstbatch/raw/proof/status/PID/outcome pointer followed, no helperimport/AST/sourceQA/runtime.",
+  "minimal_delta": "818e continuation/c012 largestfirst finiteport: SAME850/first446/selected256/twogrowth/prior6/controls6, fixedglobalindices2\u20136; futureR1actualJSON+hash+expectedbody/ROOTsemanticprerequisites without fabricatedeligibilityschema. Derivefutureowner2actualreceipt/markers/finalmetadata and requirefreshfixed157exactabsence,1capture/2sourcepasses/13outputs/configfalse/ROOTAUTHneverACK. Bothmode7200/7320/5915017216/memorycapsunchanged;21600exactoperationalwindow,no five7200fitpromise/perrowremaining+120HOLD/noextend/skip/retry.",
+  "future_prerequisite_protocol": {
+    "authorization": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-preparation-authorization.json",
+    "suspension": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-scheduler-suspension-input.json",
+    "closed_R1": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-closed-r1-prerequisites.json",
+    "expected_semantics": "Actual29012terminal0/nopendingproxy/row1eligible/explicitold4hwindowclosed andlargeststage256firstID. ROOTelig/window/toolactualJSONhash+expectedbody, exactboundaryJSON/receiptJSON/postmetadataJSON/expected2birthFDidentities. Futureboundarynonce/config/source/finite/core/profile10records/all4controlidentity andowner2 derivation mustpass beforefreshmetadata/config.",
+    "future_facts_unobserved": "AllsourcefutureSHA/bodies/controllercompletion/ownerarray/window/context remainNULL now; fixedpathpattern is not fileexistence or terminalclaim."
+  },
+  "future_window_scope": "Exact21600ROOToperationalreservation,7200deadline+120remaining requirement perrowunchanged, all5maxduration=notpromisedfit; no autoextension/retry/skip.",
+  "limits": "No numericprofiledata/ranking/ratio/isolatedcost/benefit/budget/general16GiBfit; source/runtimeUNVALIDATED. Freshsource35/tool6/git/context/ownership/disk bothmodechecks requirelateractualROOTpreparation, no currentfactsclaimed. SharedFSrolepromptlimits notengineeredisolation. Actualpacket+separateexactROOTscientificrelease required.",
+  "accounting": {
+    "investigator_preparations": 38,
+    "execution_continuations": 9,
+    "total": 47,
+    "original_launch": 1,
+    "costs": "UNKNOWN",
+    "alloldbytes_attempts_errors_preserved": true
+  },
+  "runtime_QA_native_program_or_EA_changes_by_coordinator": false,
+  "final_scientific_acceptance": false,
+  "next": "ROOTwhole350sourcefreeze. No actualpreparation whilefirst29012active; bindonlyactualclosedR1facts afterROOTeligibility/window closure."
+}

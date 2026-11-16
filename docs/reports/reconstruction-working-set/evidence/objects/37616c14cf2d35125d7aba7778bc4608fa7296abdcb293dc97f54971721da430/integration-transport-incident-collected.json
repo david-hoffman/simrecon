@@ -1,0 +1,47 @@
+{
+  "schema": "WS116-SCI1-named-factual-inventory-transport-stop-v1",
+  "state": "STOPPED_PENDING_ROOT_DISPOSITION; no self-requalification",
+  "assessment": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment.md",
+    "sha256": "18cb314a3017388b62e3ed57e6cdabe963840082e66d11aad6c6be0549d4e402"
+  },
+  "preserved": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-integration-transport-stop.md",
+    "sha256": "18cb314a3017388b62e3ed57e6cdabe963840082e66d11aad6c6be0549d4e402"
+  },
+  "prior_substance": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-substance.md",
+    "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562"
+  },
+  "exact_cat_command_words": [
+    "cat",
+    "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json"
+  ],
+  "exact_shell_transport": "wc -l /workspace/work/campaign/evidence/116/publication-staging/ROOT-exact-final-integration-primaries.json /workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json /workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/location-map.json\ncat /workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json\nsha256sum /workspace/work/campaign/evidence/116/publication-staging/ROOT-exact-final-integration-primaries.json /workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json",
+  "source_primary_sha256": "aaccf876bed3dc6286ef4052a87fd51d9c194ce66ee4e82c12701f7779bd5bb3",
+  "tool_result": {
+    "max_output_tokens": 6000,
+    "reported_original_tokens": 471764,
+    "reported_omitted_bytes": 838480,
+    "source_lines": 24247,
+    "exit_code": null,
+    "exit_code_limit": "Not explicitly retained in reviewer prose; no inferred success/execve wrapper."
+  },
+  "visible_reviewer_extent": "Initial Git identity/status/ancestry/diff command records, ls-files filename string, later path/size/SHA/rawname facts; not archival opinion bodies intentionally read. Omitted bytes not characterised as read.",
+  "already_issued_parallel_named_reads": [
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/README.md",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/representation-and-provenance.md",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/source-hypotheses.md"
+  ],
+  "post_incident": "No target reads after observing deviation; sole external review prose updated; no target/source repairs, runtime, delegated role, scratch or persistent process.",
+  "coordinator_bounded_classification_facts": "JQ schema/field/command projections confirm factual-audit has Gitcommands and4483 tracked path/size/SHA rows,91 raw-name inventories, booleans and source/copy/transport refs. ls-files stdout length582922; no Gitshow/source/archived review body in recorded Git commands. Optional36 EOF/whitespace diagnostic classifications are ROOT operational opinions, not scientific report verdicts. This coordinator classification does not authorise continuation.",
+  "limits": "Unbounded read breached bounded-transport instruction despite named file permission. No automatic author-opinion contamination/relaunch conclusion; ROOT disposes actual continuation. No new criteria/restore experiment or data repair.",
+  "scope": "Candidate d767/tree24d9 unchanged; integrated applicability unfinished and116 fullgate notrun.",
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "cumulative_history": "Preserved original F03 operational exposure/stop/continuation/all scientific phases, corrected findings,83e7 and18cb; no reset."
+}
+

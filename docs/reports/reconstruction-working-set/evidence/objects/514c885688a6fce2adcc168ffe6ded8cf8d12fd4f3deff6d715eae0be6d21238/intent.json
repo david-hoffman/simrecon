@@ -1,0 +1,51 @@
+{
+  "command": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+    "--grant",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r1-u/grant.json",
+    "--attempt-id",
+    "ws116-frozen128-full-searched-r1-u"
+  ],
+  "config_sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36",
+  "grant_sha256": "482a4ce6c83f62c11e042af81545cca68edb50592aff410a6ecee78e6444c365",
+  "proof": {
+    "docker_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "inner_status": 0,
+    "observed_at_unix_ns": 1794730574506097207,
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794730574506097207.json",
+    "sha256": "3acc2ce524ce037b0b53ec9a76ff6330c9fa22c85899c9332252f6435a604f35"
+  },
+  "row": {
+    "attempt_id": "ws116-frozen128-full-searched-r1-u",
+    "command_template": "<PINNED-PYTHON> <NEW-CLEAN-ROOT>/docs/reports/reconstruction-working-set/run_attempt.py --grant <ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-frozen128-full-searched-r1-u.json --attempt-id ws116-frozen128-full-searched-r1-u",
+    "condition_id": "frozen128-full-searched",
+    "condition_plan_ref": "conditions.frozen128-full-searched",
+    "grant_path_template": "<ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-frozen128-full-searched-r1-u.json",
+    "launch_nonce": "ws116-frozen128-full-searched-r1-u",
+    "profile": false,
+    "proposed_predecessor": "ws116-frozen128-full-supplied-r3-u",
+    "repetition": 1,
+    "serial_index": 19,
+    "status": "UNADMITTED"
+  },
+  "scope": "one synchronous existing runner; no retry",
+  "source_sha256": "f6b89920979c0f73a5860190a7d14735c2b63d7b27d6482c02465f3c649d1d24",
+  "time_unix_ns": 1794730574694611706
+}

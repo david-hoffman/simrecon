@@ -1,0 +1,16 @@
+{
+  "ROOT_independent_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-independent-sixteen-triplets.json",
+    "sha256": "13102c9c13c732621402cc06b0f22b099d6c7463cb3e8df4a9ca6eb8ef70cd58"
+  },
+  "all16_min_median_max_triplets_exact": true,
+  "all48_per_repeat_metric_values_exact": true,
+  "comparison_scope": "File/scalar exact equality only, no scientific acceptance or causal inference. No statistics/canonical/product import/execution.",
+  "coordinator_raw_worksheet_frozen_before_ROOT_values_read": true,
+  "coordinator_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+    "sha256": "ced9d2a06069772f1ea4a3dd64a02a4ad98ea8699bac14dff99c2bd03bf29b75"
+  },
+  "presentation_diagnostic": "An initial shape-only projection used list() on ROOT triplets list and printed its entries; bounded output truncated. No value inferred from display; this comparison parses actual full file and validates all16 keys and48 raw per-repeat metric values.",
+  "schema": "WS116-largest6-independent16-comparison-v1"
+}

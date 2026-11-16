@@ -1,0 +1,46 @@
+{
+  "approved": false,
+  "scope": "WS116-method6-pure-controls-v1",
+  "case": "method6-rss-controls",
+  "attempt_id": "method6-rss-controls-a1",
+  "pure_stdlib_controls_only": true,
+  "numerical_release": false,
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/method_qualification.py": "d88a72600774dd57c819bf5eeeed4d87126e4e3095ca731ddcc0baf94eb6bf22",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json": "835c38d3dfbac5095c08b8e30b7e3d1820b090cd6d2ff21e3eee4c2ebbd3af1f",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "d530ff54b8f0695c32854a8fbc40ac868f91fc92c3a827feb2299a85b50f0f25",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json": "56226bf97df96cfd2321c4ea96832733f229769150d9d1aaa8e23841bef52ba5"
+  },
+  "phase_bounds": {
+    "fixture_bytes": 65536,
+    "parser_fixture_bytes": 131072,
+    "vector_count": 45,
+    "steps_per_vector": 4,
+    "diagnostic_bytes": 32768,
+    "results_file_bytes": 2097152,
+    "record_bytes": 16384,
+    "wall_seconds": 20,
+    "confirmation_seconds": 0.05
+  },
+  "legacy_runner_source": {
+    "path": "/workspace/work/campaign/evidence/116/source-before-method6/run_attempt.py",
+    "sha256": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+    "scope": "exact preserved method5 source for four named unchanged direct functions only; whole old runner/main qualification is not reused"
+  },
+  "grant_file_bytes": 65536,
+  "inventory_file_bytes": 32768,
+  "source_scope": "14 exact current inputs and exact legacy source for named unchanged function scopes; no Git subprocess or fresh physical resource admission",
+  "effects": "No actual spawn, signal, OS wait, resource sampling, NumPy/SciPy/product/ctypes imports. File binding and finite fake owner/clock/scalar controls only; blocked attempts always fail.",
+  "release_condition": "Root standing conditional permits these pure stdlib controls before method6 review ONLY after coordinator inspects/freezes exact code/argv/grant/bounds. This template is unapproved and creates no execution authority. Workflow retry still requires fresh affected method6 review, new clean basis and root exclusive per-case release."
+}

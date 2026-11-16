@@ -1,0 +1,11 @@
+{
+  "id": "G03-V38-core",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "actual28-condition core differs"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "actual28-condition core differs"
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "WS116-coordinator-central64-profile-stage-closure-source-handoff-v1",
+  "status": "SOURCE_READY_UNEXECUTED_HOLD",
+  "owner": "/root/issue_116",
+  "parent_source": {
+    "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/root-close-fullsearched256-stage.py",
+    "sha256": "5fe0f43bf6a84bc6f20710f003fdf8bcc5e9e905bc663c560d913a5a2faa25c6"
+  },
+  "files_sha256": {
+    "root-close-central64-profiles-stage.py": "4067842a2c57443c3c220d346404ac099d405b09336ab9e4f62d8b2b03c40cf2",
+    "literal-source-delta.patch": "331f6e43b9b6b250abe3ed348cdd936cfe744e6102a6d8bf94f67b2af60c731b",
+    "source-manifest.json": "8e261a0c1e6ff8ac47ff0cc9923fba838e7731692013fe9022a871c58617fdce",
+    "disabledrelease-template.json": "d2601dffc7ddee910b88e83ff800247879ec01bfe4a6dd3418d146e3f824468a",
+    "README.md": "f9b7fabb36db70c4563497da7af30cb2704cc3fa9cf5d03d809aa9eb604caa11"
+  },
+  "first_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7"
+  },
+  "last_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-central-profiles-remaining5-AUTHORIZED.json",
+    "sha256": "676cf336524d39e5f546aaebb951471b59794fbf17a8b2803b178a7cb5229a7e"
+  },
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+    "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+  },
+  "retained_R1_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+    "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc"
+  },
+  "retained_R1_window_end": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-window-closed.json",
+    "sha256": "73a95551735a2250906c6d01103a5bb73e822dbf44915f3268106bbd27d9bd12"
+  },
+  "future88772_terminal_R2to6_12owners": null,
+  "no_active_data_reads_or_QA": true,
+  "source_authoring_attempt1_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/coordinator-source-authoring-attempt1-diagnostic.json",
+    "sha256": "ac056fc835469d07e4df31905a3205a157a0c9e2e488c47965c2a31e6637b639"
+  },
+  "accounting": "Coordinator closure sourceprep2/authoringfailure1/targetexecutions0 distinct investigator36/9/45 pendingcompletion, unknowncosts retained",
+  "next": "Whole source/diff/manifest/templates ROOT inspection; no execution/nextstage authority"
+}

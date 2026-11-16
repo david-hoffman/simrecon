@@ -1,0 +1,152 @@
+{
+  "ROOT_closed_r1_prerequisites": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-closed-r1-prerequisites.json",
+    "sha256": "15f8d693c0781ddafbf8a22cb8f2a28b0007097343a3887db615c5cc5006763c"
+  },
+  "accepted_for_guarded_preparation": true,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "external_ancestors": "unknown_unobservable",
+  "fresh_exact2_owner_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/remaining5-preparation-a1/metadata.json",
+    "sha256": "d0a7e3f1a0716c195fe0564046d49f03c0b9abd96091e0b8ae0650cb28d4e3c6"
+  },
+  "limits": "Preparation only; binder retains original-stage-prefix/raw/controls and every-row context/end/ownership checks. No next stage, retry, recapture or cap relaxation.",
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "operating_proposals": {
+    "growth256-full-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 12884901888,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 2147483648,
+      "predicted_child_peak_bytes": 4294967296,
+      "process_stop_bytes": 8589934592,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "reserve_bytes": 4294967296,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    },
+    "growth256-summary-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 9663676416,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    }
+  },
+  "outside_campaign_actors": "unknown_not_scanned",
+  "prior_eligible": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69"
+    }
+  ],
+  "profile_source_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+    "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+  },
+  "resource_context": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794789095745545631.json",
+    "sha256": "9fb084cfef7d08ae6b40a4f087651450cbb8c9013e29c067b366a48dc6fc1611"
+  },
+  "resource_facts": {
+    "inner": {
+      "current_bytes": 2864128000,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17768914944,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    },
+    "outer": {
+      "current_bytes": 2849652736,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17788456960,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    }
+  },
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/stage-admission.json",
+    "sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80"
+  },
+  "schema": "ROOT-WS116-remaining5-largest256-profile-context-preflight-v1",
+  "selected_largest_size": 256
+}

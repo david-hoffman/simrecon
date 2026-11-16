@@ -1,0 +1,8 @@
+{
+  "overdue": false,
+  "proof_age_at_invocation_seconds": 0.213865671,
+  "proxy_pid": 120633,
+  "returncode": 0,
+  "runner_invocation_unix_ns": 1794737859160830242,
+  "wait_gaps": []
+}

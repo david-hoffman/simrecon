@@ -1,0 +1,58 @@
+{
+  "ROOT_output_audit": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-actual-output-check.json",
+    "sha256": "5bf14e4c870f5ee64e1cba7578446138b021c58ee66eabbd4adbbe671a5ece58"
+  },
+  "accepted": true,
+  "actual_canonical940_call": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "bacd1777c9d274ec8a02d9f9f57516d238ca036c3f8ab0840dd5b8afc0f2f066"
+  },
+  "authority": "ROOT",
+  "config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/config-fullsearched256-AUTHORIZED.json",
+    "sha256": "185d788b9e74a798b061bee398e89ac9e12486f785b9b5bfaa42198d9060c24b"
+  },
+  "coordinator_output_audit": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-actual-fullsearched3-analysis-output-review.json",
+    "sha256": "ed9c20b85185f4b0c2f07ad60f4971112ba749ecfd7d158761c69b0cd10909d5"
+  },
+  "costs": "UNKNOWN",
+  "descriptive_complete": true,
+  "explicit_window_end": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-window-closed.json",
+    "sha256": "2ea00fee65a8511ff31d000b4e747eff6dcd8def4cd3245180dd2642dc5aaf69"
+  },
+  "final_scientific_acceptance": false,
+  "independent8": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-independent-eight-triplets.json",
+    "sha256": "2c1aaf316e04316e431260fad992ccc87cab0d1c5acf2311de14929819f42674"
+  },
+  "independent_comparison": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-independent-eight-triplets-comparison.json",
+    "sha256": "af8eabbe2b4654a2b9fbee20617734200cfa7eee78f428d9b9197cba61e28990"
+  },
+  "next_scientific_stage_authorized": false,
+  "no_scientific_rerun": true,
+  "observed_at_unix_ns": 1794781602584271168,
+  "preserved_coordinator_audit_assumption_correction": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-output-audit-initial-historical-assumption.json",
+    "sha256": "9661e4b718cd34d210bd1fc0229d513e34f4ad435374b4ff7d1d603b585532f6"
+  },
+  "preserved_preprogram_checker_failure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-selector-file-audit-attempt1-diagnostic.json",
+    "sha256": "87c02f871f121db1b67f9aca10741dc297c48bb0f497f27cc8c41aa57d312860"
+  },
+  "referenced_evidence_audit_valid": true,
+  "schema": "ROOT-WS116-fullsearched256-descriptive-acceptance-v1",
+  "scope": "Exact closed3 fullsearched256 rows/onegroup plus3separate same-rep summarycontrols, all8triplets and7outputfiles/sixmapdigests separatelypinnedmap,1292auditentries452paths. Finalscientificreportacceptancefalse; no contribution/ranking/cost/16GiB/generalfeasibility claim.",
+  "stage_id": "largest-full-searched",
+  "summary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/summary.json",
+    "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205"
+  },
+  "whole_stage_closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+    "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+  }
+}

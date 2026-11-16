@@ -1,0 +1,244 @@
+{
+  "schema": "WS116-final-external-report-integration-readiness-v1",
+  "state": "READY_FOR_ROOT_LITERAL_INTEGRATION_AND_PORTABLE_CLOSURE; NOT_FINAL_ACCEPTED_OR_GATED",
+  "actual_measured_candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+    "material_basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c"
+  },
+  "integration_primary_overrides": [
+    {
+      "destination": "docs/reports/reconstruction-working-set/README.md",
+      "source": {
+        "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+        "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9",
+        "scope": "F04one-rowcorrectedmain"
+      }
+    },
+    {
+      "destination": "docs/reports/reconstruction-working-set/handoffs/compact-overlap-working-lifetime.md",
+      "source": {
+        "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/compact-overlap-working-lifetime.md",
+        "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d",
+        "scope": "routing45correctedrank3"
+      }
+    },
+    {
+      "destination": "docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+      "source": {
+        "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+        "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c",
+        "scope": "F01samebacking/eventcopy correction337a"
+      }
+    }
+  ],
+  "other_tracked_outputs": "otherfour source44handoffs+ledger;48canonicalbyteidenticaloutputs;ROOTliteralrepresentation/sourceindex;finalfigure5;ROOTportableobject/raw/gzip+locationmap/restoration;exactapplicableindependentreview before gate;soleCurrentROOTreconciles",
+  "late_literal_inputs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+      "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/input-references.json",
+      "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/integration-notes.md",
+      "sha256": "16d34b43ab70341e1b009f57a52c4e7d1b7fd4a9eb1b9967ee3d73ab62807c76",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/phase-expression-lifetime.md",
+      "sha256": "a6e73542f1caf86c768e1c6d23da3affccc6a52b3183c1ee2406e26a634dd496",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/native-harmonic-scratch.md",
+      "sha256": "4a54b373e51665a3d3d4757823ab2019caaedb5daa61a16ff991db6253207605",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/compact-overlap-working-lifetime.md",
+      "sha256": "fc86d15c180a947a5d9e330236d256afde827ddf8982f6da05ec3cc694dc4955",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/time-aggregation.md",
+      "sha256": "34abb2981192d68974c69cf8959a261a7cb19284876ef08b86080718b998393d",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/handoffs/full-diagnostic-retention-ownership.md",
+      "sha256": "1aef09ed0b91bc2c4fd16090c844ab745de2da11324c94ea9278a6cb2ed2af41",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/source-handoff.json",
+      "sha256": "946362c30f16ef6209f1eb43ec25c71e1dbc605029db03001d457a71442f0318",
+      "scope": "originalsource44preserved"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/compact-overlap-working-lifetime.md",
+      "sha256": "49534b4596a142395edd30e3f2b6b92966e7cf06b752d79e02aefc0a21bab69d",
+      "scope": "routing45amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/routing-wording.patch",
+      "sha256": "956302cd049d66f74014c71a063b95f6d589676ade0f639cb382249ebc366579",
+      "scope": "routing45amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/input-references.json",
+      "sha256": "44bf8be07497fc3a499fdcc17d9f61fe268e0f4280ea25d6720fde6a413d06da",
+      "scope": "routing45amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-routing-wording-correction/source-handoff.json",
+      "sha256": "840a1b5859ae516212f82c3dc3be42db3bf36d905e9625f7d624d5469feb207c",
+      "scope": "routing45amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+      "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9",
+      "scope": "F04source46amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/off-band-lifetime.patch",
+      "sha256": "9ec9d8c29b9c4e7de7806b17f19ffd1241a09ba2fca92dd3f336575e3886de81",
+      "scope": "F04source46amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/input-references.json",
+      "sha256": "7d37b50a41339424afda8d8d18dfdeda0597b1e9b1ecc0f29088278d6d4660cf",
+      "scope": "F04source46amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/source-handoff.json",
+      "sha256": "1b57d54fc804c7fb61e69f66f1e4150497af92e7a44747ddb39dc3c8f4d53dff",
+      "scope": "F04source46amendment"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-completed-substance.md",
+      "sha256": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562",
+      "scope": "sameindependentSCI1substantiveassessment+exactinputprotocol; notfinalgateacceptance"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/substantive-phase-collected.json",
+      "sha256": "efc120c3ef4f48aa4446e0486eaec969cf57b2e07b9da8e02bf886d7b3208aed",
+      "scope": "sameindependentSCI1substantiveassessment+exactinputprotocol; notfinalgateacceptance"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-addendum.md",
+      "sha256": "4ff9c98627ae37d4decde378319a580a9da4eda937bd6d56fe4ceede303fbf5e",
+      "scope": "sameindependentSCI1substantiveassessment+exactinputprotocol; notfinalgateacceptance"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-inputs-v2.json",
+      "sha256": "0b833e44be74c4872e08be5728393c4bfad4cd13b218db0a60217c4cf36924e5",
+      "scope": "sameindependentSCI1substantiveassessment+exactinputprotocol; notfinalgateacceptance"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/final-substance-routing-issues.json",
+      "sha256": "c34f879fcb27db8c16485267ae3c6717991dfba52621716eb319de4b4a8009a3",
+      "scope": "sameindependentSCI1substantiveassessment+exactinputprotocol; notfinalgateacceptance"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/F04-corrected-primary-addendum.md",
+      "sha256": "4c46b94c85559306d45402bdb0041a124f0a4d58d7487d1dc8da8554c6ba6c6b",
+      "scope": "sameindependentSCI1substantiveassessment+exactinputprotocol; notfinalgateacceptance"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/review.md",
+      "sha256": "01624fd51a59a7b926f66220992861bed08b466fd94325788363ba1fd062a461",
+      "scope": "freshF04affectedSCIreviewonly"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/packet.md",
+      "sha256": "331f0bd12f8fe58d176a4737443bfd3442ff2a64806b1b2ae414328d27d0f9c6",
+      "scope": "freshF04affectedSCIreviewonly"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/inputs.json",
+      "sha256": "f02b96096fcc790ddbf5c771cca4b9e6b30ce3f2f47ead78c970cf9eecd4ccc5",
+      "scope": "freshF04affectedSCIreviewonly"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/coordinator-collected.json",
+      "sha256": "f119ac184162a06044f5bb33d1fbc0a5679b1e2c99d58ab5a81aff88d2cb7091",
+      "scope": "freshF04affectedSCIreviewonly"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/coordinator-source-check.json",
+      "sha256": "fc5667ac8db9f0b5fc409d7669c4818c5993fc9a7be2a22c91c0b3b530bd2758",
+      "scope": "coorone-rowidentitycheck"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/closure-list.json",
+      "sha256": "ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9",
+      "scope": "literalcurationproposal/gaps/limits"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/curation-notes.md",
+      "sha256": "df11aaca1b25f6d07e8d87a634cc0967cc266b595caa430a1634573bc8da7457",
+      "scope": "literalcurationproposal/gaps/limits"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/source-handoff.json",
+      "sha256": "12390c3c628898f1db78fb2807de4034a0e475ff3c9f8527284bf3e1b170db8b",
+      "scope": "literalcurationproposal/gaps/limits"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-current-mapping-inspection.json",
+      "sha256": "e7a37a74dfc4f8aaa783fc2e633631993a4f816bdfe6eec5fa7d60c4ad29b399",
+      "scope": "literalcurationproposal/gaps/limits"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-review-input-preparation/stage115-delivery-binding.json",
+      "sha256": "06824f60ddaa37826278db38e622e1ac301ecab6bfb389dacc79baa6d698b23c",
+      "scope": "accepted115deliveryactorrawbinding"
+    }
+  ],
+  "scientific_disposition": {
+    "W01_W08": "substantivelyassessed, F01andF04externallyresolved, rankings/routing/figure supportedwithinrepresentativeprimaryscope",
+    "SCI1": "83e7db57f099e20e17ac226fbb5125b6734903da2e8af47c3597e76141795562",
+    "fresh_F04_accept": "01624fd51a59a7b926f66220992861bed08b466fd94325788363ba1fd062a461",
+    "final_overall": "HELD actualintegration/portableclosure/identity/materialtransition/fullgate/postgate"
+  },
+  "portable_status": {
+    "current_map": "ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9",
+    "identities": 4007,
+    "references": 18095,
+    "current_qualifier_source_gaps": 0,
+    "early_historical_ledger_questions": 11,
+    "late_final_inputs": "thisnamedmanifest supplied forROOT literalclosure augmentation; nogenericcuratorrerun required solelyforcopy"
+  },
+  "remaining_ROOT_steps": [
+    "resolve/record11earlyledgerbytealiases/publiccommitprovenance withoutalteringcurrenttruth",
+    "integratecorrectedreport+rank3+337a andactual48outputs/figure/raw/gzip/objectclosure withliteralpathmapping; preserveoriginals/reviewphases/attempts",
+    "mechanicalMarkdownlink/caption/provenanceindex/taskCurrent reconciliation underfinalactualbytes",
+    "freezeactualpublicationHEADtree/fullstatus/35materialequivalence andproviderawrestorationclosure tosameSCI1 forintegrationapplicability",
+    "unchangedfullUbuntu24.04 makeverify13phase/twoworkers/nativecoverage/wheel/import/audit/same-runM25",
+    "freshapplicablepostgateindependentacceptance outsidecandidate;ROOTpushstackedPR116onaccepted115/CI,nomerge/release/manualclosure"
+  ],
+  "role_holds": {
+    "investigator": "HOLD source46done,46preps9exec55events;alloldchargesunknownretained",
+    "scientific_review_1": "HOLD substantivecomplete/noopenprosemismatch; finalactualinputsneeded",
+    "scientific_correction_review_f04_1": "HOLD exactcorrectionACCEPT only",
+    "evidence_curator_1": "HOLD concrete4007mapready;11historyquestions/futurepublicationinputs explicit"
+  },
+  "no_coordinator_tracked_EDITS_runtime_or_commit": true,
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "scope_limits": "No bulkSample rehash bycoor/reviewers; ROOT91streamtransport/factualclosureattested, curator3791namedchecks. No numericalrerun/precision/16GiBguarantee/benefitpercentage. Later117118changes require affectedrevisionrefresh before119120."
+}

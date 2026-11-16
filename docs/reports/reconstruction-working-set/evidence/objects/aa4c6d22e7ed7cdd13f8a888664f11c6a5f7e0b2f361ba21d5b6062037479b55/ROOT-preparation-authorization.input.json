@@ -1,0 +1,28 @@
+{
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-full-searched-r2-u",
+    "ws116-gp-l256-full-searched-r3-u"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "closed_r1_prerequisites": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-closed-r1-prerequisites.json",
+    "sha256": "07fab05b09ee036237f23066b38423b4572350219b9dddf1fd63985fbb45f66f"
+  },
+  "helper_sha256": "8f164f7aca08d3917b6f434527d0d09c2d04aeaa3e0acaf2a8c058d734886d0b",
+  "observed_at_unix_ns": 1794777391147745062,
+  "prepare_continuation_authority": true,
+  "scheduler_suspension": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "74e6d330ef0910d4ee99441bb7f4fa0315bb2e33ff49bc5ef5c4bc4411997420"
+  },
+  "schema": "ROOT-WS116-remaining2-searched-preparation-authorization-v1",
+  "scientific_execution_released": false,
+  "selected_largest_size": 256,
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/source-manifest.json",
+    "sha256": "cd2e5179812f0d516b7d887647d0ea9e28334af53d64f2b2d7d941ef715dfb80"
+  },
+  "stage_id": "largest-full-searched",
+  "window_seconds": 10800
+}

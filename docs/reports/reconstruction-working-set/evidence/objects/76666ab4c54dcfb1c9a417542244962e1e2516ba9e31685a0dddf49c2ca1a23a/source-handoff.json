@@ -1,0 +1,62 @@
+{
+  "schema": "WS116-largest256-profile-first-preparer-source-handoff-v1",
+  "status": "SOURCE_READY_HOLD",
+  "artifacts": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/root-prepare-first-largest256-profile.py",
+      "sha256": "c012107b04bf5e805a86c7c76a9afd870c72bdd565f85f7550c1545b0b119541"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-manifest.json",
+      "sha256": "b3048b84f9caecf608300950c5f0c9c69484584fccf993b278c02336c6b47bf1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "253d4bbdecc0ddfa24ae0f185d6ff36ed36d7634b409a3f552e2ee9bd53e3db7"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/README.md",
+      "sha256": "8629693fc43e286ea801f5a83893845daa32ce478e181074b80c8d6e9176b3ae"
+    }
+  ],
+  "self_hash_scope": "Supplied externally after creation; no self-referential hash.",
+  "source_parent": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/root-prepare-first-central64-profile.py",
+    "sha256": "e4a2dfeb63dfbd6b2c5c8a5e67ff148c3c0cfdb227db8e7185dd491683a57acd",
+    "scope": "Minimal first-profile source port, retains its b8e prerequisite pattern."
+  },
+  "immutable_prep36": "All ten exact parent hashes bound in source-manifest; source/file hashes read, no edits.",
+  "minimal_delta": [
+    "Fixed largest-profiles six size256 recipes, only summary searched profileR1 allowed. Original source selectedNULL/prospective recipe changes to selected256 actual config/admission/authority only after NEW ROOT profile decision and explicit ROOT prerequisites.",
+    "Actual406-compatible central6 closure:6 exact profile rows/12stored identities/2groups/controller88772 tool0/no proxy/windowf159/finalmetadata/source+release chain. Exact known hashes/body bindings and ROOT descriptive semantic facts, not new field projections.",
+    "Actual central primaryd3d/config8a/coor94c/independent168d pinned. Future ROOT central descriptive acceptance and NEW largest-profile decision absent/null; ROOT must supply exact JSON/hash/expected-body and semantic attestation.",
+    "All six same-mode256 controls summary72b/full5f+7ebe and public/common/input/branches preserved; exactly two growth declarations. Source35/core28/tool6/method/environment/precision/fixture/tolerances/workers unchanged.",
+    "One future empty-new-stage fixed157metadata +one existing472capture, two source passes,14finite outputs, configfalse, ROOTAUTHORITY exactpathSHA neverACK. Empty ledger only from future fresh ROOT no-prior-largest-profile-launch/owner fact.",
+    "First-summary256 actualresource guard stop6+reserve3<=ancestor14/host>9; full256 caps retained but not released.7200deadline/7320horizon/disk5915017216 unchanged; future4h14400 operational reservation only, no clock/context facts authored now."
+  ],
+  "known_closed_scope": "Central281/windowf159/post477/controllerc64/primaryd3d/review94c are historical CLOSED small inputs; no current/global PID/FD/resource absence assumed. No raw sample bulk or numerical recomputation.",
+  "future_inputs": "Authority/suspension/prerequisite actual files not created. Disabled templates leave all actual times/metadata/context/window/semantic acceptance/new-decision paths/hashes/bodies/flags null or false. Known pins remain recorded in manifest.",
+  "validation": {
+    "source_file_reads_hashes_authoring_only": true,
+    "imports_AST_compile_lint_tests_QA": false,
+    "native_resource_probe_metadata_capture_workflow": false,
+    "helper_or_scientific_execution": false,
+    "EA_or_Current_edits": false,
+    "new_framework_CLI_method_or_case": false,
+    "syntax_runtime": "UNVALIDATED",
+    "new_files": 5
+  },
+  "preserved_authoring_findings": "One string-edit guard rejected an unmatched inherited label before file writes. Manual source-text inspection corrected an extra closing parenthesis and inherited diagnostic labels before final creation. No source or runtime QA was executed; failed tool text retained in session history. No scientific/method/runtime diagnosis inferred.",
+  "accounting": {
+    "author_preparations": 37,
+    "author_executions": 9,
+    "author_total": 46,
+    "original_launches": 1,
+    "costs": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "model_attribution": "UNKNOWN",
+    "all_old_attempts_errors_bytes_and_charges_preserved": true
+  },
+  "pending": "Coordinator and ROOT whole-source inspection. No actual preparation/science authority, metric/ranking/benefit/budget/16GiB-fit or final scientific acceptance inferred.",
+  "next": "HOLD."
+}

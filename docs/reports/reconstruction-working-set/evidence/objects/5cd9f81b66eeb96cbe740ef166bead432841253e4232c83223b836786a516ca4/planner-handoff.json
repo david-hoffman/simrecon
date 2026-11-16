@@ -1,0 +1,47 @@
+{
+  "schema": "WS116-planner-handoff-v1",
+  "status": "COMPLETED_SOURCE_PROPOSAL_UNADMITTED_HOLD",
+  "outputs": {
+    "admission-plan.md": "b7148be4355f32dd4bda70c0824201fe67d89baa27d13f1ccaf3b9b29eb37430",
+    "admission-table.json": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+    "planning-inputs.sha256": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431"
+  },
+  "launch_count": 1,
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "high",
+  "actual_serving_model": "unknown",
+  "actual_serving_effort": "unknown",
+  "usage_tokens": "unknown",
+  "monetary_cost": "unknown",
+  "model_elapsed_seconds": "unknown",
+  "tool_elapsed_total_seconds": "unknown; individual tool outputs expose wall times, overlapping/model time not reconstructed",
+  "tool_failures": [],
+  "tool_output_limit_events": [
+    "combined instruction/source read truncated; narrowed material reads supplied missing relevant context"
+  ],
+  "scope": "Only packet/immutable inputs read; stdlib file hashing/source inspection/scalar arithmetic; no imports/execution of product or fixture, probes, tests, installs, numerical/resource trials, Git mutations or delegation",
+  "input_files_verified": 40,
+  "initial_conditions": 20,
+  "initial_rows": 60,
+  "separate_profile_rows": 12,
+  "growth_conditions": 8,
+  "admissions_issued": 0,
+  "measured_successes": 0,
+  "initial_child_deadline_reservation_seconds": 31680,
+  "provisional_profile_deadline_reservation_seconds": 17280,
+  "remaining": [
+    "root approves substantive table/resources/window/releases",
+    "accepted corrected method6 source hashes and qualification",
+    "new clean candidate and exact material identities/interpreter",
+    "actual-time per-row representation/domain/resource margin/proof capture",
+    "later finite scientific qualification/independent report review/full Ubuntu exact gate"
+  ],
+  "unknowns": [
+    "actual input/output hashes, finite completion and scientific qualification",
+    "actual native FFT/BLAS allocator workspace, metadata, fragmentation, RSS and search evaluation count/runtime",
+    "exact retained Python/scalar-trace/container bytes and metadata; page sharing/OS/sampling overshoot",
+    "actual-time namespace/limits/ownership/swap/events/host pressure and external physical-host ancestors",
+    "corrected accepted method6 bytes, qualification, new clean candidate/tree/material hashes, root admission/table/window/release"
+  ],
+  "hold": "No runtime activity; no further reads outside immutable input allowlist; do not self-admit."
+}

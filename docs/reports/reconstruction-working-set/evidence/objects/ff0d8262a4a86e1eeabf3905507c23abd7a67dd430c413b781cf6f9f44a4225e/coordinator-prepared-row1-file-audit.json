@@ -1,0 +1,161 @@
+{
+  "protocol": "WS116-coordinator-growth256-prepared-file-audit-v1",
+  "status": "PREPARED_SOURCE_PACKET_SUITABLE_FINAL_ROOT_RELEASE_REQUIRED",
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-PREPARED.json",
+    "sha256": "3b8805053dcf720dd96f350d04ba2be0ba2b50eb9f3001f5abee87aa7c1a065e"
+  },
+  "reviewed_preparation_source": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-prepare-first-row.py",
+    "sha256": "d19c10ff36b679ce98f043cb21600afcf61156a22308853429a4e95aac74d866"
+  },
+  "verified_small_support_refs": {
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/environment-binding.json": "a7d472eedddd68e230ce79d3b8cb8249d59f51afea76b0c8071d3b4f750ec6f0",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-authority-row1.json": "e2508d94265ee451c7f8fe6f5eae99156f650c88fd94940ae47ba22e0757a8a4",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-scheduler-ACK-row1.json": "b2c6225a3076e32cde01a08b4e392b173834e85ccba8386aff1b6aebad40509f",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-current-stage-ledger-row1.json": "257b7b24bb0c418be1bdb07c69431cc49ed09010604fc940411781062e9592f2",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-case-and-resource-preflight.json": "37b53fa0fcf019734b5e91a9366e83ad8c881e200ce68e002107cc93635fc3e1",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-preflight-metadata.json": "ed858fb65fb3626c2402c9d46e1b896bb5e7610484df59caf696b2b49c593707",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794751081807556604.json": "e6a5d56f9d38b0acbdd556f3080c4bf2df3f36ecd8886017c56ebb1aaa47c595",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-review.md": "825fbc4b4d52818a0000c630af0a1dd2536004b327f8f7e39233195feb4c0625"
+  },
+  "fullfield_reconciliation_changed_keys": [
+    "authority_expected",
+    "conditional_rationale",
+    "docker_inspect_stdout",
+    "grant_fixed",
+    "mapping",
+    "owned_ledger",
+    "prior_stage_closures",
+    "root_authority",
+    "scheduler_ack",
+    "scheduler_ack_expected",
+    "stage_admission",
+    "window"
+  ],
+  "source_case": {
+    "shape_TDZYX": [
+      1,
+      3,
+      8,
+      256,
+      256
+    ],
+    "raw_TDPZYX": [
+      1,
+      3,
+      5,
+      8,
+      256,
+      256
+    ],
+    "mode": "summary",
+    "search": false,
+    "repetition": 1,
+    "output_image_shape": [
+      1,
+      8,
+      512,
+      512
+    ],
+    "core_dtype": "<f8",
+    "modulation_dtype": "<c16",
+    "expected_branches": [
+      [
+        "known",
+        "known",
+        "known"
+      ]
+    ],
+    "native_volume": 524288,
+    "native_half_volume": 264192,
+    "caller_elements": 7864320,
+    "q_elements": 3962880,
+    "largest_listed_allocation_bytes": 63406080,
+    "largest_partial_named_subset_bytes": 265273344,
+    "subset_scope": "logical co-live subset only, not RSS/upper bound; source table geometry/stencil proof retained, no query trace/fit guarantee"
+  },
+  "operating_bounds": {
+    "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+    "correspondence_maximum_age_seconds": 3720,
+    "correspondence_prelaunch_age_seconds_max": 5,
+    "deadline_seconds": 3600,
+    "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+    "disk_proposal_bytes": 2965897216,
+    "host_min_available_bytes": 9663676416,
+    "kill_reap_seconds": 2,
+    "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+    "max_child_record_bytes": 4194304,
+    "native_allocator_allowance_bytes": 1610612736,
+    "predicted_child_peak_bytes": 3221225472,
+    "process_stop_bytes": 6442450944,
+    "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+    "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+    "reserve_bytes": 3221225472,
+    "sample_interval_seconds": 0.01,
+    "startup_pipe_bytes": 1024,
+    "startup_timeout_seconds": 5,
+    "terminate_grace_seconds": 0.2
+  },
+  "resource_preparation_facts": {
+    "inner": {
+      "current_bytes": 2773377024,
+      "current_plus_stop_plus_reserve_bytes": 12437053440,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17771356160,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    },
+    "outer": {
+      "current_bytes": 2758643712,
+      "current_plus_stop_plus_reserve_bytes": 12422320128,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17801633792,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    }
+  },
+  "eligibility_scope": "Actual complete192six and12closedowners are accepted prerequisites; no final scientific acceptance, no measured extrapolation.35material/core28/tool6 mappings agree with immutable basis/draft; fresh35/6 file verification by ROOT preparation source/record, coordinator did not rehash large executabletools.",
+  "checks": [
+    "Exact6fixed recipe identities/repetitions but allowedfirstsuppliedonly; no automaticstage/full/profile/continuation.",
+    "Currentstage empty ledger accurate before first commission; two immutable priorstageclosure hashes pinned; no historicalPIDrescan.",
+    "Prior192refs allJSON load/hash valid; Markdown separately hash-only.",
+    "MetadataUID/GID/PID+cgroupns/9rlimits/boot/FSintp exact; disk38.44GB and positiveinodes; oldmetadata is preparationonly.",
+    "Both capturedresource views match configured namespace/fileIDs/fixedfiles/events50340others0/swap0; mappedexposed16GiB bound only.",
+    "Prelaunchcapture<=5s to runner invocation, originalproofhorizon3720 andfreshenddomain remain required by binder; initialpreparationproof not reused as livegrant.",
+    "Final configauthorizedfalse; ROOT authority/admission prospective true values do not themselves invoke; futureROOT explicitenable/window/context required."
+  ],
+  "findings": [],
+  "execution_ACK": "No116runtimeactive: coorfile/source only, investigatorSOURCEprep22 only; no guard/analysis/native/test/import/probe calls.",
+  "limits": [
+    "Externalphysicalhost/unexposedancestors unknown_unobservable; outsideactors notscanned.",
+    "Sourcecurrentmargin is recordedpreparationfact; actualperroweligibilitycanrefuse.",
+    "3GiBprediction+1.5GiBallowance/6GiBstop are operationalproposals, not measuredbound/RAMpromise."
+  ],
+  "attempts_preserved": "Prior a1/a2syntheticguardfailures and192prelaunchMDJSONfailure unchanged. First broad configdisplay truncated; corrected focusedprojection/source reads complete relevantfield audit; no programrun.",
+  "execution_performed": false,
+  "qualified_worktree_mutated": false,
+  "actual_cost": "UNKNOWN",
+  "actual_tokens": "UNKNOWN"
+}

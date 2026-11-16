@@ -1,0 +1,66 @@
+{
+  "ROOT_checker_shape_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-null-pointer-shape-checker-diagnostic.json",
+    "sha256": "4db77a54562b89e73f5081cb28ef9ad4956af156a3b50d60f34d275dc70a2987"
+  },
+  "actual_prepare_or_science_authorized": false,
+  "all_manifest_ref_occurrences_actual_match": 32,
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-summary-searched-r2-p",
+    "ws116-gp-l256-summary-searched-r3-p",
+    "ws116-gp-l256-full-searched-r1-p",
+    "ws116-gp-l256-full-searched-r2-p",
+    "ws116-gp-l256-full-searched-r3-p"
+  ],
+  "authority": "ROOT",
+  "coordinator_independent_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/coordinator-source-inspection.json",
+    "sha256": "92758eb4c9db66cce888411016de7bd1972a85a3483f8b747afe37bc6fb19509"
+  },
+  "costs": "UNKNOWN",
+  "future_unknown_fields_verified_disabled": true,
+  "manifest_actual_immutable_refs": 8,
+  "mode_proposals_same_first_admission850": true,
+  "no_five_maxima_fit_promise_or_autoextend": true,
+  "observed_at_unix_ns": 1794787322986404198,
+  "output_files": [
+    "ROOT-preparation-authorization.input.json",
+    "ROOT-scheduler-suspension.input.json",
+    "ROOT-closed-r1-prerequisites.input.json",
+    "metadata-request.json",
+    "metadata-command.json",
+    "metadata.json",
+    "context-command.json",
+    "new-context-preflight.json",
+    "scheduler-ACK.json",
+    "ROOT-authority.json",
+    "current-stage-ledger.json",
+    "config-remaining5-PREPARED.json",
+    "preparation-status.json"
+  ],
+  "proposed_window_seconds": 21600,
+  "repeated_runtime_maps_exact_canonical446": [
+    "material35",
+    "core28",
+    "tool6",
+    "method7",
+    "environment"
+  ],
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/stage-admission.json",
+    "sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80"
+  },
+  "schema": "ROOT-WS116-largest256-profile-remaining5-source-reading-v1",
+  "source": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/root-prepare-remaining5-largest256-profiles.py",
+    "sha256": "2b31d4a9dc841b821db2f1fd328a7d2019ae1617c60fb7c6e77f264eb653d13e"
+  },
+  "source_read_notes": "Actual350lines read1\u2013125/126\u2013245/246\u2013385. Initialwrongfilename sed exit2 recoveredls; inherited central errorlabel181nonblocking/actuallargestIDsselect256correct. Firstactive29012 pointers notfollowed. No productimports/AST/QA/capture/workflow.",
+  "source_suitable_for_future_guarded_prepare_only": true,
+  "whole_documents_read": [
+    "README.md",
+    "source-handoff.json",
+    "ROOT-preparation-inputs-DISABLED.json"
+  ],
+  "whole_helper_lines_read": 350
+}

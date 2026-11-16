@@ -1,0 +1,65 @@
+{
+  "ROOT_post_audit": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-full-r1-post-audit.json",
+    "sha256": "0bc93bf8a00be26ff45a7f57b7963cf76e122f55a1436ce27d421c9b48df29c8"
+  },
+  "actual_controller_exit": 0,
+  "actual_toolterminal": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-controller1511-tool-terminal.json",
+    "sha256": "180858db3e2a7f6999ebcfb9c6d55ecd7e53839d7ab64e0d105b235175e584a9"
+  },
+  "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+  "authority": "ROOT",
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+    "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+  },
+  "controller_session": 1511,
+  "coordinator_independent_file_audit": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/coordinator-closed-fullsupplied-r1-review.json",
+    "sha256": "66ae824170b92cfc1fec23564983a6f91e2a51c89f9ffff235e3f9c1ddc49d9e"
+  },
+  "eligible_for_same_stage_continuation": true,
+  "exact2_birth_FD_sets_recorded_absent": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51854,
+      "start_ticks": 7559831
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51875,
+      "start_ticks": 7559843
+    }
+  ],
+  "final_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata.json",
+    "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90"
+  },
+  "final_scientific_acceptance": false,
+  "material35_and_candidate_unchanged": true,
+  "no_pending_proxy": true,
+  "observed_at_unix_ns": 1794770815419896107,
+  "raw11_stream_hashes_verified": true,
+  "same_rep_summary_common_identity_matches": true,
+  "schema": "ROOT-WS116-full-supplied-r1-eligibility-v1",
+  "scope": "Accept exact full supplied256 unprofiledR1 as one eligible descriptive observation and same-stageprefix only. No triple/median/ranking/finalscience/generalfeasibility/16GiB claim; terminaldirectchildscope inheritedpreexec/exechighwaterunknown. No nextscience release. All failures/diagnostics/unknowncharges preserved.",
+  "single_observation": {
+    "call_seconds": 1405.431346238,
+    "native_direct_child_high_water_bytes": 582418432
+  }
+}

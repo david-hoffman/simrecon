@@ -1,0 +1,12 @@
+{
+  "role": "holding-target",
+  "pid": 45779,
+  "ppid": 45772,
+  "pgid": 45779,
+  "session_id": 45779,
+  "nonce": "q2-ignore-term-kill-a1",
+  "mode": "ignore-term",
+  "term_handler_native": 1,
+  "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "self_exit_backstop_seconds": 12.0
+}

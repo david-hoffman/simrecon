@@ -1,0 +1,1519 @@
+{
+  "ROOT_execution_release": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-execution-release.json",
+    "sha256": "c5a57ac1b39bb543e603d748c3e3f8985d0abac3a506e0da5402e17d35ecb9ce"
+  },
+  "actual_event_baseline_max": 50340,
+  "all12_currentstage_exact_identities_and_expected_FD_paths_absent": true,
+  "all_in_trial_event_counters_unchanged": true,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "closed": true,
+  "closed_at_unix_ns": 1794764045306730380,
+  "context_scope": "Recorded per-row proofs/metadata only; external ancestors unknown_unobservable, outside actors unknown_not_scanned; no present-day PID/FD/resource scan.",
+  "controller_terminal_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-controller-94974-ended.json",
+    "sha256": "a2f5d0e18fe567996f3c18d2e21623cc2b2e5de02ce21112c7d419e4c94a7f3a"
+  },
+  "earlier_row1_window_closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-window-closed-for-checks.json",
+    "sha256": "f367dfdbb9f81bddaa18dbbc926e49da8fb0c7c172ccae96a03b843b926e3c28"
+  },
+  "eligible_boundaries": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "78ccec0912df2944a53938a7d4dccb3f9be665bcd52f04888cd9a59f74e613eb"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "75fd75b9887adbdc511cac8494af5f14f211b0eaa100e763394514d276c87bcd"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+    }
+  ],
+  "exact_owned_identities": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51452,
+      "start_ticks": 5785410
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51471,
+      "start_ticks": 5785431
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51534,
+      "start_ticks": 6181420
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51554,
+      "start_ticks": 6181435
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51594,
+      "start_ticks": 6341622
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51614,
+      "start_ticks": 6341637
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51655,
+      "start_ticks": 6505327
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51675,
+      "start_ticks": 6505339
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51716,
+      "start_ticks": 6687543
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51736,
+      "start_ticks": 6687558
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51776,
+      "start_ticks": 6860303
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 51796,
+      "start_ticks": 6860315
+    }
+  ],
+  "final_controller_exit_code": 0,
+  "final_controller_session": 94974,
+  "first_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+    "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+  },
+  "historical_identity_facts_retained": true,
+  "last_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+    "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+  },
+  "last_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-metadata.json",
+    "sha256": "2cc429a2b2c92b2687bfba7e9c775bfd0bfe136be9c65e2d4471bf714758da27"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "measurement_scope": "Kernel-reported direct-child high-water through final exit; inherited/pre-exec/exec-transition retention unknown. No subtraction, aggregate, decomposition, ranking or benefit.",
+  "metering": "unknown",
+  "next": "No automatic full/profile/largest selection or release; ROOT owns future admission.",
+  "no_scientific_report_acceptance": true,
+  "oom_fields_and_swap_zero": true,
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    }
+  ],
+  "raw_files_all_hash_verified": true,
+  "repeat_fingerprints_match_within_condition": true,
+  "retained_row1_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-data-eligibility.json",
+    "sha256": "107412590bb0da1e0c7a48edb64a70bd2c718314169b676c79275a716035d88e"
+  },
+  "rows": [
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+        "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+      },
+      "attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+        "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+      },
+      "branches": [
+        [
+          "known",
+          "known",
+          "known"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/stdout.json",
+        "sha256": "5dc6bda724ef6dbdcbcee5f2382e7fd60a76a736f063071c1344e77e5a2f983a"
+      },
+      "condition_id": "growth256-summary-supplied",
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+        "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+        "public_result_sha256": "d1062564384a6950b261dc69de7b53060f5403d2f7b889a89f632ec714c08324"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata.json",
+        "sha256": "51bf1a1703ebef6748b81bf5137afa09c4619c41a3a918f9d2cf32bd84348e2e"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794753072210761202.json",
+        "sha256": "55fab719a9d86950082048f965c942701587a3ddb9fdacc9b64d5066d329b40f"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2669608960,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2655846400,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794751364138018780,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794751363903612807.json",
+            "sha256": "a50854dac11247949b0fe3f49db790d5e42f03eb7cee9f91fe5c8a84fd3279ef"
+          },
+          "started_ns": 1794751363903612807
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2547167232,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2533134336,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794753072508555069,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794753072210761202.json",
+            "sha256": "55fab719a9d86950082048f965c942701587a3ddb9fdacc9b64d5066d329b40f"
+          },
+          "started_ns": 1794753072210761202
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/receipt.json",
+        "sha256": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4"
+      },
+      "repetition": 1,
+      "terminal_direct_child_high_water_bytes": 335155200,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 335155200,
+        "pid": 51471,
+        "reaped_monotonic_ns": 59556068430548,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 309360,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 224,
+          "ru_maxrss": 327300,
+          "ru_minflt": 44641,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 11367,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 667,
+          "ru_oublock": 56,
+          "ru_stime": 1.505908,
+          "ru_utime": 1698.351235
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2523820032"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17730064384,
+          "monotonic_ns": 59556068871421
+        },
+        "confirmation_decision_monotonic": 59556.068911085,
+        "deadline_monotonic_ns": 59556107479245,
+        "first_helper_entry_monotonic": 59556.057873451,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2532974592"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17714208768,
+          "monotonic_ns": 59556057479245,
+          "pid": 51471,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2523820032"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17730064384,
+          "monotonic_ns": 59556057479245,
+          "pid": 51471,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 59556.057873451,
+            "independent_stop": null,
+            "monotonic": 59556.05796624,
+            "sample_monotonic_ns": 59556057479245,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 59556.068899966,
+            "independent_stop": null,
+            "monotonic": 59556.068911085,
+            "sample_monotonic_ns": 59556057479245,
+            "terminal_collected_monotonic_ns": 59556068430548,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 59556057479245,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 59556068430548
+      },
+      "workflow_call_seconds": 1698.935949891
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      },
+      "attempt_id": "ws116-gp-g256-summary-supplied-r2-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/eligible-boundary.json",
+        "sha256": "78ccec0912df2944a53938a7d4dccb3f9be665bcd52f04888cd9a59f74e613eb"
+      },
+      "branches": [
+        [
+          "known",
+          "known",
+          "known"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r2-u/stdout.json",
+        "sha256": "bb695cfe1775cc92e96f8334b433e6568970761528f1b5a7ef83e05dcd9f9397"
+      },
+      "condition_id": "growth256-summary-supplied",
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+        "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+        "public_result_sha256": "d1062564384a6950b261dc69de7b53060f5403d2f7b889a89f632ec714c08324"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/post-metadata.json",
+        "sha256": "39ed198064088fe162e9aaa90871087383698ce50b0c377412540fd2dd22ea43"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794756925420056749.json",
+        "sha256": "b76c948cb4bc7f26c2a85387b464eb6b306e65aa9af05ccd1ad1215daf80913e"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2715439104,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2700984320,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794755324157206357,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794755323724356099.json",
+            "sha256": "4352d82e181f53edacf420ab11d0a8e9a9a82c79bc6ff6aa01fcbeacb3eca1ff"
+          },
+          "started_ns": 1794755323724356099
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2706915328,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2692710400,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794756925584061189,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794756925420056749.json",
+            "sha256": "b76c948cb4bc7f26c2a85387b464eb6b306e65aa9af05ccd1ad1215daf80913e"
+          },
+          "started_ns": 1794756925420056749
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r2-u/receipt.json",
+        "sha256": "88e9df57a094d19edbf805d503f5a901907940d21fa0ce23395f13ead3b25c9d"
+      },
+      "repetition": 2,
+      "terminal_direct_child_high_water_bytes": 345235456,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 345235456,
+        "pid": 51554,
+        "reaped_monotonic_ns": 63411334935554,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 188496,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 179,
+          "ru_maxrss": 337144,
+          "ru_minflt": 44559,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 8291,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 598,
+          "ru_oublock": 48,
+          "ru_stime": 1.064382,
+          "ru_utime": 1594.71652
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2681425920"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17713946624,
+          "monotonic_ns": 63411335347541
+        },
+        "confirmation_decision_monotonic": 63411.335386037,
+        "deadline_monotonic_ns": 63411373635960,
+        "first_helper_entry_monotonic": 63411.324493365,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2710478848"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17650728960,
+          "monotonic_ns": 63411323635960,
+          "pid": 51554,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2681425920"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17713946624,
+          "monotonic_ns": 63411323635960,
+          "pid": 51554,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 63411.324493365,
+            "independent_stop": null,
+            "monotonic": 63411.324671346,
+            "sample_monotonic_ns": 63411323635960,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 63411.335374337,
+            "independent_stop": null,
+            "monotonic": 63411.335386037,
+            "sample_monotonic_ns": 63411323635960,
+            "terminal_collected_monotonic_ns": 63411334935554,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 63411323635960,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 63411334935554
+      },
+      "workflow_call_seconds": 1595.365597385
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      },
+      "attempt_id": "ws116-gp-g256-summary-supplied-r3-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/eligible-boundary.json",
+        "sha256": "75fd75b9887adbdc511cac8494af5f14f211b0eaa100e763394514d276c87bcd"
+      },
+      "branches": [
+        [
+          "known",
+          "known",
+          "known"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r3-u/stdout.json",
+        "sha256": "01dc761896ab53b3f2a713e3d47d68c74b1b60fcdb23f22a23ee49e54e4fef4a"
+      },
+      "condition_id": "growth256-summary-supplied",
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+        "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+        "public_result_sha256": "d1062564384a6950b261dc69de7b53060f5403d2f7b889a89f632ec714c08324"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/post-metadata.json",
+        "sha256": "249e02d5086dda7e6f177ae5b4a95565c874a9a36e1bc90955504130d82ff8d0"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794758562469965622.json",
+        "sha256": "bfb852cc78f3f8f6ce308d980abb5cf6e5f4286f7ec8406fc94bf7e8ca8d5554"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2707755008,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2693132288,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794756926282107001,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794756926115977690.json",
+            "sha256": "51df0f0ad3a7bd83568a17e7baca187eef28048c27e13ef45c9826008a42e601"
+          },
+          "started_ns": 1794756926115977690
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2674827264,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2660626432,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794758562687811139,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794758562469965622.json",
+            "sha256": "bfb852cc78f3f8f6ce308d980abb5cf6e5f4286f7ec8406fc94bf7e8ca8d5554"
+          },
+          "started_ns": 1794758562469965622
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r3-u/receipt.json",
+        "sha256": "9d837e70c9521add67863992c68e17d4fa699215deecbb4bb7b03e7877ea867e"
+      },
+      "repetition": 3,
+      "terminal_direct_child_high_water_bytes": 342667264,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 342667264,
+        "pid": 51614,
+        "reaped_monotonic_ns": 65047667639009,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 127480,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 162,
+          "ru_maxrss": 334636,
+          "ru_minflt": 44307,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 8297,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 556,
+          "ru_oublock": 48,
+          "ru_stime": 1.414038,
+          "ru_utime": 1627.635429
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1629.813659062
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      },
+      "attempt_id": "ws116-gp-g256-summary-searched-r1-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+        "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/stdout.json",
+        "sha256": "e15bd09af24a78d49925642aef83ffdb5c3268e69b5cc075294beb7cb60f3552"
+      },
+      "condition_id": "growth256-summary-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "fa7bb2a86783bd354479cf8115b46272143bc70f64def3dbf6132806d9335003"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/post-metadata.json",
+        "sha256": "53c2736d74df1cf7e5a41c50d314a71783ef02b3c68f27f15aa411cf4a8c127a"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794760384578552697.json",
+        "sha256": "98b5b816e2e5dd9bcc74949c632eccc4ed0be6e8f08d7b1bef9bc00104aab50e"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2675433472,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2661507072,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794758563328152190,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794758563138857081.json",
+            "sha256": "04b57865a737c5096f2c86337a51601c43fdd199c263699b821362ae7ad35851"
+          },
+          "started_ns": 1794758563138857081
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2558095360,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2543665152,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794760384785326050,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794760384578552697.json",
+            "sha256": "98b5b816e2e5dd9bcc74949c632eccc4ed0be6e8f08d7b1bef9bc00104aab50e"
+          },
+          "started_ns": 1794760384578552697
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/receipt.json",
+        "sha256": "570683e48e3824958cddd4d3db299398fb4fa2556e44693601ddb378f277cbdd"
+      },
+      "repetition": 1,
+      "terminal_direct_child_high_water_bytes": 322445312,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 322445312,
+        "pid": 51675,
+        "reaped_monotonic_ns": 66873306269849,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 170328,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 207,
+          "ru_maxrss": 314888,
+          "ru_minflt": 56697,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 7079,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 536,
+          "ru_oublock": 56,
+          "ru_stime": 1.226523,
+          "ru_utime": 1817.243866
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873306605288
+        },
+        "confirmation_decision_monotonic": 66873.306635033,
+        "deadline_monotonic_ns": 66873345779837,
+        "first_helper_entry_monotonic": 66873.295963725,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873295779837,
+          "pid": 51675,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873295779837,
+          "pid": 51675,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 66873.295963725,
+            "independent_stop": null,
+            "monotonic": 66873.296067248,
+            "sample_monotonic_ns": 66873295779837,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 66873.306626116,
+            "independent_stop": null,
+            "monotonic": 66873.306635033,
+            "sample_monotonic_ns": 66873295779837,
+            "terminal_collected_monotonic_ns": 66873306269849,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 66873295779837,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 66873306269849
+      },
+      "workflow_call_seconds": 1818.263636516
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      },
+      "attempt_id": "ws116-gp-g256-summary-searched-r2-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+        "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/stdout.json",
+        "sha256": "8df933d78d42ba4a0930d9c0345823470dcb46ab4f95c157a35373e864020672"
+      },
+      "condition_id": "growth256-summary-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "fa7bb2a86783bd354479cf8115b46272143bc70f64def3dbf6132806d9335003"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/post-metadata.json",
+        "sha256": "a63144b851d6f55a982581168b53a7bc68a1793e6d47929075fb821a64ecf23a"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794762111787358154.json",
+        "sha256": "8945356a13d088bb673ea9b9ee071b954133df5cc6b018c283131ec27cc69236"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2558631936,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2544607232,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794760385461455475,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794760385297293140.json",
+            "sha256": "f170874ad334ff7df0e5fb2c742161b98128292ee0a7fbab37dba4e6ee98239a"
+          },
+          "started_ns": 1794760385297293140
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2580250624,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2566287360,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794762112137799584,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794762111787358154.json",
+            "sha256": "8945356a13d088bb673ea9b9ee071b954133df5cc6b018c283131ec27cc69236"
+          },
+          "started_ns": 1794762111787358154
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/receipt.json",
+        "sha256": "bbd86feb56fd4f19396207b90ac60b597392f6901c62e3c5a6807d536652a5e5"
+      },
+      "repetition": 2,
+      "terminal_direct_child_high_water_bytes": 326709248,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 326709248,
+        "pid": 51736,
+        "reaped_monotonic_ns": 68599242074596,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 154168,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 166,
+          "ru_maxrss": 319052,
+          "ru_minflt": 57649,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 6546,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 488,
+          "ru_oublock": 48,
+          "ru_stime": 1.3238509999999999,
+          "ru_utime": 1721.063145
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1721.99578851
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      },
+      "attempt_id": "ws116-gp-g256-summary-searched-r3-u",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+        "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/stdout.json",
+        "sha256": "5a090236f82b7f763793bb02b4c1aae8c5f4e3252045fd7c0a984b276ee6f1b9"
+      },
+      "condition_id": "growth256-summary-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "fa7bb2a86783bd354479cf8115b46272143bc70f64def3dbf6132806d9335003"
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/post-metadata.json",
+        "sha256": "2cc429a2b2c92b2687bfba7e9c775bfd0bfe136be9c65e2d4471bf714758da27"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794763939757822464.json",
+        "sha256": "344067ec5aa92195ed7c127c7f9a3c31d1f662e9d8e8057f0c56ebf0741b5bd1"
+      },
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2581880832,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2567479296,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794762113020297737,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794762112763758422.json",
+            "sha256": "7abdd6c5e7ede66630728ec9e3aa11999d7f51a7e86a3d5ec3fbbabbe5dfce6e"
+          },
+          "started_ns": 1794762112763758422
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2588299264,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2574110720,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794763939975896229,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794763939757822464.json",
+            "sha256": "344067ec5aa92195ed7c127c7f9a3c31d1f662e9d8e8057f0c56ebf0741b5bd1"
+          },
+          "started_ns": 1794763939757822464
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/receipt.json",
+        "sha256": "00a79d177f18e24cabdec9280a9832e9df1a254913d70c0b7fc2aac76dc1840d"
+      },
+      "repetition": 3,
+      "terminal_direct_child_high_water_bytes": 326881280,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 326881280,
+        "pid": 51796,
+        "reaped_monotonic_ns": 70426031201403,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 109776,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 148,
+          "ru_maxrss": 319220,
+          "ru_minflt": 56862,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 7753,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 376,
+          "ru_oublock": 48,
+          "ru_stime": 1.233537,
+          "ru_utime": 1820.152453
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426031704199
+        },
+        "confirmation_decision_monotonic": 70426.031778691,
+        "deadline_monotonic_ns": 70426069829985,
+        "first_helper_entry_monotonic": 70426.020385606,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426019829985,
+          "pid": 51796,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426019829985,
+          "pid": 51796,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 70426.020385606,
+            "independent_stop": null,
+            "monotonic": 70426.020485704,
+            "sample_monotonic_ns": 70426019829985,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 70426.031768292,
+            "independent_stop": null,
+            "monotonic": 70426.031778691,
+            "sample_monotonic_ns": 70426019829985,
+            "terminal_collected_monotonic_ns": 70426031201403,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 70426019829985,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 70426031201403
+      },
+      "workflow_call_seconds": 1820.79672742
+    }
+  ],
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-stage-admission.json",
+    "sha256": "1f4c554e2e03dec7c11e4d3a067d2e1ebbbab549810fc8c81b90a6ab2acbce3d"
+  },
+  "scope": "WS116_ROOT_closed_prior_stage",
+  "source_unchanged": true,
+  "stage_id": "growth256-summary",
+  "terminal_receipts": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/receipt.json",
+      "sha256": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r2-u/receipt.json",
+      "sha256": "88e9df57a094d19edbf805d503f5a901907940d21fa0ce23395f13ead3b25c9d"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r3-u/receipt.json",
+      "sha256": "9d837e70c9521add67863992c68e17d4fa699215deecbb4bb7b03e7877ea867e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/receipt.json",
+      "sha256": "570683e48e3824958cddd4d3db299398fb4fa2556e44693601ddb378f277cbdd"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/receipt.json",
+      "sha256": "bbd86feb56fd4f19396207b90ac60b597392f6901c62e3c5a6807d536652a5e5"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/receipt.json",
+      "sha256": "00a79d177f18e24cabdec9280a9832e9df1a254913d70c0b7fc2aac76dc1840d"
+    }
+  ],
+  "three_repeat_groups_complete": 2,
+  "unresolved_owners": []
+}

@@ -1,0 +1,42 @@
+{
+  "actual_closure_command": {
+    "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-actual-closure-command.json",
+    "sha256": "9c7242f0be05a1454f1bbd57ee8b52ca4312a060fb5c7a050ac3d0e43b415b0e"
+  },
+  "all35_source_hashes_match": true,
+  "all6_stored_owner_and_fd_facts_absent": true,
+  "authority": "ROOT",
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+    "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+  },
+  "controller74202_actual_exit0_no_proxy": true,
+  "fixed_manifest_bindings_match": 23,
+  "full_status": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-post-fullsearched3-full-git-status.txt",
+    "sha256": "aadeb5939f50b2d934239c093ce6fcef30e1456189b499328e7d3669e027f576"
+  },
+  "helper": {
+    "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/root-close-fullsearched256-stage.py",
+    "sha256": "5fe0f43bf6a84bc6f20710f003fdf8bcc5e9e905bc663c560d913a5a2faa25c6"
+  },
+  "no_current_pid_scan": "Closure uses recorded exactbirth/FD metadata, no current rescan",
+  "observed_at_unix_ns": 1794780788637123682,
+  "old_full_status": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-post-r1-full-git-status.txt",
+    "sha256": "73f86632348766a0df667c3ea8afc6fc7956bed2cfb52e314ffd6af25e4683f1"
+  },
+  "schema": "ROOT-WS116-fullsearched256-postclosure-source-check-v1",
+  "scope": "Post-success actual source35/HEAD/tree/tracked/FULLstatus/helper/manifest binding; not scientific report acceptance",
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-manifest.json",
+    "sha256": "73141da53c4ddd3996181a76d5bbb0540be6128065b25d1c20c443bad9d9867d"
+  },
+  "status_scope": "78 expected untracked rawdirectories/858files; exact retained76 plus2new boundaryrawinventories; no tracked/source change; not finalpublicationclean",
+  "tracked_diff_empty": true
+}

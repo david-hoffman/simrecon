@@ -1,0 +1,11 @@
+{
+  "id": "G06-V22-native-bool",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "terminal native units"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "terminal native units"
+}

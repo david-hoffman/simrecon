@@ -1,0 +1,1196 @@
+{
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/root-largest256-profiles-stage-closed.json",
+    "sha256": "2bc344e6727ad9b9022faca2336669f812b4c0025ed9230480756dec97dd651f"
+  },
+  "groups": {
+    "growth256-full-searched": {
+      "call_end_cumulative_self_bytes": {
+        "max": 696123392,
+        "median": 695250944,
+        "min": 693915648
+      },
+      "call_seconds": {
+        "max": 1790.373879817,
+        "median": 1720.852829409,
+        "min": 1424.11516996
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 696123392,
+        "median": 695250944,
+        "min": 693915648
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 140537856,
+        "median": 140124160,
+        "min": 140095488
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 1793.207664254,
+        "median": 1723.259577329,
+        "min": 1426.685453173
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 1792.85846156,
+        "median": 1723.029345988,
+        "min": 1426.475958986
+      },
+      "terminal_kernel_bytes": {
+        "max": 696123392,
+        "median": 695250944,
+        "min": 693915648
+      },
+      "terminal_native_KiB": {
+        "max": 679808,
+        "median": 678956,
+        "min": 677652
+      }
+    },
+    "growth256-summary-searched": {
+      "call_end_cumulative_self_bytes": {
+        "max": 337612800,
+        "median": 334983168,
+        "min": 334118912
+      },
+      "call_seconds": {
+        "max": 1550.452105608,
+        "median": 1470.766478159,
+        "min": 1335.172755667
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 337612800,
+        "median": 334983168,
+        "min": 334118912
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 140357632,
+        "median": 140210176,
+        "min": 139669504
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 1551.757263874,
+        "median": 1472.539334728,
+        "min": 1336.840142247
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 1551.534646302,
+        "median": 1472.181035445,
+        "min": 1336.570353148
+      },
+      "terminal_kernel_bytes": {
+        "max": 337612800,
+        "median": 334983168,
+        "min": 334118912
+      },
+      "terminal_native_KiB": {
+        "max": 329700,
+        "median": 327132,
+        "min": 326288
+      }
+    }
+  },
+  "independence": "Derived from exact raw receipt/child integer fields before reading ROOT independent16 VALUES. No statistics module/canonical extractor/product/NumPy/SciPy imports, workload or native/resource query. json/hashlib/pathlib and sorted-three scalar arithmetic only.",
+  "large_samples_content_rehashed": false,
+  "metric_scope": "Kernel direct-child terminal LinuxKiB and bytes; self cumulative snapshots separate; call vs spawn-to-collection vs target-to-last-snapshot time separate. No aggregate tree/workflow isolation/subtraction/causal benefit.",
+  "rows": [
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+        "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stdout.json",
+        "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c"
+      },
+      "condition_id": "growth256-summary-searched",
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 334118912,
+        "call_seconds": 1335.172755667,
+        "post_observation_cumulative_self_bytes": 334118912,
+        "pre_call_cumulative_self_bytes": 140357632,
+        "spawn_to_terminal_collection_seconds": 1336.840142247,
+        "target_start_to_last_snapshot_seconds": 1336.570353148,
+        "terminal_kernel_bytes": 334118912,
+        "terminal_native_KiB": 326288
+      },
+      "mode": "summary",
+      "profile": true,
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179302430977,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93179302495549,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179363994205,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93179860876971,
+          "ru_maxrss_native_KiB": 231908,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179935501424,
+          "ru_maxrss_native_KiB": 231908,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93485898196668,
+          "ru_maxrss_native_KiB": 232312,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93485898402579,
+          "ru_maxrss_native_KiB": 232312,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 94514419702790,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 94514425143645,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 94514429088699,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      },
+      "repetition": 1,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "self_snapshots": {
+        "call_end": {
+          "cumulative_high_water_bytes": 334118912,
+          "monotonic_ns": 94514429354417,
+          "ru_inblock": 150088,
+          "ru_majflt": 89,
+          "ru_maxrss_native": 326288,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 56145,
+          "ru_nswap": 0,
+          "ru_oublock": 360,
+          "ru_stime_seconds": 0.8956029999999999,
+          "ru_utime_seconds": 1334.378227,
+          "scope": "after call/end timestamp, before result observations"
+        },
+        "post_observation": {
+          "cumulative_high_water_bytes": 334118912,
+          "monotonic_ns": 94514505671282,
+          "ru_inblock": 150648,
+          "ru_majflt": 90,
+          "ru_maxrss_native": 326288,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 56181,
+          "ru_nswap": 0,
+          "ru_oublock": 360,
+          "ru_stime_seconds": 0.903925,
+          "ru_utime_seconds": 1334.438873,
+          "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+        },
+        "pre_call": {
+          "cumulative_high_water_bytes": 140357632,
+          "monotonic_ns": 93179256489142,
+          "ru_inblock": 148704,
+          "ru_majflt": 74,
+          "ru_maxrss_native": 137068,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 23681,
+          "ru_nswap": 0,
+          "ru_oublock": 360,
+          "ru_stime_seconds": 0.30799099999999996,
+          "ru_utime_seconds": 0.886442,
+          "scope": "after input hashes/retention, before call timestamp"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/eligible-boundary.json",
+        "sha256": "8af497730ea65cea3e97736a90c886a900c9c2036100ad154871c07036b9cea6"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/stdout.json",
+        "sha256": "2e219d7c86384e7619863bb7f0568e35588a3bd91d7b3555571da932de779a57"
+      },
+      "condition_id": "growth256-summary-searched",
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 334983168,
+        "call_seconds": 1470.766478159,
+        "post_observation_cumulative_self_bytes": 334983168,
+        "pre_call_cumulative_self_bytes": 140210176,
+        "spawn_to_terminal_collection_seconds": 1472.539334728,
+        "target_start_to_last_snapshot_seconds": 1472.181035445,
+        "terminal_kernel_bytes": 334983168,
+        "terminal_native_KiB": 327132
+      },
+      "mode": "summary",
+      "profile": true,
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 95805725235542,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 95805725300353,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 95805781094759,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 95806230904725,
+          "ru_maxrss_native_KiB": 231892,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 95806282825954,
+          "ru_maxrss_native_KiB": 231892,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 96134868134650,
+          "ru_maxrss_native_KiB": 232224,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 96134868494052,
+          "ru_maxrss_native_KiB": 232224,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97276202694365,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97276206425614,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97276210054632,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/receipt.json",
+        "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be"
+      },
+      "repetition": 2,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "self_snapshots": {
+        "call_end": {
+          "cumulative_high_water_bytes": 334983168,
+          "monotonic_ns": 97276210275840,
+          "ru_inblock": 78048,
+          "ru_majflt": 73,
+          "ru_maxrss_native": 327132,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 56715,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 1.778292,
+          "ru_utime_seconds": 1467.655106,
+          "scope": "after call/end timestamp, before result observations"
+        },
+        "post_observation": {
+          "cumulative_high_water_bytes": 334983168,
+          "monotonic_ns": 97276279097983,
+          "ru_inblock": 78296,
+          "ru_majflt": 74,
+          "ru_maxrss_native": 327132,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 56750,
+          "ru_nswap": 0,
+          "ru_oublock": 16,
+          "ru_stime_seconds": 1.781586,
+          "ru_utime_seconds": 1467.719328,
+          "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+        },
+        "pre_call": {
+          "cumulative_high_water_bytes": 140210176,
+          "monotonic_ns": 95805443741638,
+          "ru_inblock": 75104,
+          "ru_majflt": 66,
+          "ru_maxrss_native": 136924,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 23763,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 0.423193,
+          "ru_utime_seconds": 0.996802,
+          "scope": "after input hashes/retention, before call timestamp"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/eligible-boundary.json",
+        "sha256": "fde37deb658088bb97f89f033f703c09425d648f00f92dbd58fdc6f2a32e4f43"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/stdout.json",
+        "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8"
+      },
+      "condition_id": "growth256-summary-searched",
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 337612800,
+        "call_seconds": 1550.452105608,
+        "post_observation_cumulative_self_bytes": 337612800,
+        "pre_call_cumulative_self_bytes": 139669504,
+        "spawn_to_terminal_collection_seconds": 1551.757263874,
+        "target_start_to_last_snapshot_seconds": 1551.534646302,
+        "terminal_kernel_bytes": 337612800,
+        "terminal_native_KiB": 329700
+      },
+      "mode": "summary",
+      "profile": true,
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 97282668299035,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97282668362736,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97282720269797,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97283178066481,
+          "ru_maxrss_native_KiB": 231296,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97283226209354,
+          "ru_maxrss_native_KiB": 231296,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97616577055215,
+          "ru_maxrss_native_KiB": 231772,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97616577581814,
+          "ru_maxrss_native_KiB": 231772,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98832842007787,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98832846106169,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98832849512390,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/receipt.json",
+        "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+      },
+      "repetition": 3,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "self_snapshots": {
+        "call_end": {
+          "cumulative_high_water_bytes": 337612800,
+          "monotonic_ns": 98832849820007,
+          "ru_inblock": 36496,
+          "ru_majflt": 56,
+          "ru_maxrss_native": 329700,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 56681,
+          "ru_nswap": 0,
+          "ru_oublock": 8,
+          "ru_stime_seconds": 1.651621,
+          "ru_utime_seconds": 1534.424952,
+          "scope": "after call/end timestamp, before result observations"
+        },
+        "post_observation": {
+          "cumulative_high_water_bytes": 337612800,
+          "monotonic_ns": 98832921479269,
+          "ru_inblock": 36536,
+          "ru_majflt": 56,
+          "ru_maxrss_native": 329700,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 56715,
+          "ru_nswap": 0,
+          "ru_oublock": 8,
+          "ru_stime_seconds": 1.656184,
+          "ru_utime_seconds": 1534.488438,
+          "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+        },
+        "pre_call": {
+          "cumulative_high_water_bytes": 139669504,
+          "monotonic_ns": 97282397659376,
+          "ru_inblock": 35672,
+          "ru_majflt": 45,
+          "ru_maxrss_native": 136396,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 23700,
+          "ru_nswap": 0,
+          "ru_oublock": 8,
+          "ru_stime_seconds": 0.246833,
+          "ru_utime_seconds": 0.7414229999999999,
+          "scope": "after input hashes/retention, before call timestamp"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/eligible-boundary.json",
+        "sha256": "24a0d4040ae882576d4cfc84afd256b9577590a71122af6423334b0695e86f4f"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/stdout.json",
+        "sha256": "d49bac4ace421e23025707f9e4515988b3c48ee6559f9560b462e757a5e83f56"
+      },
+      "condition_id": "growth256-full-searched",
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 695250944,
+        "call_seconds": 1424.11516996,
+        "post_observation_cumulative_self_bytes": 695250944,
+        "pre_call_cumulative_self_bytes": 140095488,
+        "spawn_to_terminal_collection_seconds": 1426.685453173,
+        "target_start_to_last_snapshot_seconds": 1426.475958986,
+        "terminal_kernel_bytes": 695250944,
+        "terminal_native_KiB": 678956
+      },
+      "mode": "full",
+      "profile": true,
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 98840458262954,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98840458330970,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98840521223203,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98841117567595,
+          "ru_maxrss_native_KiB": 231776,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98841171820261,
+          "ru_maxrss_native_KiB": 231776,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 99168348581952,
+          "ru_maxrss_native_KiB": 558684,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 99168348800210,
+          "ru_maxrss_native_KiB": 558684,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100264256294657,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100264256801047,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100264259261924,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/receipt.json",
+        "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d"
+      },
+      "repetition": 1,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265556772761
+        },
+        "confirmation_decision_monotonic": 100265.556802162,
+        "deadline_monotonic_ns": 100265595893011,
+        "first_helper_entry_monotonic": 100265.546070634,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2700226560"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17742905344,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.546070634,
+            "independent_stop": null,
+            "monotonic": 100265.546155978,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.556793452,
+            "independent_stop": null,
+            "monotonic": 100265.556802162,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": 100265556453165,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 100265545893011,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 100265556453165
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "self_snapshots": {
+        "call_end": {
+          "cumulative_high_water_bytes": 695250944,
+          "monotonic_ns": 100264259477619,
+          "ru_inblock": 16416,
+          "ru_majflt": 33,
+          "ru_maxrss_native": 678956,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 58908,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 2.049256,
+          "ru_utime_seconds": 1422.523683,
+          "scope": "after call/end timestamp, before result observations"
+        },
+        "post_observation": {
+          "cumulative_high_water_bytes": 695250944,
+          "monotonic_ns": 100265408227426,
+          "ru_inblock": 16488,
+          "ru_majflt": 33,
+          "ru_maxrss_native": 678956,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 58943,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 2.058049,
+          "ru_utime_seconds": 1423.656762,
+          "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+        },
+        "pre_call": {
+          "cumulative_high_water_bytes": 140095488,
+          "monotonic_ns": 98840144241058,
+          "ru_inblock": 14112,
+          "ru_majflt": 28,
+          "ru_maxrss_native": 136812,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 23775,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 0.378198,
+          "ru_utime_seconds": 0.8592839999999999,
+          "scope": "after input hashes/retention, before call timestamp"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/eligible-boundary.json",
+        "sha256": "d61dd7e95711a89291045e6ed90e4e1d2e21f7c8af923abf269a61a0f2bce9e2"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/stdout.json",
+        "sha256": "4e6046b6913012535757b19a886139824b46f81d2f3a814ab3c3b07d72b49cc8"
+      },
+      "condition_id": "growth256-full-searched",
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 696123392,
+        "call_seconds": 1790.373879817,
+        "post_observation_cumulative_self_bytes": 696123392,
+        "pre_call_cumulative_self_bytes": 140537856,
+        "spawn_to_terminal_collection_seconds": 1793.207664254,
+        "target_start_to_last_snapshot_seconds": 1792.85846156,
+        "terminal_kernel_bytes": 696123392,
+        "terminal_native_KiB": 679808
+      },
+      "mode": "full",
+      "profile": true,
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 100272807883333,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100272808143267,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100272869257190,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100273198761234,
+          "ru_maxrss_native_KiB": 231984,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100273257204578,
+          "ru_maxrss_native_KiB": 231984,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100624459325472,
+          "ru_maxrss_native_KiB": 558628,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100624459469507,
+          "ru_maxrss_native_KiB": 558628,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102063135031442,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102063135493126,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102063141496353,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/receipt.json",
+        "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41"
+      },
+      "repetition": 2,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064618937624
+        },
+        "confirmation_decision_monotonic": 102064.619011148,
+        "deadline_monotonic_ns": 102064656143575,
+        "first_helper_entry_monotonic": 102064.606490499,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673852416"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.606490499,
+            "independent_stop": null,
+            "monotonic": 102064.606661593,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.618993558,
+            "independent_stop": null,
+            "monotonic": 102064.619011148,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": 102064617100957,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 102064606143575,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 102064617100957
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "self_snapshots": {
+        "call_end": {
+          "cumulative_high_water_bytes": 696123392,
+          "monotonic_ns": 102063141715119,
+          "ru_inblock": 34376,
+          "ru_majflt": 49,
+          "ru_maxrss_native": 679808,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 58917,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 2.653351,
+          "ru_utime_seconds": 1779.296899,
+          "scope": "after call/end timestamp, before result observations"
+        },
+        "post_observation": {
+          "cumulative_high_water_bytes": 696123392,
+          "monotonic_ns": 102064349054847,
+          "ru_inblock": 34472,
+          "ru_majflt": 49,
+          "ru_maxrss_native": 679808,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 58952,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 2.66675,
+          "ru_utime_seconds": 1780.478184,
+          "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+        },
+        "pre_call": {
+          "cumulative_high_water_bytes": 140537856,
+          "monotonic_ns": 100272767779836,
+          "ru_inblock": 31912,
+          "ru_majflt": 44,
+          "ru_maxrss_native": 137244,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 23778,
+          "ru_nswap": 0,
+          "ru_oublock": 0,
+          "ru_stime_seconds": 0.363125,
+          "ru_utime_seconds": 0.907786,
+          "scope": "after input hashes/retention, before call timestamp"
+        }
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/eligible-boundary.json",
+        "sha256": "488b465a386150326f7fca5b96505ba55d4638258cb91c916c2ffbe775629393"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/stdout.json",
+        "sha256": "b186527b04353deb90135df03a3fa7db175631ed70c9c777541e574ca661de0a"
+      },
+      "condition_id": "growth256-full-searched",
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "metrics": {
+        "call_end_cumulative_self_bytes": 693915648,
+        "call_seconds": 1720.852829409,
+        "post_observation_cumulative_self_bytes": 693915648,
+        "pre_call_cumulative_self_bytes": 140124160,
+        "spawn_to_terminal_collection_seconds": 1723.259577329,
+        "target_start_to_last_snapshot_seconds": 1723.029345988,
+        "terminal_kernel_bytes": 693915648,
+        "terminal_native_KiB": 677652
+      },
+      "mode": "full",
+      "profile": true,
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 102069794724906,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102069794826398,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102069853662625,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102070240926630,
+          "ru_maxrss_native_KiB": 231720,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102070289954137,
+          "ru_maxrss_native_KiB": 231720,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102471899988050,
+          "ru_maxrss_native_KiB": 558028,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102471900301204,
+          "ru_maxrss_native_KiB": 558028,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 103790182336047,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 103790182822875,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 103790185405256,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/receipt.json",
+        "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb"
+      },
+      "repetition": 3,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791283754924
+        },
+        "confirmation_decision_monotonic": 103791.283790267,
+        "deadline_monotonic_ns": 103791322823982,
+        "first_helper_entry_monotonic": 103791.273020485,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2677006336"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17700282368,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.273020485,
+            "independent_stop": null,
+            "monotonic": 103791.27309766,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.283780854,
+            "independent_stop": null,
+            "monotonic": 103791.283790267,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": 103791283312819,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 103791272823982,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 103791283312819
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "self_snapshots": {
+        "call_end": {
+          "cumulative_high_water_bytes": 693915648,
+          "monotonic_ns": 103790185764250,
+          "ru_inblock": 53464,
+          "ru_majflt": 62,
+          "ru_maxrss_native": 677652,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 59415,
+          "ru_nswap": 0,
+          "ru_oublock": 160,
+          "ru_stime_seconds": 3.026828,
+          "ru_utime_seconds": 1716.895923,
+          "scope": "after call/end timestamp, before result observations"
+        },
+        "post_observation": {
+          "cumulative_high_water_bytes": 693915648,
+          "monotonic_ns": 103791128593562,
+          "ru_inblock": 54680,
+          "ru_majflt": 65,
+          "ru_maxrss_native": 677652,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 59451,
+          "ru_nswap": 0,
+          "ru_oublock": 168,
+          "ru_stime_seconds": 3.034551,
+          "ru_utime_seconds": 1717.817514,
+          "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown"
+        },
+        "pre_call": {
+          "cumulative_high_water_bytes": 140124160,
+          "monotonic_ns": 102069332756910,
+          "ru_inblock": 43848,
+          "ru_majflt": 56,
+          "ru_maxrss_native": 136840,
+          "ru_maxrss_native_units": "Linux KiB",
+          "ru_minflt": 23755,
+          "ru_nswap": 0,
+          "ru_oublock": 160,
+          "ru_stime_seconds": 0.30847199999999997,
+          "ru_utime_seconds": 0.876019,
+          "scope": "after input hashes/retention, before call timestamp"
+        }
+      }
+    }
+  ],
+  "schema": "WS116-largest256-profile-independent-raw-scalar-worksheet-v1",
+  "scientific_acceptance": false,
+  "stage_id": "largest-profiles",
+  "usage_cost": "unknown"
+}

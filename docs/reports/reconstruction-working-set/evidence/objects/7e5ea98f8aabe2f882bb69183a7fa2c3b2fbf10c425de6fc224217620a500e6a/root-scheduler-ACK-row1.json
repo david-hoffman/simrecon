@@ -1,0 +1,34 @@
+{
+  "campaign_work_suspended": true,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "Fivefixedcontrolsclosed; coorACKnoruntime/process/session/ownedFD. FreshB4file/text/hashreviewONLY; allimports/AST/lint/type/tests/native/build/installsuspended.",
+    "114": "Previouslyclosedscopedcontrols/fullstudySAFEHOLD",
+    "116": "Initial60all122closeda4c2; analysisand42guardsended; EAunchanged; newstagezeroowners",
+    "117": "ProvisionalCclosed/SAFEHOLD",
+    "118": "ProvisionalCclosed/SAFEHOLD",
+    "119": "Intakeonly/WAITING",
+    "120": "Intakeonly/WAITING",
+    "root": "Onlycurrentoperationalmetadata/filepreparation; allinitcontrollersreaped/dedicatedCIDstopped; snapshot/cacheadviceended; noothergate/import/install/test/benchmark"
+  },
+  "limits": "Knowncampaignscheduleonly; no globalscan/hostactorabsence/unobservableancestorclaim",
+  "observed_at_unix_ns": 1794741718236113563,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    }
+  ],
+  "root113_controls_closure": {
+    "path": "/workspace/work/campaign/evidence/113/root-five-init-controls-qualified.json",
+    "sha256": "b29bb12192bdc96c740bb6b237ec3634d3c4b848f008d23aefbf2cbc77e05d18"
+  },
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "stage_id": "growth192-summary",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794756118236113563,
+    "starts_unix_ns": 1794741718236113563
+  }
+}

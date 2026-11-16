@@ -1,0 +1,31 @@
+{
+  "schema": "WS116-coordinator-fullsearched256-closure-source-inspection-v1",
+  "status": "SOURCE_READY_UNEXECUTED_HOLD",
+  "owner": "/root/issue_116",
+  "scope": "Whole final327line helper, complete parent literal delta, README, disabledrelease-template, handoff and manifest read. Source-only JSON/hash consistency of fixed source packets and closedR1 refs; no activeR2R3 data or live context read. No target import/AST/lint/tests/QA or helper execution.",
+  "files": {
+    "root-close-fullsearched256-stage.py": "5fe0f43bf6a84bc6f20710f003fdf8bcc5e9e905bc663c560d913a5a2faa25c6",
+    "literal-source-delta.patch": "572cebfc143773ebb4212fe209cb4e91229387607c9bf8cfa9f9d99cc8152f7c",
+    "source-manifest.json": "73141da53c4ddd3996181a76d5bbb0540be6128065b25d1c20c443bad9d9867d",
+    "disabledrelease-template.json": "0ac02ea411347a49e777638f6e189fa62b358050b425d779acc53bae979ca490",
+    "README.md": "444f5155d8a1a83bfaf948877a1665f2770e84b7bdd93d94130f4012c58ea6f1",
+    "source-handoff.json": "3f8819fa007e833efac1df530599da2e153f66a0f597f1fdd925b84b21b8b256"
+  },
+  "source_correction": {
+    "original_complete_packet": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction",
+    "original_helper_sha256": "1990200d3d5f4b7e16e643d34709eaf4b53d5bb2e93dc57c6d2f03e5184f4e92",
+    "issue": "Explicit port initially missed ws116 supplied IDS constant; source self-inspection found it before execution/handoff.",
+    "repair": "Exactsearched3 IDS and non-authorizing next-stage prose only, dependent template/diff/README/hash chain updated; manifest fixed_attempt_ids already correct.",
+    "target_executions": 0
+  },
+  "self_review_findings_remaining": [],
+  "limitations": [
+    "ROOT independent whole source/fixed binding review required before one future explicit release.",
+    "Future controller74202 terminal0/proxy/toolreceipt, R2R3 outcome and six exact stored birthFD facts remain unknown.",
+    "Executable binary fixed hashes copied unchanged from reviewed parent manifest, not rehashed during active science.",
+    "Inherited source35/git checks occur pre-row audit; ROOT must independently postcheck actualEA35/HEAD/tree/tracked/FULLstatus/helpermanifest after success.",
+    "No scientific report acceptance or nextstage authority."
+  ],
+  "accounting": "Coordinator closure sourceprep1/sourcecorrection1/targetexecutions0; separate investigator33/9/42 pending author completion. Usage/cost unknown.",
+  "bookkeeping": "Initial full correction-script result was output-truncated; bounded final source/hash readback verified completion. No target call or data mutation."
+}

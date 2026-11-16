@@ -1,0 +1,30 @@
+{
+  "approved":false,
+  "scope":"WS116-selected-launch-route-v1",
+  "attempt_id":"launch-selected-a1",
+  "nonce":"WS116-selected-route-a1",
+  "candidate_head":"fad8ac2ded6357fbb579e9693c6d0189f251c446",
+  "python_resolved":"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "ownership_resolved":false,
+  "source_sha256":{
+    "docs/reports/reconstruction-working-set/qualification/launch_route_probe.py":"8d17265f756e738aaf5c4af501d8479cc087d7f2d3e9a096a9efa9230bd6aaef",
+    "docs/reports/reconstruction-working-set/qualification/launch-route-inventory.json":"56d876660f5edc1137d57da3d9a00f981419a5aeedffbf00165a4110fa9f3a51",
+    "docs/reports/reconstruction-working-set/observer.py":"94fec42631c642b2bd5121bfe5e696032895bcda5120c07a92d68f6d82e66ed2",
+    "docs/reports/reconstruction-working-set/run_attempt.py":"238fc597801a6871493db189e1c7eb5acb5af1115d30fc79e1c6a2dfc9ef3cde",
+    "uv.lock":"222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "bounds":{"overall_readiness_seconds":5.0,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"poll_seconds":0.01,"pipe_bytes":1024,"target_record_bytes":2048,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456},
+  "process_stop_bytes":268435456,
+  "host_min_available_bytes":536870912,
+  "ancestor_stop_bytes":{},
+  "resource_domain":{
+    "scope":"WS116-exposed-domain-conditional-v1",
+    "external_ancestors":"unknown_unobservable",
+    "conditional_rationale":"PENDING coordinator inspection/freeze and fresh root proof/ownership/margins; no execution release",
+    "correspondence_evidence":{"path":"PENDING_FRESH_ROOT_PROOF","sha256":"PENDING","observed_at_unix_ns":null,"maximum_age_seconds":300},
+    "expected_exposed":{"membership":"PENDING","mount_root":"PENDING","mount":"PENDING","namespace":"PENDING","visible_memory_max":{}},
+    "predicted_child_peak_bytes":67108864,
+    "native_allocator_allowance_bytes":67108864,
+    "reserve_bytes":268435456
+  }
+}

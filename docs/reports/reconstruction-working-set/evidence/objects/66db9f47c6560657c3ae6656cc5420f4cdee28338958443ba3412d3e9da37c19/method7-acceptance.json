@@ -1,0 +1,24 @@
+{
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "control_receipt_sha256": "ee45f1976ae813535506e25beb2c42c49d07ce5f85a951132093b748891e8f52",
+  "operational_end_validation": "Prospective original-proof hash/horizon and fresh end-domain/context eligibility owned by ROOT-reviewed binder",
+  "qualification_scope": "Exact reviewed F1/F2 source/integration +68purefake controls and unchanged prior function scopes; no full native/live/scientific/gate acceptance",
+  "qualified": true,
+  "review_report": {
+    "path": "/workspace/work/campaign/evidence/116/static-method-review-7.md",
+    "sha256": "861075fecd05087575fc90e7607ff79db9027c1aac1d979623dbd693e1eb1b5e"
+  },
+  "runner_end_domain_check": false,
+  "schema": "WS116-method7-qualified-source-acceptance-v1",
+  "scientific_acceptance": false,
+  "source_basis": {
+    "path": "/workspace/work/campaign/evidence/116/qualified-method7-source-basis.json",
+    "sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c"
+  },
+  "source_target_manifest_sha256": "6b626cbf6ce7dc0645cd4db4252ad45334453372c1ea1e622bb8bbc442e9566a",
+  "suitable": true
+}

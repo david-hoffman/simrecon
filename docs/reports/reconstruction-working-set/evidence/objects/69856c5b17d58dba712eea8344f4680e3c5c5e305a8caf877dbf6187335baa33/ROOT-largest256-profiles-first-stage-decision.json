@@ -1,0 +1,237 @@
+{
+  "ROOT_case_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/ROOT-source-packet-review.json",
+    "sha256": "c829ebbeaceace6e8141e2a63160298c16f8433d8d07173fe5c773cd91e7416f"
+  },
+  "accepted_central6_profile_descriptive_prerequisite": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-central6-profile-analysis-acceptance.json",
+    "sha256": "a9fb041d4f5ccd1d2b4c460191963eb815eb79e44e080a97d429e63ccedeb32a"
+  },
+  "accepted_for_guarded_first_row_preparation": true,
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-summary-searched-r1-p"
+  ],
+  "authority": "ROOT",
+  "closed_fullsearched256": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+    "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+  },
+  "closed_summary256": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+    "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+  },
+  "completed_tested_size_provenance": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+    "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+  },
+  "coordinator_case_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/coordinator-source-packet-review.json",
+    "sha256": "315175905887933b05330192ee6daebc9ea2bc084628ee71762a7aeda42902ae"
+  },
+  "costs": "UNKNOWN",
+  "declared_growth_conditions": [
+    {
+      "id": "growth256-summary-searched",
+      "mode": "summary",
+      "search": true,
+      "shape": [
+        1,
+        3,
+        8,
+        256,
+        256
+      ]
+    },
+    {
+      "id": "growth256-full-searched",
+      "mode": "full",
+      "search": true,
+      "shape": [
+        1,
+        3,
+        8,
+        256,
+        256
+      ]
+    }
+  ],
+  "external_ancestors": "unknown_unobservable",
+  "fixed_six_prospective_rows": [
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "condition_id": "growth256-summary-searched",
+      "launch_nonce": "ws116-gp-l256-summary-searched-r1-p",
+      "profile": true,
+      "repetition": 1,
+      "serial_index": 1,
+      "stage_id": "largest-profiles"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+      "condition_id": "growth256-summary-searched",
+      "launch_nonce": "ws116-gp-l256-summary-searched-r2-p",
+      "profile": true,
+      "repetition": 2,
+      "serial_index": 2,
+      "stage_id": "largest-profiles"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+      "condition_id": "growth256-summary-searched",
+      "launch_nonce": "ws116-gp-l256-summary-searched-r3-p",
+      "profile": true,
+      "repetition": 3,
+      "serial_index": 3,
+      "stage_id": "largest-profiles"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+      "condition_id": "growth256-full-searched",
+      "launch_nonce": "ws116-gp-l256-full-searched-r1-p",
+      "profile": true,
+      "repetition": 1,
+      "serial_index": 4,
+      "stage_id": "largest-profiles"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+      "condition_id": "growth256-full-searched",
+      "launch_nonce": "ws116-gp-l256-full-searched-r2-p",
+      "profile": true,
+      "repetition": 2,
+      "serial_index": 5,
+      "stage_id": "largest-profiles"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+      "condition_id": "growth256-full-searched",
+      "launch_nonce": "ws116-gp-l256-full-searched-r3-p",
+      "profile": true,
+      "repetition": 3,
+      "serial_index": 6,
+      "stage_id": "largest-profiles"
+    }
+  ],
+  "future_first_preparation_reservation_seconds": 14400,
+  "largest_profile_stage_admission_authorized": true,
+  "observed_at_unix_ns": 1794785351148487405,
+  "operating_proposals": {
+    "growth256-full-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 12884901888,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 2147483648,
+      "predicted_child_peak_bytes": 4294967296,
+      "process_stop_bytes": 8589934592,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "reserve_bytes": 4294967296,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    },
+    "growth256-summary-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 9663676416,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    }
+  },
+  "outside_actors": "unknown_not_scanned",
+  "reservation_scope": "Operational4h preparation/scheduling only; actualtimes/suspension/currentowners/headroom/disk remain futureunknown; existing7200deadline/7320horizon/5915017216disk/modecaps unchanged. Separateactual14packet coor+ROOTaudit/exactscientificrelease required.",
+  "same_mode_same_rep_controls": {
+    "ws116-gp-l256-full-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+        "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+        "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+        "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+        "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+        "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+        "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    }
+  },
+  "schema": "ROOT-WS116-largest256-profiles-first-stage-decision-v1",
+  "scientific_execution_released": false,
+  "scope": "NEWlargestprofile stage choice256 fromlargestcompletedtestedeligibledeclaredsummarysize, withclosedfullsearched andcentralprofiles. Old0f795nextstage was suppliedfull and is not profileauthority. PrepareONLYfirstsummary256profile afterfutureactualclosed6/12owner/primary940/ind16/ROOTaccept/newstageowner[]/source/scheduler/context checks. Sixrecipes/own256modecaps unchanged; no newgrowth/other5/R1repeat or generalfeasibility claim. RuntimeNullsourcepacket must become actualselected256 only through ROOT-boundpreparation.",
+  "selected_largest_size": 256,
+  "source_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+    "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+  },
+  "stage_id": "largest-profiles"
+}

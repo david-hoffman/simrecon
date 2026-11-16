@@ -1,0 +1,282 @@
+{
+  "protocol": "WS116-selected-launch-route-v1",
+  "status": "selected_tiny_route_observed_only",
+  "phase": "route_observed",
+  "attempt_id": "launch-selected-a1",
+  "observer_pid": 45014,
+  "driver_argv": [
+    "docs/reports/reconstruction-working-set/qualification/launch_route_probe.py",
+    "--grant",
+    "docs/reports/reconstruction-working-set/qualification/grants/launch-route-released.json",
+    "--attempt-id",
+    "launch-selected-a1"
+  ],
+  "signals": [],
+  "started_monotonic_ns": 16086681447665,
+  "not_scientific_memory_evidence": true,
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/qualification/launch_route_probe.py": "8d17265f756e738aaf5c4af501d8479cc087d7f2d3e9a096a9efa9230bd6aaef",
+    "docs/reports/reconstruction-working-set/qualification/launch-route-inventory.json": "56d876660f5edc1137d57da3d9a00f981419a5aeedffbf00165a4110fa9f3a51",
+    "docs/reports/reconstruction-working-set/qualification/launch-route-grant-template.json": "2d72ac718e58dfcc1502cce31e4a6191bef47d7f7ba045dc61cb35cb3c061ecc",
+    "docs/reports/reconstruction-working-set/qualification/launch-route-proposal.md": "4ee9ab0e4bbad539f962817c9af58c2be7e62262fc4e2a68988949147c3dffec",
+    "docs/reports/reconstruction-working-set/observer.py": "94fec42631c642b2bd5121bfe5e696032895bcda5120c07a92d68f6d82e66ed2",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "238fc597801a6871493db189e1c7eb5acb5af1115d30fc79e1c6a2dfc9ef3cde",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "grant_sha256": "e153860374121892b04ceaf06b57b8d88d55b3ea676a2b64d00fde688fc29e71",
+  "observer_identity": {
+    "pid": 45014,
+    "observed_monotonic_ns": 16086706635806,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 1608661,
+    "ppid": 0,
+    "pgid": 45014,
+    "session_id": 45014,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "Root explicitly released one inspected plain-spawn same-PID setsid/readiness/exec normal tiny stdlib route, after source/build and scoped ownership diagnosis. Fresh outer/inner proof matches exposed file device/inodes and records16GiB finite bound with about0.715GB current usage; actual admission rereads current/host/namespace/margins. 64+64MiB conservative envelope/native allowance fits256MiB process stop;256MiB reserve and4GiB ancestor stop leave large exposed margin. No product/numerical code, orphan scenario or fallback; ordinary117 checks may coexist. External ancestors remain unknown, no zero-OOM/aggregate/workflow/benefit claim; exec-transition high-water retention remains unresolved.",
+    "correspondence_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794709474795527402.json",
+      "sha256": "563d58f4bc86f8ef31073f3f70f13dc0d69c612c8a3c4ddde104088af21147ed",
+      "observed_at_unix_ns": 1794709474795527402,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nos.setsid()\nmessage = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n    \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\nif len(message) > 512:\n    raise RuntimeError(\"bootstrap readiness exceeds frozen bound\")\nif os.write(fd, message) != len(message):\n    raise RuntimeError(\"incomplete bootstrap readiness write\")\nos.close(fd)\nos.execve(sys.argv[3], [sys.argv[3], \"-c\", sys.argv[4], nonce], os.environ.copy())\n",
+    "68",
+    "WS116-selected-route-a1",
+    "/workspace/work/issue-116/.venv/bin/python",
+    "import json\nimport os\nimport sys\n\nprint(json.dumps({\"role\":\"target\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":sys.argv[1],\n    \"executable\":os.readlink(\"/proc/self/exe\"),\n    \"cgroup_namespace\":os.readlink(\"/proc/self/ns/cgroup\")}), flush=True)\nraise SystemExit(0)\n"
+  ],
+  "file_actions": [
+    [
+      0,
+      0,
+      "/dev/null",
+      0,
+      0
+    ],
+    [
+      2,
+      66,
+      1
+    ],
+    [
+      2,
+      67,
+      2
+    ],
+    [
+      2,
+      65,
+      68
+    ],
+    [
+      1,
+      64
+    ],
+    [
+      1,
+      65
+    ],
+    [
+      1,
+      66
+    ],
+    [
+      1,
+      67
+    ]
+  ],
+  "fd_plan": {
+    "read": 64,
+    "write_source": 65,
+    "ready_destination": 68,
+    "stdout_source": 66,
+    "stderr_source": 67
+  },
+  "workload_pid": 45021,
+  "bootstrap_ready": {
+    "role": "bootstrap",
+    "pid": 45021,
+    "ppid": 45014,
+    "pgid": 45021,
+    "session_id": 45021,
+    "nonce": "WS116-selected-route-a1",
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "target_handshake": {
+    "role": "target",
+    "pid": 45021,
+    "ppid": 45014,
+    "pgid": 45021,
+    "session_id": 45021,
+    "nonce": "WS116-selected-route-a1",
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "cgroup_namespace": "cgroup:[4026532294]"
+  },
+  "terminal": {
+    "pid": 45021,
+    "wait_status_raw": 0,
+    "returncode": 0,
+    "exited": true,
+    "signaled": false,
+    "exit_code": 0,
+    "term_signal": null,
+    "core_dumped": false,
+    "reaped_monotonic_ns": 16086770532546,
+    "rusage_native": {
+      "ru_idrss": 0,
+      "ru_inblock": 0,
+      "ru_isrss": 0,
+      "ru_ixrss": 0,
+      "ru_majflt": 0,
+      "ru_maxrss": 16568,
+      "ru_minflt": 3898,
+      "ru_msgrcv": 0,
+      "ru_msgsnd": 0,
+      "ru_nivcsw": 0,
+      "ru_nsignals": 0,
+      "ru_nswap": 0,
+      "ru_nvcsw": 1,
+      "ru_oublock": 8,
+      "ru_stime": 0.007522999999999999,
+      "ru_utime": 0.048357
+    },
+    "ru_maxrss_native_units": "Linux KiB",
+    "ru_maxrss_multiplier_to_bytes": 1024,
+    "complete_child_peak_bytes": 16965632,
+    "scope": "wait4 exact direct child through exit, including JSON/teardown; maximum resident process size, not concurrent aggregate or numerical-only memory"
+  },
+  "wait_ownership_lost": false,
+  "elapsed_seconds": 0.0635736350013758,
+  "finished_monotonic_ns": 16086771984496,
+  "postflight": {
+    "system": "Linux",
+    "kernel": "6.18.57",
+    "machine": "x86_64",
+    "host_id_sha256": "45e7e2ee03331e7e0fb4ce44fe07c21d6c90885f5dc786874f8e86fd70c2ee33",
+    "pid": 45014,
+    "meminfo": "MemTotal:       18440100 kB\nMemFree:        17268276 kB\nMemAvailable:   17464120 kB\nBuffers:            6256 kB\nCached:           257596 kB\nSwapCached:            0 kB\nActive:           160504 kB\nInactive:         180428 kB\nActive(anon):         60 kB\nInactive(anon):   107476 kB\nActive(file):     160444 kB\nInactive(file):    72952 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               688 kB\nWriteback:             0 kB\nAnonPages:        107612 kB\nMapped:           129068 kB\nShmem:               176 kB\nKReclaimable:     314460 kB\nSlab:             378396 kB\nSReclaimable:     314460 kB\nSUnreclaim:        63936 kB\nKernelStack:        3464 kB\nPageTables:         4708 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     888108 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5764 kB\nVmallocChunk:          0 kB\nPercpu:             1440 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:      8192 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      210944 kB\nDirectMap2M:    10790912 kB\nDirectMap1G:    33554432 kB",
+    "cgroup": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_ancestors": [
+        {
+          "path": "/sys/fs/cgroup",
+          "memory.max": "17179869184",
+          "memory.current": "662200320",
+          "memory.peak": "7725113344",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+          "memory.swap.max": "max",
+          "memory.swap.current": "0"
+        }
+      ],
+      "hidden_ancestors": "unknown: ancestors outside the exposed domain are unobserved; no absence or unlimited claim"
+    },
+    "rlimits": {
+      "RLIMIT_AS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_DATA": [
+        -1,
+        -1
+      ],
+      "RLIMIT_RSS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_CPU": [
+        -1,
+        -1
+      ],
+      "RLIMIT_FSIZE": [
+        -1,
+        -1
+      ],
+      "RLIMIT_NOFILE": [
+        1024,
+        16384
+      ]
+    },
+    "disk_available_bytes": 60826890240,
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "allocator": {
+      "PYTHONMALLOC": null,
+      "MALLOC_ARENA_MAX": null
+    }
+  },
+  "files_before_receipt": {
+    "intent.json": {
+      "logical_bytes": 601,
+      "allocated_bytes": 4096
+    },
+    "samples.jsonl": {
+      "logical_bytes": 1720,
+      "allocated_bytes": 4096
+    },
+    "preflight.json": {
+      "logical_bytes": 2855,
+      "allocated_bytes": 4096
+    },
+    "spawn-intent.json": {
+      "logical_bytes": 1713,
+      "allocated_bytes": 4096
+    },
+    "grant.input": {
+      "logical_bytes": 3202,
+      "allocated_bytes": 4096
+    },
+    "stderr.log": {
+      "logical_bytes": 0,
+      "allocated_bytes": 0
+    },
+    "readiness.bin": {
+      "logical_bytes": 222,
+      "allocated_bytes": 4096
+    },
+    "route-details.json": {
+      "logical_bytes": 6760,
+      "allocated_bytes": 8192
+    },
+    "owned-child.json": {
+      "logical_bytes": 1589,
+      "allocated_bytes": 4096
+    },
+    "stdout.json": {
+      "logical_bytes": 262,
+      "allocated_bytes": 4096
+    },
+    "bootstrap-ready.json": {
+      "logical_bytes": 238,
+      "allocated_bytes": 4096
+    }
+  },
+  "limits": "Terminal wait4 is kernel-reported direct-child usage through final exit. Inherited/pre-exec/exec-transition high-water retention remains unresolved; same PID does not guarantee every bootstrap/startup peak survives exec. No subtraction/aggregate/benefit claim. A tiny route is not a scientific-method qualification. PID1 is not a general reaper; parent-death/spawn-to-owner gaps remain; no deliberate orphan test. Receipt excludes its own disk bytes. Failure stops; no fallback route or retry."
+}

@@ -1,0 +1,29 @@
+{
+  "all_prior_exposure_stops_attempts_charges_retained": true,
+  "at_unix_ns": 1794806437891014215,
+  "authority": "ROOT",
+  "candidate_unchanged": "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2",
+  "classification": "READ_TRANSPORT_DISCIPLINE/PARTIAL_READ, not author-oracle or blind-role contamination",
+  "continued_input": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit-bounded-projection.json",
+    "sha256": "b73254b0a527406d7cdd492a105b5c94240c2afdd9bd0d4133ea4e924735f0ff"
+  },
+  "costs": "UNKNOWN",
+  "decision": "AUTHORIZE_SAME_NONBLIND_SCI1_CONTINUATION_ON_EXISTING_SCOPE_WITH_BOUNDED_READS",
+  "exact_command_basis": "Report18cb records wc then cat of EXPRESSLY NAMED audit before inspecting wc return; result truncated. No unlisted body requested.",
+  "final_gate_postgate_still_required": true,
+  "guardrails": "Never cat/dump full audit/location-map/file-audit/inventory or broad graph. Bounded inertjq field projection after measuring output shape; wholefile SHA stillidentity only. Whole read only small active prose. Reuse own earlier assessment for byte-identical outputs. No exhaustive everyquery/everysample/all4483 criterion. Stop on actual unpermitted content.",
+  "incident": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-1-foundation/foundation-assessment-integration-transport-stop.md",
+    "sha256": "18cb314a3017388b62e3ed57e6cdabe963840082e66d11aad6c6be0549d4e402"
+  },
+  "no_restored_blindness_or_new_independence_claim": true,
+  "no_target_scientific_repair_or_rerun": true,
+  "prior_ROOT_wrapper_diagnostic": "First ROOT preservation attempt asserted destination absent, but coordinator had just preserved identical18cb. Actual1 before any ROOTcopy/projection/routing mutation; existingbytes matched, corrected to verify existingpreservation without overwrite. No target effect.",
+  "root_complete_file_inspection": "ROOT parsed complete audit:4483 rows ONLYpath/SHA/size,91raw rows ONLYID+11filenames, Gitls-files stdout filenamealiases only. Remaining fields are declared ROOT actor identity/count/source35/link/copy/whitespace facts, references and scope. No author/sibling scientific source argument or review-opinion BODY embedded; archival review filenames metadata only, not traversed.",
+  "schema": "ROOT-116-review-transport-incident-routing-v1",
+  "source_artifact": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json",
+    "sha256": "aaccf876bed3dc6286ef4052a87fd51d9c194ce66ee4e82c12701f7779bd5bb3"
+  }
+}

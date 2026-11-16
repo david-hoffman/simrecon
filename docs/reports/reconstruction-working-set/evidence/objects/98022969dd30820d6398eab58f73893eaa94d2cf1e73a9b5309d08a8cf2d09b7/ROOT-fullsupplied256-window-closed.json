@@ -1,0 +1,27 @@
+{
+  "authority": "ROOT",
+  "closed_fullsupplied_window": true,
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+    "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+  },
+  "controller_terminal_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+    "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e"
+  },
+  "ended_at_unix_ns": 1794774054248774710,
+  "future_scientific_execution_authorized": false,
+  "no_active_stage_controller": true,
+  "old_reservation": {
+    "ends_unix_ns": 1794781645327963666,
+    "starts_unix_ns": 1794770845327963666
+  },
+  "postclosure_source_check": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-postclosure-source-check.json",
+    "sha256": "82d79a3a73caa8c425fa224cc1953968dda77c1ac93da533c6509207b2f512ae"
+  },
+  "schema": "ROOT-WS116-fullsupplied256-window-closed-v1",
+  "scope": "Explicit early end after actual whole3row closure; no automatic searched/profile release",
+  "stage_id": "largest-full-supplied",
+  "unresolved_owners": []
+}

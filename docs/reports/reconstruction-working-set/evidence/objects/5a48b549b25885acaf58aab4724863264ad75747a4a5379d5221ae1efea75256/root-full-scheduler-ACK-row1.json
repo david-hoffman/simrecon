@@ -1,0 +1,52 @@
+{
+  "ROOT_largest_selection": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+    "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+  },
+  "ROOT_searched_stage_decision": null,
+  "campaign_work_suspended": true,
+  "input_observed_at_unix_ns": 1794775262225284303,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "ROOT C7 ten controllers/proxies/pipes/private namespaces closed; reservationended41e3b78e; dedicatedinit stopped/Pid0. Current driver/support fixes sourceonly, all runtime held.",
+    "114": "Priorcontrol2/executed owners closed; dormant resource route quarantined, no active work. Finalparent/source plan HOLD.",
+    "116": "Supplied60678 actualterminal0, whole3/6ownerFDclosure41a94c2e, windowended98022969. Canonicalfileanalysisattempt1failed+attempt2closed0/descriptiveacceptf2fa6e4f, no numerical owners. No searched scientificlaunch yet.",
+    "117": "Provisional checks closed, resource adaptation sourceplan only, no active runtime.",
+    "118": "Provisional checks closed, adapter neverexecuted, sourceplan only, no active runtime.",
+    "119": "Intakeonly, no runtimeworkload launched.",
+    "120": "Intakeonly, no runtimeworkload launched.",
+    "root": "All known prior controllers/proxies closed and no active toolruntime; reserve new2h window for firstsearched preparation/independentactualpacketaudit then separateROOTrelease only. No unrelated imports/tests/lint/types/build/install/benchmarks. Source/file/read-onlyGit allowed, outsideactors unknown."
+  },
+  "observed_at_unix_ns": 1794775263068855127,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "preparation_suspension_input": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-preparer-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "1fc7a17068a2adc055e5a84213b4f0df0d64722669861d9032b983da910991d6"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "ROOT future standing suspension consumed now; no outside actor scan. ACK is not grant authority.",
+  "stage_id": "largest-full-searched",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794782463068855127,
+    "starts_unix_ns": 1794775263068855127
+  }
+}

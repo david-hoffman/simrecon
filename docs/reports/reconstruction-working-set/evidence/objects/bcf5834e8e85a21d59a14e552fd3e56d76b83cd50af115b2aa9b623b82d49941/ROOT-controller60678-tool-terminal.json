@@ -1,0 +1,7 @@
+{
+  "chunk_id": "0b4a57",
+  "wall_time_seconds": 4.492973755,
+  "exit_code": 0,
+  "original_token_count": 111,
+  "output": "{\"attempt_id\": \"ws116-gp-l256-full-supplied-r3-u\", \"elapsed_seconds\": 1405.4150374409946, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 160026}\n{\"attempt_id\": \"ws116-gp-l256-full-supplied-r3-u\", \"elapsed_seconds\": 1410.4152935909951, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 160026}\n{\"attempt_id\": \"ws116-gp-l256-full-supplied-r3-u\", \"elapsed_seconds\": 1415.4162068469886, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 160026}\n"
+}

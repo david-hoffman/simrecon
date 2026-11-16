@@ -1,0 +1,59 @@
+{
+  "actual_command": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b"
+  },
+  "all16_independent_triplets_and48_CSV_fields_match": true,
+  "all6_same_mode_controls_all4_fingerprints_match": true,
+  "all_actual_file_audit_hashes_sizes_allocated_facts_match": true,
+  "controls": 6,
+  "costs": "UNKNOWN",
+  "cross_mode_pairs": 3,
+  "distinct_actual_file_audit_paths": 699,
+  "embedded_six_output_digests_match": true,
+  "file_audit_operations": 2777,
+  "final_scientific_acceptance": false,
+  "groups": 2,
+  "historical_records": 2,
+  "identity_map_self_digest_bound_separately": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/output-identities.json",
+    "sha256": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb"
+  },
+  "nonpooled_records": 32,
+  "normal_real_stdlib_primary_only": true,
+  "observed_at_unix_ns": 1794799448759423869,
+  "outputs": {
+    "excluded-records.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "c7df0a388130b22d1a4ca5f546ae0526a0abdaeaf24d915eaff40d422d8858ce"
+    },
+    "file-audit.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "5cd6d3ad1436195b73358bbe6d38fbaca3894d933ae4f286bf9960ea037f9f20"
+    },
+    "output-identities.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb"
+    },
+    "per-process.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "55fb5ef5194894a9538ebcab67560b0ad278cd2d257475cb6cb14c290b697bd7"
+    },
+    "summary.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6"
+    },
+    "three-repeat-summary.csv": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "90a7cb97e8e82575df977f353f1bada48a3c9fad4b583b28536c38b447cf68ed"
+    },
+    "unprofiled-controls.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "c591ddddb7678b9d456926711d447f4afe114b7516b4c19342b64eac2d97289d"
+    }
+  },
+  "rows": 6,
+  "schema": "ROOT-WS116-largest6-canonical-output-audit-v1",
+  "scope": "Descriptive canonical output audit only; final report/ranked handoffs/portable closure/scientific review/gate/readiness pending",
+  "source15_and_actual35_unchanged": true
+}

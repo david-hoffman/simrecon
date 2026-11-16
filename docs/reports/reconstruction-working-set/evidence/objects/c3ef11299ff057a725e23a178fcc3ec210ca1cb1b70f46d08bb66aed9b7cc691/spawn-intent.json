@@ -1,0 +1,22 @@
+{
+  "observer": {
+    "pid": 45806,
+    "observed_monotonic_ns": 24140681154984,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 2414057,
+    "ppid": 0,
+    "pgid": 45806,
+    "session_id": 45806,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "target_argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport signal\nimport sys\nimport time\n\nmode, nonce, backstop_text = sys.argv[1:4]\nif mode not in (\"default\", \"ignore-term\") or float(backstop_text) != 12.0:\n    raise SystemExit(2)\nsignal.signal(signal.SIGTERM, signal.SIG_IGN if mode == \"ignore-term\" else signal.SIG_DFL)\nexpires = time.monotonic() + 12.0\nprint(json.dumps({\"role\":\"holding-target\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce, \"mode\":mode,\n    \"term_handler_native\":int(signal.getsignal(signal.SIGTERM)),\n    \"executable\":os.readlink(\"/proc/self/exe\"), \"self_exit_backstop_seconds\":12.0}), flush=True)\nwhile time.monotonic() < expires:\n    time.sleep(0.02)\nraise SystemExit(0)\n",
+    "default",
+    "q2-supported-sigint-a1",
+    "12.0"
+  ],
+  "fixture_sha256": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+  "intent_only": true
+}

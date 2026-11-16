@@ -1,0 +1,16 @@
+{
+  "schema": "ROOT-WS116-first-profile-postfile-audit-diagnostic-v1",
+  "exit_code": 1,
+  "failure": "AssertionError at first profile file-only branchshape check before any outputwrite",
+  "observed_child_branches": [
+    [
+      "searched",
+      "searched",
+      "searched"
+    ]
+  ],
+  "actual_all4_fingerprints_equal_control": true,
+  "cause": "ROOT checker incorrectly expected a flat threebranchlist; actualone-time workflow branches retain outertime dimension. No scientific/source/data failure; frozen8190 already checked exactsame-mode fingerprint equality.",
+  "correction": "Compare exact actual branches to fixedsource condition expected nestedone-time shape and same-mode control, retain failure diagnostic; no target rerun.",
+  "costs": "UNKNOWN"
+}

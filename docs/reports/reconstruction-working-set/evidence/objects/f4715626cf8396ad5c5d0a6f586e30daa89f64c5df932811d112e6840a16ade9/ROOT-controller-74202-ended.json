@@ -1,0 +1,21 @@
+{
+  "actual_terminal_observed": true,
+  "authority": "ROOT",
+  "basis": "actual_tool_terminal_receipt",
+  "controller_session": 74202,
+  "exit_code": 0,
+  "no_pending_proxy": true,
+  "observed_at_unix_ns": 1794780726923816494,
+  "schema": "ROOT-WS116-controller-terminal-attestation-v1",
+  "tool_receipt": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-controller74202-tool-terminal.json",
+    "sha256": "9b6064b1b2644f41a32767bae5ec1bd05a3aeea997255c641f19bfea264e07b1"
+  },
+  "tool_receipt_expected": {
+    "chunk_id": "df428e",
+    "exit_code": 0,
+    "original_token_count": 513,
+    "output": "{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1455.440818889998, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1460.4410246949992, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1465.4412217229983, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1470.4414088470076, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1475.4417963110027, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1480.4422651260102, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1485.4425599469978, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1490.4429984180024, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1495.4434732049995, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1500.4438577280089, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1505.4443604960106, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1510.445222839, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1515.4459153290081, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n{\"attempt_id\": \"ws116-gp-l256-full-searched-r3-u\", \"elapsed_seconds\": 1520.446448171002, \"status\": \"WAITING_OWNED_OBSERVER\", \"proxy_pid\": 171614}\n",
+    "wall_time_seconds": 24.702975774
+  }
+}

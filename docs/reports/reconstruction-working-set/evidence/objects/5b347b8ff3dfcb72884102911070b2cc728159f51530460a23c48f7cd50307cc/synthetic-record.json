@@ -1,0 +1,67 @@
+{
+  "synthetic_protocol_metadata": true,
+  "protocol": "WS116-child-v2",
+  "status": "finite_observation_pending_qualification",
+  "phase": "observation_complete",
+  "pid": 4242,
+  "spec": {
+    "id": "SYNTHETIC-ONLY",
+    "mode": "summary",
+    "shape": [1,1,1,1,1],
+    "search": false,
+    "profile": false,
+    "repetition": 1,
+    "expected_material_hashes": {"SYNTHETIC-NOT-A-SOURCE": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "expected_exposed_domain": {"membership":"/synthetic", "mount_root":"/", "mount":"/synthetic-visible", "namespace":"cgroup:[synthetic]", "visible_memory_max":{"/synthetic-visible":"max"}}
+  },
+  "material_hashes_before": {"SYNTHETIC-NOT-A-SOURCE":"0000000000000000000000000000000000000000000000000000000000000000"},
+  "material_hashes_after": {"SYNTHETIC-NOT-A-SOURCE":"0000000000000000000000000000000000000000000000000000000000000000"},
+  "material_identity_matches": true,
+  "finite_common_fields": true,
+  "snapshots": {
+    "pre_call": {"scope":"after input hashes/retention, before call timestamp", "monotonic_ns":10, "ru_maxrss_native":1, "ru_maxrss_native_units":"Linux KiB", "cumulative_high_water_bytes":1024, "ru_minflt":0, "ru_majflt":0, "ru_nswap":0, "ru_inblock":0, "ru_oublock":0, "ru_utime_seconds":0.0, "ru_stime_seconds":0.0},
+    "call_end": {"scope":"after call/end timestamp, before result observations", "monotonic_ns":50, "ru_maxrss_native":1, "ru_maxrss_native_units":"Linux KiB", "cumulative_high_water_bytes":1024, "ru_minflt":0, "ru_majflt":0, "ru_nswap":0, "ru_inblock":0, "ru_oublock":0, "ru_utime_seconds":0.0, "ru_stime_seconds":0.0},
+    "post_observation": {"scope":"after context/hash/retention/finite/identity observations, before JSON serialization and teardown", "monotonic_ns":60, "ru_maxrss_native":1, "ru_maxrss_native_units":"Linux KiB", "cumulative_high_water_bytes":1024, "ru_minflt":0, "ru_majflt":0, "ru_nswap":0, "ru_inblock":0, "ru_oublock":0, "ru_utime_seconds":0.0, "ru_stime_seconds":0.0}
+  },
+  "call_start_monotonic_ns":20,
+  "call_end_monotonic_ns":40,
+  "elapsed_call_seconds":0.00000002,
+  "input_sha256":"1111111111111111111111111111111111111111111111111111111111111111",
+  "input_arrays": {
+    "specimen":["specimen",[1],"<f4","1111111111111111111111111111111111111111111111111111111111111111"],
+    "transfer":["transfer.samples",[1],"<c16","1111111111111111111111111111111111111111111111111111111111111111"]
+  },
+  "output_hashes": {
+    "image":["image",[1],"<f8","2222222222222222222222222222222222222222222222222222222222222222"],
+    "x_um":["x_um",[1],"<f8","2222222222222222222222222222222222222222222222222222222222222222"],
+    "y_um":["y_um",[1],"<f8","2222222222222222222222222222222222222222222222222222222222222222"],
+    "z_um":["z_um",[1],"<f8","2222222222222222222222222222222222222222222222222222222222222222"],
+    "carriers_cyc_um":["carriers_cyc_um",[1],"<f8","2222222222222222222222222222222222222222222222222222222222222222"],
+    "modulation":["modulation",[1],"<c16","2222222222222222222222222222222222222222222222222222222222222222"],
+    "raw_modulation":["raw_modulation",[1],"<c16","2222222222222222222222222222222222222222222222222222222222222222"]
+  },
+  "common_output_sha256":"2222222222222222222222222222222222222222222222222222222222222222",
+  "public_result_sha256":"3333333333333333333333333333333333333333333333333333333333333333",
+  "branches":[["known"]],
+  "python":"SYNTHETIC-NOT-AN-ENVIRONMENT",
+  "executable":"/synthetic-python",
+  "numpy":"SYNTHETIC",
+  "scipy":"SYNTHETIC",
+  "numpy_backend":{"synthetic":true},
+  "scipy_fft_default_workers":1,
+  "effective_worker_limits":"SYNTHETIC unknown, not a worker measurement",
+  "product_module":"SYNTHETIC no product imported",
+  "snapshot_limits":"SYNTHETIC schema fixture, no RSS/time measurement",
+  "context": {
+    "system":"Linux", "pid":4242, "kernel":"SYNTHETIC", "machine":"SYNTHETIC", "meminfo":"SYNTHETIC",
+    "host_id_sha256":"4444444444444444444444444444444444444444444444444444444444444444",
+    "disk_available_bytes":0,
+    "threads":{"OMP_NUM_THREADS":"1","OPENBLAS_NUM_THREADS":"1","MKL_NUM_THREADS":"1","NUMEXPR_NUM_THREADS":"1"},
+    "allocator":{"PYTHONMALLOC":null,"MALLOC_ARENA_MAX":null},
+    "rlimits":{"RLIMIT_AS":[-1,-1],"RLIMIT_DATA":[-1,-1],"RLIMIT_RSS":[-1,-1],"RLIMIT_CPU":[-1,-1],"RLIMIT_FSIZE":[-1,-1],"RLIMIT_NOFILE":[-1,-1]},
+    "cgroup":{"membership":"/synthetic", "mount_root":"/", "mount":"/synthetic-visible", "namespace":"cgroup:[synthetic]", "hidden_ancestors":"SYNTHETIC unknown", "visible_ancestors":[{"path":"/synthetic-visible","memory.current":"0","memory.max":"max","memory.peak":null,"memory.events":null,"memory.swap.max":null,"memory.swap.current":null}]}
+  },
+  "caller_retained":{"array_payload_bytes":4,"unique_backings":1,"python_metadata_estimate_bytes":0,"metadata_limit":"SYNTHETIC incomplete estimate","arrays":[{"path":"caller.specimen","shape":[1],"dtype":"<f4","bytes":4}]},
+  "result_retained":{"array_payload_bytes":8,"unique_backings":1,"python_metadata_estimate_bytes":0,"metadata_limit":"SYNTHETIC incomplete estimate","arrays":[{"path":"result.image","shape":[1],"dtype":"<f8","bytes":8}]},
+  "stages":[]
+}

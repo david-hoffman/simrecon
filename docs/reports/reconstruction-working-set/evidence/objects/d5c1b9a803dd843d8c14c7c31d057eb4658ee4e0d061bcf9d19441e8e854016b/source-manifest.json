@@ -1,0 +1,1804 @@
+{
+  "schema": "ROOT-WS116-remaining5-largest256-profile-source-manifest-v1",
+  "status": "SOURCE_ONLY_UNEXECUTED_NO_AUTHORITY",
+  "immutable_source_inputs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/stage-admission.json",
+      "sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+      "sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-manifest.json",
+      "sha256": "7f6171c8f7b936baaf3d654738520570c0c11ed05d435559a399480cd9bc0d40"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/root-prepare-first-largest256-profile.py",
+      "sha256": "c012107b04bf5e805a86c7c76a9afd870c72bdd565f85f7550c1545b0b119541"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-manifest.json",
+      "sha256": "b3048b84f9caecf608300950c5f0c9c69484584fccf993b278c02336c6b47bf1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+      "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+      "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+    }
+  ],
+  "canonical_authorized_base": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6"
+  },
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/stage-admission.json",
+    "sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "table": {
+    "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+    "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+  },
+  "worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+    "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+  },
+  "profile_proposals": {
+    "growth256-full-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 12884901888,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 2147483648,
+      "predicted_child_peak_bytes": 4294967296,
+      "process_stop_bytes": 8589934592,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+      "reserve_bytes": 4294967296,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    },
+    "growth256-summary-searched": {
+      "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+      "correspondence_maximum_age_seconds": 7320,
+      "correspondence_prelaunch_age_seconds_max": 5,
+      "deadline_seconds": 7200,
+      "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it",
+      "disk_proposal_bytes": 5915017216,
+      "host_min_available_bytes": 9663676416,
+      "kill_reap_seconds": 2,
+      "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+      "max_child_record_bytes": 4194304,
+      "native_allocator_allowance_bytes": 1610612736,
+      "predicted_child_peak_bytes": 3221225472,
+      "process_stop_bytes": 6442450944,
+      "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+      "proposed_each_visible_ancestor_stop_bytes": 15032385536,
+      "reserve_bytes": 3221225472,
+      "sample_interval_seconds": 0.01,
+      "startup_pipe_bytes": 1024,
+      "startup_timeout_seconds": 5,
+      "terminate_grace_seconds": 0.2
+    }
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+    }
+  ],
+  "matched_unprofiled": {
+    "ws116-gp-l256-full-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+        "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+        "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+        "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+        "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+        "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+        "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    }
+  },
+  "declared_growth_conditions": [
+    {
+      "id": "growth256-summary-searched",
+      "mode": "summary",
+      "search": true,
+      "shape": [
+        1,
+        3,
+        8,
+        256,
+        256
+      ]
+    },
+    {
+      "id": "growth256-full-searched",
+      "mode": "full",
+      "search": true,
+      "shape": [
+        1,
+        3,
+        8,
+        256,
+        256
+      ]
+    }
+  ],
+  "unchanged_runtime_bindings": {
+    "material35": {
+      "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+    },
+    "core28": {
+      "2d-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            2,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            1,
+            24,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            2,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            1
+          ]
+        }
+      },
+      "between-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            24,
+            24
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "central64-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "central64-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "central64-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "central64-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "direction1-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            1,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            1,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            1,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "frozen128-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            256,
+            256
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            256
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth192-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            384,
+            384
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            384
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-full-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-full-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "growth256-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            512,
+            512
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            512
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "off1-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            32,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "off2-full": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            32,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "off2-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            32,
+            32
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            32
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "spatial32-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            1,
+            8,
+            64,
+            64
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            1,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            64
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            64
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "time2-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "time4-summary-searched": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "time4-summary-supplied": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            4,
+            8,
+            128,
+            128
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            4,
+            3,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            128
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            8
+          ]
+        }
+      },
+      "within-full": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            24,
+            24
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      },
+      "within-summary": {
+        "carriers_cyc_um": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "image": {
+          "dtype": "<f8",
+          "shape": [
+            2,
+            4,
+            24,
+            24
+          ]
+        },
+        "modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "raw_modulation": {
+          "dtype": "<c16",
+          "shape": [
+            2,
+            4,
+            2
+          ]
+        },
+        "x_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "y_um": {
+          "dtype": "<f8",
+          "shape": [
+            24
+          ]
+        },
+        "z_um": {
+          "dtype": "<f8",
+          "shape": [
+            4
+          ]
+        }
+      }
+    },
+    "tool6": {
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7",
+      "/usr/local/bin/docker": "6c71cfe71faff949a602946a4df4799b563232e79d0b8b6fd343d0ef081c9621",
+      "/usr/local/bin/git": "8a2ae22e7898e163330a96319b541f92ed6f90fc87576414f72c5a89aa1dc352",
+      "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13": "fed567fcbdacc14612dddd5f29a3203fbe5c93f50b926f15e7a926cf668822a5",
+      "/workspace/work/campaign/capture-resource-domain.py": "47215ee63496e2043e0f5668c1d2d433351ca6067550f11f469f257ccccda68f",
+      "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0"
+    },
+    "method7": {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json",
+      "sha256": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19"
+    },
+    "environment": {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/environment-binding.json",
+      "sha256": "a7d472eedddd68e230ce79d3b8cb8249d59f51afea76b0c8071d3b4f750ec6f0"
+    }
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-summary-searched-r2-p",
+    "ws116-gp-l256-summary-searched-r3-p",
+    "ws116-gp-l256-full-searched-r1-p",
+    "ws116-gp-l256-full-searched-r2-p",
+    "ws116-gp-l256-full-searched-r3-p"
+  ],
+  "selected_largest_size": 256,
+  "future_output_directory": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/remaining5-preparation-a1",
+  "future_batch_directory": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1",
+  "proposed_window_seconds": 21600,
+  "actual_window_times": null,
+  "future_R1_boundary": {
+    "path": null,
+    "sha256": null
+  },
+  "future_R1_receipt": {
+    "path": null,
+    "sha256": null
+  },
+  "future_R1_final_post_metadata": {
+    "path": null,
+    "sha256": null
+  },
+  "future_R1_two_owned_identities": null,
+  "future_ROOT_eligibility_and_controller29012_terminal_window_evidence": null,
+  "declared_future_output_files": [
+    "ROOT-preparation-authorization.input.json",
+    "ROOT-scheduler-suspension.input.json",
+    "ROOT-closed-r1-prerequisites.input.json",
+    "metadata-request.json",
+    "metadata-command.json",
+    "metadata.json",
+    "context-command.json",
+    "new-context-preflight.json",
+    "scheduler-ACK.json",
+    "ROOT-authority.json",
+    "current-stage-ledger.json",
+    "config-remaining5-PREPARED.json",
+    "preparation-status.json"
+  ],
+  "known_vs_unknown": "Static446 first config,850 same stage admission, source/workload/control/operating bindings only are known. R1 controller29012 is ACTIVE per dispatch; no batch/raw/proof/status/PID/RSS/outcome was followed. Completion/boundary/receipt/postmetadata/two owners/ROOT eligibility/actual terminal0/no proxy/explicit old4h window end remain future UNKNOWN. No new-stage or centralNone rule.",
+  "scope": "Finite same-stage remaining5 only; selected256/two growthconditions/six controls/prior6 unchanged. New context from one exact2-owner fixedmetadata and onecapture at future explicit invocation.6h is operational reservation; no five7200 maxima fit promise, per-row deadline+120 guards stop/HOLD/no automatic extension, skip or retry.",
+  "preservation": "All existing sources, first446/ad850, prior packets/errors/charges retained. No helper import/sourceQA or actual program execution; code syntax/runtime UNVALIDATED."
+}

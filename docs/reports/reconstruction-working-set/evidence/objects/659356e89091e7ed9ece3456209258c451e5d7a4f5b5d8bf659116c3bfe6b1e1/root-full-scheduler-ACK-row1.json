@@ -1,0 +1,69 @@
+{
+  "ROOT_largest_selection": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+    "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+  },
+  "campaign_work_suspended": true,
+  "input_observed_at_unix_ns": 1794768841036863387,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "A7 four actual quality cases namespace/proxy/pipes closed; targeted private-init inspect exited/Pid0. C/native/EE/test execution HOLD; only source workers authorized.",
+    "114": "All prior control owners closed; two old entrypoints quarantined; study runtime HOLD.",
+    "116": "Initial60, growth192 six, growth256 summary six owners closed by immutable a4c2/0aff/79a closures; controller94974 terminal0; no active science; full stage has never launched.",
+    "117": "All earlier tests closed; source-only resource plan complete; all runtime HOLD.",
+    "118": "All earlier checks closed; adapter never executed; source-only plan complete; all runtime HOLD.",
+    "119": "Intake/design only; no runtime launched; HOLD.",
+    "120": "Intake/design only; no runtime launched; HOLD.",
+    "root": "All ROOT actual113/116 tool sessions terminal and namespace/proxy/pipes closure recorded. Original science PID1 passive anchor only; no active numerical/test/import/lint/type/build/install/benchmark. New full stage owns nothing. Standing exclusivity through prepared window; source/file work permitted; outside actors not scanned."
+  },
+  "observed_at_unix_ns": 1794768841889654999,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "preparation_suspension_input": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-scheduler-suspension-input.json",
+    "sha256": "e91615b39206633457b424469205435d59fee0efb715b49a8b60f673d72f892d"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "ROOT future standing suspension consumed now; no outside actor scan. ACK is not grant authority.",
+  "stage_id": "largest-full-supplied",
+  "stored_accepted_summary_evidence": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-independent-scalar.json",
+      "sha256": "f4b4366c0af105801f1606686d31c8da3c6a0dd591df20d7b0eb4bfc566d5008"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+      "sha256": "0cb03d5b65ca57e75f137a22233361730a30dcd5765f85e1ab12f292f66c5b9e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+      "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+    }
+  ],
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794776041889654999,
+    "starts_unix_ns": 1794768841889654999
+  }
+}

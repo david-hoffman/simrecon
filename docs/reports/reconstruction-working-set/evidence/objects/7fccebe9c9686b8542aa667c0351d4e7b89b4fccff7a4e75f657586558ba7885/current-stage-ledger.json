@@ -1,0 +1,51 @@
+{
+  "closed_owned_processes": [
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 52672,
+        "start_ticks": 9317771
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 52692,
+        "start_ticks": 9317785
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      }
+    }
+  ],
+  "fresh_exact_owner_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/remaining5-preparation-a1/metadata.json",
+    "sha256": "d0a7e3f1a0716c195fe0564046d49f03c0b9abd96091e0b8ae0650cb28d4e3c6"
+  },
+  "meaning": "Only same-stage R1 exact observer/workload birth/FD identities, derived from its actual complete receipt/markers and finalpost metadata; freshly checked by fixed helper. Prior-stage identities never refreshed.",
+  "root_authority_sha256": "6aadb98bd72d2c0ad0fc6e4bc04c9b3be6dce05a00611e7e1bf14f4dbd54ef96",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "largest-profiles",
+  "unresolved": []
+}

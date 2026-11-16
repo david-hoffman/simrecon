@@ -1,0 +1,52 @@
+{
+  "protocol": "WS116-method6-pure-controls-v1",
+  "case": "method6-rss-controls",
+  "attempt_id": "method6-rss-controls-a1",
+  "status": "case_pass_scoped_only",
+  "driver_pid": 46738,
+  "argv": [
+    "docs/reports/reconstruction-working-set/method_qualification.py",
+    "--case",
+    "method6-rss-controls",
+    "--grant",
+    "docs/reports/reconstruction-working-set/qualification/grants/method6-rss-controls-released.json",
+    "--attempt-id",
+    "method6-rss-controls-a1"
+  ],
+  "started_monotonic_ns": 29608974357723,
+  "physical_resource_admission": "not performed or claimed",
+  "not_scientific_evidence": true,
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/method_qualification.py": "d88a72600774dd57c819bf5eeeed4d87126e4e3095ca731ddcc0baf94eb6bf22",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json": "835c38d3dfbac5095c08b8e30b7e3d1820b090cd6d2ff21e3eee4c2ebbd3af1f",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "d530ff54b8f0695c32854a8fbc40ac868f91fc92c3a827feb2299a85b50f0f25",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/method6-rss-controls-v1.json": "56226bf97df96cfd2321c4ea96832733f229769150d9d1aaa8e23841bef52ba5"
+  },
+  "grant_sha256": "d561c9527d2cd2ede834c7f3ad1e9bfc8e582ef614f752f25f3f4fb264bf9a3b",
+  "interpreter": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "isolation_flags": {
+    "isolated": 1,
+    "no_site": 1,
+    "dont_write_bytecode": true
+  },
+  "result": {
+    "results_file": "method6-results.jsonl",
+    "vectors_completed": 45,
+    "confirmation_seconds": 0.05,
+    "workload_children": 0,
+    "scope": "deterministic fake owner/clock/sample + actual decision/status/parser only; no live exit-race reproduction, kernel wait4/TERM proof or scientific result"
+  },
+  "finished_monotonic_ns": 29609132438320,
+  "blocked_effects": [],
+  "limits": "Pure synthetic semantics only; no process/native/resource/science qualification. In-process denial is not an OS security sandbox. Fresh affected method6 review + new clean basis/root window/per-case release still required before any workflow retry."
+}

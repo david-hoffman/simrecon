@@ -1,0 +1,33 @@
+{
+  "argv": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r1-u/pre-metadata-request.json"
+  ],
+  "environment": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "request_sha256": "60b3f7b04f8d5b3b33d5258e74793b80db05cbaeb717dfd1b4948154e39b9352",
+  "source": {
+    "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/ubuntu_metadata.py",
+    "sha256": "157e482be02c43f0d209aa68b4c035c032ad5389f6434862b96c8234a1171fc0"
+  }
+}

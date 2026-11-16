@@ -1,0 +1,13 @@
+attempt_id,mode,profiled,repetition,terminal_native_KiB,terminal_kernel_bytes,call_seconds
+ws116-gp-l256-summary-searched-r1-p,summary,yes,1,326288,334118912,1335.172755667
+ws116-gp-l256-summary-searched-r2-p,summary,yes,2,327132,334983168,1470.766478159
+ws116-gp-l256-summary-searched-r3-p,summary,yes,3,329700,337612800,1550.452105608
+ws116-gp-l256-full-searched-r1-p,full,yes,1,678956,695250944,1424.11516996
+ws116-gp-l256-full-searched-r2-p,full,yes,2,679808,696123392,1790.373879817
+ws116-gp-l256-full-searched-r3-p,full,yes,3,677652,693915648,1720.852829409
+ws116-gp-g256-summary-searched-r1-u,summary,no,1,314888,322445312,1818.263636516
+ws116-gp-g256-summary-searched-r2-u,summary,no,2,319052,326709248,1721.99578851
+ws116-gp-g256-summary-searched-r3-u,summary,no,3,319220,326881280,1820.79672742
+ws116-gp-l256-full-searched-r1-u,full,no,1,667476,683495424,1545.913683616
+ws116-gp-l256-full-searched-r2-u,full,no,2,666316,682307584,1586.09627256
+ws116-gp-l256-full-searched-r3-u,full,no,3,665384,681353216,1521.354077427

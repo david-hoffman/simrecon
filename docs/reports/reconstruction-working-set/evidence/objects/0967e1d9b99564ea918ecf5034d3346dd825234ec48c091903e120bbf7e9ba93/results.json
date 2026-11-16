@@ -1,0 +1,918 @@
+[
+  {
+    "id": "G02-growth192-summary-None",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-growth256-summary-None",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-central64-profiles-None",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-full-supplied-192",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-full-supplied-256",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-full-searched-192",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-full-searched-256",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-profiles-128",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-profiles-192",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-largest-profiles-256",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-central-and-largest-profiles-128",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-central-and-largest-profiles-192",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-central-and-largest-profiles-256",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G02-refuse-unknown",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "unknown fixed stage"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "unknown fixed stage"
+  },
+  {
+    "id": "G02-refuse-full128",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "selected largest full size required"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "selected largest full size required"
+  },
+  {
+    "id": "G02-refuse-central-selected",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "central-only profiles do not select a largest size"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "central-only profiles"
+  },
+  {
+    "id": "G02-refuse-string-size",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "selected largest profile size required"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "selected largest profile size required"
+  },
+  {
+    "id": "G03-actual-shaped-stage-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G03-actual-shaped-f6-control-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G03-V01-source",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual config/source/table binding differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual config/source/table binding differs"
+  },
+  {
+    "id": "G03-V02-config",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual config/source/table binding differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual config/source/table binding differs"
+  },
+  {
+    "id": "G03-V03-row",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual boundary status/row differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual boundary status/row differs"
+  },
+  {
+    "id": "G03-V04-candidate",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "boundary basis/material mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "boundary basis/material mismatch"
+  },
+  {
+    "id": "G03-V05-material",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual batch release/basis differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual batch release/basis differs"
+  },
+  {
+    "id": "G03-V06-method",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual qualified method7/basis differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual qualified method7/basis differs"
+  },
+  {
+    "id": "G03-V07-environment",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual config support differs: environment"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual config support differs: environment"
+  },
+  {
+    "id": "G03-V08-stage",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "stage boundary linkage differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "stage boundary linkage differs"
+  },
+  {
+    "id": "G04-V09-initial-ledger-as-stage",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "owned ledger unresolved"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "owned ledger unresolved"
+  },
+  {
+    "id": "G04-V10-unresolved",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "owned ledger unresolved"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "owned ledger unresolved"
+  },
+  {
+    "id": "G04-V11-omitted-FD",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "stored prior identity/FD coverage incomplete"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "stored prior identity/FD coverage incomplete"
+  },
+  {
+    "id": "G04-V12-invalid-start",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "stored prior identity/FD coverage incomplete"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "stored prior identity/FD coverage incomplete"
+  },
+  {
+    "id": "G06-V13-nonboolean-EOF",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "runner lifecycle/complete verdict differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "runner lifecycle/complete verdict differs"
+  },
+  {
+    "id": "G06-V14-missing-EOF",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "KeyError",
+      "reason": "'startup_eof_observed'"
+    },
+    "expected_type": "KeyError",
+    "expected_phrase": "startup_eof_observed"
+  },
+  {
+    "id": "G06-V15-signal",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "runner lifecycle/complete verdict differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "runner lifecycle/complete verdict differs"
+  },
+  {
+    "id": "G06-V16-lost-wait",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "ownership/FD evidence incomplete"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "ownership/FD evidence incomplete"
+  },
+  {
+    "id": "G06-V17-nonterminal",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "runner lifecycle/complete verdict differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "runner lifecycle/complete verdict differs"
+  },
+  {
+    "id": "G06-V18-terminal-PID",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "exact child PID mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "exact child PID mismatch"
+  },
+  {
+    "id": "G06-V19-terminal-exit",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "not normal exit0"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "not normal exit0"
+  },
+  {
+    "id": "G06-V20-native-units",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "terminal native units"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "terminal native units"
+  },
+  {
+    "id": "G06-V21-native-conversion",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "terminal native units"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "terminal native units"
+  },
+  {
+    "id": "G06-V22-native-bool",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "terminal native units"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "terminal native units"
+  },
+  {
+    "id": "G06-V23-output-tuple-shape",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "output identity shape/dtype/hash mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "output identity shape/dtype/hash mismatch"
+  },
+  {
+    "id": "G06-V24-output-tuple-dtype",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "output identity shape/dtype/hash mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "output identity shape/dtype/hash mismatch"
+  },
+  {
+    "id": "G06-V25-input-tuple-name",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "input array identity mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "input array identity mismatch"
+  },
+  {
+    "id": "G06-V26-snapshot-scope",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "snapshot native/scope mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "snapshot native/scope mismatch"
+  },
+  {
+    "id": "G06-V27-snapshot-native-units",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "snapshot native/scope mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "snapshot native/scope mismatch"
+  },
+  {
+    "id": "G06-V28-snapshot-conversion",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "snapshot native/scope mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "snapshot native/scope mismatch"
+  },
+  {
+    "id": "G06-V29-child-material",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "child material map changed"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "child material map changed"
+  },
+  {
+    "id": "G06-V30-marker-grant",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "marker/grant/spec mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "marker/grant/spec mismatch"
+  },
+  {
+    "id": "G06-V31-child-ref",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "child fingerprint mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "child fingerprint mismatch"
+  },
+  {
+    "id": "G11-V32-recorded-age",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "recorded invocation proof/metadata ages invalid"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "recorded invocation proof/metadata ages invalid"
+  },
+  {
+    "id": "G11-V33-intent-config",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual invocation intent differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual invocation intent differs"
+  },
+  {
+    "id": "G11-V34-proof-pointer",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "KeyError",
+      "reason": "'path'"
+    },
+    "expected_type": "KeyError",
+    "expected_phrase": "path"
+  },
+  {
+    "id": "G11-V35-missing-support",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual row support missing/unbounded"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual row support missing/unbounded"
+  },
+  {
+    "id": "G11-V36-metadata-linkage",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "recorded metadata linkage differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "recorded metadata linkage differs"
+  },
+  {
+    "id": "G03-V37-admission",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual stage admission differs: stage_rows"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual stage admission differs: stage_rows"
+  },
+  {
+    "id": "G03-V38-core",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual28-condition core differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual28-condition core differs"
+  },
+  {
+    "id": "G03-V39-prefix",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "actual stage release/prefix differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "actual stage release/prefix differs"
+  },
+  {
+    "id": "G06-V40-profile-spec",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "spec not the exact condition/profile"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "spec not the exact condition/profile"
+  },
+  {
+    "id": "G06-V41-output-tuple-hash",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "output identity shape/dtype/hash mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "output identity shape/dtype/hash mismatch"
+  },
+  {
+    "id": "G05-actual-JSON-prior-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G05-actual-Markdown-JSON-path-refused",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "JSONDecodeError",
+      "reason": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "expected_type": "JSONDecodeError",
+    "expected_phrase": "Expecting value"
+  },
+  {
+    "id": "G05-separate-Markdown-hash-only-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G06-EOF-True-preserved",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G06-EOF-False-preserved",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G07-profile-events-pass-through",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G07-wrong-presence-True",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "branch/profile presence mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "branch/profile presence mismatch"
+  },
+  {
+    "id": "G07-wrong-presence-False",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "branch/profile presence mismatch"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "branch/profile presence mismatch"
+  },
+  {
+    "id": "G08-profile-f6-control-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-full-summary8190-public-difference-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-profile-public",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-repetition",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-mode",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-search",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-environment",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-method-reference",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-control-reference",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-refuse-common",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G08-unused-control-reported",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-three-repeat-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-missing-no-partial-median",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-duplicate-no-partial-median",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-reused-process-no-partial-median",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-branch-no-partial-median",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-input-no-partial-median",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G09-public-no-partial-median",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G11-operational-initial-recorded-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G11-operational-stage-recorded-positive",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G01-disabled-before-evidence",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "ROOT post-window analysis release absent"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "ROOT post-window analysis release absent"
+  },
+  {
+    "id": "G01-wrong-source-pin-before-evidence",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "config source/table/basis differs"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "config source/table/basis differs"
+  },
+  {
+    "id": "G01-output-root-before-extraction",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "output would modify source/evidence/worktree"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "output would modify source/evidence/worktree"
+  },
+  {
+    "id": "G10-actual-main-six-SYNTHETIC-complete-clean",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G10-actual-main-six-complete-excluded-badhash-exit1",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G12-explicit-one-SYNTHETIC-row-incomplete-exit1",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": null,
+    "expected_type": null,
+    "expected_phrase": null
+  },
+  {
+    "id": "G12-unapproved-partial-before-extraction",
+    "label": "SYNTHETIC_guard_never_scientific_observation",
+    "matched": true,
+    "observed": {
+      "type": "ValueError",
+      "reason": "partial data requires explicit ROOT analysis selection"
+    },
+    "expected_type": "ValueError",
+    "expected_phrase": "partial data requires explicit ROOT analysis selection"
+  }
+]

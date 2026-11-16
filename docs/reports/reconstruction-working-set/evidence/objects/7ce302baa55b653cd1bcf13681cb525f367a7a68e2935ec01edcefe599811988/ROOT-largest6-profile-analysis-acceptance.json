@@ -1,0 +1,35 @@
+{
+  "accepted": true,
+  "actual_primary_attempts": 1,
+  "all90eligible_corpus_measurements_complete": true,
+  "authority": "ROOT",
+  "bindings": {
+    "ROOT_output_audit": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-actual-largest6-output-audit.json",
+      "sha256": "49f5fdb7cdb8690379019d83c0d62c801639e82a43129d33c433abdeda59e2fe"
+    },
+    "command": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b"
+    },
+    "coordinator_independent_output_audit": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-actual-largest6-primary-output-review.json",
+      "sha256": "af22cb294faf45b8f0020ba35d618fd4b6ec5c4bd12d404c69dd790ae5778584"
+    },
+    "summary": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6"
+    }
+  },
+  "canonical_source": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97",
+  "costs": "UNKNOWN",
+  "final_scientific_report_acceptance": false,
+  "historical_failed_workflow_retained": true,
+  "independent_sixteen_triplets_and_csv_match": true,
+  "no_causal_overhead_ratio_subtraction_aggregate_tree_or_workstation_fit_claim": true,
+  "normal_real_stdlib_statistics_random": true,
+  "observed_at_unix_ns": 1794800521832934469,
+  "remaining": "External final report/ranked individual handoffs, complete portable reference closure/integration, final scientific assessment, clean exact full Ubuntu gate, fresh postgate acceptance and PR",
+  "schema": "ROOT-WS116-largest6-descriptive-analysis-acceptance-v1",
+  "scope": "Complete largest256 profiled descriptive six-row/two-mode analysis and six separately identified same-mode unprofiled controls only"
+}

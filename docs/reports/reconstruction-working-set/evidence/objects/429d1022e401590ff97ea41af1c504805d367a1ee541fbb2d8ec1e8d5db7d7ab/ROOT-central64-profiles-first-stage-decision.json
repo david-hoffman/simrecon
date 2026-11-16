@@ -1,0 +1,39 @@
+{
+  "ROOT_case_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-source/ROOT-source-packet-review.json",
+    "sha256": "1c62f696a4c591f6dd7b3d8e0fac8941b2938dec147ef972e44ab645f2ff7967"
+  },
+  "ROOT_preparer_source_review": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-source-assessment.json",
+    "sha256": "1ecfe0ce73b741279154c72e582acb28d3431d03b4428683ca7b76229ec97fdc"
+  },
+  "accepted_for_guarded_first_row_preparation": true,
+  "allowed_attempt_ids": [
+    "ws116-gp-c64-summary-searched-r1-p"
+  ],
+  "authority": "ROOT",
+  "central_profile_stage_admission_authorized": true,
+  "closed_searched_full_prerequisite": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-fullsearched256-analysis-acceptance.json",
+    "sha256": "f0911ebe23c8da0a706cad0f5ccd2845e2de36fdf96f4274ed553d64a4416564"
+  },
+  "costs": "UNKNOWN",
+  "declared_growth_conditions": [],
+  "external_ancestors": "unknown_unobservable",
+  "full_and_summary_mode_memory_caps": "Frozen8190/prep32 mapsunchanged; firstpreflight uses centralSUMMARY mode. Notbounds/budget/knownprofilecost.",
+  "observed_at_unix_ns": 1794781602585182497,
+  "outside_actors": "unknown_not_scanned",
+  "profile_deadline_seconds": 960,
+  "profile_disk_proposal_bytes": 803209216,
+  "profile_horizon_seconds": 1080,
+  "same_mode_unprofiled_controls": 6,
+  "schema": "ROOT-WS116-central64-profiles-first-stage-decision-v1",
+  "scientific_execution_released": false,
+  "scope": "NEW central-only None decision. Oldselected256 is prerequisiteprovenance only. Prepare firstsummaryprofileR1 afterfresh actualROOTactor/owner/context/source checks.6fixedsummary/fullsame-modecontrols/profileproposals unchanged; no remaining5/largestprofile/runtime release. Separate actual14packet coor+ROOTaudit and exactscientificrelease required.",
+  "selected_largest_size": null,
+  "source_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-source/central64-profile-source-check.json",
+    "sha256": "88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81"
+  },
+  "stage_id": "central64-profiles"
+}

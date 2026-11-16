@@ -1,0 +1,31 @@
+{
+  "allowed_attempt_ids": [
+    "ws116-gp-c64-summary-searched-r2-p",
+    "ws116-gp-c64-summary-searched-r3-p",
+    "ws116-gp-c64-full-searched-r1-p",
+    "ws116-gp-c64-full-searched-r2-p",
+    "ws116-gp-c64-full-searched-r3-p"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "closed_r1_prerequisites": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-closed-r1-prerequisites.json",
+    "sha256": "767b52f7f73b1494325037077226e6ad3f65a3a0339cb67d079dd46b9c446e53"
+  },
+  "helper_sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da",
+  "observed_at_unix_ns": 1794783271125685723,
+  "prepare_continuation_authority": true,
+  "scheduler_suspension": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "ddd84321de88c2f5286dfcb91ab68ec91a78bbe6d6c73517ac25356ed8a3b57f"
+  },
+  "schema": "ROOT-WS116-remaining5-central-profile-preparation-authorization-v1",
+  "scientific_execution_released": false,
+  "selected_largest_size": null,
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/source-manifest.json",
+    "sha256": "7f6171c8f7b936baaf3d654738520570c0c11ed05d435559a399480cd9bc0d40"
+  },
+  "stage_id": "central64-profiles",
+  "window_seconds": 10800
+}

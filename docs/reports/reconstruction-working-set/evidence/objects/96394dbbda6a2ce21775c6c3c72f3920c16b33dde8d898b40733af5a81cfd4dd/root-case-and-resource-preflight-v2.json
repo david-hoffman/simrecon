@@ -1,0 +1,135 @@
+{
+  "accepted_for_guarded_first_trial": true,
+  "caller_OS_observer_reserve_bytes": 2147483648,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "disk_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-preflight-metadata.json",
+    "sha256": "0e336664e060e5fec8281b37e3d574418f32337f41977d3c69ea4fa7c2b06802"
+  },
+  "dynamic_guards": "Every row fixed helper actual new batch directory/UID/9rlimits/disks, existing LAST capture<=5s, proofhorizon1920s, originalhash and freshenddomain/current/margins/events/swap, strict50msqualifiedmethod; failures hold queue, no automaticretry/recapture/growth.",
+  "external_ancestors": "unknown_unobservable",
+  "integer_calculations": {
+    "aggregate_q_elements": 2234880,
+    "caller_element_count": 4423680,
+    "direction_order": 9,
+    "metadata_exposure_count": 120,
+    "native_half_volume": 148992,
+    "native_volume": 294912,
+    "output_plane": 147456,
+    "output_volume": 1179648,
+    "output_x": 384,
+    "output_y": 384,
+    "output_z": 8,
+    "quadrature_phase": 25
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "method_correction": "Table historical method6 unknown entry retained; actual candidate/method7 accepted exactsource and runner pinned by config override no oldproof reuse.",
+  "not_scientific_completion": true,
+  "not_total_or_RSS_upper_bound": true,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "partial_largest_named_subset_bytes": 149422080,
+  "prediction_bytes": 2147483648,
+  "process_stop_bytes": 4294967296,
+  "residual_unknowns": [
+    "actual input/output hashes, finite completion and scientific qualification",
+    "actual native FFT/BLAS allocator workspace, metadata, fragmentation, RSS and search evaluation count/runtime",
+    "exact retained Python/scalar-trace/container bytes and metadata; page sharing/OS/sampling overshoot",
+    "actual-time namespace/limits/ownership/swap/events/host pressure and external physical-host ancestors",
+    "corrected accepted method6 bytes, qualification, new clean candidate/tree/material hashes, root admission/table/window/release"
+  ],
+  "resource_context": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794741665147956314.json",
+    "sha256": "8b37353f4812eed5ac3de6b546dabc4a17923e2bd92d1c381040e6979759f36f"
+  },
+  "resource_facts": {
+    "inner": {
+      "ancestor_stop_bytes": 12884901888,
+      "current_bytes": 3816886272,
+      "current_plus_process_stop_plus_reserve_bytes": 10259337216,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_MemAvailable_bytes": 17769127936,
+      "memory_max_bytes": 17179869184,
+      "swap_current_bytes": 0
+    },
+    "outer": {
+      "ancestor_stop_bytes": 12884901888,
+      "current_bytes": 3801993216,
+      "current_plus_process_stop_plus_reserve_bytes": 10244444160,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_MemAvailable_bytes": 17781256192,
+      "memory_max_bytes": 17179869184,
+      "swap_current_bytes": 0
+    }
+  },
+  "schema": "ROOT-WS116-growth192-source-and-physical-preflight-v1",
+  "separate_native_allocator_allowance_bytes": 1073741824,
+  "signed32_and_actual_width_intp_valid": true,
+  "smaller_evidence": "All supplied/searched summary128 repetitions and matched full128 eligible. Actual summary terminal maximum139.969MiB is descriptive, not prediction; exact data04fff3ea/2feefee7 and160triplets1f80da35 independently checked.",
+  "source_only_correction": "Prospective v1 metadata narrative had incorrect display-expression139969/1024; corrected before any binder invocation/trial. V1 bytes preserved/unexecuted; numeric raw results/config operating caps unchanged.",
+  "stencil_enclosing_source_bound": {
+    "argument": "support masks bound every actually sampled lateral radius, including shifted filter/estimator samples; axial cutoffs clipped to max(Z//2-1,0), native dkz=1/Z and table dkz=1/8; one negative axial wrap; all four flat vertices stay in order allocation. Enclosing bound is conservative, not a query trace or sampled scientific proof. Arbitrary fitted carrier can still fail finite/asin/numerical checks.",
+    "k": 16,
+    "maximum_axial_abs_table_coordinate": 3,
+    "maximum_flat_vertex_enclosing_bound": 95,
+    "order_flat_count": 1024,
+    "radial_base_floor_upper": 4,
+    "radius_max_cyc_um": 0.5,
+    "u_max": 4
+  },
+  "stencil_limit": "Source support enclosure only; actual finite/asin/fitted-carrier/stencil checks remain active in workload and complete-record requirements. No reconstructed value/output hashes invented.",
+  "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+}

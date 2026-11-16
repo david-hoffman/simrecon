@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/root-prepare-remaining2-searched-rows.py",
+    "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-preparation-authorization.json",
+    "aa4c6d22e7ed7cdd13f8a888664f11c6a5f7e0b2f361ba21d5b6062037479b55"
+  ],
+  "authorization": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-preparation-authorization.json",
+    "sha256": "aa4c6d22e7ed7cdd13f8a888664f11c6a5f7e0b2f361ba21d5b6062037479b55"
+  },
+  "elapsed_seconds": 0.8037803699990036,
+  "execution_attempt": 1,
+  "helper_sha256_after": "8f164f7aca08d3917b6f434527d0d09c2d04aeaa3e0acaf2a8c058d734886d0b",
+  "returncode": 0,
+  "scope": "ONE reviewedsearchedremaining2 preparation, actualclosedR1 prerequisite/freshcontext only; no binder/workload/retry/capchange",
+  "source_manifest_sha256_after": "cd2e5179812f0d516b7d887647d0ea9e28334af53d64f2b2d7d941ef715dfb80",
+  "stderr": "",
+  "stdout": "{\"ACK\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/scheduler-ACK.json\", \"sha256\": \"fed229477c9298aab8c878925969e55fea88a94fadc57f180d92d94df0b73071\"}, \"authority\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/ROOT-authority.json\", \"sha256\": \"13ab83caaececf6c2e2b4130dd4608ab2c1a7e4e3b0e0707d9e6e0ba758097da\"}, \"execution_released\": false, \"ledger\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/current-stage-ledger.json\", \"sha256\": \"845f1f0aa7d12178ba256ceee3d5753e7a589de43c93e53eed0adca5b389c86d\"}, \"new_preflight\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/new-context-preflight.json\", \"sha256\": \"f2bb22614684727c357652c954c3c7c6637f6a82abba8f907392f46e203dba2d\"}, \"prepared_config\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/remaining2-preparation-a1/config-remaining2-PREPARED.json\", \"sha256\": \"c3705d9479f43ab4bab677576ccfb9c8db33738bb8cf7ddae7589b78cdc75fc5\"}, \"same_stage_admission\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-full-stage-admission.json\", \"sha256\": \"d1b474bb6c09a3bca9f8086c1dd24796f3166a6f15377d8e9eeba98adf46268c\"}, \"status\": \"PREPARED_CONTINUATION_CONFIG_DISABLED\", \"window\": {\"ends_unix_ns\": 1794788191938506432, \"starts_unix_ns\": 1794777391938506432}}\n",
+  "suspension": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "74e6d330ef0910d4ee99441bb7f4fa0315bb2e33ff49bc5ef5c4bc4411997420"
+  }
+}

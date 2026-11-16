@@ -1,0 +1,18 @@
+{
+  "scope": "unchanged method/bootstrap/old normal fixture/lock only; no full new-driver success",
+  "receipt_sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce",
+  "lifecycle_sha256": "b6997727dea0d12fe5d497d335f0f2fb483aa44273e997a5380223f197fe729a",
+  "unchanged_source_sha256": {
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "prior_driver_sha256": "b82e5f08381b9d022e3567eba91e01f89308efd4912015dee8b0d543b25043f8",
+  "new_driver_sha256": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4",
+  "prior_inventory_sha256": "3f7a8140409bae5c660de925ee4e41fc826cca745963d6fe670e23d596f345bf",
+  "new_inventory_sha256": "6104a6bbbc41bc6fd7a03668252e960df4aa006ca6ed45cbc5da7e2ff463bc58",
+  "new_fixture_sha256": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b"
+}

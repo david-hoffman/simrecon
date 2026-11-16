@@ -1,0 +1,57 @@
+{
+  "grant.input": {
+    "allocated_bytes": 20480,
+    "logical_bytes": 16693,
+    "sha256": "81d42ca0c2d35e882f47335c2e6952527e2e80f4734ac217f3867e2b0920234b"
+  },
+  "owned-child.json": {
+    "allocated_bytes": 4096,
+    "logical_bytes": 2576,
+    "sha256": "dde9a2db5af8c45abedf786c1364d7b799b99db4435e701948c5866ef065f449"
+  },
+  "preflight.json": {
+    "allocated_bytes": 4096,
+    "logical_bytes": 2861,
+    "sha256": "0dc7cfb7abae05070d0959ffe4207253922c08c789a0d148047a2fdf070b94d5"
+  },
+  "receipt.json": {
+    "allocated_bytes": 28672,
+    "logical_bytes": 28166,
+    "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+  },
+  "samples.jsonl": {
+    "allocated_bytes": 41525248,
+    "logical_bytes": 41522252,
+    "sha256": "e30185acab1ef04609698a3a76f40230d636360dc69cb928cfd2c932255aaca9"
+  },
+  "session-ready.json": {
+    "allocated_bytes": 4096,
+    "logical_bytes": 250,
+    "sha256": "0aec349e04de85dee7f09268b5e1c568e98af3e52adabc9cff28d106fd4402fb"
+  },
+  "spawn-intent.json": {
+    "allocated_bytes": 4096,
+    "logical_bytes": 3018,
+    "sha256": "9dad3d2a86df8c153217c30fcd8760ff447434c01c8c0d303a80ef8ea83f69a5"
+  },
+  "spec.json": {
+    "allocated_bytes": 8192,
+    "logical_bytes": 4910,
+    "sha256": "46eb9c0989ae0a1fa6d671b654bfec6214e51d1332c15aca21132aca6c5f9eb2"
+  },
+  "startup-readiness.bin": {
+    "allocated_bytes": 4096,
+    "logical_bytes": 234,
+    "sha256": "b60a219dcee00021609b0636593a0c67a49b040426643e6e3b23de655a162bf9"
+  },
+  "stderr.log": {
+    "allocated_bytes": 0,
+    "logical_bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout.json": {
+    "allocated_bytes": 24576,
+    "logical_bytes": 22744,
+    "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8"
+  }
+}

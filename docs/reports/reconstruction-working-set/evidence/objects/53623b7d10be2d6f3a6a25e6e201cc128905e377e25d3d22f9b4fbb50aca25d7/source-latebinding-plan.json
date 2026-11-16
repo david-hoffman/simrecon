@@ -1,0 +1,92 @@
+{
+  "schema": "WS116-fullsearched256-fixed-stage-analysis-source-readiness-v1",
+  "status": "SOURCE_ONLY_DISABLED_ALL_SEARCHED_ROWS_UNOBSERVED",
+  "canonical940": {
+    "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py",
+    "sha256": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97"
+  },
+  "lineage": {
+    "old_fullsupplied_draft": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-UNAUTHORIZED-DRAFT.json",
+      "sha256": "bc60b9651db35f9f341279b29770a650a6d794cc11d70eb8d771ec5ac9a353b8"
+    },
+    "actual_corrected_fullsupplied_selector_layout_and_failure_history": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-UNAUTHORIZED.json",
+      "sha256": "622871a3f0d6c1ea4ac86b8b21d2fd01cdeb35670843f66067849bcab7563f2a"
+    },
+    "closed_summary_controls": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/config-growth256-UNAUTHORIZED.json",
+      "sha256": "5233c028add012aa4766d2984e4cbc56af224a06d1aa6e42dafa781255810303"
+    }
+  },
+  "disabled_draft": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/config-fullsearched256-UNAUTHORIZED-DRAFT.json",
+    "sha256": "c8fa9331e1a41912ecae693fa7387372c067d9546e1011a78da894ee35cf68ab"
+  },
+  "actual_static_admission": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-full-stage-admission.json",
+    "sha256": "d1b474bb6c09a3bca9f8086c1dd24796f3166a6f15377d8e9eeba98adf46268c"
+  },
+  "admission_nested_JSON_read_refs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-fullsearched256-first-stage-decision.json",
+      "sha256": "a3107a60a12fa5275e7c8a003196cd2d34371fc77c9b4c79d19c277b4a9a23ca"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+      "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt2-command.json",
+      "sha256": "e64f86aab31329da738561c2f29c7871f7a916839b0a896515ba208ede9fea1e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/summary.json",
+      "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-independent-eight-triplets.json",
+      "sha256": "d227037a4c5805beb2fe9f4e518d73e7bae8faa590a47641ff0532e6888c4320"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-fullsupplied256-analysis-acceptance.json",
+      "sha256": "f2fa6e4f228e8adefd034d3acc29727b9b0a440b264abd68f2618dadd001a5ba"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+      "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7"
+    }
+  ],
+  "nested_ref_policy": "Exact files already declared so audit_stage_context195/209 nested-read omission is not repeated. Optional descriptive reference hash-only if present. Future actual full read-root audit must still check all new refs, including updated closure/controller/failure evidence.",
+  "future_NULL_bindings": [
+    "All3 searched boundary SHA and14support SHA each, including activeR1; never read active outputs to fill.",
+    "Actual R2R3 continuation config path/SHA; proposed filename is placeholder, ROOT must bind actual produced pointer.",
+    "Whole searched3 eligibility/closure/controller/window/source/6birthFD facts and independent8metrictriplets.",
+    "ROOT actual analysis approval/closed-window flags, final scoped evidence roots and unique output/exclusion delta freeze."
+  ],
+  "source_scope": {
+    "stage": "largest-full-searched",
+    "selected_largest_size": 256,
+    "fixed_rows": 3,
+    "same_rep_closed_summary_searched_controls": 3,
+    "profile": false,
+    "all_future_branch_obligation": [
+      [
+        "searched",
+        "searched",
+        "searched"
+      ]
+    ],
+    "prior4closures": "Initial60/192summary/256summary/fullsupplied41a unchanged actual stage admission; no historical PID scan."
+  },
+  "release_scope": "No actualanalysis/runtime/science/newstage/auto retry authorized. New per-source reviewed one-call940 release only AFTER exact closedthree evidence/root window end and independent8triplet file audit. Same ordinary realstdlib initialization, no new executable/parser/framework.",
+  "preservation": "Priorfullsupplied failedanalysis/config/diagnosis remains inherited nonpool history; append any future newactualdiagnostics only after observed, no invented trials.",
+  "no_active_row_or_currentcontext_read": true,
+  "no_target_execution_import_AST_test_calculator": true,
+  "EA_worktree_unchanged": true,
+  "investigator_accounting": "prep31 SOURCE dispatched / exec9 / total40; all priorcharges UNKNOWN retained"
+}

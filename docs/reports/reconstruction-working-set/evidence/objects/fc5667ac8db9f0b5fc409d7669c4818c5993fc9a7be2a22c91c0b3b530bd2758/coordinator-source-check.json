@@ -1,0 +1,23 @@
+{
+  "schema": "WS116-coor-F04-sourcecheck-v1",
+  "old": {
+    "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+    "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378"
+  },
+  "corrected": {
+    "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+    "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9"
+  },
+  "patch": {
+    "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/off-band-lifetime.patch",
+    "sha256": "9ec9d8c29b9c4e7de7806b17f19ffd1241a09ba2fca92dd3f336575e3886de81"
+  },
+  "changed_rows_1based": [
+    117
+  ],
+  "other168rows_literal_equal": true,
+  "primary_diagnosis": "modes compact return excludes off_quadratures, fullAcquisitionBands includes _finish_owned(off_q); narrowrowonly correction suitableforfreshaffectedreview",
+  "no_numeric_formula_rank_or_source_change": true,
+  "no_tracked_target_or_runtime": true,
+  "accounting": "author46/9/55; unknownserving/tokens/cost"
+}

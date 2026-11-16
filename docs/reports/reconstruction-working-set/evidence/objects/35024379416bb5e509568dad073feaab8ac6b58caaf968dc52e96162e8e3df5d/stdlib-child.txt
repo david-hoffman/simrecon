@@ -1,0 +1,9 @@
+import json
+import os
+import sys
+
+if sys.argv[1] != "normal":
+    raise SystemExit(2)
+print(json.dumps({"ready": True, "pid": os.getpid(), "ppid": os.getppid(),
+                  "pgid": os.getpgrp(), "session_id": os.getsid(0), "mode": "normal"}), flush=True)
+raise SystemExit(0)

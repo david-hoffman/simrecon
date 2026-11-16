@@ -1,0 +1,2572 @@
+{
+  "protocol": "WS116-final-report-input-references-v1",
+  "identity_policy": "SHA256 over original bytes. File-hash reads during source44 are distinguished from literal closed embedded references. No sample bulk was read, no reference closure program or canonical statistics was rerun.",
+  "measured_candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "accepted_parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+  "public_main_intake": "b344e41a8b52de76d7cbbf8450319893904c3b8f",
+  "material35": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+  },
+  "material35_scope": "Actual canonical summary source map and source44 file SHA reads; docs-only final publication must retain these measurement inputs. Source/stage/config history keeps original revisions.",
+  "primary_sets": [
+    {
+      "id": "initial60",
+      "output_directory": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/initial60-analysis/config-initial60-attempt1.json",
+        "sha256": "63968a0662d5ead4a9f8c7b4a634cfe6fb75210757ee30e56d00fb1661f6ac22"
+      },
+      "scope": "60 unprofiled initial rows",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    },
+    {
+      "id": "growth192",
+      "output_directory": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json",
+        "unprofiled-controls.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/config-growth192-AUTHORIZED.json",
+        "sha256": "525f1f88e451eebbc45d96b96f63be644eb90c2d2fdd91c8e9e274b7907e95ec"
+      },
+      "scope": "Fixed stage rows only; existing controls never extra trials",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    },
+    {
+      "id": "growth256-summary",
+      "output_directory": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json",
+        "unprofiled-controls.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/config-growth256-AUTHORIZED.json",
+        "sha256": "8340d44f7e4ab84de764816b648593f9d2d1bb868c860f57dca79a042fcbdea4"
+      },
+      "scope": "Fixed stage rows only; existing controls never extra trials",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    },
+    {
+      "id": "full-supplied256",
+      "output_directory": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json",
+        "unprofiled-controls.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+        "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa"
+      },
+      "scope": "Fixed stage rows only; existing controls never extra trials",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    },
+    {
+      "id": "full-searched256",
+      "output_directory": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json",
+        "unprofiled-controls.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/config-fullsearched256-AUTHORIZED.json",
+        "sha256": "185d788b9e74a798b061bee398e89ac9e12486f785b9b5bfaa42198d9060c24b"
+      },
+      "scope": "Fixed stage rows only; existing controls never extra trials",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    },
+    {
+      "id": "central64-profiles",
+      "output_directory": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json",
+        "unprofiled-controls.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/config-central64-profiles-AUTHORIZED.json",
+        "sha256": "8a61220a64265b669438e7e54b7491977e9044746a6fc75f86a29caffaec1364"
+      },
+      "scope": "Fixed stage rows only; existing controls never extra trials",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    },
+    {
+      "id": "largest256-profiles",
+      "output_directory": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1",
+      "files": [
+        "summary.json",
+        "per-process.json",
+        "three-repeat-summary.csv",
+        "excluded-records.json",
+        "file-audit.json",
+        "output-identities.json",
+        "unprofiled-controls.json"
+      ],
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/config-largest256-profiles-AUTHORIZED.json",
+        "sha256": "1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5"
+      },
+      "scope": "Fixed stage rows only; existing controls never extra trials",
+      "status": "descriptive_complete_audit_valid_pending_scientific_review"
+    }
+  ],
+  "references": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/summary.json",
+      "sha256": "04fff3ea2045ceb3c5d4a0acb6b4109d37b200d6e1b68c6ab57f7fe28c9fbe4b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/per-process.json",
+      "sha256": "ac1391d4c471089c2c70eccc6aa857713650fc5a5bdddfb5e6ff7178c91d7b25",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "e156882e7ae2cd3194f2e500168c83fca517fd4d5d8f4ddee796fe92b80d2b2b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/excluded-records.json",
+      "sha256": "29914213c4038e5dce71d2758e5331424f49d629b856e450e33a9cb0e6d4e4e8",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/file-audit.json",
+      "sha256": "dfc65d7fff161553fb6755a95c27edf61caaf3aa8d2d0f4fbc9b249530c65ae2",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/output-attempt1/output-identities.json",
+      "sha256": "298057cf4e35237927cf23f1e548c9e08077b9ffdad8ea282decd7de5cba4567",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/summary.json",
+      "sha256": "f7afbc0635dbe1689e7b66104e985678e117c6ad58457631266f10edbfef941a",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/per-process.json",
+      "sha256": "d3524a39b298de1d7c4dd6ca3aa837154f4c75d1bdf828da6ad2c30fd1d0eae3",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "df6be6161500589ebb539bd1638ca02a637b9c224a11feb9723847cfa47ce660",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "722096004245809bb1736f55f50ad7e99af37ca35d6d82fc60ef94d813dad240",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "8a0853e6db7e7eb0db7cee1ab7941336693b13fc87e1668008b809eec504801c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "a29ecafbad16c3cb7b591e7377b25fc4b27e31aacd61ded2cbffd5d460e560f6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/per-process.json",
+      "sha256": "771c6d816c509b3c327003cd443211718cd0c835c64b91d5445780a36af28e2f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "e1f5beaaf293460d719f9ec7fb52f563d7b6ead1e0513d76e4e012bcb530f7ef",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "0a5389fc844acf940212026ef00b764ff49193de717f5ea945e4185dfca46db7",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "0fd3e2714ff917b7efd16e0ad4288944492f1a27337d7f375a5991be735d0c50",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "3919410cd4f8efdc0f099ebb8b8f018eb6297763d91a5ad61aa919c3d3784b63",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/summary.json",
+      "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/per-process.json",
+      "sha256": "b6bb23f41cbdaa9b5eee9ecd4ae088c1718441ae3c71c0364dac7d72d1995f5b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/three-repeat-summary.csv",
+      "sha256": "9b6cb0628bb0b565a4e0b385970f8e48aed4195240e2e123d4f4501c9378b7ed",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/excluded-records.json",
+      "sha256": "e842d7286fb67fc6b6d5a383bcd807adbb2df9b17e91652e32367dc31b71def1",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/file-audit.json",
+      "sha256": "22b5babfad1e396d2d9e3a410cc956fa7d6102415eaecb5b30c5cb571585b612",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/output-identities.json",
+      "sha256": "2908d48ac1d630fe6431708c52e6bd50754bd2eb8910e62a8a42dec7e4f3cb87",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/unprofiled-controls.json",
+      "sha256": "50fdb9c143e8ac9cbaba16a1cf5c0ad06efba8d50510ed364a2eaacdb86608fc",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/summary.json",
+      "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/per-process.json",
+      "sha256": "53fe6575474716be4f84f815002c898bd3efdd11fba2b4b931c22948b4e28a7e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "bf4956bac8f9e5f70158c11a5e91e0e84e25c0df94bdab8da3bf2f9fb8961bf1",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "46cb4a507be4172d0e985d29dcaaff9387e5ba7622432ff6a6866f619deb4de5",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "712b470e22b021d8f3aba17dfac35edb68292a06ee2d6080a2e197892146a707",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "8e481780e0dd584199f638c0b16c23443047e74cb3446b8ba7e7c40a7a0d7a6a",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "71045334d7ff276ba7316436c39393aa1d58b532ad299c0ef8efb94e2bf3f728",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "12c9d528708451064948d66fe017fea3fceba8b4e865bc4d8cd2a666ec4afd34",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "bd9f20046ac519085d0eebee53f1d36b6ad2d7d02f280ef4e5c05b14452d53bd",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "055a5279fc277ca357d171989fae215300bc03fe2291a9fdb19845b2f3089471",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "4f11cc396bc132c4a5137fcd24656bcfb5ee9263f4eea0aeaff991d55715b01c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "0c8a0e2c1622f1fe94a6172e1dd6ff3f067d9a00417b7a2033ef49dbc840fe09",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "08bee7bf0446fbfe117ea99b03de41a28fba19d6e0caaa5f667c210b657eb0dc",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "55fb5ef5194894a9538ebcab67560b0ad278cd2d257475cb6cb14c290b697bd7",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "90a7cb97e8e82575df977f353f1bada48a3c9fad4b583b28536c38b447cf68ed",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "c7df0a388130b22d1a4ca5f546ae0526a0abdaeaf24d915eaff40d422d8858ce",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "5cd6d3ad1436195b73358bbe6d38fbaca3894d933ae4f286bf9960ea037f9f20",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "c591ddddb7678b9d456926711d447f4afe114b7516b4c19342b64eac2d97289d",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "closed canonical/file-analysis output; metric or historical scope as directory specifies"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-narrative-initial60/report-draft.md",
+      "sha256": "bdb9898f32d4ce18521c6b3ca08e881bf46a0a2e6fe3862833b66d84b35e04b1",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-narrative-growth192/appendix-growth192.md",
+      "sha256": "a3bacb5e621ac73f4187aa2473c4f49f6d9b04a39b5cefd9917a4f8d729806da",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-narrative-growth256-and-fullsupplied/appendix-growth256-and-fullsupplied.md",
+      "sha256": "5d43e657d16e77bca5ffd3db09a19937f2b728cbfb4f3da2633d20af97f0fa0a",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-narrative-fullsearched-and-centralprofiles/appendix-fullsearched-and-centralprofiles.md",
+      "sha256": "b9f2570f5e811520a0bc955f8d787b406c896a96f5ff64abbf398891bbd638a2",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+      "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-source-check/full-supplied-r1-source-check.json",
+      "sha256": "08fca73a3011e57cba2b7d3c3a9605e1692e035e6f22084c5a0218874cfcd8f6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/full-searched-r1-source-check.json",
+      "sha256": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-source/central64-profile-source-check.json",
+      "sha256": "88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+      "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+      "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-plan.md",
+      "sha256": "b7148be4355f32dd4bda70c0824201fe67d89baa27d13f1ccaf3b9b29eb37430",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-plan/closed-evidence-publication.md",
+      "sha256": "4e451af76d7a084db49993cb7cb1ca00dd885792f6592bcd0552394bb6a33713",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/finalization-plan/finalization-checklist.md",
+      "sha256": "cad33dce299a9bb6c582638a2079ffaacd53ccba2086d8c886c1a90493c50c4b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/finalization-plan/sample-layout-decision.md",
+      "sha256": "eeaac7ede04dc0ce78b932e03739010aebdc21624557450c9a126f8517f3aab3",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-sample-transport-manifest.json",
+      "sha256": "85cc0b68e42089d2d8d22e031fa1720676a49fa30ed09bcb571ffd57f4937f91",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/config-largest256-profiles-AUTHORIZED.json",
+      "sha256": "1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-actual-largest6-primary-output-review.json",
+      "sha256": "af22cb294faf45b8f0020ba35d618fd4b6ec5c4bd12d404c69dd790ae5778584",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/config-initial60-attempt1.json",
+      "sha256": "63968a0662d5ead4a9f8c7b4a634cfe6fb75210757ee30e56d00fb1661f6ac22",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py",
+      "sha256": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py",
+      "sha256": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+      "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json",
+      "sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/environment-binding.json",
+      "sha256": "a7d472eedddd68e230ce79d3b8cb8249d59f51afea76b0c8071d3b4f750ec6f0",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/source-identities.json",
+      "sha256": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/schema-inputs/source-identities.json",
+      "sha256": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json",
+      "sha256": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/aggregation-attempt1-receipt.json",
+      "sha256": "aa06745d4f6f28319ba8667700759861f4847fd5286eaeb92a1ae94f109bf347",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/execution-freeze.md",
+      "sha256": "be34f60de6224dca5cd42db7c3241f668c66bf89b6f25e6183c80e4b37e707f3",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/selection-freeze.json",
+      "sha256": "bfe965a7bb82a6e48ee8c4e6cf1d757c715cc7d565a793e19280afc330f02087",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/config-growth192-AUTHORIZED.json",
+      "sha256": "525f1f88e451eebbc45d96b96f63be644eb90c2d2fdd91c8e9e274b7907e95ec",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/config-growth256-AUTHORIZED.json",
+      "sha256": "8340d44f7e4ab84de764816b648593f9d2d1bb868c860f57dca79a042fcbdea4",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+      "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/config-fullsearched256-AUTHORIZED.json",
+      "sha256": "185d788b9e74a798b061bee398e89ac9e12486f785b9b5bfaa42198d9060c24b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/config-central64-profiles-AUTHORIZED.json",
+      "sha256": "8a61220a64265b669438e7e54b7491977e9044746a6fc75f86a29caffaec1364",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "5e7adc6f455656fd9228dd8a3a07c193a99073df56da289b6bacc5d1742b0951",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "cc255c578d49785da28bb9b238bf6667cb3517deeecf9d6ff5de731b064f857f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "bacd1777c9d274ec8a02d9f9f57516d238ca036c3f8ab0840dd5b8afc0f2f066",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "35ba754076f480c68cda1f3191a250478f2a1b7b03a3911f94aeb4fd51d2403a",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt2-command.json",
+      "sha256": "e64f86aab31329da738561c2f29c7871f7a916839b0a896515ba208ede9fea1e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a1/summary.json",
+      "sha256": "e64b18c4955f1cb3a7ebc8bbc49336e35ada35b497fedb92a1c7b53bca89eb38",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a2/summary.json",
+      "sha256": "fa5b9d289dbc626f1cf6aced09ea23669a82fca32525a684733d391e3261d819",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/summary.json",
+      "sha256": "9ae06b3f9f7fbf8fb03f25c3abaf45a3bb59c06811b2291ecb93f3d5c59adab2",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-1.md",
+      "sha256": "9a4452afddd4e4d53e47f2b4990f0a268bd3f7c3216e60ae54a739ed99b4b81c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-2.md",
+      "sha256": "f339a8853d16a28f1c2682a6ccc23a8c612fc1a24e9e85a0045da855c5dfa5e0",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-3.md",
+      "sha256": "8fd16ca2de36cc69cf8718213569dc1a07f2a3629553e941eda5e97800061be6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-4.md",
+      "sha256": "12a177729d95a030ecea998e76d76ede2023aeccba450249d6ef25674b14ac2c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-5.md",
+      "sha256": "510f402d38b25d54e8c71b486b248d8ca5b7dce3600b5e0ab49ba3200c7fa485",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-6.md",
+      "sha256": "a36453f4eb067f5ed5ce0b2a694017fe88c614914b80178a1e7d34b922585e91",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/static-method-review-7.md",
+      "sha256": "861075fecd05087575fc90e7607ff79db9027c1aac1d979623dbd693e1eb1b5e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/sourceprep41-packet.md",
+      "sha256": "f3a2a2598b397c0ca506838c5f5d0e2fc25011162847f58a9f0c51c1b699efa6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/sourceprep42-packet.md",
+      "sha256": "c64d77d5c2dbb69e1e79b9948ab1a38a8cde67a5fdfdc5af07ba8e06b23141fb",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/sourceprep43-packet.md",
+      "sha256": "4532587a170c22a756372a15ddef01d757bcc42792514b439516d0b31e9ba082",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/sourceprep44-packet.md",
+      "sha256": "55fa4a29cf1ad130e00faaeeeb7d1d7aebe946a8b8a375e670821bab1a098bba",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/input-references.json",
+      "sha256": "98a8effca19b204dc3580c7ba55753ffad11f606c9455de10abd021552844be4",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-selector-file-audit-attempt1-diagnostic.json",
+      "sha256": "87c02f871f121db1b67f9aca10741dc297c48bb0f497f27cc8c41aa57d312860",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-output-audit-initial-historical-assumption.json",
+      "sha256": "9661e4b718cd34d210bd1fc0229d513e34f4ad435374b4ff7d1d603b585532f6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-attempt1-nested-root-diagnosis.json",
+      "sha256": "afbf988d1869e85a2084dd2e6883136a4e6a45434815f9484829b29f62837c58",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-operating-table-label-reconciliation.json",
+      "sha256": "0e9ca901fb0ae011f1cc9ea77463390b991f6eaf647d0644547abe081b43aa9f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/root-largest256-profiles-stage-closed.json",
+      "sha256": "2bc344e6727ad9b9022faca2336669f812b4c0025ed9230480756dec97dd651f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-postclosure-source-check.json",
+      "sha256": "a62f3537fb9b9047e9b1cb64df313ee14d971183fea51d281f655498426bd30e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-window-closed.json",
+      "sha256": "4a1c30a6c1d7599b6a187a259ef5aa035f075fda76709c39b1e1f734e382c921",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/AGENTS.md",
+      "sha256": "56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/PROJECT.md",
+      "sha256": "530e72dbc3b9e73756687c3893bef2803cb775080a12539681020916c59b9fee",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/contracts/reconstruction-working-set-v1.md",
+      "sha256": "4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/packets/reconstruction-working-set-investigator.md",
+      "sha256": "e98110351fc41d4d5ee023a37c8ff3d59fe8e56287a62c95b686df712a73ad57",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/integrated-parent-reconciliation.md",
+      "sha256": "147ea0caf9a03a71dfd50e45de6f6be12f6b62e77c6b695b2374a819e479af8c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/__init__.py",
+      "sha256": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/__init__.py",
+      "sha256": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/declarations.py",
+      "sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/drift.py",
+      "sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/layout.py",
+      "sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/modes.py",
+      "sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/preparation.py",
+      "sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/cli.py",
+      "sha256": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/__init__.py",
+      "sha256": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/imagej.py",
+      "sha256": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/imagej_metadata.py",
+      "sha256": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/metadata.py",
+      "sha256": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/mrc_writer.py",
+      "sha256": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/pixels.py",
+      "sha256": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/io/priism.py",
+      "sha256": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/models.py",
+      "sha256": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/optical_transfer.py",
+      "sha256": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/reconstruction/__init__.py",
+      "sha256": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/reconstruction/known_parameters.py",
+      "sha256": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/reconstruction/parameter_estimation.py",
+      "sha256": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/__init__.py",
+      "sha256": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/adapters.py",
+      "sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/config.py",
+      "sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/identity.py",
+      "sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/reconstruct.py",
+      "sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/result.py",
+      "sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/summary.py",
+      "sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/transfer.py",
+      "sha256": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/uv.lock",
+      "sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/tests/reconstruction_summary_fixture.py",
+      "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/tests/reconstruction_memory_benchmark.py",
+      "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/manifest.json",
+      "sha256": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/observer.py",
+      "sha256": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+      "sha256": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py",
+      "sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "identity_origin": "file SHA256 read during source44",
+      "scope": "source/provenance/history; not automatically metric evidence"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/row1-ea9117d-a1/ws116-spatial32-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "a495112a375a0fa9ecf9c6ec5e685d240aeb58aed6269cd452518ecf05ba442d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-row1-AUTHORIZED.json",
+      "sha256": "f262fc41c0d1899bc32f9a51bdd6b96257c547afc48147a3596a71d90e7afcbf",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-spatial32-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "a38892581ed54349dc59312eb6eb613cf8a4c58d0230e256997a66214fece6c9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+      "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-spatial32-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "f13a6fde2fbe7ffb66f021ed6181f7f21e40fbfcb12798cfe60b2cfcda5622eb",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-supplied-r1-u/eligible-boundary.json",
+      "sha256": "cd9f90af3c85dff9ed7470a488a315a5efbe910e8d932292d4fb0a74e1458072",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-supplied-r2-u/eligible-boundary.json",
+      "sha256": "0e9c80a4377c469b7db403ab08cb876a44adc775d556e96f292e4c40561afbef",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-supplied-r3-u/eligible-boundary.json",
+      "sha256": "4ff298755ed4e1fb292314c26fee60bc7d2127dedd67b122cb002ca0e75ee55a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "8636972ed7995367edfc09dc6ec8285a37777a757d52b4b954787dfe520f9e27",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "03d529e9dae615b76a7497c4efbffe3a57d14466a6a60837349c28dff5bf8e14",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "86708bc7fd40c15999071b09b6bb01a7bf81fd7832d2f3be392880f0295bc681",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "27a3f04f5545909b96937806ec72d58ba6d2be77aac57ac8d15213c56458592b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "04dbcf58340602e3c66fd6da5fe02b04abc54c5765c6e927bbab8f4f5ede69cb",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "aa15d737272cd70597dbb601484e599e7337c5e67c0f37851d2226430d5999ce",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "7a8f3424ddaa0808262ca18cf9daa24b0f749424f5a24f1afda91e35241726c1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "bb629a8ada15b45a4b65b9deb7dbef49bee032535ac2398a5983b0e9311dc339",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "a10f875445267408470f1ac877276e109c24c6529f6d45bb4565a3729226de36",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-supplied-r1-u/eligible-boundary.json",
+      "sha256": "a83b865a8057af5e89faeb7c7e9809ae79601ff1f01894bc6055ace2eab23fe1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-supplied-r2-u/eligible-boundary.json",
+      "sha256": "78686e65b9fc207693cee6a1acd8a3c05c11509856bcfd136124970019d8876f",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-supplied-r3-u/eligible-boundary.json",
+      "sha256": "284f02edcc69ac2f50b282c2e95e6249ba4e07f3973e752f79fc6ff7ef7f6017",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "e421c75d68447d48f601817d3d9280f429dfd8a38b80665dd662d37e46218694",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "e219e8add4d5177d90c5f7ffc5601a71e0acef454d4a5dd32f77a02240538906",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "6d17561f8b1c50b9c4bfcf127714fd95d48ba521dcd6fda9860eddbbbbe623a4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "1f6cdc95fca57dd9369e668312e5dd30db9105bf90893af081fc21bf3688c2d4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "709b5a021115c6b612e7fd7e6fc6fddebfd33b667a8f41629f1476b35f6d0587",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "785ca2dd385c00203f62b7a8de31733eec0041210621112a31fa3e88fa75abdc",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "fd88ddec7da168f7a768b9287532466857262a7bf94fc49766dca3ce67f73007",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "ca0b2853e1d2cbef420746f47292a78a6e59560a5e04725e5c551c0f7bef50f1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "817bb6e346525af070957edab7504ec7ad41cdd4941dd88663fa16f177418ab2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-direction1-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "f3fdf0010faa205aa65d7ba15b0dd4c7ed4267f5832e60e0988f1dc295c4d03b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-direction1-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "9e3a26411027e0c58e2a9dcf7a857b9189fb831016983d1b0e500e0c0879546e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-direction1-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "083ed05d12da6d0cb7ed54a5491efa9f034aab98f1c727f7a1764cd863bc03ea",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "b21dbaa25ff223a742a85f64a8e53718e418a1ae0888a2f945785d622e16cf29",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time2-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "245be6a2e7da897b5033a5679bbd557e90688a5c7d04d6e9cfdcdfae6b77e399",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining29-AUTHORIZED.json",
+      "sha256": "2103f69ca5152c4174cc04354756452399d096e95c1da0c947bd89a5d16c9c3b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time2-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "e980fe1699c742f831563ec4aa88c3f0e6ac18b2b96636d184dbbae9155f4fbd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "665202938a1f9a6ca469c3369e7b81aab031cd3c59466bcc8807403727a6803e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "2433d2be534852d3263f30d02c36e5b9909c3d46015f48f5e99d3bc5d899607f",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "a88927d9ebba4d8fa1a55f56d202e8a772380f03f0b83446a02f5fbec6ba441b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "8388b159d8ed01b7b638606d2f8d94d6bd2993c274660991395b9e3f5a298eae",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "ea503891c84a480914edda2b2d88caa5fac14fa4576ec65615f49b28f93ac2b4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "e040e495cf7bae07e61d2d059511fbec3a832874ba9948b2e32162e72e8d9c8a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-2d-summary-r1-u/eligible-boundary.json",
+      "sha256": "02c15fff44345383ea17213916f40c4f592eaaed7a8cf4c83b8fff44c4f32bb0",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-2d-summary-r2-u/eligible-boundary.json",
+      "sha256": "19f5a3b9fcaddbf4de2f0ea9cf3ce3e6fdf4212b0aca65907f27558648ed170a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-2d-summary-r3-u/eligible-boundary.json",
+      "sha256": "bc2eb87eb70fb86f48ad8502b571aae3c7e4d4fd8e60342ace60e12fc0ef6376",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r1-u/eligible-boundary.json",
+      "sha256": "d28f822a57b7e0ce5dd15b27ab857661cf0f42c0e74a4187ea7ba5cd4f0dc2e8",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r2-u/eligible-boundary.json",
+      "sha256": "9e77c5a3abb5c061fccdd73038bf441d29d7b14eb44861ede15eb0b4986adef6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r3-u/eligible-boundary.json",
+      "sha256": "dd60eff0c04b7e694838d88e57bd34bc2585d238b1a30b7469590f90200664d1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-summary-r1-u/eligible-boundary.json",
+      "sha256": "3c0ba99b8878afa935cb0932f12dfe70dc228523a2b9814d795d6ecb0e37479d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-summary-r2-u/eligible-boundary.json",
+      "sha256": "67ef500692f2ca1a7fa91bc6b9a5212cc18c988f25fc6b1901d44dbd49295654",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-summary-r3-u/eligible-boundary.json",
+      "sha256": "87c6e7453bde5dec35aaecc80c01c0e738e0b1056f4c2bb9f27148a732af00f6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-between-summary-r1-u/eligible-boundary.json",
+      "sha256": "37ea06b4f83f2a23a179f3b2f6376f2365c7d48ca6969bbbbb04443f8bf1467c",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-between-summary-r2-u/eligible-boundary.json",
+      "sha256": "d1ea2363a5886d9115b9812a6ef1caac665624af551c948429e4be3f300b280b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-between-summary-r3-u/eligible-boundary.json",
+      "sha256": "8d6c27ca4018e182bcfe35deafd401fd08235c686e36982c9059e840c49db92b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r1-u/eligible-boundary.json",
+      "sha256": "79cf0fa8c243955ec9625700789de9933c83cef70fab91ac24243ed6531681cd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r2-u/eligible-boundary.json",
+      "sha256": "4e6b1534d33124524ac9beeea85583c73af60a354022d016b2a77ef31264a3f1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r3-u/eligible-boundary.json",
+      "sha256": "45860163ee202892bfaee6a6e1c57eb1cba5fcb63c665b84d596cb1a76cc5314",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-full-r1-u/eligible-boundary.json",
+      "sha256": "a6ad597396f69888baf79dc0fc735428c6d29269379645ddff36a5cdcb1f0eea",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-full-r2-u/eligible-boundary.json",
+      "sha256": "ef01d7fbf674af059ecc915defaba812764f67e54aef4ab8aac184c32f56e041",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-full-r3-u/eligible-boundary.json",
+      "sha256": "5ec454f1c2357236744a86f76cf60bccaba2cf383a7d3b77fd104114c8b41543",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r1-u/eligible-boundary.json",
+      "sha256": "de8aaabe3ad0f8464791247e87a4383de143028bec3eaf604cd81d1c8f923c83",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r2-u/eligible-boundary.json",
+      "sha256": "ac6fce3c747095f320296a27037f66f27f315bf57332b6c3493ccf7698942e5e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r3-u/eligible-boundary.json",
+      "sha256": "e68e28e0bd1f53e82f7c0917af6eeea0ff5b28b1e25ef7f49835c81f02887445",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-row1-ea9117d-a1/ws116-gp-g192-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "fb73814e4967b7d686cae0b2158c17d805a6a445d9d2adda7f3a675607291c8c",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/config-row1-AUTHORIZED-v3.json",
+      "sha256": "81e4ace19b6a64cbefc36bfcc99c34310760cbf2ea5a5f5ddf88ae020a23b391",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "a55f3c8003faeb1104ad77fae88d71982896ed80d038ddd8b12fbcbd87bee5a8",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/config-remaining5-AUTHORIZED.json",
+      "sha256": "055b77d8a774e5b90e14109960f84a10a1f8941926199669110feceb5e2cbba4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "3fe9b5d2aa37ab1d9fa50bd6e3f2072caf503dd69a5790d39e9d84331c8078ec",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "6ecb50ffc0fa9173626fa88f024b853c42cf2c95922b0ab9bc0a4fdf85332fb9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "55453b84a9bd0e781425f40e628bfeb243cfb745082aff5612756d14986bb8c6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "44b5d3bfe5c49bcbd6804a4ddf8c66f656aab195a316cf0efb64acad56f359aa",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+      "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "78ccec0912df2944a53938a7d4dccb3f9be665bcd52f04888cd9a59f74e613eb",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+      "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "75fd75b9887adbdc511cac8494af5f14f211b0eaa100e763394514d276c87bcd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+      "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "36d74d13cf6ef10b3997b9a633815839772d2f31fa3cf2fa900d20bb7313aaeb",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/eligible-boundary.json",
+      "sha256": "b099f53181920e0787b7c93374d8632bf1b306b36d9814eb52609bb325364ccc",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-full-supplied-remaining2-AUTHORIZED.json",
+      "sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/eligible-boundary.json",
+      "sha256": "fbad233b4d532f7073da86222e85ffc87338be4a933268e60dd10c6aa968b696",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+      "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-c64-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "aad1f16b2f5bfb46f8b4b6d9edfba5fee2132f570750e47de370f6ea22d4e9c2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-c64-summary-searched-r2-p/eligible-boundary.json",
+      "sha256": "06e01637b4680a16eca3fbf966af1dea56ef1975467285f80592ced6cda67ea9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-central-profiles-remaining5-AUTHORIZED.json",
+      "sha256": "676cf336524d39e5f546aaebb951471b59794fbf17a8b2803b178a7cb5229a7e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-c64-summary-searched-r3-p/eligible-boundary.json",
+      "sha256": "bd37c588ee6006a27e93512dd015b361c8b446ec4b502bf81bcea65908b0bfc6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-c64-full-searched-r1-p/eligible-boundary.json",
+      "sha256": "3ebe646bfb25b2dc5105d10c73c82047494cdf3ddce3bb5cfd1a967b662a61d5",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-c64-full-searched-r2-p/eligible-boundary.json",
+      "sha256": "0c63454345e0d5dace5fcbf4df04461978f83e6716842d20540b92d11240dc6e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-c64-full-searched-r3-p/eligible-boundary.json",
+      "sha256": "99774f12597703b8d0324c7cab5d0a30b8caaccf88445eee623c52bc921e8a2b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/eligible-boundary.json",
+      "sha256": "8af497730ea65cea3e97736a90c886a900c9c2036100ad154871c07036b9cea6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+      "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "actual frozen batch configuration; historical authority only"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/eligible-boundary.json",
+      "sha256": "fde37deb658088bb97f89f033f703c09425d648f00f92dbd58fdc6f2a32e4f43",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/eligible-boundary.json",
+      "sha256": "24a0d4040ae882576d4cfc84afd256b9577590a71122af6423334b0695e86f4f",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/eligible-boundary.json",
+      "sha256": "d61dd7e95711a89291045e6ed90e4e1d2e21f7c8af923abf269a61a0f2bce9e2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/eligible-boundary.json",
+      "sha256": "488b465a386150326f7fca5b96505ba55d4638258cb91c916c2ffbe775629393",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "selected science boundary"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/receipt.json",
+      "sha256": "ea1132b9b6d5705768c3efaecb5e02d4d332de9e3186317d1809fb8558f1fee5",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/stdout.json",
+      "sha256": "c95aa88eba27d90374ecde2d284183c8752814cfd60c8440f3cea600c1a91dd7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/grant.input",
+      "sha256": "374f1ee725ba5504ceba41a93d1d9f0986663945797000d7c3c765da8bb76136",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/owned-child.json",
+      "sha256": "3a47bb38a9b89d8ef59af630b99268a64347b2e8b206f7d1ae18a5dcfb7cbbfe",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/spec.json",
+      "sha256": "0a7b732c50d7e58ef46080fcd0d010dfbefb95d4809c4e01bdf536c53e660b69",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q0-context-a1/receipt.json",
+      "sha256": "e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-normal-a1/receipt.json",
+      "sha256": "f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q0-method5-a1/receipt.json",
+      "sha256": "055048597eb084341aac3d16e50e6bfec5814587b54d2a01f75b3420016b33b0",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/receipt.json",
+      "sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-default-term-a1/receipt.json",
+      "sha256": "04adceb4b0362c55902889d01738beb582850655604dfe478ef8a2c27edba68f",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-ignore-term-kill-a1/receipt.json",
+      "sha256": "14945d428577e75365b5c3202d31c265577520a5ee8e8018c84d60b868a1bc8d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-deadline-a1/receipt.json",
+      "sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-supported-sigint-a1/receipt.json",
+      "sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q4-parser-a1/receipt.json",
+      "sha256": "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q5-tinyhash-a1/receipt.json",
+      "sha256": "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/method6-rss-controls-a1/receipt.json",
+      "sha256": "5d7f96701e749126d0dbc5df2eb380f36c210a4147aceb183ac268c53dc5870d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/method7-rss-readiness-controls-a1/receipt.json",
+      "sha256": "ee45f1976ae813535506e25beb2c42c49d07ce5f85a951132093b748891e8f52",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/launch-route-attempts/launch-selected-a1/receipt.json",
+      "sha256": "17b6a0519bdb80437e2652572245ba15142890d968cd3b923a783facc2a99658",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/first-corpus-readiness/root-prerelease-freshness-refusal.json",
+      "sha256": "0cf0a70bb56fedd12404215164ec2076066391fdd1182c19b79fe7933a03dd0d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/HOLD.json",
+      "sha256": "a6c1ba8b408c614413e6d5eb8c96878a0f9052f70d68091546cd0eacc8b0ea06",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata.json",
+      "sha256": "325516d5341f761728fb17690a1ba5620b4ae0f7270c473ff568303fc5acc38c",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-request.json",
+      "sha256": "ac6ccbd52ec60dce762aa9b75a54510f85e386d3cf9901b6abf2d111bbe39059",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-intent.json",
+      "sha256": "4fc20c62cd34f43a7502d2d69f6327b35f293f06789123ac8a79c7b3159059d4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-command.json",
+      "sha256": "712dbb7ad28040b5c9e5dd4f4eaefe503dcb37d9d59d114af24a7dea2a9609b8",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-capture-command.json",
+      "sha256": "499a3f4eb6a1e5bda7a620fb2f8a2b561866d4996437cd5fe5a3d9ab84d73794",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794734105823978897.json",
+      "sha256": "96e01872cf234c4df12035952f1eed33bda8d1a326223f679482af2a3a9453c9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/coordinator-time2-r2-prerelease-refusal.md",
+      "sha256": "754aebe89e7d69aec902f4dc1f50bb28f5e12a7adea116a1b02110e398490de9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-first-binder-prelaunch-failure.json",
+      "sha256": "4d068700dd9aae1a97b7ba79257f01901f5beb01932e0dbef5f042ec3ff57625",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/config-row1-AUTHORIZED-v2.json",
+      "sha256": "92008dec3e520e8bc7f4d23b0f7ed38ec9028af48ab81e0ee174c61b6a962980",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-v3-source-audit.md",
+      "sha256": "93cce5a5e525e792e9693a86f264d431552d42d11735f319b003ef1e6314db2e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json",
+      "sha256": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+      "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-window-closed-for113-qualification.json",
+      "sha256": "314b6ad3ed506ca1d03809d568146b70178810be09aa85d3e126e98abbd50e61",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-first-binder-prelaunch-failure.json",
+      "sha256": "fd3073c0b0458d7637d942b2c2361cb92729e6053e6b6742c8ee5897478657a5",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-prepared-v2-file-audit.json",
+      "sha256": "40992ecffc8848d8ccefe86b333ac4394f99ce34fff4847740c31f35c1d49fd2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+      "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-window-closed-for-checks.json",
+      "sha256": "ace3ddeb3a3889d4b58001025310f42953abef60e1b988e7497656900f1ff7d9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-growth256-closed-file-scalar-review.json",
+      "sha256": "0e4d3508b25a8e0b01c7b62211a7c14ea6e6d8619fd54e8a093b8ccf6e7b57b2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-controller-94974-ended.json",
+      "sha256": "a2f5d0e18fe567996f3c18d2e21623cc2b2e5de02ce21112c7d419e4c94a7f3a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-execution-release.json",
+      "sha256": "c5a57ac1b39bb543e603d748c3e3f8985d0abac3a506e0da5402e17d35ecb9ce",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-release-construction-attempt1-failure.json",
+      "sha256": "b3e5b9bbd32da619d9fcd7b0d2b9e9b99c989de05687269925b61522a4d466e2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+      "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-postclosure-source-check.json",
+      "sha256": "82d79a3a73caa8c425fa224cc1953968dda77c1ac93da533c6509207b2f512ae",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-postclosure-sourcecheck-attempt1-diagnostic.json",
+      "sha256": "0e4579a8d01ff813985d103e796b2ef3b79e37d88dd5ff81c0c7a5928328d1c8",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+      "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-closed-fullsupplied3-review.json",
+      "sha256": "3da4293f9b70caa2dc98d823aa7374abc38719219cec09b38c28be7d2b252964",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-independent-eight-triplets.json",
+      "sha256": "5d96a35dcdb706c15f762054b3eafefb512fb89c9df46c5f4b749406c93a0327",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-command.json",
+      "sha256": "398c34fd4584867888bc4df521e9c2ebac07a57fe390cd34dc5f4811f693eb65",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/summary.json",
+      "sha256": "6359c0575569239bce4e83b53d67852083e8940bba7997e82d43a4c59fb1bc58",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "a87c236548dcc1ea7e1de42be7cb3ac60f699f6c7655e7ddecaa2005a6868bb6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "7c47f6deb2754042ac6488952539e33c9960deb059bdbad55451d7782cafb12f",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "5c0f13efc7d4ce161947ff728449d41039f80a26645a2cbcaac04abbb1c95f68",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-actual-fullsupplied3-analysis-output-review.json",
+      "sha256": "de843d6c7826f8eac5d498effe7059ca8be8c25be7122c1b9dccd366fe324b3b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-window-closed.json",
+      "sha256": "2ea00fee65a8511ff31d000b4e747eff6dcd8def4cd3245180dd2642dc5aaf69",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-postclosure-source-check.json",
+      "sha256": "510fb8b577c0c366f4742fcf78a923098b3922930d849e52774495dfe5fa9797",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-controller74202-tool-terminal.json",
+      "sha256": "9b6064b1b2644f41a32767bae5ec1bd05a3aeea997255c641f19bfea264e07b1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-controller-74202-ended.json",
+      "sha256": "f4715626cf8396ad5c5d0a6f586e30daa89f64c5df932811d112e6840a16ade9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-execution-release.json",
+      "sha256": "916b09fdd49ec8532b8bd9f447376804aba6ee3ebaebaded5580f32bc1c46e1c",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-actual-closure-command.json",
+      "sha256": "9c7242f0be05a1454f1bbd57ee8b52ca4312a060fb5c7a050ac3d0e43b415b0e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/root-close-fullsearched256-stage.py",
+      "sha256": "5fe0f43bf6a84bc6f20710f003fdf8bcc5e9e905bc663c560d913a5a2faa25c6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-manifest.json",
+      "sha256": "73141da53c4ddd3996181a76d5bbb0540be6128065b25d1c20c443bad9d9867d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-handoff.json",
+      "sha256": "3f8819fa007e833efac1df530599da2e153f66a0f597f1fdd925b84b21b8b256",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/coordinator-source-inspection.json",
+      "sha256": "658e9c6302419a2d7a6d9382fa927c55ec98e4c44ee4331aa09775c550a5670d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/ROOT-source-reading.json",
+      "sha256": "18d07adcb198138347e66b3a3946bfd900c94478398012288de9e188c2fe6d45",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-independent-eight-triplets.json",
+      "sha256": "03890c75eaf74b4b27bfc64fd3abf70bc3ea178d4cf2157638b9b4f8be52788d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-closed-fullsearched3-review.json",
+      "sha256": "30222b9219ba69a3438bd218abfb3386d54d57f5589842382f976e03f10ea82a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-closure-selector-source-readiness-check.json",
+      "sha256": "465c149d9c1beef4ae7539e707afc0dfd15e6022339618c84eacc4653c3c5733",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-source-readiness-writing-failure.json",
+      "sha256": "493a0dbe5d10ce950186d35627b824aef01ffdab31787e73b44682994c7f355d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/source-latebinding-plan.json",
+      "sha256": "53623b7d10be2d6f3a6a25e6e201cc128905e377e25d3d22f9b4fbb50aca25d7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction/root-close-fullsearched256-stage.py",
+      "sha256": "1990200d3d5f4b7e16e643d34709eaf4b53d5bb2e93dc57c6d2f03e5184f4e92",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction/source-handoff.json",
+      "sha256": "895468178607a47789d6658b09931da4b291230c04adeb69d125e561a9c8861d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction/source-manifest.json",
+      "sha256": "73141da53c4ddd3996181a76d5bbb0540be6128065b25d1c20c443bad9d9867d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction/literal-source-delta.patch",
+      "sha256": "3698540f162d02b56f28a8ebf632793d7136a40b41cec4ca7304ffc8212dfe17",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction/README.md",
+      "sha256": "6004a0e2d309e81d3a7cf08b60c4bff7db712602618f8b2417f07bd5a30634b9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/source-before-identifier-port-correction/disabledrelease-template.json",
+      "sha256": "5e253cefebebee9b34a2b7a6db027e31969435c6645755cdf978332767f53bd7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-eligibility.json",
+      "sha256": "15e98dbd45d7d550a0fd28423d515620544aa329d17e28db507004798a7486d6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-window-closed.json",
+      "sha256": "52e014b53f167d7bfc2756c11a07cbbf3627dd20f4609623aa39b49eafe10fc6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-actual-preparation-command.json",
+      "sha256": "9f4ad100006d4d5f6c5406332afdeb219c6b095738a1f82f19766d0905012ad9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-actual-prepared-packet-review.json",
+      "sha256": "4c0f3dbd0a3264edf1541e1ba53d2267ca139f7fdea2216c2f4b4ab81274e0b5",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-remaining2-execution-release.json",
+      "sha256": "c623533cde4350b8bbe4ee28a06d7e66842a9a260ea212521078985956c2cf90",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/coordinator-actual-remaining2-packet-audit.json",
+      "sha256": "0591d4272966c4a5dedc750993de0676b0166510db74ac58b6e864af70bbbb50",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-post-fullsearched3-full-git-status.txt",
+      "sha256": "aadeb5939f50b2d934239c093ce6fcef30e1456189b499328e7d3669e027f576",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-independent-eight-triplets.json",
+      "sha256": "2c1aaf316e04316e431260fad992ccc87cab0d1c5acf2311de14929819f42674",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-independent-eight-triplets-comparison.json",
+      "sha256": "af8eabbe2b4654a2b9fbee20617734200cfa7eee78f428d9b9197cba61e28990",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-window-closed.json",
+      "sha256": "f1594c99975c64bea180f870c0ae89723ed41af35d23aa55a0fc32e72e927563",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-postclosure-source-check.json",
+      "sha256": "477d3d2741ecaa65d889349cb39fb55909512f3b092883098b2c48a581ca9afd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-controller88772-tool-terminal.json",
+      "sha256": "c64bbb67995080744fa0271fbf0cd09918bdaf5cc5f5cf8e7a3c83f9987bdfc7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-controller-88772-ended.json",
+      "sha256": "a447586e7d09fbcc7a7986e8d0862ed9e208686ad68b0703a179fc182208e0fe",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-execution-release.json",
+      "sha256": "1aca80134eb685d8965b65e59737f92c859d56270b2afa2de100afe5db83d850",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-actual-closure-command.json",
+      "sha256": "0f96160099e234c03a535b334108e18f9ac7aee94d6556153665568607c861dd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/root-close-central64-profiles-stage.py",
+      "sha256": "4067842a2c57443c3c220d346404ac099d405b09336ab9e4f62d8b2b03c40cf2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/source-manifest.json",
+      "sha256": "8e261a0c1e6ff8ac47ff0cc9923fba838e7731692013fe9022a871c58617fdce",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/source-handoff.json",
+      "sha256": "295df7a3a55bb1b572f3dfd6790200f16f924b4716ab1dd13bc2d256955efe89",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/coordinator-source-inspection.json",
+      "sha256": "a72551168d483f89e52d1d2b36c59a5793c8ebd59fd1414c62566d2813449625",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/disabledrelease-template.json",
+      "sha256": "d2601dffc7ddee910b88e83ff800247879ec01bfe4a6dd3418d146e3f824468a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+      "sha256": "8d7cde9f6e9ce0c7f1dbae6b7dde5701e969ae3c3bebbcff76084ff103b25886",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/coordinator-closed-central6-review.json",
+      "sha256": "acd6955cc7676b116a12c6d7e2f148fc631b608095ba32c67c96591fb1d40350",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/coordinator-source-authoring-attempt1-diagnostic.json",
+      "sha256": "ac056fc835469d07e4df31905a3205a157a0c9e2e488c47965c2a31e6637b639",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/literal-source-delta.patch",
+      "sha256": "331f6e43b9b6b250abe3ed348cdd936cfe744e6102a6d8bf94f67b2af60c731b",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+      "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-window-closed.json",
+      "sha256": "73a95551735a2250906c6d01103a5bb73e822dbf44915f3268106bbd27d9bd12",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-post-audit.json",
+      "sha256": "0eaaff99b1d1aa27fd65360c3284c8f37b25ef49e3677dafec23f7ffcefcbd38",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/coordinator-closed-first-central-profile-review.json",
+      "sha256": "2b6b1a3a494aa3060e41f920db6f28771ea3d305df682a04fbf03eaec63a11ae",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/coordinator-actual-prepared-packet-audit.json",
+      "sha256": "2f3aff4a4a96d56040875b91c5b2dc6946ba41635b12744470520118c2f0f2e6",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-actual-preparation-command.json",
+      "sha256": "456232ef100d2997559732fece32414cfcc125c611b029a68b4357dfd3799ec0",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-first-profile-execution-release.json",
+      "sha256": "27a87314669b0e711de22172043c69d4dbdc51f4b6cf24a1babe44dfa8a19785",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/coordinator-actual-prepared-packet-audit.json",
+      "sha256": "cdae1a691e81d5786cb74bdf72e275fff8850eea6259eac03cd2ce1284895486",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-actual-preparation-command.json",
+      "sha256": "bbf663a1550348411909bd128650912c0d02ee8ad8409dab3f7909679fdecce0",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/ROOT-remaining5-execution-release.json",
+      "sha256": "9e77d1293235bbd4a797ba6ffb8a794da9b9c7fdbd8dcf6cd3f01f393a7dcec7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-post-central6-full-git-status.txt",
+      "sha256": "5d481bb8f09c4d83bf7a52e664cdd650c049272f831689687b007261fabe0d03",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-profile-post-audit-attempt1-diagnostic.json",
+      "sha256": "feb60fbc4b88bd07a8c4a6c16512a15b945a212e13981609f86d85487e991dc4",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-independent-sixteen-triplets.json",
+      "sha256": "454e2895826449531b33d7525ceb5f59ba4629fbd6d4da1fdc4ae0afc80f7f59",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-independent-sixteen-triplets-comparison.json",
+      "sha256": "7d62be193f5d7211e4590852cf987524fe4f479dcf87e9aac861eb5318a03c4d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-central64-profiles-first-stage-decision.json",
+      "sha256": "429d1022e401590ff97ea41af1c504805d367a1ee541fbb2d8ec1e8d5db7d7ab",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-controller98828-tool-terminal.json",
+      "sha256": "daa6057c1de77956b889e4a920f55c9a6db4703b582354465ef16e6265c4f6cd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/ROOT-execution-release.json",
+      "sha256": "c1397dd3ce548cb088fc6ed5be80547dbd7314af3750af44b2f8b513dddd44b9",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/ROOT-final-controller-ended.json",
+      "sha256": "9335134861cbf8aed137c61b0945733e41a8bf356fb603e94fc00f00e7427346",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/execution-a1/fresh-owner-metadata-command.json",
+      "sha256": "5a76cb34a651f3419ac244a24c8aa302fbff0f23574c88b43384195990ce66d7",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/execution-a1/fresh-owner-metadata.json",
+      "sha256": "922e984679f12034db253e78cf38d91b7adca090d90927b03a60f19a865ba01e",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/execution-a1/fresh-owner-metadata-request.json",
+      "sha256": "a93a8aa355a53ded964e994d4acaf3f00e11e416b8dba68607ca7dd408e456f1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/root-close-largest256-profiles-stage.py",
+      "sha256": "6ce12dde2f89b8904dd1d965a7817a49011458dfecee270ad7648c7772d6e0d1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/source-manifest.json",
+      "sha256": "c61744554889063eefb8b7fc78363727a7a895812bae5c36b49cf80ddb1b32f2",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-post-largest6-full-git-status.txt",
+      "sha256": "66ae12400a1686078658664a442d34e6e407cf59ea48e556aa96150c0d118aa1",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-closed-largest6-review.json",
+      "sha256": "ba288df0d35c7db404adf871b9865c26b11712f3936f3ed79b718f8d80067323",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-independent-sixteen-triplets.json",
+      "sha256": "13102c9c13c732621402cc06b0f22b099d6c7463cb3e8df4a9ca6eb8ef70cd58",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+      "sha256": "ced9d2a06069772f1ea4a3dd64a02a4ad98ea8699bac14dff99c2bd03bf29b75",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-ROOT-independent16-comparison.json",
+      "sha256": "98f7c5456bb551629291e0f0031ca895ffcc374c9d18f3bf05a310e6c03f02d3",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-independent-sixteen-triplets-comparison.json",
+      "sha256": "c67ea91b125ddeda05b6bd7d2ba9f0ed23fd441c944fd7d43a0a35c8ff6b5d62",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-postcheck-attempt1-diagnostic.json",
+      "sha256": "a31fe7d8feb76b90588c3f1bcca03293627ae115f378433f2e224dc2869be7bd",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-closed6-audit-attempt1-diagnostic.json",
+      "sha256": "2aeaa8e09123b6538e65afc8b03d7cdb7ee8e58454cb8648dc6200ae6d625f4d",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "canonical excluded history/provenance; never pooled science"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/contracts/reconstruction-memory-v1.md",
+      "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "original RM84 source inventory, not numerical baseline"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/tasks/reconstruction-memory.md",
+      "sha256": "eaf33f1318799cf7f31a856e803f8fef515324e2c7a0938911361737bd5e2473",
+      "identity_origin": "literal closed canonical/config reference; original retained, not independently reread by author44",
+      "scope": "original RM84 source inventory, not numerical baseline"
+    }
+  ],
+  "scientific_limits": {
+    "metric_sources": "Canonical CSV/per-process/summary only; original raw referenced, not recomputed in author44",
+    "source_calculations": "Corrected337a liveness, accepted-parent reconciliation and named supplied/searched/profile worksheets. Source payloads are not RSS or measured savings.",
+    "operational_sources": "Root closures/post/window/identity audits/grants/proofs and coordinator file checks establish their recorded scope only, never independent scientific correctness or causal attribution.",
+    "review_sources": "Method/source history hashes retained for provenance; final scientific review remains required.",
+    "sample_transport": "Root85cc manifest records91 lossless verification transports; author44 did not stream Samples. Gzip outside raw dirs, original SHA/size/path preserved.",
+    "historical_rm84": "Original tracked public source available; old run receipts unavailable/unknown here, other locations not asserted absent.",
+    "final_publication_map": {
+      "status": "PENDING exact ROOT map filename/full digest/integration",
+      "provided_prefixes_only": [
+        "28565c32",
+        "76ed"
+      ],
+      "no_invented_full_identity": true
+    },
+    "unknowns": [
+      "inherited/pre-exec/exec high-water retention",
+      "individual native FFT/allocator workspace and fragmentation",
+      "physical/cache-state equivalence or isolated observer cost",
+      "missing RSS cause and exact child finish timestamp",
+      "original large target resident peak/success",
+      "tokens/cost/serving attribution",
+      "final candidate/tree/full gate/post-gate acceptance"
+    ]
+  },
+  "source44_authoring_diagnostics": [
+    "Source44 own file-transport diagnostics: oversized combined display truncated; whole initial60 per-process projection was oversized and guarded against use; overbroad JSON projection returned warning-prefixed truncated text and JSON.parse refused; initialdraft/input-references.json did not exist; two guessed basis/environment filenames did not exist then exact named paths were found. No target code ran or data changed. Corrections used bounded closed text projections. Missing guessed filenames are author transport errors, not missing required primary evidence."
+  ],
+  "final_scientific_acceptance": false
+}

@@ -1,0 +1,22 @@
+{
+  "campaign_work_suspended": true,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "Metadata/scalar0 andA6fourchecks0;14fixednativeobservations/3prefrozengroups;31ce199clean/publicfacts0c87ccac. CoorexplicitACKallprocesses/sessions/ownedFDclosed andALLexecutionresuspended; init/type/B4held.",
+    "114": "Scopedcontrol2closed, fullstudySAFEHOLD/noactiveowner",
+    "116": "Previousall64knownscienceidentitiescheckedcloseda011daee.42purefileguardspassed60226505;driverended0/nochildren/blocked-effectattempts[]. Nosourcedataaggregationorstagecalls.",
+    "117": "SAFEHOLD/provisionalCcomplete/noactiveowner",
+    "118": "SAFEHOLD/provisionalCcomplete/noactiveowner",
+    "119": "Intake48339c8WAITING/sourceonly/noactiveowner",
+    "120": "Intakec962ccfWAITING/sourceonly/noactiveowner",
+    "root": "Onlyoperationalfileinspection/closure/config; noothergate/import/test/install/benchmarkactive"
+  },
+  "limits": "Knowncampaignscheduleonly, outsideactorsnotgloballyscanned; externalancestorsunknown_unobservable",
+  "observed_at_unix_ns": 1794735117423487050,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "schema": "ROOT-campaign-suspension-ACK-v1",
+  "window": {
+    "ends_unix_ns": 1794756717423487050,
+    "starts_unix_ns": 1794735117423487050
+  }
+}

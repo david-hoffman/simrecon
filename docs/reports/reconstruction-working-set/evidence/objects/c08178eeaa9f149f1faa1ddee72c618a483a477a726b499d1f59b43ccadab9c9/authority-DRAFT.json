@@ -1,0 +1,33 @@
+{
+  "schema": "WS116-ROOT-fixed-stage-authority-DRAFT",
+  "authorized": false,
+  "execution_authorized": false,
+  "stage_id": "largest-profiles",
+  "selected_largest_size": null,
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-summary-searched-r1-p"
+  ],
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "material_basis": {
+    "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json",
+    "sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c"
+  },
+  "binder": {
+    "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+    "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+  },
+  "table": {
+    "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+    "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+  },
+  "window": null,
+  "ownership_resolved": null,
+  "preflight_accepted": false,
+  "prerequisites_accepted": false,
+  "status": "DISABLED_UNSELECTED_CONDITIONAL256_FIRST_ROW_ONLY",
+  "scope": "Review draft, never runtime authority. Future grant exclusive_window.evidence MUST use actual ROOT authority path/hash, not scheduler ACK."
+}

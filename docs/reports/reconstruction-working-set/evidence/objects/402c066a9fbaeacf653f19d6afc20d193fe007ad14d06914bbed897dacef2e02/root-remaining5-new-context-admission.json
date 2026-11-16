@@ -1,0 +1,62 @@
+{
+  "accepted": true,
+  "actual_new_context": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794743743831134191.json",
+    "sha256": "cfd48af2f6d2dc070cf6452a5cf6ce96fe9aabbc9b56c7f8baf17c5fb9c6330f"
+  },
+  "chosen_proposals": "Unchanged per-row P2GiB/native1GiB/processstop4GiB/reserve2GiB/ancestor12GiB/hostmin6GiB/deadline1800+120/proof<=5s; actualrow1native211.629MiB is singleobservationnotpredictionforsearch.",
+  "coordinator_row1_review": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-first-row-eligibility.md",
+    "sha256": "e8f8b33e5807aee3b39d1ac79bf93a314821082c14886e13e67902b5cf4c70f8"
+  },
+  "facts": {
+    "inner": {
+      "current_bytes": 3056574464,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17781256192,
+      "max_bytes": 17179869184,
+      "swap_bytes": 0
+    },
+    "outer": {
+      "current_bytes": 3039387648,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17794445312,
+      "max_bytes": 17179869184,
+      "swap_bytes": 0
+    }
+  },
+  "new_window": {
+    "ends_unix_ns": 1794758188371159499,
+    "starts_unix_ns": 1794743788371159499
+  },
+  "no_automatic_growth_retry_skip_recapture": true,
+  "outside_actors": "unknown_not_scanned",
+  "previous_window_closed": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-window-closed-for113-qualification.json",
+    "sha256": "314b6ad3ed506ca1d03809d568146b70178810be09aa85d3e126e98abbd50e61"
+  },
+  "residual_external_ancestors": "unknown_unobservable",
+  "row1_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-data-eligibility.json",
+    "sha256": "e8111b800de6b7727e4839631edcca3dc9f50fc647d2107358abcf8f42f92c1f"
+  },
+  "schema": "ROOT-WS116-growth192-continuation-conditional-admission-v1",
+  "stage_admission_unchanged": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-stage-admission-v3.json",
+    "sha256": "e77178d04862b6ca7ff7c83774a27f2911e4caf7547858a2ecbfa0ee6df20a2b"
+  }
+}

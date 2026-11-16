@@ -1,0 +1,227 @@
+{
+  "F01": "Corrected no-copy finishing versus owned event capture",
+  "F04": "Corrected compact off_q preparation-local normal-return versus full retained off_q",
+  "accepted_parent": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+  "all35_unchanged": true,
+  "limits": "Documentation equivalence supplies no changed-material scientific acceptance. Later117/118 changes need affected refresh before119/120 reliance.",
+  "material35_basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+  "measured_head": "ea9117d3efe2d8de273402d643e732140138e496",
+  "measured_tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+  "observed_at_unix_ns": 1794804200195827755,
+  "publication_changes": "Report/evidence/navigation/corrected liveness/task Current only; original experiment/config/raw/fixture/product/observer/runner/lock bytes retain actual measured identities. Exact publication commit/tree/clean status and gate receipts are supplied outside tracked candidate bytes.",
+  "rank3": "Corrected117 primary overlap lifetime routing;118 harmonic/preparation,119 storage,120 assembly",
+  "same_experiment_not_rerun": true,
+  "schema": "WS116-measured-to-publication-material-v1",
+  "source35": [
+    {
+      "measured_sha256": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "publication_worktree_sha256": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "recorded_path": "src/simrecon/__init__.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "publication_worktree_sha256": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "recorded_path": "src/simrecon/acquisition/__init__.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "publication_worktree_sha256": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "recorded_path": "src/simrecon/acquisition/declarations.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "publication_worktree_sha256": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "recorded_path": "src/simrecon/acquisition/drift.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "publication_worktree_sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "recorded_path": "src/simrecon/acquisition/layout.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "publication_worktree_sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "recorded_path": "src/simrecon/acquisition/modes.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "publication_worktree_sha256": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "recorded_path": "src/simrecon/acquisition/preparation.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "publication_worktree_sha256": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "recorded_path": "src/simrecon/cli.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "publication_worktree_sha256": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "recorded_path": "src/simrecon/io/__init__.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "publication_worktree_sha256": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "recorded_path": "src/simrecon/io/imagej.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "publication_worktree_sha256": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "recorded_path": "src/simrecon/io/imagej_metadata.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "publication_worktree_sha256": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "recorded_path": "src/simrecon/io/metadata.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "publication_worktree_sha256": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "recorded_path": "src/simrecon/io/mrc_writer.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "publication_worktree_sha256": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "recorded_path": "src/simrecon/io/pixels.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "publication_worktree_sha256": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "recorded_path": "src/simrecon/io/priism.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "publication_worktree_sha256": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "recorded_path": "src/simrecon/models.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "publication_worktree_sha256": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "recorded_path": "src/simrecon/optical_transfer.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "publication_worktree_sha256": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "recorded_path": "src/simrecon/reconstruction/__init__.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "publication_worktree_sha256": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "recorded_path": "src/simrecon/reconstruction/known_parameters.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "publication_worktree_sha256": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "recorded_path": "src/simrecon/reconstruction/parameter_estimation.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "publication_worktree_sha256": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "recorded_path": "src/simrecon/workflow/__init__.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "publication_worktree_sha256": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "recorded_path": "src/simrecon/workflow/adapters.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "publication_worktree_sha256": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "recorded_path": "src/simrecon/workflow/config.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "publication_worktree_sha256": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "recorded_path": "src/simrecon/workflow/identity.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "publication_worktree_sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "recorded_path": "src/simrecon/workflow/reconstruct.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "publication_worktree_sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "recorded_path": "src/simrecon/workflow/result.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "publication_worktree_sha256": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "recorded_path": "src/simrecon/workflow/summary.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "publication_worktree_sha256": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "recorded_path": "src/simrecon/workflow/transfer.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+      "publication_worktree_sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+      "recorded_path": "uv.lock",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "publication_worktree_sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "recorded_path": "tests/reconstruction_summary_fixture.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "publication_worktree_sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "recorded_path": "tests/reconstruction_memory_benchmark.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "publication_worktree_sha256": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "recorded_path": "docs/reports/reconstruction-working-set/manifest.json",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "publication_worktree_sha256": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "recorded_path": "docs/reports/reconstruction-working-set/observer.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "publication_worktree_sha256": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "recorded_path": "docs/reports/reconstruction-working-set/run_attempt.py",
+      "unchanged": true
+    },
+    {
+      "measured_sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "publication_worktree_sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "recorded_path": "docs/reports/reconstruction-working-set/workload_child.py",
+      "unchanged": true
+    }
+  ]
+}

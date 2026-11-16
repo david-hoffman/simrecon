@@ -1,0 +1,9 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/work/campaign/capture-resource-domain.py"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\"path\": \"/workspace/work/campaign/evidence/116/resource-domain/1794777391582536574.json\", \"sha256\": \"fb3aa45ced1b19d36af377d8c5cea91ed50c688cdddeb66f818e18567b9cff0e\", \"observed_at_unix_ns\": 1794777391582536574, \"docker_status\": 0, \"inner_status\": 0, \"external_ancestors\": \"unknown_unobservable\"}\n"
+}

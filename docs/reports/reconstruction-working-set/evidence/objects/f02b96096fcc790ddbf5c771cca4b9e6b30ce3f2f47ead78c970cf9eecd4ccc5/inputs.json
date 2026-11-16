@@ -1,0 +1,56 @@
+{
+  "schema": "WS116-F04-affected-scientific-correction-inputs-v1",
+  "files": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/final-report-source/README.md",
+      "sha256": "337dfab013220ba5c1f0912466b1d0802c5a94ea7b1a1a1279384825a6ebb378"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/README-corrected.md",
+      "sha256": "e550f92f75a036f1802519570a963ccf501d4f15d0d68da42e9c6f61bc9ef3d9"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-off-band-lifetime-correction/off-band-lifetime.patch",
+      "sha256": "9ec9d8c29b9c4e7de7806b17f19ffd1241a09ba2fca92dd3f336575e3886de81"
+    },
+    {
+      "path": "/workspace/work/issue-116/AGENTS.md",
+      "sha256": "56ea4b592323779ac86cacede6dc15eff3d80098e25805cb606e6166010d5ecd"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/PROJECT.md",
+      "sha256": "530e72dbc3b9e73756687c3893bef2803cb775080a12539681020916c59b9fee"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/packets/reconstruction-working-set-review.md",
+      "sha256": "8162a83f185bdf089fca4f9b2fcd38e59da6cbb15b2b561e81570aa1874f3dc5"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/contracts/reconstruction-working-set-v1.md",
+      "sha256": "4b049da71379199cae229f259baa8942936cdd1a352c505b52d2f8d2fda3bc4e"
+    },
+    {
+      "path": "/workspace/work/issue-116/.agents/skills/review-work/SKILL.md",
+      "sha256": "e069e1be50587974d46ffca2a8c38b865e7133881aa39aaf0bf45934c6ae0160"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/layout.py",
+      "sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/modes.py",
+      "sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/reconstruct.py",
+      "sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+      "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c"
+    }
+  ],
+  "measured_candidate": "ea9117d3efe2d8de273402d643e732140138e496",
+  "measured_tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+  "scope": "oneproserow lifetime distinction; no numerical/source change, notwhole116acceptance"
+}

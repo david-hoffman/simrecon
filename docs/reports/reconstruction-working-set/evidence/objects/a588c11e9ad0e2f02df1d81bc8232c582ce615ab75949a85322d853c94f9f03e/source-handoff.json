@@ -1,0 +1,83 @@
+{
+  "schema": "WS116-largest256-profile-first-source-handoff-v1",
+  "status": "SOURCE_READY_HOLD_NO_HELPER_NO_ADMISSION",
+  "owned_directory": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/",
+  "artifacts": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.json",
+      "sha256": "6918e32391a519015155eb1897f745a58d3cc1eb78466175da89e8cd72f7fe68"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/largest256-profile-source-check.md",
+      "sha256": "3f35daea18b061aca3f1fd5f3be6fbb0a3ad5b18a0342292b31eb23ff26fe801"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/config-row1-UNAUTHORIZED.json",
+      "sha256": "86ec665824647a02cf7ec9bfd1cfdda808f48d22a0a9aa1dc233ebb16ec32425"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/stage-admission-DRAFT.json",
+      "sha256": "81da1ac73ff3c4232f348ca109ea23ebbd13ecfd585927f10251d16c4bad03e7"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/authority-DRAFT.json",
+      "sha256": "112b15c36c280b26624c7c670b16c4acf35fe7751ca584f94d1d8c55ce7bb794"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/scheduler-ACK-DRAFT.json",
+      "sha256": "d6b50d1e4a56787ba14ef5814f154175a77379a57033ce2195230dde9c2a3d0e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/currentstage-ledger-DRAFT.json",
+      "sha256": "8cbd6880700933bc225d63ec9bf3d9d5941a718d0181f166be3608aaacbabfc4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/README.md",
+      "sha256": "6221582f91107555861762fa9d1b878ab4ac5cda6ab56cec4da16d3165dcc54b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-source/input-references.json",
+      "sha256": "ecd1101baf198236de5482ac97b28729afd883b4ccf2e546a78e6cbc96b7d495"
+    }
+  ],
+  "self_hash_scope": "Handoff SHA supplied externally after exclusive creation; no self-reference.",
+  "parents": {
+    "immutable_largest_profile_family_config_sha256": "56039f59c6d792d2146999ee67680dddd1ecb0f6743edab6d379a11d96da5c6a",
+    "fullsearched_source_case_sha256": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76",
+    "central_profile_hook_case_sha256": "88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81"
+  },
+  "source_delta": [
+    "New size256 profile worksheet combines existing fullsearched nine-overlap/27-backing partial liveness/geometry/stencil source facts and scalar-hook/retention/frame scope; no numerical/product implementation change.",
+    "Six original fixed profile recipes, future first summarysearchedR1 only; same-mode closed summary3 controls72b and full3 controls5f/7ebe pinned. Four input/common/public/branches matches required by unchanged8190; no future match claimed.",
+    "Retain literal7200deadline/7320horizon/5915017216B disk and exact256 summary/full mode caps. No central caps/reservation borrowed; actual future window remains null.",
+    "Summary largest2560f795 is size provenance only. Runtime selected_largest_size remains null pending NEW ROOT profile decision; original prospective_256 holds exact frozen rows/proposals/controls. Config remains disabled and unrunnable as-is.",
+    "Five known prior stage closures retained; sixth central-profile closure slot and central whole6/primary/independent/ROOT acceptance, future authority/window/scheduler/source/currentowner/context facts unknown/null/false.",
+    "C1 clarified only in new text: traversal uses IDs internally; returned metadata has counts/byte estimates/shapes/dtypes/paths, no IDs or arrays. Original source parents unchanged."
+  ],
+  "checks": {
+    "source_file_reads_hashes_only": true,
+    "existing_files_modified": false,
+    "EA_or_Current_modified": false,
+    "helper_authored": false,
+    "new_framework_or_method": false,
+    "active_88772_or_central_R2_R6_data_read": false,
+    "raw_sample_or_proof_bulk_read": false,
+    "imports_AST_compile_lint_tests_QA": false,
+    "calculator_statistics_plots": false,
+    "native_probe_metadata_capture_or_workflow": false,
+    "current_process_RSS_or_wallclock_poll": false
+  },
+  "diagnostics": "Truncated closed summary full-text display caused one warning-prefix JSON decoding failure; bounded literal-reference extraction replaced it. Exact scientific values were not inferred. All old diagnostics/attempts/charges remain preserved.",
+  "unresolved": "No future profile metric, isolated stage/observer cost, native workspace ceiling, decomposition, ranking, benefit, budget,16GiB/general fit or scientific acceptance. Future ROOT/controller/owner/context prerequisites explicitly pending.",
+  "accounting": {
+    "author_preparations": 36,
+    "author_executions": 9,
+    "author_total": 45,
+    "original_launches": 1,
+    "costs": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "model_attribution": "UNKNOWN",
+    "all_prior_errors_attempts_bytes_charges_preserved": true
+  },
+  "next": "HOLD for coordinator/ROOT source inspection. No preparer or execution authority inferred."
+}

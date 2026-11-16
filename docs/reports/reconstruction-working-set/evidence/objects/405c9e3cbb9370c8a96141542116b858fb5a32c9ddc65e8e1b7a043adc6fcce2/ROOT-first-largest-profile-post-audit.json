@@ -1,0 +1,82 @@
+{
+  "actual_tool_terminal": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-controller29012-tool-terminal.json",
+    "sha256": "f9722ec2d8afe101c8980357e68eff3cb3d034d532d0ea0e9b063b6ac70f7497"
+  },
+  "all2_birth_FD_sets_absent": true,
+  "all4_same_mode_unprofiled_fingerprints_equal": true,
+  "authority": "ROOT",
+  "boundary": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+    "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "child": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stdout.json",
+    "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c"
+  },
+  "costs": "UNKNOWN",
+  "elapsed_call_seconds": 1335.172755667,
+  "exact_owned_processes": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52672,
+      "start_ticks": 9317771
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52692,
+      "start_ticks": 9317785
+    }
+  ],
+  "final_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata.json",
+    "sha256": "f84847a72576a1f03cd30ef7b6ecb6050ffdca24cf5d6aa4177b4e92efc76f7f"
+  },
+  "final_scientific_acceptance": false,
+  "full_status_expected_raw_dirs": 85,
+  "full_status_expected_untracked_files": 935,
+  "full_status_sha256": "66412150f633ea3215dd7811839ddde8c78521053be6e0dd5de753ba5eb78ade",
+  "observed_at_unix_ns": 1794788168268211407,
+  "observer_proxy": {
+    "actual_returncode": 0,
+    "evidence": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/observer-exit.json",
+      "sha256": "7825b265d384cd072286ded31b8ae5df447abcf41cae9de1ef85ec5966c5fde3"
+    },
+    "overdue": false,
+    "pid": 183035,
+    "wait_gaps": []
+  },
+  "raw11_all_hash_size_verified": true,
+  "receipt": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+    "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+  },
+  "sample_count": 126476,
+  "scalar_stage_events": 10,
+  "schema": "ROOT-WS116-first-largest256-profile-post-audit-v1",
+  "source35_tool6_actual_match": true,
+  "terminal_kernel_bytes": 334118912,
+  "terminal_native_KiB": 326288,
+  "terminal_rss_confirmation": null,
+  "terminal_rss_confirmation_key_present": false
+}

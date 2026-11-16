@@ -1,0 +1,188 @@
+{
+  "schema": "WS116-coordinator-portable-curation-review-v1",
+  "verdict": "CURRENT_CLOSED_MAPPING_SUITABLE_FOR_ROOT_LITERAL_COPY_WITH_11_EXPLICIT_HISTORICAL_QUESTIONS_AND_FINAL_ADDITIONS_PENDING",
+  "artifacts": {
+    "closure": "ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9",
+    "notes": "df11aaca1b25f6d07e8d87a634cc0967cc266b595caa430a1634573bc8da7457",
+    "handoff": "12390c3c628898f1db78fb2807de4034a0e475ff3c9f8527284bf3e1b170db8b"
+  },
+  "read_scope": "Whole80line notes; handoff504/4007closure rows parsed/projected nonrepeatsections, not allrows visualread. Oversized historical-list/null-list projections truncated and not reliedupon; finite structural check used fullJSON objects.",
+  "check_count": 13326,
+  "checks_scope": [
+    "4007unique pathSHA/18095references/allartifactpointer and safe-relative conflict-free destinations",
+    "all1001ROOTraw destination semanticmatches;90originalsample nullcopydestinations correctlyusegziptransport",
+    "all91original/gzip crosslinks/distinctSHA/logicalsize facts",
+    "all35material sourceidentities mapped",
+    "handoffcounts/11historicalquestions/threeartifactSHA"
+  ],
+  "counts": {
+    "distinct_original_path_sha256": 4007,
+    "reference_occurrences_retained": 18095,
+    "direct_non_sample_named_paths_hashed": 3791,
+    "raw_originals": 1001,
+    "corpus_sample_transports": 91,
+    "finite_source_version_gaps": 0,
+    "environment_path_fingerprints": 6,
+    "historical_authoring_identity_questions": 11
+  },
+  "historical_questions": [
+    {
+      "original_spelling": "docs/contracts/reconstruction-working-set-v1.md",
+      "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/0/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "docs/tasks/reconstruction-working-set.md",
+      "sha256": "ee65ecf7b4d6a0c6a56639fe2fc5c86c4e2f0056082fe5e26cb90875b00364cf",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/0/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "docs/packets/reconstruction-working-set-review.md",
+      "sha256": "0d56d07158a58a4840dec2d2aca6cfc523d93053101670321495d1d375f35351",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/0/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "README.md",
+      "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/1/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "analysis/liveness-draft.md",
+      "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/1/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "manifest.json",
+      "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/1/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "run_attempt.py",
+      "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/1/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "workload_child.py",
+      "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/1/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "observer.py",
+      "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "roles/1/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "planning-inputs.sha256",
+      "sha256": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "source_admission_planner/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    },
+    {
+      "original_spelling": "planner-handoff.json",
+      "sha256": "5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4",
+      "containing_source": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+      "field": "source_admission_planner/output_sha256",
+      "original_absolute_path": null,
+      "actual_preserved_aliases": [],
+      "proposed_bundle_path": null,
+      "classification": "historical source-authoring identity in preserved launch ledger; path basis and prior public commit/freeze may require ROOT; not installed-runtime fingerprint or current scientific prerequisite",
+      "actual_preserved_file": null,
+      "relative_basis": "Original ledger spelling retained; no unrecorded absolute root inferred. Exact byte alias when supplied is SHA identity only.",
+      "disposition": "ROOT_HISTORICAL_IDENTITY_PATH_OR_PUBLIC_COMMIT_PROVENANCE_QUESTION"
+    }
+  ],
+  "scientific_judgment": false,
+  "direct_vs_attested": "No bulkSample/decompress or3791smallhash repeat. Curator3791directchecks/ROOT91streamclosure remain labelled attestations; ROOT must actualcopyhash/restorationcheck.",
+  "checker_diagnosis": "First coorchecker assumed allARTIFACT_BYTES rows had directproposed_bundle_path; TypeError beforeoutput. Actual90eligibleoriginalsample rows intentionally null, preserveoriginal locally andtransporttoROOT76ed gzipdest; historicaltrackedoriginal retainsrawdestination. Correctedidentitypolicy only; no curator/source/data repair.",
+  "pending": [
+    "ROOT historical11alias/publiccommit disposition",
+    "exactlate finalsource44/45/46/SCIassessment additions",
+    "ROOTactual locationmap/representationindex/materialtransition/integratedcandidate",
+    "fullUbuntu gate/freshpostgate acceptance"
+  ],
+  "no_new_executable_or_native_or_target_edit": true,
+  "metering": {
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  }
+}

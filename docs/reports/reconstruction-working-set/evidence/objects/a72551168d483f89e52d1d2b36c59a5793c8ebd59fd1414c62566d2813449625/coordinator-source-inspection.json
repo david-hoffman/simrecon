@@ -1,0 +1,53 @@
+{
+  "schema": "WS116-coordinator-central64-profile-stage-closure-source-inspection-v1",
+  "status": "SOURCE_READY_UNEXECUTED_HOLD",
+  "owner": "/root/issue_116",
+  "findings": [],
+  "files": {
+    "root-close-central64-profiles-stage.py": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/root-close-central64-profiles-stage.py",
+      "sha256": "4067842a2c57443c3c220d346404ac099d405b09336ab9e4f62d8b2b03c40cf2"
+    },
+    "literal-source-delta.patch": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/literal-source-delta.patch",
+      "sha256": "331f6e43b9b6b250abe3ed348cdd936cfe744e6102a6d8bf94f67b2af60c731b"
+    },
+    "source-manifest.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/source-manifest.json",
+      "sha256": "8e261a0c1e6ff8ac47ff0cc9923fba838e7731692013fe9022a871c58617fdce"
+    },
+    "disabledrelease-template.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/disabledrelease-template.json",
+      "sha256": "d2601dffc7ddee910b88e83ff800247879ec01bfe4a6dd3418d146e3f824468a"
+    },
+    "README.md": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/README.md",
+      "sha256": "f9b7fabb36db70c4563497da7af30cb2704cc3fa9cf5d03d809aa9eb604caa11"
+    },
+    "source-handoff.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/source-handoff.json",
+      "sha256": "295df7a3a55bb1b572f3dfd6790200f16f924b4716ab1dd13bc2d256955efe89"
+    }
+  },
+  "read_scope": "Whole344line finalhelper and complete5fe0literal delta read, ownREADME/template/handoff composed+read; manifest JSON allfields compared static56a/676c/94d/prior5/closedR1. No newR2\u20136raw/batch/proof/status/PIDFD/context reads, no helperimport/AST/sourceQA/execution.",
+  "small_fixedpins_direct": 20,
+  "all_fixedpins": 24,
+  "binarypins": "Originalsix toolbindings copiedunchanged; binaryfour not reread duringactivewindow. Capture/metadata/source24pin ROOTfuturecheck remainsmandatory.",
+  "source_contract": [
+    "Exact6profileIDs/globalindices1\u20136 summary1\u20133/full1\u20133 with mode-specific1+1vs1.5+1GiB/ancestor8/host2vs2.5GiB, disk803209216/preproof5s/horizon1080.",
+    "Raw66 logical+streamSHA,6receipt/child/core/source/finite/profilecases,10scalar eventstype/order/cumulative/timebound and same-mode same-rep all4controlfingerprints. No measuredstageallocation/isolatedoverhead/ranking.",
+    "12uniqueexactbirthFDsets accumulated, finalmetadata exact12coverageabsence; historicR1boundary/eligibility58cc/window73a linked, no historicalPIDrefresh/newscan.",
+    "Two within-mode three-repeatgroups, no common/publiccrossmodepooling. CompatibleWS116_ROOT_closed_prior_stage output, all12field andgroups2.",
+    "FutureROOTactual88772terminal0/no proxy/toolreceipt expectedbody+explicitrelease required; templateNULL/false remainsunexecuted. Only3fixedreadonlygit subprocesses afterfutureexplicitrelease; no capture/signal/wait/controller/workflow.",
+    "MandatoryROOTpostsource35/HEADtree/tracked/FULLstatus expectedrawinventory/helpermanifest aftersuccess, thenexplicitwindowend; source35/gitpre-row only."
+  ],
+  "audit_extent_limit_scope": "Inherited individualrawfile stream-audit limit2965897216B remains finite and separate from803209216B free-disk operatingreserve; neither is a predicted or proven logsize bound. Actualrecorded diskheadroom requires803209216.",
+  "authoring_attempt1_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/coordinator-source-authoring-attempt1-diagnostic.json",
+    "sha256": "ac056fc835469d07e4df31905a3205a157a0c9e2e488c47965c2a31e6637b639"
+  },
+  "futurefacts": "No actualnewterminal/R2\u20136outcomes/12owners/profilestriplets/closure/window acceptance claimed. Rootnowreportscontrollerterminal but sourcepackets remainNULL/disabled until ROOTbindsactualreceipt.",
+  "accounting": "Coordinator closure sourceprep2/authoringfailure1/targetexecutions0, separate investigator36/9/45 pendingcompletion; costsUNKNOWN/alloriginalparentbytes preserved.",
+  "target_executions": 0,
+  "next": "ROOT whole source/diff/manifest/template inspection/freeze beforeoneexplicitfutureclosedfileaudit; no followingstageauthority"
+}

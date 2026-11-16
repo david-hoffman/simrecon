@@ -1,0 +1,16 @@
+{
+  "status": "PRELAUNCH_CONFIG_REFERENCE_TYPE_FAILURE_NO_SCIENTIFIC_ATTEMPT",
+  "command_result": {
+    "chunk_id": "6ba95c",
+    "wall_time_seconds": 0.16428777,
+    "exit_code": 1,
+    "original_token_count": 443,
+    "output": "Traceback (most recent call last):\n  File \"/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py\", line 690, in <module>\n    main()\n  File \"/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py\", line 649, in main\n    stage_admission(cfg, rows, conditions)\n  File \"/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py\", line 160, in stage_admission\n    pinned(ref)  # Immutable evidence applicability is ROOT's explicit admission judgment.\n    ^^^^^^^^^^^\n  File \"/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py\", line 67, in pinned\n    return load(ref[\"path\"])\n           ^^^^^^^^^^^^^^^^^\n  File \"/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py\", line 56, in load\n    return json.loads(Path(path).read_text())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 338, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/json/decoder.py\", line 356, in raw_decode\n    raise JSONDecodeError(\"Expecting value\", s, err.value) from None\njson.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)\n"
+  },
+  "config_sha256": "92008dec3e520e8bc7f4d23b0f7ed38ec9028af48ab81e0ee174c61b6a962980",
+  "diagnosis": "stage_admission.prior_data_refs included Markdown descriptive report. pinned() checks file SHA then JSON parses. Fails before closed_prior_stages or stage directory creation/metadata/capture/runner; no scientific or metadata child created. Source() git-only checks already completed.",
+  "correction": "Keep JSON summary and independent crosscheck refs; preserve descriptive Markdown in separately named root applicability reference. Exact8190 binder/method7 remains unchanged; new ROOT authority/config required, no automatic retry.",
+  "failed_operational_invocations": 1,
+  "scientific_attempts": 0,
+  "serving_tokens_costs": "unknown"
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "WS116-current-stage-scheduler-ACK-DRAFT",
+  "authorized": false,
+  "stage_id": "largest-profiles",
+  "window": null,
+  "observed_at_unix_ns": null,
+  "campaign_work_suspended": null,
+  "known_active_numerical_processes": null,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "unresolved_owners": null,
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    null
+  ],
+  "scope": "No fresh scheduler/absence claim; replace with explicit ROOT ACK during actual activation. This ACK is NOT grant authority."
+}

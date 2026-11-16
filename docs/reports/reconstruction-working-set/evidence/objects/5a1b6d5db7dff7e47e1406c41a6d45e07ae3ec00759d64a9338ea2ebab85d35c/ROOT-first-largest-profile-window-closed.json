@@ -1,0 +1,29 @@
+{
+  "all2_stored_birth_FD_facts_closed": true,
+  "authority": "ROOT",
+  "closed_first_profile_window": true,
+  "controller29012_actual_terminal_exit0_no_proxy": true,
+  "eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-first-largest-profile-eligibility.json",
+    "sha256": "502847960612fbd17957235f3dbb64e3070f364c27a18e1df00d06e18dc4d53e"
+  },
+  "ended_at_unix_ns": 1794788168269942417,
+  "no_active_stage_controller": true,
+  "post_source_audit": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-first-largest-profile-post-audit.json",
+    "sha256": "405c9e3cbb9370c8a96141542116b858fb5a32c9ddc65e8e1b7a043adc6fcce2"
+  },
+  "previous_window": {
+    "ends_unix_ns": 1794800857234955873,
+    "starts_unix_ns": 1794786457234955873
+  },
+  "remaining5_execution_authorized": false,
+  "schema": "ROOT-WS116-first-largest256-profile-window-ended-v1",
+  "selected_largest_size": 256,
+  "stage_id": "largest-profiles",
+  "terminal": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-controller29012-terminal-attestation.json",
+    "sha256": "5b2a346fb1ff3e872b3d0ddb2df539343e0f286b352dd8f5e99f48528b80a25a"
+  },
+  "unrelated_runtime_remains_on_HOLD_until_ROOT_exact_release": true
+}

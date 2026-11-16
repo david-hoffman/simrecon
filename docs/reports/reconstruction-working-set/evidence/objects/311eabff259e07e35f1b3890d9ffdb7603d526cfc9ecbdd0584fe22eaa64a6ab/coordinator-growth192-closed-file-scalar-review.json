@@ -1,0 +1,736 @@
+{
+  "schema": "WS116-growth192-coordinator-file-scalar-review-v1",
+  "status": "SIX_CLOSED_ROWS_NO_BLOCKING_ELIGIBILITY_FACT_FOR_ROOT_PROSPECTIVE256_REVIEW",
+  "stage_id": "growth192-summary",
+  "actual_stage_analysis_program_run": false,
+  "source_or_worktree_changes": false,
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+    "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "rows": [
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r1-u",
+      "condition_id": "growth192-summary-supplied",
+      "repetition": 1,
+      "checks": {
+        "identity": true,
+        "complete": true,
+        "finite": true,
+        "stage": true,
+        "native": true,
+        "terminal": true,
+        "candidate": true,
+        "materials": true,
+        "record_links": true,
+        "session": true,
+        "outputs": true,
+        "spec": true,
+        "fingerprint": true,
+        "post_owner": true,
+        "endproof": true,
+        "gap": true
+      },
+      "references": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-row1-ea9117d-a1/ws116-gp-g192-summary-supplied-r1-u/eligible-boundary.json",
+        "sha256": "fb73814e4967b7d686cae0b2158c17d805a6a445d9d2adda7f3a675607291c8c"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/receipt.json",
+        "sha256": "b3751a15599f2171ec7d6d87bb35448a1aa2f3dd3547ec0a0e610805aba7d601"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/stdout.json",
+        "sha256": "2a85b20859d5983c980d039e727723d6cf4a0ab63cd88edb9030e166472f41d0"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-row1-ea9117d-a1/ws116-gp-g192-summary-supplied-r1-u/post-metadata.json",
+        "sha256": "6e3c013e8187250ca4a6a0edc63657d44681dcbb8b30be10ee9bbac9196ecc23"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794742761669063714.json",
+        "sha256": "75b39d4bb3230371175a626ccd5daa775dfe5e7a083013cc06e7e20864603a1b"
+      },
+      "observer_identity": {
+        "pid": 51050,
+        "observed_monotonic_ns": 48300676360729,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 4830051,
+        "ppid": 0,
+        "pgid": 51050,
+        "session_id": 51050,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "child_identity": {
+        "pid": 51070,
+        "observed_monotonic_ns": 48300677094380,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 4830067,
+        "ppid": 51050,
+        "pgid": 51050,
+        "session_id": 51050,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "terminal_gap_ns": 10731581,
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "ac10d03a53394155268d215cfcd7efb08e3f80b2473b48d7a6d560c93ed902dd",
+        "input_sha256": "af9d2f4b0ad9abbd8fbd697c06c91fa7f342483bda0305d9742204d6f4e80738",
+        "public_result_sha256": "58583b2253627379193f24764cfc07d6e1ab1dff0b7052ff8a25e9b8cc172642"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r2-u",
+      "condition_id": "growth192-summary-supplied",
+      "repetition": 2,
+      "checks": {
+        "identity": true,
+        "complete": true,
+        "finite": true,
+        "stage": true,
+        "native": true,
+        "terminal": true,
+        "candidate": true,
+        "materials": true,
+        "record_links": true,
+        "session": true,
+        "outputs": true,
+        "spec": true,
+        "fingerprint": true,
+        "post_owner": true,
+        "endproof": true,
+        "gap": true
+      },
+      "references": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r2-u/eligible-boundary.json",
+        "sha256": "a55f3c8003faeb1104ad77fae88d71982896ed80d038ddd8b12fbcbd87bee5a8"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/receipt.json",
+        "sha256": "2c8a6c85ccf30fd1e233862393370541bdc207d266097ac672a551f04f404ea5"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/stdout.json",
+        "sha256": "aa6d7a6de2d5b0f329894157ed548627a7c2e884644300831d9931491c97a4a3"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r2-u/post-metadata.json",
+        "sha256": "5f83d6e28adee2c5d0b2a2c0d277f2da4e651a8d88125aca4e9ddb1a9e818c23"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794744706731678381.json",
+        "sha256": "369e1c5780bbca86c53853ac41e930fe9d23caaae7ab4dadc9935c184ab304b3"
+      },
+      "observer_identity": {
+        "pid": 51116,
+        "observed_monotonic_ns": 50300638395342,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5030049,
+        "ppid": 0,
+        "pgid": 51116,
+        "session_id": 51116,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "child_identity": {
+        "pid": 51136,
+        "observed_monotonic_ns": 50300638986424,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5030063,
+        "ppid": 51116,
+        "pgid": 51116,
+        "session_id": 51116,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "terminal_gap_ns": 10524083,
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "ac10d03a53394155268d215cfcd7efb08e3f80b2473b48d7a6d560c93ed902dd",
+        "input_sha256": "af9d2f4b0ad9abbd8fbd697c06c91fa7f342483bda0305d9742204d6f4e80738",
+        "public_result_sha256": "58583b2253627379193f24764cfc07d6e1ab1dff0b7052ff8a25e9b8cc172642"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r3-u",
+      "condition_id": "growth192-summary-supplied",
+      "repetition": 3,
+      "checks": {
+        "identity": true,
+        "complete": true,
+        "finite": true,
+        "stage": true,
+        "native": true,
+        "terminal": true,
+        "candidate": true,
+        "materials": true,
+        "record_links": true,
+        "session": true,
+        "outputs": true,
+        "spec": true,
+        "fingerprint": true,
+        "post_owner": true,
+        "endproof": true,
+        "gap": true
+      },
+      "references": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r3-u/eligible-boundary.json",
+        "sha256": "3fe9b5d2aa37ab1d9fa50bd6e3f2072caf503dd69a5790d39e9d84331c8078ec"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/receipt.json",
+        "sha256": "d8ebd21729c567fa90b6c59bd8988a586f520ca28ca259f427c148dcb74c0d59"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/stdout.json",
+        "sha256": "5ee51344afb6b4d0d27dda2376d92fd8eb5c1353a5d0610dd6787fbb9070f6b4"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r3-u/post-metadata.json",
+        "sha256": "fe5df65b3d75aa42c6438b69c3e94b976095e1f3a70b5d7535be964bf07a4b27"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794745623887401108.json",
+        "sha256": "b78bcfe8cc021b79d34e9fd8a50afc1d590266df86e880a7808931c3469f039a"
+      },
+      "observer_identity": {
+        "pid": 51175,
+        "observed_monotonic_ns": 51197789025227,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5119766,
+        "ppid": 0,
+        "pgid": 51175,
+        "session_id": 51175,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "child_identity": {
+        "pid": 51195,
+        "observed_monotonic_ns": 51197790289232,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5119778,
+        "ppid": 51175,
+        "pgid": 51175,
+        "session_id": 51175,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "terminal_gap_ns": null,
+      "fingerprints": {
+        "branches": [
+          [
+            "known",
+            "known",
+            "known"
+          ]
+        ],
+        "common_output_sha256": "ac10d03a53394155268d215cfcd7efb08e3f80b2473b48d7a6d560c93ed902dd",
+        "input_sha256": "af9d2f4b0ad9abbd8fbd697c06c91fa7f342483bda0305d9742204d6f4e80738",
+        "public_result_sha256": "58583b2253627379193f24764cfc07d6e1ab1dff0b7052ff8a25e9b8cc172642"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-searched-r1-u",
+      "condition_id": "growth192-summary-searched",
+      "repetition": 1,
+      "checks": {
+        "identity": true,
+        "complete": true,
+        "finite": true,
+        "stage": true,
+        "native": true,
+        "terminal": true,
+        "candidate": true,
+        "materials": true,
+        "record_links": true,
+        "session": true,
+        "outputs": true,
+        "spec": true,
+        "fingerprint": true,
+        "post_owner": true,
+        "endproof": true,
+        "gap": true
+      },
+      "references": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r1-u/eligible-boundary.json",
+        "sha256": "6ecb50ffc0fa9173626fa88f024b853c42cf2c95922b0ab9bc0a4fdf85332fb9"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/receipt.json",
+        "sha256": "524e906a5bc6fee776d07a6fc4e2035cf3112ece82e244b697be1266d763d809"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/stdout.json",
+        "sha256": "101f6c28b7cfb81ac218b9b01c0a31cb351d1e6c99504760525190d428166e1d"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r1-u/post-metadata.json",
+        "sha256": "6262bf7055e7c77001f51ea5d7f2a823deda5687bdb9420abab15e8af76e6566"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794746510862577375.json",
+        "sha256": "e704459f22a4bb3806321509e954659332010f5aa273f26fe447f683dd12ed4a"
+      },
+      "observer_identity": {
+        "pid": 51235,
+        "observed_monotonic_ns": 52114857260151,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5211473,
+        "ppid": 0,
+        "pgid": 51235,
+        "session_id": 51235,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "child_identity": {
+        "pid": 51255,
+        "observed_monotonic_ns": 52114857777479,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5211485,
+        "ppid": 51235,
+        "pgid": 51235,
+        "session_id": 51235,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "terminal_gap_ns": null,
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "4707f938229e38ae66d4f5ed6a1e3a90d3c2b44dd491a93101eb090b6f7a5d3c",
+        "input_sha256": "91370c72722337106dc6286128171509c68255d5c4444aadcec0af43660c7493",
+        "public_result_sha256": "46fc06567ec27a91e47611f11e69af5e116bdfe2d29256f9d0e77b18af30bfaf"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-searched-r2-u",
+      "condition_id": "growth192-summary-searched",
+      "repetition": 2,
+      "checks": {
+        "identity": true,
+        "complete": true,
+        "finite": true,
+        "stage": true,
+        "native": true,
+        "terminal": true,
+        "candidate": true,
+        "materials": true,
+        "record_links": true,
+        "session": true,
+        "outputs": true,
+        "spec": true,
+        "fingerprint": true,
+        "post_owner": true,
+        "endproof": true,
+        "gap": true
+      },
+      "references": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r2-u/eligible-boundary.json",
+        "sha256": "55453b84a9bd0e781425f40e628bfeb243cfb745082aff5612756d14986bb8c6"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/receipt.json",
+        "sha256": "f2755c3d0e7c1055e4393050e1ca22b8f89f3df7fed331c6844c63201ac64c04"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/stdout.json",
+        "sha256": "f5171bdd01358ab9cc83d2209f62af16c68de9cc15a13c65b6b79d93a9fbee06"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r2-u/post-metadata.json",
+        "sha256": "739bd3e4dfdf362e60ad0201e6e9be9ad15f6c7c0f0dc2d0b32ed36c4bf5e963"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794747392847454621.json",
+        "sha256": "801e4ae8b094a449d447c6182163195453563454842b9264c606100505e8eedf"
+      },
+      "observer_identity": {
+        "pid": 51295,
+        "observed_monotonic_ns": 53001929069023,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5300180,
+        "ppid": 0,
+        "pgid": 51295,
+        "session_id": 51295,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "child_identity": {
+        "pid": 51316,
+        "observed_monotonic_ns": 53001929923349,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5300192,
+        "ppid": 51295,
+        "pgid": 51295,
+        "session_id": 51295,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "terminal_gap_ns": null,
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "4707f938229e38ae66d4f5ed6a1e3a90d3c2b44dd491a93101eb090b6f7a5d3c",
+        "input_sha256": "91370c72722337106dc6286128171509c68255d5c4444aadcec0af43660c7493",
+        "public_result_sha256": "46fc06567ec27a91e47611f11e69af5e116bdfe2d29256f9d0e77b18af30bfaf"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-searched-r3-u",
+      "condition_id": "growth192-summary-searched",
+      "repetition": 3,
+      "checks": {
+        "identity": true,
+        "complete": true,
+        "finite": true,
+        "stage": true,
+        "native": true,
+        "terminal": true,
+        "candidate": true,
+        "materials": true,
+        "record_links": true,
+        "session": true,
+        "outputs": true,
+        "spec": true,
+        "fingerprint": true,
+        "post_owner": true,
+        "endproof": true,
+        "gap": true
+      },
+      "references": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r3-u/eligible-boundary.json",
+        "sha256": "44b5d3bfe5c49bcbd6804a4ddf8c66f656aab195a316cf0efb64acad56f359aa"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/receipt.json",
+        "sha256": "4eb49dc88173840eac97f64d9262e94b0dca546c28afb847b1a7c7976c8abc2d"
+      },
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/stdout.json",
+        "sha256": "bae1b37703d8fb8b7ca587ff8089d764f55acb149ead3e0d821f4abaf3c10ee2"
+      },
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r3-u/post-metadata.json",
+        "sha256": "b74bb37f271a36f51af8bd5a21778e84b37ba54867c16fec2aba998813740ed5"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794748234824624175.json",
+        "sha256": "70bcba11df34fed4b37028be5f2f678a0ba9647a1bf56358c84d3c53e56cd434"
+      },
+      "observer_identity": {
+        "pid": 51356,
+        "observed_monotonic_ns": 53883984973190,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5388386,
+        "ppid": 0,
+        "pgid": 51356,
+        "session_id": 51356,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "child_identity": {
+        "pid": 51376,
+        "observed_monotonic_ns": 53883985632813,
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "start_ticks": 5388398,
+        "ppid": 51356,
+        "pgid": 51356,
+        "session_id": 51356,
+        "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+      },
+      "terminal_gap_ns": 10662545,
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "4707f938229e38ae66d4f5ed6a1e3a90d3c2b44dd491a93101eb090b6f7a5d3c",
+        "input_sha256": "91370c72722337106dc6286128171509c68255d5c4444aadcec0af43660c7493",
+        "public_result_sha256": "46fc06567ec27a91e47611f11e69af5e116bdfe2d29256f9d0e77b18af30bfaf"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "condition_id": "growth192-summary-supplied",
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 216708,
+          "median": 219060,
+          "max": 219140
+        },
+        "terminal_kernel_bytes": {
+          "min": 221908992,
+          "median": 224317440,
+          "max": 224399360
+        },
+        "call_seconds": {
+          "min": 890.067089916,
+          "median": 912.994352388,
+          "max": 945.767052006
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 891.288073914,
+          "median": 914.214653351,
+          "max": 947.170541652
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 890.910572838,
+          "median": 913.957134554,
+          "max": 946.89672438
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 111816704,
+          "median": 111824896,
+          "max": 112041984
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 221908992,
+          "median": 224317440,
+          "max": 224399360
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 221908992,
+          "median": 224317440,
+          "max": 224399360
+        }
+      }
+    },
+    {
+      "condition_id": "growth192-summary-searched",
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 221464,
+          "median": 221832,
+          "max": 223344
+        },
+        "terminal_kernel_bytes": {
+          "min": 226779136,
+          "median": 227155968,
+          "max": 228704256
+        },
+        "call_seconds": {
+          "min": 836.872943208,
+          "median": 877.672316616,
+          "max": 879.263879409
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 838.134494412,
+          "median": 878.897558759,
+          "max": 880.550920042
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 837.854223671,
+          "median": 878.695996071,
+          "max": 880.275737066
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 111538176,
+          "median": 111849472,
+          "max": 111869952
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 226779136,
+          "median": 227155968,
+          "max": 228704256
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 226779136,
+          "median": 227155968,
+          "max": 228704256
+        }
+      }
+    }
+  ],
+  "small_file_hashes": {
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-row1-ea9117d-a1/ws116-gp-g192-summary-supplied-r1-u/eligible-boundary.json": "fb73814e4967b7d686cae0b2158c17d805a6a445d9d2adda7f3a675607291c8c",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/receipt.json": "b3751a15599f2171ec7d6d87bb35448a1aa2f3dd3547ec0a0e610805aba7d601",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/stdout.json": "2a85b20859d5983c980d039e727723d6cf4a0ab63cd88edb9030e166472f41d0",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/owned-child.json": "0c3410dacc471a88e27ede7fda0899ed1b22125c4ed5c4451b36c972dce3864c",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/spawn-intent.json": "6d573584e86c0055024f4a46cb62656d776b3c46ed3d2460a209414d58f69f3a",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-row1-ea9117d-a1/ws116-gp-g192-summary-supplied-r1-u/post-metadata.json": "6e3c013e8187250ca4a6a0edc63657d44681dcbb8b30be10ee9bbac9196ecc23",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794742761669063714.json": "75b39d4bb3230371175a626ccd5daa775dfe5e7a083013cc06e7e20864603a1b",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r2-u/eligible-boundary.json": "a55f3c8003faeb1104ad77fae88d71982896ed80d038ddd8b12fbcbd87bee5a8",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/receipt.json": "2c8a6c85ccf30fd1e233862393370541bdc207d266097ac672a551f04f404ea5",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/stdout.json": "aa6d7a6de2d5b0f329894157ed548627a7c2e884644300831d9931491c97a4a3",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/owned-child.json": "de5eb80ac98c3c72d726345237679a8c821ec2c42c3603476923d06a1aa6d863",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/spawn-intent.json": "95c43a8216e693e0842246de4cfc0cd8775ec03cf613947d305cd39003c8e9d1",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r2-u/post-metadata.json": "5f83d6e28adee2c5d0b2a2c0d277f2da4e651a8d88125aca4e9ddb1a9e818c23",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794744706731678381.json": "369e1c5780bbca86c53853ac41e930fe9d23caaae7ab4dadc9935c184ab304b3",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r3-u/eligible-boundary.json": "3fe9b5d2aa37ab1d9fa50bd6e3f2072caf503dd69a5790d39e9d84331c8078ec",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/receipt.json": "d8ebd21729c567fa90b6c59bd8988a586f520ca28ca259f427c148dcb74c0d59",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/stdout.json": "5ee51344afb6b4d0d27dda2376d92fd8eb5c1353a5d0610dd6787fbb9070f6b4",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/owned-child.json": "18e7eb3b83d24c02449c7bafd3ddc8ce8a208807205ba4e8b4ef0ffc832f2f64",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/spawn-intent.json": "f1d7d4e7599c391ba2e90ac5d2bb41d124de73c410ea25e0355a5edcc70e517c",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-supplied-r3-u/post-metadata.json": "fe5df65b3d75aa42c6438b69c3e94b976095e1f3a70b5d7535be964bf07a4b27",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794745623887401108.json": "b78bcfe8cc021b79d34e9fd8a50afc1d590266df86e880a7808931c3469f039a",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r1-u/eligible-boundary.json": "6ecb50ffc0fa9173626fa88f024b853c42cf2c95922b0ab9bc0a4fdf85332fb9",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/receipt.json": "524e906a5bc6fee776d07a6fc4e2035cf3112ece82e244b697be1266d763d809",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/stdout.json": "101f6c28b7cfb81ac218b9b01c0a31cb351d1e6c99504760525190d428166e1d",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/owned-child.json": "1d28e6184535926218090f0ed8d57093b4ca37df7ef539d780c2450762d02793",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/spawn-intent.json": "2a770d326e70b17a867bdc066a337c7c09a11cc880a16e0768338022cbec86c1",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r1-u/post-metadata.json": "6262bf7055e7c77001f51ea5d7f2a823deda5687bdb9420abab15e8af76e6566",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794746510862577375.json": "e704459f22a4bb3806321509e954659332010f5aa273f26fe447f683dd12ed4a",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r2-u/eligible-boundary.json": "55453b84a9bd0e781425f40e628bfeb243cfb745082aff5612756d14986bb8c6",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/receipt.json": "f2755c3d0e7c1055e4393050e1ca22b8f89f3df7fed331c6844c63201ac64c04",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/stdout.json": "f5171bdd01358ab9cc83d2209f62af16c68de9cc15a13c65b6b79d93a9fbee06",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/owned-child.json": "b33a5099cdba02846dee58346e73e2ca256df52c231eeb8c43520bebe94bf408",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/spawn-intent.json": "d16e9a5f42e104a6e3b9cf9a532531928757b5feaf56b773a5d2ae6c0e9dacb8",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r2-u/post-metadata.json": "739bd3e4dfdf362e60ad0201e6e9be9ad15f6c7c0f0dc2d0b32ed36c4bf5e963",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794747392847454621.json": "801e4ae8b094a449d447c6182163195453563454842b9264c606100505e8eedf",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r3-u/eligible-boundary.json": "44b5d3bfe5c49bcbd6804a4ddf8c66f656aab195a316cf0efb64acad56f359aa",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/receipt.json": "4eb49dc88173840eac97f64d9262e94b0dca546c28afb847b1a7c7976c8abc2d",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/stdout.json": "bae1b37703d8fb8b7ca587ff8089d764f55acb149ead3e0d821f4abaf3c10ee2",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/owned-child.json": "71a2909f6ec9893ec942039832ce6b4990786d6f9769abedc3d79a6667929cf6",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/spawn-intent.json": "57f5baf036b85da362a5a9fe7dd62e8ac560a5d3b8131e1daa687fd236d4f993",
+    "/workspace/work/campaign/evidence/116/growth192-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g192-summary-searched-r3-u/post-metadata.json": "b74bb37f271a36f51af8bd5a21778e84b37ba54867c16fec2aba998813740ed5",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794748234824624175.json": "70bcba11df34fed4b37028be5f2f678a0ba9647a1bf56358c84d3c53e56cd434"
+  },
+  "original_preproof_hashes": {
+    "/workspace/work/campaign/evidence/116/resource-domain/1794741810380179884.json": "69eb89d855a77e334aa42ae64fe8709c74e0cac836595be93fb7de6e3d384947",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794743810358365342.json": "69a4ab13f80a8f9006727f910af48af19f6b055eebe7271f4f87651ed67f3ab9",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794744707516601201.json": "2799381755515dee4d88b8ab1943364c3b0cf8a0ada41b9e26a37a90789d2e18",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794745624578918465.json": "d6a700bd6d25ce55b4dda38a928c95c75db8e32b40465400bc52df4374232af0",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794746511674373923.json": "38649916a295085f9e7a15f1119f78e8a5bb90c844da70d8682155a82333d19c",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794747393568187317.json": "01f93851ff48e01fded9764ba28e30c1ef1c3fe1466fd4e626ab42dd7e2df3f2"
+  },
+  "recorded_timing": [
+    {
+      "attempt": "ws116-gp-g192-summary-supplied-r1-u",
+      "pre_proof": "/workspace/work/campaign/evidence/116/resource-domain/1794741810380179884.json",
+      "pre_proof_sha256": "69eb89d855a77e334aa42ae64fe8709c74e0cac836595be93fb7de6e3d384947",
+      "original_horizon_seconds": 1920,
+      "recorded_invocation_age_ns": "191678527",
+      "post_finish_age_ns": "951558886627",
+      "recorded_exit0": true,
+      "age_within5s": true,
+      "post_finish_within_original_horizon": true
+    },
+    {
+      "attempt": "ws116-gp-g192-summary-supplied-r2-u",
+      "pre_proof": "/workspace/work/campaign/evidence/116/resource-domain/1794743810358365342.json",
+      "pre_proof_sha256": "69a4ab13f80a8f9006727f910af48af19f6b055eebe7271f4f87651ed67f3ab9",
+      "original_horizon_seconds": 1920,
+      "recorded_invocation_age_ns": "190883801",
+      "post_finish_age_ns": "896581616961",
+      "recorded_exit0": true,
+      "age_within5s": true,
+      "post_finish_within_original_horizon": true
+    },
+    {
+      "attempt": "ws116-gp-g192-summary-supplied-r3-u",
+      "pre_proof": "/workspace/work/campaign/evidence/116/resource-domain/1794744707516601201.json",
+      "pre_proof_sha256": "2799381755515dee4d88b8ab1943364c3b0cf8a0ada41b9e26a37a90789d2e18",
+      "original_horizon_seconds": 1920,
+      "recorded_invocation_age_ns": "209365972",
+      "post_finish_age_ns": "916576354383",
+      "recorded_exit0": true,
+      "age_within5s": true,
+      "post_finish_within_original_horizon": true
+    },
+    {
+      "attempt": "ws116-gp-g192-summary-searched-r1-u",
+      "pre_proof": "/workspace/work/campaign/evidence/116/resource-domain/1794745624578918465.json",
+      "pre_proof_sha256": "d6a700bd6d25ce55b4dda38a928c95c75db8e32b40465400bc52df4374232af0",
+      "original_horizon_seconds": 1920,
+      "recorded_invocation_age_ns": "213716021",
+      "post_finish_age_ns": "886495337865",
+      "recorded_exit0": true,
+      "age_within5s": true,
+      "post_finish_within_original_horizon": true
+    },
+    {
+      "attempt": "ws116-gp-g192-summary-searched-r2-u",
+      "pre_proof": "/workspace/work/campaign/evidence/116/resource-domain/1794746511674373923.json",
+      "pre_proof_sha256": "38649916a295085f9e7a15f1119f78e8a5bb90c844da70d8682155a82333d19c",
+      "original_horizon_seconds": 1920,
+      "recorded_invocation_age_ns": "189826073",
+      "post_finish_age_ns": "881359500437",
+      "recorded_exit0": true,
+      "age_within5s": true,
+      "post_finish_within_original_horizon": true
+    },
+    {
+      "attempt": "ws116-gp-g192-summary-searched-r3-u",
+      "pre_proof": "/workspace/work/campaign/evidence/116/resource-domain/1794747393568187317.json",
+      "pre_proof_sha256": "01f93851ff48e01fded9764ba28e30c1ef1c3fe1466fd4e626ab42dd7e2df3f2",
+      "original_horizon_seconds": 1920,
+      "recorded_invocation_age_ns": "337851868",
+      "post_finish_age_ns": "841447695935",
+      "recorded_exit0": true,
+      "age_within5s": true,
+      "post_finish_within_original_horizon": true
+    }
+  ],
+  "root_independent_scalar": {
+    "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+    "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240"
+  },
+  "all16metric_triplets_match_root_independent_scalar": true,
+  "last_post12_exact_owned_birth_identity_FD_coverage": true,
+  "repeat_fingerprints_within_each_condition": true,
+  "visible_terminal_gap_records": 3,
+  "scope": "Bounded coordinator closed-file reading/hash and scalar sorted-three arithmetic only; no940primaryanalysis/import/native/product/tests, no sample-series parsing. Root allraw stream-hash closure retained; coordinator independently verified42smallfiles+6preproofs, not allsixlarge sample streams.",
+  "new256_runtime_or_admission_authorized": false,
+  "physical_context_scope": "Structural software/workload/core identity match; actualcache/externalhost comparability unknown, latermax50340distinctfrominitial60zero. No isolatedcausalobservercost/benefit/decomposition/crop-extrapolation/16GiBpromise.",
+  "pending": "ROOTnew256source/case/resource/currentcontext/baseline/owner/windowadmission+firstonlyrelease, future940guards/analysis/finalreportscience/profiles/largestfull/gate; all remainseparate.",
+  "accounting": "Coordinator file/scalar review only; allauthor/prep/guard/science/failures/unknown costs retained."
+}

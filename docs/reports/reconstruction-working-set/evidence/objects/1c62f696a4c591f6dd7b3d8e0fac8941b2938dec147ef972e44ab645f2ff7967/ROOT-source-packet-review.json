@@ -1,0 +1,27 @@
+{
+  "accounting": "Investigatorprep32/exec9/total41; allpriorfailures/unknowncostsretained",
+  "all10authorfiles_7oldfamily_35source_tool6_and6closedcontrols_pins_match": true,
+  "config_sha256": "d70073b9841ed376a28d06b4991ec92c2a0f04c8d5e760b6e9cb13e9a3872615",
+  "coordinator_review_sha256": "e156ee6d9f30fd33c2282dc1cc01c21f7183f4ca2e161a3f3b195501d86243ce",
+  "exact6same_mode_same_rep_profile_public_common_input_branches_controls": true,
+  "largeJSON_scope": "1808lineconfig+1825refs fullyparsed, selectedscalar/newrefs and repeated35/core28/tool6 maps semanticallycompared, not every repeatedline visuallydisplayed",
+  "newROOTcentraldecision_actualsearched3closure940_ind8_acceptance_andfreshcontext_required": true,
+  "no_R2R3_raw_batch_current_context_read": true,
+  "nonblocking_C1": "MD returnedretentionmetadata IDs wording refersinternal seen/backing keys; actualreturnedrows containcounts/shapes/dtypes/paths. JSONaccurate. Clarifyfinalprose, no method/admissionimpact.",
+  "observed_at_unix_ns": 1794778017771042646,
+  "pending": "Minimalexistingfirstpreparer port onlyafterseparateROOTsourceauthorization, then futureactualdata/context/packetaudit/separateexecutionrelease.",
+  "profile_deadline960_horizon1080_disk803209216_othercapsunchanged": true,
+  "runtime_or_sourceQA_executed": false,
+  "schema": "ROOT-WS116-central64-profile-sourcepacket-review-v1",
+  "selected_size_NULL_and_firstsummaryprofileR1only": true,
+  "source_handoff_sha256": "3ed71941da9100b38c342e8e528ce6fcea599a8159b5dd54ddac3384d5c335a5",
+  "source_worksheet_sha256": "88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81",
+  "status": "SOURCE_ONLY_NO_BLOCKING_FINDING_NO_HELPER_OR_RUNTIME_AUTHORITY",
+  "whole_read": [
+    "worksheetJSON345",
+    "worksheetMD159",
+    "README64",
+    "handoff",
+    "stageadmission/authority/ACK/ledgerdrafts"
+  ]
+}

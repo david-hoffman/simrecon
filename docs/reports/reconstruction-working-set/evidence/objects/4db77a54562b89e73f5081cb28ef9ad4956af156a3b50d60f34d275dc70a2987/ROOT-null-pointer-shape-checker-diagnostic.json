@@ -1,0 +1,22 @@
+{
+  "actual_shapes": {
+    "future_R1_boundary": {
+      "path": null,
+      "sha256": null
+    },
+    "future_R1_final_post_metadata": {
+      "path": null,
+      "sha256": null
+    },
+    "future_R1_receipt": {
+      "path": null,
+      "sha256": null
+    }
+  },
+  "all_old_bytes_preserved": true,
+  "classification": "ROOT file-checker wrong shape assumption, not source/preparer/workflow failure",
+  "exit_code": 1,
+  "reason": "Expected all future fields literallyNone; first3arecorrectdisabled {path:null,sha256:null} pointershapes. Failed before source-reading record write; no program or source change.",
+  "schema": "ROOT-file-checker-diagnostic-v1",
+  "tool_chunk": "c1820c"
+}

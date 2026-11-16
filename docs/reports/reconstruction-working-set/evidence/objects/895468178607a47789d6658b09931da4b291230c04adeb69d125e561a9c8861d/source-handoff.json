@@ -1,0 +1,69 @@
+{
+  "schema": "WS116-coordinator-fullsearched256-closure-source-handoff-v1",
+  "status": "SOURCE_READY_UNEXECUTED_HOLD",
+  "owner": "/root/issue_116",
+  "files_sha256": {
+    "root-close-fullsearched256-stage.py": "1990200d3d5f4b7e16e643d34709eaf4b53d5bb2e93dc57c6d2f03e5184f4e92",
+    "literal-source-delta.patch": "3698540f162d02b56f28a8ebf632793d7136a40b41cec4ca7304ffc8212dfe17",
+    "source-manifest.json": "73141da53c4ddd3996181a76d5bbb0540be6128065b25d1c20c443bad9d9867d",
+    "disabledrelease-template.json": "5e253cefebebee9b34a2b7a6db027e31969435c6645755cdf978332767f53bd7",
+    "README.md": "6004a0e2d309e81d3a7cf08b60c4bff7db712602618f8b2417f07bd5a30634b9"
+  },
+  "parent_source": {
+    "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/root-close-fullsupplied256-stage.py",
+    "sha256": "090ef79176ff28e14666bc40dc14d1d75b53c84fd782e1204d38b64368a1a549"
+  },
+  "static_first_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+  },
+  "static_last_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+    "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+  },
+  "same_admission": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-full-stage-admission.json",
+    "sha256": "d1b474bb6c09a3bca9f8086c1dd24796f3166a6f15377d8e9eeba98adf46268c"
+  },
+  "known_prior4": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    }
+  ],
+  "closedR1_refs": {
+    "row1_boundary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+    },
+    "ROOT_eligibility_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-eligibility.json",
+      "sha256": "15e98dbd45d7d550a0fd28423d515620544aa329d17e28db507004798a7486d6"
+    },
+    "ROOT_window_closure_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched-r1-window-closed.json",
+      "sha256": "52e014b53f167d7bfc2756c11a07cbbf3627dd20f4609623aa39b49eafe10fc6"
+    },
+    "final_post_metadata": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/post-metadata.json",
+      "sha256": "21aba33f88c2635cef988519b92551255bb6cd15e615deabb0794c0458c4a6fe"
+    }
+  },
+  "future_controller74202_terminal_R2R3_outcomes_and_final6birthFD": null,
+  "no_active_outcome_reads_or_runtime_QA": true,
+  "source_counts": "Coordinator closure-source preparation1, source corrections0, targetexecutions0; separate from investigator32/9/41. Usage/costUNKNOWN.",
+  "all_original_bytes_errors_attempts_charges_preserved": true,
+  "next": "ROOT independentwhole-source inspection/freeze; no execution or followingstage authority"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "G02-refuse-unknown",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "unknown fixed stage"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "unknown fixed stage"
+}

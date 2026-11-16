@@ -1,0 +1,43 @@
+{
+  "ROOT_source_reading": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-whole-source-reading.json",
+    "sha256": "3f96762a38a8abe4de0ca1bd283f846a63c39a6a1466600e5f716aa4f3ad020e"
+  },
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-summary-searched-r2-p",
+    "ws116-gp-l256-summary-searched-r3-p",
+    "ws116-gp-l256-full-searched-r1-p",
+    "ws116-gp-l256-full-searched-r2-p",
+    "ws116-gp-l256-full-searched-r3-p"
+  ],
+  "authority": "ROOT",
+  "authorized": true,
+  "closed_r1_prerequisites": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-closed-r1-prerequisites.json",
+    "sha256": "15f8d693c0781ddafbf8a22cb8f2a28b0007097343a3887db615c5cc5006763c"
+  },
+  "coordinator_closed_R1_review": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/coordinator-closed-first-largest-profile-review.json",
+    "sha256": "548098ad93c5c2d0784584ed01137884dd91fe5f3814e81dcf213e9a3caeb9ff"
+  },
+  "coordinator_source_inspection": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/coordinator-source-inspection.json",
+    "sha256": "92758eb4c9db66cce888411016de7bd1972a85a3483f8b747afe37bc6fb19509"
+  },
+  "helper_sha256": "2b31d4a9dc841b821db2f1fd328a7d2019ae1617c60fb7c6e77f264eb653d13e",
+  "observed_at_unix_ns": 1794789095287894890,
+  "prepare_continuation_authority": true,
+  "scheduler_suspension": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "bf3c2df8e77a6825b5d5b81c9c4c4cf17a10629986de4be3e62582dc7721ab11"
+  },
+  "schema": "ROOT-WS116-remaining5-largest256-profile-preparation-authorization-v1",
+  "scientific_execution_released": false,
+  "selected_largest_size": 256,
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/source-manifest.json",
+    "sha256": "d5c1b9a803dd843d8c14c7c31d057eb4658ee4e0d061bcf9d19441e8e854016b"
+  },
+  "stage_id": "largest-profiles",
+  "window_seconds": 21600
+}

@@ -1,0 +1,141 @@
+{
+  "status": "DISABLED_SOURCE_SHAPES_NO_ACTUAL_AUTHORITY_OR_PREREQUISITE_INPUT",
+  "future_authorization_path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-preparation-authorization.json",
+  "authorization_template": {
+    "schema": "ROOT-WS116-first-largest256-profile-preparation-authorization-v1",
+    "authority": "ROOT",
+    "authorized": false,
+    "stage_id": "largest-profiles",
+    "selected_largest_size": null,
+    "allowed_attempt_ids": [
+      "ws116-gp-l256-summary-searched-r1-p"
+    ],
+    "prepare_first_row_authority": false,
+    "scientific_execution_released": false,
+    "window_seconds": null,
+    "observed_at_unix_ns": null,
+    "helper_sha256": null,
+    "source_manifest": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-manifest.json",
+      "sha256": null
+    },
+    "scheduler_suspension": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-scheduler-suspension-input.json",
+      "sha256": null
+    },
+    "central_completion_and_largest_decision": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-central-completion-and-largest-decision.json",
+      "sha256": null
+    }
+  },
+  "future_suspension_path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-scheduler-suspension-input.json",
+  "suspension_template": {
+    "schema": "ROOT-WS116-first-largest256-profile-suspension-input-v1",
+    "authority": "ROOT",
+    "stage_id": "largest-profiles",
+    "observed_at_unix_ns": null,
+    "campaign_work_suspended": null,
+    "known_active_campaign_runtimes": null,
+    "unresolved_owners": null,
+    "new_stage_has_no_prior_scientific_launches": null,
+    "current_stage_owned_processes": null,
+    "remains_suspended_through_prepared_window": null,
+    "outside_campaign_actors": "unknown_not_scanned",
+    "known_work_closure": {
+      "113": null,
+      "114": null,
+      "116": null,
+      "117": null,
+      "118": null,
+      "119": null,
+      "120": null,
+      "root": null
+    }
+  },
+  "future_prerequisites_path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-central-completion-and-largest-decision.json",
+  "prerequisites_template": {
+    "schema": "ROOT-WS116-largest256-profile-first-prerequisites-v1",
+    "authority": "ROOT",
+    "stage_id": "largest-profiles",
+    "selected_largest_size": null,
+    "allowed_attempt_ids": [
+      "ws116-gp-l256-summary-searched-r1-p"
+    ],
+    "largest_profile_stage_admission_authorized": null,
+    "old_central_profile_window_closed": null,
+    "actual_88772_terminal_exit0_no_proxy": null,
+    "central_six_profile_rows_eligible": null,
+    "canonical940_primary_six_rows_two_complete_groups_auditvalid": null,
+    "independent_sixteen_triplets_match_primary": null,
+    "ROOT_analysis_acceptance": null,
+    "central_profile_stage_closure": {
+      "path": null,
+      "sha256": null
+    },
+    "central_profile_stage_closure_expected": null,
+    "central_closure_source": {
+      "path": null,
+      "sha256": null
+    },
+    "central_closure_release_expected": null,
+    "canonical_primary_program": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_largest_profile_stage_decision": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_largest_profile_stage_decision_expected": null,
+    "old_central_window_evidence": {
+      "path": null,
+      "sha256": null
+    },
+    "old_central_window_evidence_expected": null,
+    "primary_analysis_config": {
+      "path": null,
+      "sha256": null
+    },
+    "primary_analysis_config_expected": null,
+    "primary_analysis_result": {
+      "path": null,
+      "sha256": null
+    },
+    "primary_analysis_result_expected": null,
+    "primary_summary": {
+      "path": null,
+      "sha256": null
+    },
+    "primary_summary_expected": null,
+    "independent_sixteen_triplets": {
+      "path": null,
+      "sha256": null
+    },
+    "independent_sixteen_triplets_expected": null,
+    "coordinator_output_review": {
+      "path": null,
+      "sha256": null
+    },
+    "coordinator_output_review_expected": null,
+    "ROOT_post_source_audit": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_post_source_audit_expected": null,
+    "ROOT_acceptance_evidence": {
+      "path": null,
+      "sha256": null
+    },
+    "ROOT_acceptance_evidence_expected": null
+  },
+  "future_requirements": {
+    "required_selected_largest_size": 256,
+    "required_preparation_window_seconds": 14400,
+    "window_scope": "Future ROOT explicitly adopts4h operational reservation; not runtime/RSS prediction, budget, proof horizon or scientific release.",
+    "actual_window_times": null,
+    "actual_metadata": null,
+    "actual_resource_proof": null,
+    "new_ROOT_acceptance_and_profile_decision": null,
+    "source_scope": "Known closed pins are in manifest; actual expected JSON bodies must be populated from exact files preserving all integer bytes/values. No JSON body or semantic acceptance is invented here. Unknown/mismatch refuses."
+  }
+}

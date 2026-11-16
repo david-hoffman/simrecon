@@ -1,0 +1,75 @@
+"""Selected canonical reads without arithmetic on pixel words."""
+
+from typing import BinaryIO
+
+import numpy as np
+
+from ..models import DataBlock, DatasetInfo, SimreconError
+from .metadata import coordinate, resolved, source_index
+from .priism import check_source
+
+
+def load_block(handle: BinaryIO, info: DatasetInfo, start: int, stop: int) -> DataBlock:
+    """Read canonical planes from an open source while preserving pixel words."""
+    data = np.empty((stop - start, *info.stored_shape[1:]), dtype=info.stored_dtype)
+    coordinates = tuple(coordinate(info, i) for i in range(start, stop))
+    plane_bytes = data[0].nbytes
+    word_dtype = np.dtype(f"u{data.dtype.itemsize}")
+    source_order = {"little": "<", "big": ">"}[info.byte_order]
+    source_dtype = np.dtype(f"{source_order}u{data.dtype.itemsize}")
+    for plane, coord in zip(data, coordinates, strict=True):
+        handle.seek(1024 + info.extended_header_bytes + source_index(info, coord) * plane_bytes)
+        raw = handle.read(plane_bytes)
+        if len(raw) != plane_bytes:
+            raise SimreconError("source_changed", "Source payload shortened during reading")
+        # Convert unsigned words, so float32 NaN payloads never enter float arithmetic.
+        plane.view(word_dtype).reshape(-1)[:] = np.frombuffer(raw, dtype=source_dtype)
+    return DataBlock(data, info, range(start, stop), coordinates)
+
+
+def read(info: DatasetInfo, *, plane_start: int, plane_stop: int) -> DataBlock:
+    """Read an owned nonempty canonical plane interval from a file source.
+
+    Parameters
+    ----------
+    info : DatasetInfo
+        Harmonized Priism descriptor with uint16 or float32 stored pixels and
+        identity spatial mapping. Logical plane axes follow time, channel,
+        orientation, phase, z, retaining only explicitly declared axes.
+    plane_start, plane_stop : int
+        Plain integer bounds for the half-open canonical flat-plane interval;
+        require ``0 <= plane_start < plane_stop <= section_count``.
+
+    Returns
+    -------
+    DataBlock
+        Owned array of shape ``(plane_stop - plane_start, y, x)`` in native
+        uint16 or float32 representation, with canonical logical coordinates
+        and the supplied descriptor. Unsigned-word endian conversion preserves
+        every pixel bit, including float32 NaN payloads. No intensity scaling
+        or physical-unit conversion occurs.
+
+    Raises
+    ------
+    SimreconError
+        Unsupported mode/axes, unresolved configuration, invalid selection or
+        a changed source identity/shortened payload.
+    OSError
+        Source access failed.
+
+    Notes
+    -----
+    The descriptor and its metadata are retained, not copied. Source size,
+    modification time and main-header digest are checked before opening the
+    pixel stream; concurrent payload changes are not an atomic snapshot.
+    """
+    resolved(info)
+    if (
+        type(plane_start) is not int
+        or type(plane_stop) is not int
+        or not 0 <= plane_start < plane_stop <= info.stored_shape[0]
+    ):
+        raise SimreconError("invalid_selection", "Select a nonempty interval within stored planes")
+    check_source(info)
+    with info.source.open("rb") as handle:
+        return load_block(handle, info, plane_start, plane_stop)

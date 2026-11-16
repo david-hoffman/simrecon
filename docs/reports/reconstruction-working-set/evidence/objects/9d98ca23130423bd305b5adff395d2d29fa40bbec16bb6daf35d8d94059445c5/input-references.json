@@ -1,0 +1,51 @@
+{
+  "schema": "WS116-future-fixed-stage-source-inputs-v1",
+  "stage_id": "largest-profiles",
+  "status": "SOURCE_ONLY_NO_ACTIVATION",
+  "sources": {
+    "binder": {
+      "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+      "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+    },
+    "table": {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+      "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+    },
+    "basis": {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json",
+      "sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c"
+    },
+    "disabled256": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-UNAUTHORIZED.json",
+      "sha256": "f1c02ff5f3845167a24f164c5f4207e67ef691d80478c4fe435fa93943aa722a"
+    },
+    "core28": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/expected-core28.json",
+      "sha256": "1a013cb8368a82df24fcc718e0adce732c8164a7c4d1740823e2754d983285b2"
+    },
+    "initial_selection": {
+      "path": "/workspace/work/campaign/evidence/116/initial60-analysis/config-initial60-attempt1.json",
+      "sha256": "63968a0662d5ead4a9f8c7b4a634cfe6fb75210757ee30e56d00fb1661f6ac22"
+    },
+    "initial_control_config": {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/config-remaining59-AUTHORIZED.json",
+      "sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36"
+    }
+  },
+  "known_closed_prior_stage_refs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    }
+  ],
+  "future256_actual_closure": null,
+  "future256_actual_data_refs": null,
+  "central_same_repetition_controls": null,
+  "control_binding_scope": "Pinned closed boundary/config metadata only; no raw/samples reread/revalidation and no physical comparability assertion.",
+  "live_authority_window_events_swap_owners_Docker_context": null,
+  "source_note": "JSON field-copy/source proposal arithmetic authoring only; no binder/helper/guard/runtime execution. No unsafe integer timestamp/FSID copied: live mapping/metadata fields remain null."
+}

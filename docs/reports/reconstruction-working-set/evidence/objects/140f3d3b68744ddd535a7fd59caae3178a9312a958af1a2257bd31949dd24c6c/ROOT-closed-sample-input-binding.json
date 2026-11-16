@@ -1,0 +1,19 @@
+{
+  "all91_paths_exactly_match_closed_status_plus_preserved_tracked_failed_stream": true,
+  "closure_and_window_actual_hashes_match": true,
+  "diagnostic": "First inline input-freeze command contained a conditional False no-op placeholder assertion for status hash. It supplied NO status-hash validation; this separate actual comparison against the saved postcheck now establishes that binding before any compression. Original input bytes/tool trace preserved. No sample/result rewritten or remeasurement.",
+  "full_status": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-post-largest6-full-git-status.txt",
+    "sha256": "66ae12400a1686078658664a442d34e6e407cf59ea48e556aa96150c0d118aa1"
+  },
+  "inputs": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-explicit-closed-sample-transport-inputs.json",
+    "sha256": "f7aa8a5f483ee5afb8d7b28592fbb767e76162035749f7c3c5caacc638089c63"
+  },
+  "observed_at_unix_ns": 1794798144451626366,
+  "postcheck": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-largest6-postclosure-source-check.json",
+    "sha256": "a62f3537fb9b9047e9b1cb64df313ee14d971183fea51d281f655498426bd30e"
+  },
+  "schema": "ROOT-WS116-closed-sample-input-binding-v1"
+}

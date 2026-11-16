@@ -1,0 +1,572 @@
+{
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "status": "PASS_FINITE_SYNTHETIC_ONLY",
+  "error": null,
+  "checks": 95,
+  "matched": true,
+  "median_only_a3_initialization": {
+    "source": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "class_lines": [
+      152,
+      153
+    ],
+    "median_lines": [
+      621,
+      642
+    ],
+    "block_sha256": {
+      "152:153": "23cc2570c4d277e7e2810904b415bf8d28893483c34ccce9c5fb221d0740a409",
+      "621:642": "a080def79e00b8e0ebfc97c939f0de4da98ffc4e0f2175b3368d5f4a7e4626d5"
+    },
+    "full_statistics_initializer_executed": false,
+    "random_initializer_executed": false,
+    "scope": "unmodified stdlib median and StatisticsError only; other APIs/imports blocked"
+  },
+  "blocked_effect_attempts": [],
+  "source_pins": {
+    "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+    "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18",
+    "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/admission-table.json": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/source-identities.json": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/schema-inputs/source-identities.json": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/config-template.json": "6b7d7b98b115cecb98cfe5e37056ce4687307ff35a7b7e8b55c6b2bcb19bb967",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/fixture-vectors.json": "580f6febd42a3c1440dd35623f0351213a956e30572391acb46a07df5a3d9e7b",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/focused_stage_guards.py": "73afc23caa3421235a53ad71ebf7dcdb8a4f22341af60d99a615a572b8c03929"
+  },
+  "files_before_summary": {
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-complete.json": {
+      "sha256": "5b52ae53d57b77e57ac8c89354e5c70d1639eaee399dd22498e7aba52f69bb82",
+      "logical_bytes": 3600
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-disabled.json": {
+      "sha256": "f72e38a010acdb6152bdef800cb7c967fac37d43ec677e5d0b7108058db2cc1b",
+      "logical_bytes": 3601
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-excluded-bad.json": {
+      "sha256": "424f25993ba834c8537c97127d99819edf7e8458af8b840ad7da31ddd85dbddb",
+      "logical_bytes": 4034
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-output-refusal.json": {
+      "sha256": "bf2756fe530d89ff69bc75981372cceb58c3b6f882767640f6edaf5b51104fc2",
+      "logical_bytes": 3546
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-partial-unapproved.json": {
+      "sha256": "6c8e24703583f9b3fcfac20839ad382a12dd5c38c74763790ca152915b1b578d",
+      "logical_bytes": 1805
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-partial.json": {
+      "sha256": "b01aa8d4036a4905defbac545ce520d8ebb3b3e9db2b9726f5adaa64d5502420",
+      "logical_bytes": 1793
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-config-wrong-pin.json": {
+      "sha256": "94e35cc1d3252061f18c19dd5e20d7faceb42d2ba1d857c6e23aaa5252f6b2b1",
+      "logical_bytes": 3601
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-evidence/main-tiny.json": {
+      "sha256": "d2e9398a84d2c59b36989f40519d1d355e1261d8a9dbb09b6f41a3a1c4d5987e",
+      "logical_bytes": 62
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-evidence/prior.json": {
+      "sha256": "d2e9398a84d2c59b36989f40519d1d355e1261d8a9dbb09b6f41a3a1c4d5987e",
+      "logical_bytes": 62
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-evidence/prior.md": {
+      "sha256": "84612970ddabe19640c6f78a365525ac129b51d3117ada4e65f51e153bb501f9",
+      "logical_bytes": 47
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/SYNTHETIC-NEVER-SCIENTIFIC.txt": {
+      "sha256": "cc7d44b9d0afcdadf905f543ae94616e516c6cc32efc4474fcd1c0dc9094d9af",
+      "logical_bytes": 45
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/excluded-records.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/file-audit.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/output-identities.json": {
+      "sha256": "391c27f9ac2c1e715b1853ab9f05bff6c38305152d5fa138c8f8cea3cea05c7d",
+      "logical_bytes": 559
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/per-process.json": {
+      "sha256": "ed8228ff673b9a8dafc731aa91b6eb3f38407fd77972a3a6e346b5b28087c58a",
+      "logical_bytes": 9822
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/summary.json": {
+      "sha256": "7e97a88164c28e04ecc772ef90eb38462c15ea32f5b97a5cd2b0358005fa4d3b",
+      "logical_bytes": 6016
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/three-repeat-summary.csv": {
+      "sha256": "8092e33bc89238bc533049b2e309b99bc1efbe21b450837523db2eda003843be",
+      "logical_bytes": 1091
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-complete/unprofiled-controls.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/SYNTHETIC-NEVER-SCIENTIFIC.txt": {
+      "sha256": "cc7d44b9d0afcdadf905f543ae94616e516c6cc32efc4474fcd1c0dc9094d9af",
+      "logical_bytes": 45
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/excluded-records.json": {
+      "sha256": "e1a8f4bcb2ae6ac2fa935aecfe35e03f74d0110aa9d1377d5a35f6545ae6271d",
+      "logical_bytes": 852
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/file-audit.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/output-identities.json": {
+      "sha256": "d64efd5983332741149c438c5509735637bf010e2bca174e27ac5e5083673108",
+      "logical_bytes": 559
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/per-process.json": {
+      "sha256": "ed8228ff673b9a8dafc731aa91b6eb3f38407fd77972a3a6e346b5b28087c58a",
+      "logical_bytes": 9822
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/summary.json": {
+      "sha256": "10555309899c4f4ce1454b2903e811255dfdd4ced211b31b493d2f53aebb8374",
+      "logical_bytes": 6008
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/three-repeat-summary.csv": {
+      "sha256": "8092e33bc89238bc533049b2e309b99bc1efbe21b450837523db2eda003843be",
+      "logical_bytes": 1091
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-excluded-bad/unprofiled-controls.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/SYNTHETIC-NEVER-SCIENTIFIC.txt": {
+      "sha256": "cc7d44b9d0afcdadf905f543ae94616e516c6cc32efc4474fcd1c0dc9094d9af",
+      "logical_bytes": 45
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/excluded-records.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/file-audit.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/output-identities.json": {
+      "sha256": "b872d9cbf86d8d40fcefd6536e24a7c538cf9529755eb9bd4a77fd4f9c3c95f3",
+      "logical_bytes": 559
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/per-process.json": {
+      "sha256": "00696e0d3a3cfa17bdfb39fb2461e7de51a4e9ef08f55eac762651b24acb141e",
+      "logical_bytes": 1641
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/summary.json": {
+      "sha256": "f14b2cfb0bc193ee30efd5b8a78f8cd716149a30d8d3ae85882678464dae0d9f",
+      "logical_bytes": 5675
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/three-repeat-summary.csv": {
+      "sha256": "1c8da9c1c059534f18c9340a605b9c98e654f5328bf022c4366257b79cc76a16",
+      "logical_bytes": 1016
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-main-partial/unprofiled-controls.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "logical_bytes": 3
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/SYNTHETIC-purpose.json": {
+      "sha256": "f942e5ee3259eff22623563aceadc4219ee0ff71f1b4339349c52ef7fb2c7d15",
+      "logical_bytes": 2854
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G01-disabled-before-evidence.json": {
+      "sha256": "b41ac6da6abfa67362aa359a71ad950b6a62ebfc4a015171bbf67968fd7af504",
+      "logical_bytes": 323
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G01-output-root-before-extraction.json": {
+      "sha256": "6d20cca7292025953942c67e11a38add3c99a5fc530d3bd2861d729a802871b1",
+      "logical_bytes": 336
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G01-wrong-source-pin-before-evidence.json": {
+      "sha256": "3309bc1352852fdb859c85f736c17f8cbb824406ecf7da74fc0e3f380573f6a8",
+      "logical_bytes": 317
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-central-and-largest-profiles-128.json": {
+      "sha256": "25953a26c7bdb23074a320bc53234db1cbd7dcccfda23ecf3996cfb212456438",
+      "logical_bytes": 201
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-central-and-largest-profiles-192.json": {
+      "sha256": "6bbbada5716c87e04dcf55c855d7c76b49893f405ecdb12cdd6cd6e6000e16ad",
+      "logical_bytes": 201
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-central-and-largest-profiles-256.json": {
+      "sha256": "67de782bdfbe8769ae8ed5b5f3e109d2adf3af66fa92a11c3736f5ed204fd7c6",
+      "logical_bytes": 201
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-central64-profiles-None.json": {
+      "sha256": "7c7a928cf0d641f761928a929694332de6a9c6feb6a2efd51c1e7ae8b6c6a643",
+      "logical_bytes": 192
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-growth192-summary-None.json": {
+      "sha256": "dbbbcd8fd1a336a5992a5b4aebde748278769d0a643e7d0515f7554573e7f03c",
+      "logical_bytes": 191
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-growth256-summary-None.json": {
+      "sha256": "74f7eea0ac972e6e73ffc5235501a9d1c4b04ba3438c7ae4b4be2b874af26f09",
+      "logical_bytes": 191
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-full-searched-192.json": {
+      "sha256": "dd1582983311c412c865f8adb0eedb654f5b8471ea43b474b9600066fe4a2063",
+      "logical_bytes": 194
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-full-searched-256.json": {
+      "sha256": "8c6e8bf157d6432f69b97d80e5681180e44f3530217c380e1897a1a24054d18c",
+      "logical_bytes": 194
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-full-supplied-192.json": {
+      "sha256": "5c7e10c9e1cee62d95ae496f3e6a6ac2457d9ed818cdd71fc6b070e6317804e3",
+      "logical_bytes": 194
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-full-supplied-256.json": {
+      "sha256": "4d73061085c034c7aefb5bc1d0769cd929ec9e44ee13db27d15a2d043195347b",
+      "logical_bytes": 194
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-profiles-128.json": {
+      "sha256": "ad241c411147959d44fa2666b042f62f8fab31e3a8d41eb7214d98230cd4b23b",
+      "logical_bytes": 189
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-profiles-192.json": {
+      "sha256": "f4deed585e1d02a4403848a1f284694ab0fd15854b163f708d6103ea9087dc91",
+      "logical_bytes": 189
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-largest-profiles-256.json": {
+      "sha256": "8ee27a55dcd3371ac8a3e63fc29b4eadcbc9138b2d6659efea0774c62c97c34f",
+      "logical_bytes": 189
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-refuse-central-selected.json": {
+      "sha256": "fe2776ff1c2c13cde5af4c3e5563c3759a055260cff63dc940166f86ff0f3ac0",
+      "logical_bytes": 313
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-refuse-full128.json": {
+      "sha256": "ef893ca1d918f898d0ff3ab75b999d28983bedf527e7df6fa90446af91bc4f3b",
+      "logical_bytes": 303
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-refuse-string-size.json": {
+      "sha256": "d447a8a962712da6d541f5ce911933376ea517aaa8687547950b535fdb4b41e6",
+      "logical_bytes": 313
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G02-refuse-unknown.json": {
+      "sha256": "65de943b97899ef593b7f4731f482c195f2dff83e82d5e6bc1ee564fa5951719",
+      "logical_bytes": 271
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V01-source.json": {
+      "sha256": "6c4fb8c38942f1ff84f9a8975aa137c0865dc20dc1cd445a62ec19291fd97a17",
+      "logical_bytes": 313
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V02-config.json": {
+      "sha256": "eeabed5362ce537f00a7f3036445a09a171eb62ede91e0f685272521339a33bd",
+      "logical_bytes": 313
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V03-row.json": {
+      "sha256": "b6de8fb55a70c95fefecdb6ed82318918880e6bf3c333a81b16986c0569e96d0",
+      "logical_bytes": 294
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V04-candidate.json": {
+      "sha256": "f107b7ae3c64b3a2e0de1fc59122e5b95e3c3af7e28ac077f169574ac19a90bd",
+      "logical_bytes": 296
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V05-material.json": {
+      "sha256": "5d880f4e6b3b76f4bc9868294b30de7742d8aa427819672d04a9f62a13f57cc6",
+      "logical_bytes": 299
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V06-method.json": {
+      "sha256": "dc704179bd1be4a7229b613bdc6c39ccceb63ac0494c528380e2ced4f8827a64",
+      "logical_bytes": 305
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V07-environment.json": {
+      "sha256": "2253bdf05b4965094a0b4f6def8085c1f2e5d7457fe31271d2590adcfd02d6be",
+      "logical_bytes": 318
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V08-stage.json": {
+      "sha256": "3b224582fb20d5b76e53a5f8e7f1dfff5a05f04e5abe9f036f0b4beeb5c800bd",
+      "logical_bytes": 288
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V37-admission.json": {
+      "sha256": "6f34d47d021958533e610214391c181a0dbea675724fe1a10189d2fb059d4f70",
+      "logical_bytes": 316
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V38-core.json": {
+      "sha256": "13e94ca7e3f46058e0351fe7165ffca5cb8f33a67945e5c0a26714ca9fd87b06",
+      "logical_bytes": 289
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-V39-prefix.json": {
+      "sha256": "475afba614331de412be7b2f5d601fb90f4791d47f427a2b76602d3fa8ea8e29",
+      "logical_bytes": 299
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-actual-shaped-f6-control-positive.json": {
+      "sha256": "2ab01f15c4007aae420a1bb373bed2bfb936ff30a268f72a16a7fd862d16ee24",
+      "logical_bytes": 202
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G03-actual-shaped-stage-positive.json": {
+      "sha256": "c7379b5d42c8745d6a02c6931568d8f59aefb86c7a62b78bfc919f46faa323d0",
+      "logical_bytes": 197
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G04-V09-initial-ledger-as-stage.json": {
+      "sha256": "1686244b25032aa57895e9c4b8ddd27a0256e988eb5745cbd8bb6f43c1f5702a",
+      "logical_bytes": 292
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G04-V10-unresolved.json": {
+      "sha256": "cf84be629bc4bb696df671a6f1fab0c2f7e783da48dce3d9e65a4262a5a54045",
+      "logical_bytes": 279
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G04-V11-omitted-FD.json": {
+      "sha256": "b5073db10156b65c7aaa9084cc642a1442d2edf3de36047dedd0eed3103b8746",
+      "logical_bytes": 321
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G04-V12-invalid-start.json": {
+      "sha256": "0fe892fed91c3b7b041f8cd274eb2afa91f65c52735327a5384898095949fdcc",
+      "logical_bytes": 324
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G05-actual-JSON-prior-positive.json": {
+      "sha256": "15a6e94886e77dff9963b86efc85b9f9454d96d3d93660d145b39d23d17db21c",
+      "logical_bytes": 195
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G05-actual-Markdown-JSON-path-refused.json": {
+      "sha256": "691ec356bcd25cf9cdbf7016363b72469a4b2a41a9b23e491c6a171b75eca006",
+      "logical_bytes": 318
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G05-separate-Markdown-hash-only-positive.json": {
+      "sha256": "81583eea802d1fa867440002655618fc06cfab7e7a87c5aff884ee79c249ee1f",
+      "logical_bytes": 205
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-EOF-False-preserved.json": {
+      "sha256": "b35523379c2e620ca0cf9e94ae4848c0ddab0ca40fc3ba13aaecbdc521391325",
+      "logical_bytes": 188
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-EOF-True-preserved.json": {
+      "sha256": "607875379a380dda43c1a9eafb18fe4cb7570f75145d053705d14d5a3e245a19",
+      "logical_bytes": 187
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V13-nonboolean-EOF.json": {
+      "sha256": "4db85c481b3ee3cf1b1c4bda6c32e6d89c466d40603186bb2437deb7fed2ad5b",
+      "logical_bytes": 319
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V14-missing-EOF.json": {
+      "sha256": "07f1a7705e84e6f79b0106aae7deca6769e25fe4651228b45a0056fd593ad245",
+      "logical_bytes": 272
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V15-signal.json": {
+      "sha256": "7cf87c1a7d695f3bfe5ccafc3fabcbac6090ea28b7ecac4c04521a7879d59e20",
+      "logical_bytes": 311
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V16-lost-wait.json": {
+      "sha256": "5efacafe656a9107966c7e878f7e3cf68c517ca014ee7362e8b9c8f4800ba2af",
+      "logical_bytes": 296
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V17-nonterminal.json": {
+      "sha256": "45cda44d0bf4d2d8e760a582f6e77f4e6cb88f4587a4cc558c7fec08340af881",
+      "logical_bytes": 316
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V18-terminal-PID.json": {
+      "sha256": "5ba789e364e6e985eb7e71219a7f10310e43b4d1259bbfe4fa6346e2af33564b",
+      "logical_bytes": 283
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V19-terminal-exit.json": {
+      "sha256": "a5604539e160f05248a5e054a231e9b1209926f804da61b82663c949c6937819",
+      "logical_bytes": 268
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V20-native-units.json": {
+      "sha256": "0cf3f96d6f6e262dda7f1a975c0757157493d0d5e40db7b839b20d063b7f5b9d",
+      "logical_bytes": 277
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V21-native-conversion.json": {
+      "sha256": "7578b3a2c51bce8ed3224b83fcc50cb764a46c6d03f7b6870424cc0eba2fc88a",
+      "logical_bytes": 282
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V22-native-bool.json": {
+      "sha256": "a4334ed314bf336fea57fd5b0c4691f1117780d3ad2a11fc6358d0863f296c2b",
+      "logical_bytes": 276
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V23-output-tuple-shape.json": {
+      "sha256": "16186b0c04d15b652913273071af9f9b73f4c9dc31d9002b64f3392d7d980ec5",
+      "logical_bytes": 323
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V24-output-tuple-dtype.json": {
+      "sha256": "4520108ce51441d3e69b9701b4bce4405a03a3b086d4b86e0200e3f1833f95d5",
+      "logical_bytes": 323
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V25-input-tuple-name.json": {
+      "sha256": "c898edc74050ad772f5af41fc42d5585dde2b88f103d59166a254b372d5a3055",
+      "logical_bytes": 297
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V26-snapshot-scope.json": {
+      "sha256": "c90ed886f5084617541dd89c75dd3623b8ac26be8881f801159de649ae390c11",
+      "logical_bytes": 297
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V27-snapshot-native-units.json": {
+      "sha256": "b857ce384f4a35851a18c318b4a306b3393b049df25bbd759c27cc2230e12cba",
+      "logical_bytes": 304
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V28-snapshot-conversion.json": {
+      "sha256": "3195300c02d2fa861f9761c957638bf846d2b259fe8bead23633318327a3b830",
+      "logical_bytes": 302
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V29-child-material.json": {
+      "sha256": "91e77dc3043fc17dfd00eda1bb7c7febcb133d57d404a9f668d744016fd6a25a",
+      "logical_bytes": 289
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V30-marker-grant.json": {
+      "sha256": "c412990e6c17a032bf2c1fa50676b5851af5504bfb79089c6c4a874e02fbfb5a",
+      "logical_bytes": 287
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V31-child-ref.json": {
+      "sha256": "9a212498fac578911c750b03f870c3f5db726c780e87f8d8ed9a6519a04fd238",
+      "logical_bytes": 284
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V40-profile-spec.json": {
+      "sha256": "0de472c2e444adfe645d3ae516b92681a93b5eb65c845ba9795c35e6a8f7ea39",
+      "logical_bytes": 307
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G06-V41-output-tuple-hash.json": {
+      "sha256": "bee173c921b44dd2c7b7e85186ed6472c402eb86d77a1d8f2230ae143b10bd3a",
+      "logical_bytes": 322
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G07-profile-events-pass-through.json": {
+      "sha256": "0c3ae90a60d93effbd8e621439e761ac860d2b2b91dca08c4a0fbdf6129aea9f",
+      "logical_bytes": 196
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G07-wrong-presence-False.json": {
+      "sha256": "570a2ee18f7f77bf741283897016d98379c1b39173d60a589ce835c78db701f7",
+      "logical_bytes": 303
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G07-wrong-presence-True.json": {
+      "sha256": "b5861671a87b859fd449416839493ee638c41adcb474c9788005e4c20fd6aa2a",
+      "logical_bytes": 302
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-full-summary8190-public-difference-positive.json": {
+      "sha256": "95f180fc9630ec189f96dc556be5d776f4f31f13d28815add6358492dba35d1b",
+      "logical_bytes": 212
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-profile-f6-control-positive.json": {
+      "sha256": "4cc3ba1e292d899cdc1f21f63e0a2dd84ec8e825cceb236af2afdd574d482016",
+      "logical_bytes": 196
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-common.json": {
+      "sha256": "60ca0317ece89ee18b9daa99a52dc09331ae318cef9daea071cc5d5717b80867",
+      "logical_bytes": 182
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-control-reference.json": {
+      "sha256": "2d26c7642c272f1b0abb254eaed3c2a483d1237b5be9ff475aa86ee28cd1dd15",
+      "logical_bytes": 193
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-environment.json": {
+      "sha256": "22eef0441ecaf0cc1094ec9d049baa0a4e6fcea346beddbb537144fa23dfc87d",
+      "logical_bytes": 187
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-method-reference.json": {
+      "sha256": "e18274c42692d21bb0be25cb4085ca353698231726fcf8e203eb3288db99ddea",
+      "logical_bytes": 192
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-mode.json": {
+      "sha256": "31ca86dab6a642994e97d2f00114aa4d9e6925224f845f30c3cc1480a0c50424",
+      "logical_bytes": 180
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-profile-public.json": {
+      "sha256": "208ad48df9069f8f8ef342d956d32109dcd7f9697ecf1eb1b2fc0b0c4f82d941",
+      "logical_bytes": 190
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-repetition.json": {
+      "sha256": "d53b8322ae37ce62514d3c2c9044a71de1e174657000efc3fee2a7873ac72f22",
+      "logical_bytes": 186
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-refuse-search.json": {
+      "sha256": "22135517e66c36ab035e2a5789e1a8e543a023d2e41a808eaddb3c558b23eb59",
+      "logical_bytes": 182
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G08-unused-control-reported.json": {
+      "sha256": "708b20e748f43daa1f094ee1caccb4897c6d321b599b6268b6634624f9b002f9",
+      "logical_bytes": 192
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-branch-no-partial-median.json": {
+      "sha256": "a0cc27f84d98a84b080ea4caa517145ba373d84df20a3f979af27626bcf08c5e",
+      "logical_bytes": 193
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-duplicate-no-partial-median.json": {
+      "sha256": "f66f80cb39479dc0acf99d32655a95ee15d527e5050d0eb8b0131e0e6ed61097",
+      "logical_bytes": 196
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-input-no-partial-median.json": {
+      "sha256": "7e66b5f591c8d0333a89aae4b6de5b085f30fc45c7590798b84ef55438998c94",
+      "logical_bytes": 192
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-missing-no-partial-median.json": {
+      "sha256": "2c43e75d55c4db7c28981ae40d5ce0a61117c2d28cb0addfd325595e730f57c9",
+      "logical_bytes": 194
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-public-no-partial-median.json": {
+      "sha256": "429001f7d9946ba84375ddd673e56295a4927e6495a2aac1d38c2fc89e9a26cf",
+      "logical_bytes": 193
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-reused-process-no-partial-median.json": {
+      "sha256": "55c1310662857beeea98335c2e3d18bcf5dddbbb9a57b997e55a55158054d5c5",
+      "logical_bytes": 201
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G09-three-repeat-positive.json": {
+      "sha256": "c86f0c5dee27d774a32a032c92a149c51f5c5bd40508d9d8751d423f343edda7",
+      "logical_bytes": 190
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G10-actual-main-six-SYNTHETIC-complete-clean.json": {
+      "sha256": "a0d314bdb497b647b7032932372060535cb0ad8b7cbf770f2b3e3f23937b948a",
+      "logical_bytes": 209
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G10-actual-main-six-complete-excluded-badhash-exit1.json": {
+      "sha256": "7059018480fe74419bf854caf76bedbd560c1ddc29884ad4ce21ba75cf0d1ef0",
+      "logical_bytes": 216
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-V32-recorded-age.json": {
+      "sha256": "4cfe1b6ba58165576dfb59ff3e4041fefa021b3726d4d25d0b63c68fa073c016",
+      "logical_bytes": 329
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-V33-intent-config.json": {
+      "sha256": "265b2930038d648015978d046c7bffb1dbb7185e7ab2e2aafa262b0663c2553c",
+      "logical_bytes": 300
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-V34-proof-pointer.json": {
+      "sha256": "a0ccd0f4371ba04dc1fa1a2beed11778fdbdf5611d3aacc8cc29dbf50fa680bf",
+      "logical_bytes": 242
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-V35-missing-support.json": {
+      "sha256": "6c5f47b81c39a7baf40586419e2cc74aa174fa726f72f7e2901b147b53160c29",
+      "logical_bytes": 310
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-V36-metadata-linkage.json": {
+      "sha256": "31c37ce47457e06be2cd1767185cc68a033b26657428bad26ede5955ac73981b",
+      "logical_bytes": 305
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-operational-initial-recorded-positive.json": {
+      "sha256": "1de54267fc47166f6e758377d5a2f59cac5528cc315f2ea97fab1583fc36bf52",
+      "logical_bytes": 206
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G11-operational-stage-recorded-positive.json": {
+      "sha256": "1c88efda5704f91fa814a9e0fe86d46a01a58ce3f51a8be9c0cebf7f80765dd1",
+      "logical_bytes": 204
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G12-explicit-one-SYNTHETIC-row-incomplete-exit1.json": {
+      "sha256": "05e6adf7b8a23104623d759b59f02f4c4e200253649c11e7fa588515ed6c1161",
+      "logical_bytes": 212
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/cases/G12-unapproved-partial-before-extraction.json": {
+      "sha256": "f992e32ce739470e07dd7cb9c2cceed67c41f16f457f721cfa2f4182bb1d6d22",
+      "logical_bytes": 363
+    },
+    "/workspace/work/campaign/evidence/116/focused-stage-guards-execution/SYNTHETIC-ws116-stage-guards-a3/results.json": {
+      "sha256": "0967e1d9b99564ea918ecf5034d3346dd825234ec48c091903e120bbf7e9ba93",
+      "logical_bytes": 26047
+    }
+  },
+  "actual_scientific_data": false,
+  "actual_cost": "UNKNOWN",
+  "actual_tokens": "UNKNOWN"
+}

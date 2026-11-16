@@ -1,0 +1,1035 @@
+{
+  "actual_command": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "3452349cb8883d6d74419694eda0d0ea59c1ecebb6dbe3f41373ff429950c91b"
+  },
+  "actual_real_stdlib_metadata": {
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "label": "ROOT_REAL_STDLIB_FILE_ANALYSIS_INITIALIZATION",
+    "median_code_filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "median_firstlineno": 621,
+    "median_stub_used": false,
+    "normal_full_initialization": true,
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "random_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+    "random_sha256": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+    "statistics_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "statistics_sha256": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18"
+  },
+  "all16_triplets_all48CSV_metric_strings_match_own_ced9": true,
+  "all6_same_mode_controls_all4_fingerprints_match": true,
+  "all_excluded_history_ref_errors_empty": true,
+  "authorized_config": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/config-largest256-profiles-AUTHORIZED.json",
+    "sha256": "1d0848a7ccd7d5f9f30f654807711ece4ceec2b4b9b1434b56fb365145676ae5"
+  },
+  "control_count": 6,
+  "crossmode_common_pairs": 3,
+  "crossmode_public_graphs": "structurally different, not compared for equality",
+  "direct_small_hashes": 687,
+  "excluded_nonpooled": 32,
+  "fileaudit_distinct_paths": 699,
+  "fileaudit_entries": 2777,
+  "final_scientific_acceptance": false,
+  "group_count": 2,
+  "historical_records": 2,
+  "metering": "unknown",
+  "no_main_rerun_or_product_numerical_import": true,
+  "only_two_flags_from_frozen_disabled": true,
+  "output_identity_map_six_entries_checked": true,
+  "physical_fact_scope": "Logical+allocated byte fields checked on original same filesystem now; historical actual-run facts, not clone requirements. Sample content digests are ROOT/canonical streaming-attested, not coor reread.",
+  "profile_events": 60,
+  "raw_metric_basis": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/coordinator-independent-sixteen-triplets.json",
+    "sha256": "ced9d2a06069772f1ea4a3dd64a02a4ad98ea8699bac14dff99c2bd03bf29b75"
+  },
+  "raw_selected_control_refs": {
+    "ws116-gp-g256-summary-searched-r1-u": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/stdout.json",
+        "sha256": "e15bd09af24a78d49925642aef83ffdb5c3268e69b5cc075294beb7cb60f3552"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/receipt.json",
+        "sha256": "570683e48e3824958cddd4d3db299398fb4fa2556e44693601ddb378f277cbdd"
+      }
+    },
+    "ws116-gp-g256-summary-searched-r2-u": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/stdout.json",
+        "sha256": "8df933d78d42ba4a0930d9c0345823470dcb46ab4f95c157a35373e864020672"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/receipt.json",
+        "sha256": "bbd86feb56fd4f19396207b90ac60b597392f6901c62e3c5a6807d536652a5e5"
+      }
+    },
+    "ws116-gp-g256-summary-searched-r3-u": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/stdout.json",
+        "sha256": "5a090236f82b7f763793bb02b4c1aae8c5f4e3252045fd7c0a984b276ee6f1b9"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/receipt.json",
+        "sha256": "00a79d177f18e24cabdec9280a9832e9df1a254913d70c0b7fc2aac76dc1840d"
+      }
+    },
+    "ws116-gp-l256-full-searched-r1-p": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/stdout.json",
+        "sha256": "d49bac4ace421e23025707f9e4515988b3c48ee6559f9560b462e757a5e83f56"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/receipt.json",
+        "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d"
+      }
+    },
+    "ws116-gp-l256-full-searched-r1-u": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/stdout.json",
+        "sha256": "a4578861b73cab4385b6b644e541294125802da70d0a6f878c2dfdbecba72811"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/receipt.json",
+        "sha256": "2d106f2fa4f9224ef965968f7d3dbff886e2103f897c9cfe59beb0873173d930"
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-p": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/stdout.json",
+        "sha256": "4e6046b6913012535757b19a886139824b46f81d2f3a814ab3c3b07d72b49cc8"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/receipt.json",
+        "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41"
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-u": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/stdout.json",
+        "sha256": "0ffa5d456019362eda0e44632a1d71799b1a953489a45159ffcbbb27dd2dc184"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/receipt.json",
+        "sha256": "59e4e5e5aea7c20edfdb84edffbf7301297603b7f9b419287470c5a27fe8092d"
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-p": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/stdout.json",
+        "sha256": "b186527b04353deb90135df03a3fa7db175631ed70c9c777541e574ca661de0a"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/receipt.json",
+        "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb"
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-u": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/stdout.json",
+        "sha256": "03e3e9385ad4b1cd2782b1beff5c280b52d3b78646a0cdc8eb460ff01c85a976"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/receipt.json",
+        "sha256": "036e71637afb47dca849b894e28a9e41550e80a678e5e1e744eab61b2bfc119a"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r1-p": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stdout.json",
+        "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r2-p": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/stdout.json",
+        "sha256": "2e219d7c86384e7619863bb7f0568e35588a3bd91d7b3555571da932de779a57"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/receipt.json",
+        "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r3-p": {
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/stdout.json",
+        "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8"
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/receipt.json",
+        "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+      }
+    }
+  },
+  "row_count": 6,
+  "rss_confirmation_raw_presence_and_value": {
+    "ws116-gp-g256-summary-searched-r1-u": {
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873306605288
+        },
+        "confirmation_decision_monotonic": 66873.306635033,
+        "deadline_monotonic_ns": 66873345779837,
+        "first_helper_entry_monotonic": 66873.295963725,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873295779837,
+          "pid": 51675,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873295779837,
+          "pid": 51675,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 66873.295963725,
+            "independent_stop": null,
+            "monotonic": 66873.296067248,
+            "sample_monotonic_ns": 66873295779837,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 66873.306626116,
+            "independent_stop": null,
+            "monotonic": 66873.306635033,
+            "sample_monotonic_ns": 66873295779837,
+            "terminal_collected_monotonic_ns": 66873306269849,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 66873295779837,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 66873306269849
+      },
+      "raw_key_present": true,
+      "raw_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873306605288
+        },
+        "confirmation_decision_monotonic": 66873.306635033,
+        "deadline_monotonic_ns": 66873345779837,
+        "first_helper_entry_monotonic": 66873.295963725,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873295779837,
+          "pid": 51675,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2524053504"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17728110592,
+          "monotonic_ns": 66873295779837,
+          "pid": 51675,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 66873.295963725,
+            "independent_stop": null,
+            "monotonic": 66873.296067248,
+            "sample_monotonic_ns": 66873295779837,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 66873.306626116,
+            "independent_stop": null,
+            "monotonic": 66873.306635033,
+            "sample_monotonic_ns": 66873295779837,
+            "terminal_collected_monotonic_ns": 66873306269849,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 66873295779837,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 66873306269849
+      }
+    },
+    "ws116-gp-g256-summary-searched-r2-u": {
+      "canonical_value": null,
+      "raw_key_present": false,
+      "raw_value": null
+    },
+    "ws116-gp-g256-summary-searched-r3-u": {
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426031704199
+        },
+        "confirmation_decision_monotonic": 70426.031778691,
+        "deadline_monotonic_ns": 70426069829985,
+        "first_helper_entry_monotonic": 70426.020385606,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426019829985,
+          "pid": 51796,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426019829985,
+          "pid": 51796,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 70426.020385606,
+            "independent_stop": null,
+            "monotonic": 70426.020485704,
+            "sample_monotonic_ns": 70426019829985,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 70426.031768292,
+            "independent_stop": null,
+            "monotonic": 70426.031778691,
+            "sample_monotonic_ns": 70426019829985,
+            "terminal_collected_monotonic_ns": 70426031201403,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 70426019829985,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 70426031201403
+      },
+      "raw_key_present": true,
+      "raw_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426031704199
+        },
+        "confirmation_decision_monotonic": 70426.031778691,
+        "deadline_monotonic_ns": 70426069829985,
+        "first_helper_entry_monotonic": 70426.020385606,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426019829985,
+          "pid": 51796,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2562875392"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17750454272,
+          "monotonic_ns": 70426019829985,
+          "pid": 51796,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 70426.020385606,
+            "independent_stop": null,
+            "monotonic": 70426.020485704,
+            "sample_monotonic_ns": 70426019829985,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 70426.031768292,
+            "independent_stop": null,
+            "monotonic": 70426.031778691,
+            "sample_monotonic_ns": 70426019829985,
+            "terminal_collected_monotonic_ns": 70426031201403,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 70426019829985,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 70426031201403
+      }
+    },
+    "ws116-gp-l256-full-searched-r1-p": {
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265556772761
+        },
+        "confirmation_decision_monotonic": 100265.556802162,
+        "deadline_monotonic_ns": 100265595893011,
+        "first_helper_entry_monotonic": 100265.546070634,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2700226560"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17742905344,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.546070634,
+            "independent_stop": null,
+            "monotonic": 100265.546155978,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.556793452,
+            "independent_stop": null,
+            "monotonic": 100265.556802162,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": 100265556453165,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 100265545893011,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 100265556453165
+      },
+      "raw_key_present": true,
+      "raw_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265556772761
+        },
+        "confirmation_decision_monotonic": 100265.556802162,
+        "deadline_monotonic_ns": 100265595893011,
+        "first_helper_entry_monotonic": 100265.546070634,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2700226560"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17742905344,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.546070634,
+            "independent_stop": null,
+            "monotonic": 100265.546155978,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.556793452,
+            "independent_stop": null,
+            "monotonic": 100265.556802162,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": 100265556453165,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 100265545893011,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 100265556453165
+      }
+    },
+    "ws116-gp-l256-full-searched-r1-u": {
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540460781083
+        },
+        "confirmation_decision_monotonic": 83540.460614075,
+        "deadline_monotonic_ns": 83540509049157,
+        "first_helper_entry_monotonic": 83540.459548276,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540459049157,
+          "pid": 52092,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540459049157,
+          "pid": 52092,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 83540.459548276,
+            "independent_stop": null,
+            "monotonic": 83540.460614075,
+            "sample_monotonic_ns": 83540459049157,
+            "terminal_collected_monotonic_ns": 83540460445430,
+            "terminal_observed": true
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 83540.46080254,
+            "independent_stop": null,
+            "monotonic": 83540.460810305,
+            "sample_monotonic_ns": 83540459049157,
+            "terminal_collected_monotonic_ns": 83540460445430,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 83540459049157,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 83540460445430
+      },
+      "raw_key_present": true,
+      "raw_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540460781083
+        },
+        "confirmation_decision_monotonic": 83540.460614075,
+        "deadline_monotonic_ns": 83540509049157,
+        "first_helper_entry_monotonic": 83540.459548276,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540459049157,
+          "pid": 52092,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2648141824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17748185088,
+          "monotonic_ns": 83540459049157,
+          "pid": 52092,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 83540.459548276,
+            "independent_stop": null,
+            "monotonic": 83540.460614075,
+            "sample_monotonic_ns": 83540459049157,
+            "terminal_collected_monotonic_ns": 83540460445430,
+            "terminal_observed": true
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 83540.46080254,
+            "independent_stop": null,
+            "monotonic": 83540.460810305,
+            "sample_monotonic_ns": 83540459049157,
+            "terminal_collected_monotonic_ns": 83540460445430,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 83540459049157,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 83540460445430
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-p": {
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064618937624
+        },
+        "confirmation_decision_monotonic": 102064.619011148,
+        "deadline_monotonic_ns": 102064656143575,
+        "first_helper_entry_monotonic": 102064.606490499,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673852416"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.606490499,
+            "independent_stop": null,
+            "monotonic": 102064.606661593,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.618993558,
+            "independent_stop": null,
+            "monotonic": 102064.619011148,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": 102064617100957,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 102064606143575,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 102064617100957
+      },
+      "raw_key_present": true,
+      "raw_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064618937624
+        },
+        "confirmation_decision_monotonic": 102064.619011148,
+        "deadline_monotonic_ns": 102064656143575,
+        "first_helper_entry_monotonic": 102064.606490499,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673852416"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.606490499,
+            "independent_stop": null,
+            "monotonic": 102064.606661593,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.618993558,
+            "independent_stop": null,
+            "monotonic": 102064.619011148,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": 102064617100957,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 102064606143575,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 102064617100957
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-u": {
+      "canonical_value": null,
+      "raw_key_present": false,
+      "raw_value": null
+    },
+    "ws116-gp-l256-full-searched-r3-p": {
+      "canonical_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791283754924
+        },
+        "confirmation_decision_monotonic": 103791.283790267,
+        "deadline_monotonic_ns": 103791322823982,
+        "first_helper_entry_monotonic": 103791.273020485,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2677006336"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17700282368,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.273020485,
+            "independent_stop": null,
+            "monotonic": 103791.27309766,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.283780854,
+            "independent_stop": null,
+            "monotonic": 103791.283790267,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": 103791283312819,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 103791272823982,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 103791283312819
+      },
+      "raw_key_present": true,
+      "raw_value": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791283754924
+        },
+        "confirmation_decision_monotonic": 103791.283790267,
+        "deadline_monotonic_ns": 103791322823982,
+        "first_helper_entry_monotonic": 103791.273020485,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2677006336"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17700282368,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.273020485,
+            "independent_stop": null,
+            "monotonic": 103791.27309766,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.283780854,
+            "independent_stop": null,
+            "monotonic": 103791.283790267,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": 103791283312819,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 103791272823982,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 103791283312819
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-u": {
+      "canonical_value": null,
+      "raw_key_present": false,
+      "raw_value": null
+    },
+    "ws116-gp-l256-summary-searched-r1-p": {
+      "canonical_value": null,
+      "raw_key_present": false,
+      "raw_value": null
+    },
+    "ws116-gp-l256-summary-searched-r2-p": {
+      "canonical_value": null,
+      "raw_key_present": false,
+      "raw_value": null
+    },
+    "ws116-gp-l256-summary-searched-r3-p": {
+      "canonical_value": null,
+      "raw_key_present": false,
+      "raw_value": null
+    }
+  },
+  "sample_content_ROOT_attested_paths": {
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r1-u/samples.jsonl": "04923f3a3e34863ed6b9fc73e7e3f9d24cc97510f98c5be6693631eeca7a4f72",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r2-u/samples.jsonl": "603ae8e395ea9d818567ea4685db3c93f4c5b443143fbc06db291de2543be639",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-searched-r3-u/samples.jsonl": "77c0ebccfeee14a55e10c40a96e8d8c8b2c6b3a1ec83bc3a8404a33db304efc3",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/samples.jsonl": "2af2242f7991a6d3522e0f0d0bfb71ca722de5b0ade2e1c106292fe5c30202b4",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-u/samples.jsonl": "0b30909ba22e0aecb513af0108acf5753e09455aa1b31d167c7e455ea729fa73",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/samples.jsonl": "4a698f89cfae1496fd5f77ae4ba922dc3cb999ed927b0d4a0cb7df0dd3447cec",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-u/samples.jsonl": "036f4848989d37abeff23ce8c706d5e0236fd37e436112e9f556620087ab68b9",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/samples.jsonl": "8936b941fdf665be1d5d581d1c2e0742601917848eb52917dec62da864c01ff9",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-u/samples.jsonl": "9a81ec93c4e5a939196a829e59305d804de11bcc1b9382d952ccd4e337134492",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/samples.jsonl": "8639e8776225a4df701fc2d9c91d50be6cd70793dbe45aef2f4ce17cbcb895db",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/samples.jsonl": "babefabf668d8e9066faded0c3a7b52a655b1b85f1198b28cc54b80522d01a12",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/samples.jsonl": "e30185acab1ef04609698a3a76f40230d636360dc69cb928cfd2c932255aaca9"
+  },
+  "schema": "WS116-coordinator-actual-largest6-primary-output-review-v1",
+  "science_scope": "Direct-child native terminal and self/stage/RSS/timing/observer scopes distinct; inherited/exec and gap causes unknown, no subtraction/aggregate/causal cost/benefit/general RAM-fit claim.",
+  "selected_and_control_perrow_raw_metrics_snapshots_events_refs_checked": true,
+  "seven_output_hashes": {
+    "excluded-records.json": "c7df0a388130b22d1a4ca5f546ae0526a0abdaeaf24d915eaff40d422d8858ce",
+    "file-audit.json": "5cd6d3ad1436195b73358bbe6d38fbaca3894d933ae4f286bf9960ea037f9f20",
+    "output-identities.json": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb",
+    "per-process.json": "55fb5ef5194894a9538ebcab67560b0ad278cd2d257475cb6cb14c290b697bd7",
+    "summary.json": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6",
+    "three-repeat-summary.csv": "90a7cb97e8e82575df977f353f1bada48a3c9fad4b583b28536c38b447cf68ed",
+    "unprofiled-controls.json": "c591ddddb7678b9d456926711d447f4afe114b7516b4c19342b64eac2d97289d"
+  },
+  "source_pins_after": {
+    "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+    "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18",
+    "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/admission-table.json": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/source-identities.json": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+    "/workspace/work/campaign/evidence/116/report-source-preparation/schema-inputs/source-identities.json": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/config-template.json": "6b7d7b98b115cecb98cfe5e37056ce4687307ff35a7b7e8b55c6b2bcb19bb967",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/fixture-vectors.json": "580f6febd42a3c1440dd35623f0351213a956e30572391acb46a07df5a3d9e7b",
+    "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/focused_stage_guards.py": "73afc23caa3421235a53ad71ebf7dcdb8a4f22341af60d99a615a572b8c03929"
+  },
+  "summary": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/summary.json",
+    "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6"
+  },
+  "verdict": "DESCRIPTIVE_PRIMARY_AUDIT_NO_BLOCKING_FINDING_FINAL_SCIENTIFIC_ACCEPTANCE_PENDING"
+}

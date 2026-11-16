@@ -1,0 +1,38 @@
+{
+  "all_prior_attempts_and_unknown_costs_preserved": true,
+  "blocking_findings": [],
+  "canonical940_flags_source_checked": [
+    884,
+    887,
+    889,
+    894,
+    895
+  ],
+  "diagnostics_preserved": [
+    "Prior broad manifest projection exceeded available output; recovered topkeys and bounded projections.",
+    "One read-only wrong filename config-UNAUTHORIZED.json failed before any target; corrected actual config-row1-UNAUTHORIZED.json.",
+    "One read-only hash script initially treated relative material35 paths as cwd; no writes occurred, corrected resolution against config root."
+  ],
+  "future_required": "Actual closed supplied3/controller60678/window/940primary/independent8/ROOTaccept/newsearcheddecision, fresh ROOT auth+suspension+currentresource admission, then actual packet independent audit and separate firstR1 release.",
+  "independent_source_review_sha256": "eb0abb475265643c9fd732ac413faa18f1a21cdbdc91cc6bffd893e0a48a0a90",
+  "manifest_review": "1699 lines fully parsed; nonrepeated scalar/reference fields inspected in bounded projection, material35/core28/tool6/method7/environment exact-equality checked against disabled searched44key config, not every repeated line visually printed",
+  "material35_and_tool6_actual_files_matched": true,
+  "nonblocking": "Diagnostic label names supplied anchors; actual searched59f0/2fe931/67b52 equality predicate and map are correct. No source edit required.",
+  "runtime_authorized": false,
+  "schema": "ROOT-WS116-first-searched-preparer-source-reading-v1",
+  "scope": "SOURCE_ONLY_NO_RUNTIME_AUTHORITY",
+  "source_pins": {
+    "README.md": "cf2a458a2e33109d1e77e0c87458e957daa7385a371d59eaea25e21cb383eafc",
+    "ROOT-preparation-inputs-DISABLED.json": "c048227d9e75f37f3c7e2523e9f8808ec65c9365cc07cb012f6067efd57c1492",
+    "root-prepare-first-searched-row.py": "b8e69cb72f7635cdac20931cb912b4b505063511a27a9053e1b17c1ef47a1b4c",
+    "source-handoff.json": "1983c40b91bd8f7035d312635fface7197d2b54472b249edc14a05567374238c",
+    "source-manifest.json": "25769fc3c4c083037945fc5d1dc00e98d5390910fde05808be8ffe2ca32b9a3e"
+  },
+  "static_small_pins_matched": 17,
+  "whole_source_read": [
+    "helper362",
+    "README149",
+    "disabled_templates116",
+    "handoff75"
+  ]
+}

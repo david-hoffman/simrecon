@@ -1,0 +1,9 @@
+{
+  "closed_owned_processes": [],
+  "note": "Empty new largest-profile ledger only from actual ROOT fresh no-prior-largest-profile-launch/owner attestation. Historical twelve central owners remain stored, never rescanned.",
+  "root_authority_sha256": "23ab74a98f01ef36d66f605bf6d7f067cd06ff9b60f401070c4d202c6e36f41d",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "largest-profiles",
+  "status": "NEW_STAGE_ROOT_PREPARED_NO_PROFILE_LAUNCH",
+  "unresolved": []
+}

@@ -1,0 +1,7 @@
+{
+  "status": "COORDINATOR_READ_ONLY_AUDIT_ASSERTION_FAILED",
+  "cause": "Initial inline outputaudit asserted both historicalRM84 entries were unavailable. Actual schema preserves available public-source contract/task/fixture refs as excluded_never_pooled, separately unknown historical runreceipts. Failure occurred before final review write.",
+  "actual_data_or_canonical_failure": false,
+  "correction": "Preserve exact source-available/runreceipt-unknown distinction; no data/source/canonical or numerical repeat.",
+  "all_attempts_and_costs": "UNKNOWN"
+}

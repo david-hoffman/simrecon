@@ -1,0 +1,11 @@
+{
+  "id": "G01-wrong-source-pin-before-evidence",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "config source/table/basis differs"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "config source/table/basis differs"
+}

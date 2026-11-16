@@ -1,0 +1,153 @@
+{
+  "bindings": [
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/method_qualification.py",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-method5/method_qualification.py"
+      ],
+      "logical_bytes": 14475,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/method_qualification.py",
+      "original_relative_path": "docs/reports/reconstruction-working-set/method_qualification.py",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/method_qualification.py",
+      "sha256": "9bd4ab99d6cd184aa2228ac28df4fb1ac1f91646048da27c07c9d49b66e01442"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/source-method-v5-review4/observer.py"
+      ],
+      "logical_bytes": 12990,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/observer.py",
+      "original_relative_path": "docs/reports/reconstruction-working-set/observer.py",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/source-method-v5-review4/observer.py",
+      "sha256": "94fec42631c642b2bd5121bfe5e696032895bcda5120c07a92d68f6d82e66ed2"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/source-method-v5-review4/run_attempt.py"
+      ],
+      "logical_bytes": 39631,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+      "original_relative_path": "docs/reports/reconstruction-working-set/run_attempt.py",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/source-method-v5-review4/run_attempt.py",
+      "sha256": "238fc597801a6871493db189e1c7eb5acb5af1115d30fc79e1c6a2dfc9ef3cde"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/source-method-v5-review4/workload_child.py"
+      ],
+      "logical_bytes": 6297,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py",
+      "original_relative_path": "docs/reports/reconstruction-working-set/workload_child.py",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/source-method-v5-review4/workload_child.py",
+      "sha256": "d062c6290dc7ed5bb757ccc8ac0dccaf8dd1e54d0274eb9947ea1dfa2efa0c21"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/corpus-admission-plan/inputs/uv.lock",
+        "/workspace/work/issue-116/uv.lock"
+      ],
+      "logical_bytes": 45523,
+      "original_path": "/workspace/work/issue-116/uv.lock",
+      "original_relative_path": "uv.lock",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/corpus-admission-plan/inputs/uv.lock",
+      "sha256": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/inventory.json",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-method5/inventory.json"
+      ],
+      "logical_bytes": 1353,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/inventory.json",
+      "original_relative_path": "docs/reports/reconstruction-working-set/qualification/inventory.json",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/inventory.json",
+      "sha256": "d2a311141412dce5bd7bec4345cca8d0398901c3ad1689f01c66217ec4f3402f"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/fixtures/stdlib-child.txt",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-method5/stdlib-child.txt",
+        "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt"
+      ],
+      "logical_bytes": 281,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt",
+      "original_relative_path": "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/fixtures/stdlib-child.txt",
+      "sha256": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/README.md",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-method5/README.md"
+      ],
+      "logical_bytes": 7557,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/README.md",
+      "original_relative_path": "docs/reports/reconstruction-working-set/qualification/README.md",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/README.md",
+      "sha256": "6af19c7a0ca9116f527631842ab38e190d2bd39cc5d05cf9cce14a2f8a4d8b56"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/grants/Q0-template.json",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-method5/Q0-template.json",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-q2/grants/Q0-template.json",
+        "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/grants/Q0-template.json"
+      ],
+      "logical_bytes": 2380,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/grants/Q0-template.json",
+      "original_relative_path": "docs/reports/reconstruction-working-set/qualification/grants/Q0-template.json",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/grants/Q0-template.json",
+      "sha256": "0a51ce3da7ef3dec9da3a0e212992bdf0125b08bae7b00d1afb860c7f8abfd26"
+    },
+    {
+      "all_verified_aliases": [
+        "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/grants/Q1-template.json",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-method5/Q1-template.json",
+        "/workspace/work/campaign/evidence/116/source-qdriver-before-q2/grants/Q1-template.json",
+        "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/grants/Q1-template.json"
+      ],
+      "logical_bytes": 2461,
+      "original_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/grants/Q1-template.json",
+      "original_relative_path": "docs/reports/reconstruction-working-set/qualification/grants/Q1-template.json",
+      "preserved_alias": "/workspace/work/campaign/evidence/116/qualification-Q01-v1-source/grants/Q1-template.json",
+      "sha256": "2f6ea5e0d4731a5edae84ec43df9e5ab327bef1e03bb529120ba1fab8b50a6e5"
+    }
+  ],
+  "filename_discovery": {
+    "argv": [
+      "rg",
+      "--files",
+      "/workspace/work/campaign/evidence/116",
+      "-g",
+      "Q0-template.json",
+      "-g",
+      "Q1-template.json",
+      "-g",
+      "README.md",
+      "-g",
+      "inventory.json",
+      "-g",
+      "method_qualification.py",
+      "-g",
+      "observer.py",
+      "-g",
+      "run_attempt.py",
+      "-g",
+      "stdlib-child.txt",
+      "-g",
+      "uv.lock",
+      "-g",
+      "workload_child.py"
+    ],
+    "candidate_count": 135,
+    "returncode": 0
+  },
+  "observed_at_unix_ns": 1794802694728767072,
+  "schema": "ROOT-WS116-historical-Q01-source-freeze-aliases-v1",
+  "scope": "Original Q01 historical freeze source bytes, matched from preserved campaign-only files/current exact paths. No runtime, Git other-branch input, source reconstruction or scientific rerun. These aliases do not relabel source7 or make old authority current.",
+  "source_manifest": {
+    "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/source-freeze.sha256",
+    "sha256": "fd417331bd5ddb08f2ee45078f48dfa95c78d58f6f07ee785a3a3b82d4ee6ef6"
+  },
+  "unresolved": []
+}

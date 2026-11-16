@@ -1,0 +1,55 @@
+{
+  "campaign_work_suspended": true,
+  "input_observed_at_unix_ns": 1794786456273940926,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "C7 all controllers/proxies/pipes/namespaces closed; dedicated init stopped PID0. Driver6 committed46e clean; support7/source5 native assessed no runtime. Helper bounded source author permitted text/hash/read-only Git only, QA held.",
+    "114": "Quarantined source-only plan; no active child/controller/runtime.",
+    "116": "88772 tool actual exit0 observed; central6 whole281 all12 stored birth/FD identities closed, finalmetadata+sourcepost477/windowf159 and actual primary940 audited and accepted a9fb. No largest-profile prior scientific launch. Investigator37 SOURCE_READY and held.",
+    "117": "Provisional source/check history preserved; resource/runtime HOLD, no active child.",
+    "118": "Provisional source/check history preserved; adapter unexecuted, runtime HOLD, no active child.",
+    "119": "Intake only, no runtime.",
+    "120": "Intake only, no runtime.",
+    "root": "No active unified exec/controller; known campaign runtimes closed. Standing exclusive hold on unrelated imports/tests/AST/lint/types/native/build/install/workflows/benchmarks/controllers throughout generated4h or explicit closure. Only one necessary metadata and one correspondence capture authorized now; subsequent scientific release separate."
+  },
+  "observed_at_unix_ns": 1794786457234955873,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "preparation_suspension_input": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "d713fc7a1073f7761ee9bbfabc1297be1178262a0799f33b90299e49b19af43d"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "ROOT standing suspension consumed now; outside actors unknown; ACK not grant authority",
+  "stage_id": "largest-profiles",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794800857234955873,
+    "starts_unix_ns": 1794786457234955873
+  }
+}

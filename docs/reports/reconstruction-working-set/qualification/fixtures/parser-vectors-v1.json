@@ -1,0 +1,2528 @@
+{
+  "protocol": "WS116-Q4-synthetic-vectors-v1",
+  "scope": "Source-authored synthetic scalar records only, never scientific/native process observations. IDs and SHA tokens are invented fixture values explicitly marked synthetic.",
+  "synthetic_pid": 7141,
+  "base_record": {
+    "protocol": "WS116-child-v2",
+    "pid": 7141,
+    "spec": {
+      "id": "synthetic-parser-only",
+      "shape": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "profile": false,
+      "mode": "summary",
+      "search": false,
+      "repetition": 1,
+      "expected_material_hashes": {
+        "synthetic/input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected_exposed_domain": {
+        "membership": "/",
+        "mount_root": "/",
+        "mount": "/synthetic-cgroup",
+        "namespace": "synthetic:[1]",
+        "visible_memory_max": {
+          "/synthetic-cgroup": "max"
+        }
+      }
+    },
+    "status": "finite_observation_pending_qualification",
+    "finite_common_fields": true,
+    "material_identity_matches": true,
+    "material_hashes_before": {
+      "synthetic/input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "material_hashes_after": {
+      "synthetic/input": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "snapshots": {
+      "pre_call": {
+        "scope": "after input hashes/retention, before call timestamp",
+        "monotonic_ns": 90,
+        "ru_maxrss_native": 10,
+        "ru_maxrss_native_units": "Linux KiB",
+        "cumulative_high_water_bytes": 10240,
+        "ru_minflt": 0,
+        "ru_majflt": 0,
+        "ru_nswap": 0,
+        "ru_inblock": 0,
+        "ru_oublock": 0,
+        "ru_utime_seconds": 0,
+        "ru_stime_seconds": 0
+      },
+      "call_end": {
+        "scope": "after call/end timestamp, before result observations",
+        "monotonic_ns": 1000110,
+        "ru_maxrss_native": 20,
+        "ru_maxrss_native_units": "Linux KiB",
+        "cumulative_high_water_bytes": 20480,
+        "ru_minflt": 0,
+        "ru_majflt": 0,
+        "ru_nswap": 0,
+        "ru_inblock": 0,
+        "ru_oublock": 0,
+        "ru_utime_seconds": 0,
+        "ru_stime_seconds": 0
+      },
+      "post_observation": {
+        "scope": "after context/hash/retention/finite/identity observations, before JSON serialization and teardown",
+        "monotonic_ns": 1000120,
+        "ru_maxrss_native": 30,
+        "ru_maxrss_native_units": "Linux KiB",
+        "cumulative_high_water_bytes": 30720,
+        "ru_minflt": 0,
+        "ru_majflt": 0,
+        "ru_nswap": 0,
+        "ru_inblock": 0,
+        "ru_oublock": 0,
+        "ru_utime_seconds": 0,
+        "ru_stime_seconds": 0
+      }
+    },
+    "call_start_monotonic_ns": 100,
+    "call_end_monotonic_ns": 1000100,
+    "elapsed_call_seconds": 0.001,
+    "input_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "common_output_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "public_result_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "input_arrays": {
+      "specimen": [
+        "specimen",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "transfer": [
+        "transfer.samples",
+        [
+          1
+        ],
+        "<c16",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    },
+    "output_hashes": {
+      "image": [
+        "image",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "x_um": [
+        "x_um",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "y_um": [
+        "y_um",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "z_um": [
+        "z_um",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "carriers_cyc_um": [
+        "carriers_cyc_um",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "modulation": [
+        "modulation",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ],
+      "raw_modulation": [
+        "raw_modulation",
+        [
+          1
+        ],
+        "<f8",
+        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    },
+    "branches": [
+      [
+        "known"
+      ]
+    ],
+    "python": "synthetic",
+    "executable": "synthetic",
+    "numpy": "synthetic",
+    "scipy": "synthetic",
+    "effective_worker_limits": "synthetic",
+    "product_module": "synthetic-parser-label-only",
+    "snapshot_limits": "synthetic snapshots; no process observation",
+    "numpy_backend": {
+      "synthetic": true
+    },
+    "scipy_fft_default_workers": 1,
+    "context": {
+      "system": "Linux",
+      "pid": 7141,
+      "kernel": "synthetic",
+      "machine": "synthetic",
+      "meminfo": "synthetic",
+      "host_id_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "disk_available_bytes": 0,
+      "threads": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1"
+      },
+      "allocator": {
+        "PYTHONMALLOC": null,
+        "MALLOC_ARENA_MAX": null
+      },
+      "rlimits": {
+        "RLIMIT_AS": [
+          -1,
+          -1
+        ],
+        "RLIMIT_DATA": [
+          -1,
+          -1
+        ],
+        "RLIMIT_RSS": [
+          -1,
+          -1
+        ],
+        "RLIMIT_CPU": [
+          -1,
+          -1
+        ],
+        "RLIMIT_FSIZE": [
+          -1,
+          -1
+        ],
+        "RLIMIT_NOFILE": [
+          -1,
+          -1
+        ]
+      },
+      "cgroup": {
+        "membership": "/",
+        "mount_root": "/",
+        "mount": "/synthetic-cgroup",
+        "namespace": "synthetic:[1]",
+        "hidden_ancestors": "unknown synthetic external ancestors",
+        "visible_ancestors": [
+          {
+            "path": "/synthetic-cgroup",
+            "memory.current": "0",
+            "memory.max": "max",
+            "memory.peak": null,
+            "memory.events": null,
+            "memory.swap.max": null,
+            "memory.swap.current": null
+          }
+        ]
+      }
+    },
+    "caller_retained": {
+      "array_payload_bytes": 8,
+      "unique_backings": 1,
+      "python_metadata_estimate_bytes": 0,
+      "metadata_limit": "synthetic metadata only",
+      "arrays": [
+        {
+          "path": "synthetic-array",
+          "shape": [
+            1
+          ],
+          "dtype": ">f8",
+          "bytes": 8
+        }
+      ]
+    },
+    "result_retained": {
+      "array_payload_bytes": 8,
+      "unique_backings": 1,
+      "python_metadata_estimate_bytes": 0,
+      "metadata_limit": "synthetic metadata only",
+      "arrays": [
+        {
+          "path": "synthetic-array",
+          "shape": [
+            1
+          ],
+          "dtype": ">f8",
+          "bytes": 8
+        }
+      ]
+    },
+    "stages": []
+  },
+  "profile_streams": {
+    "T1-no-layout": {
+      "times": 1,
+      "events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 110,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 111,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 112,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 113,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 114,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 115,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 116,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 117,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 118,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 119,
+          "ru_maxrss_native_KiB": 15
+        }
+      ]
+    },
+    "T1-layout": {
+      "times": 1,
+      "events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 110,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 111,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "layout",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 112,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "layout",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 113,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 114,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 115,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 116,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 117,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 118,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 119,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 120,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 121,
+          "ru_maxrss_native_KiB": 15
+        }
+      ]
+    },
+    "T2-no-layout": {
+      "times": 2,
+      "events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 110,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 111,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 112,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 113,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 114,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 115,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 116,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 117,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "enter",
+          "monotonic_ns": 118,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "exit",
+          "monotonic_ns": 119,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 120,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 121,
+          "ru_maxrss_native_KiB": 15
+        }
+      ]
+    },
+    "T2-layout": {
+      "times": 2,
+      "events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 110,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 111,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "layout",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 112,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "layout",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 113,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 114,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 115,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 116,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 117,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 118,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 119,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "enter",
+          "monotonic_ns": 120,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "exit",
+          "monotonic_ns": 121,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 122,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 123,
+          "ru_maxrss_native_KiB": 15
+        }
+      ]
+    },
+    "T4-no-layout": {
+      "times": 4,
+      "events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 110,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 111,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 112,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 113,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 114,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 115,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 116,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 117,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "enter",
+          "monotonic_ns": 118,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "exit",
+          "monotonic_ns": 119,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 2,
+          "edge": "enter",
+          "monotonic_ns": 120,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 2,
+          "edge": "exit",
+          "monotonic_ns": 121,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 3,
+          "edge": "enter",
+          "monotonic_ns": 122,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 3,
+          "edge": "exit",
+          "monotonic_ns": 123,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 124,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 125,
+          "ru_maxrss_native_KiB": 15
+        }
+      ]
+    },
+    "T4-layout": {
+      "times": 4,
+      "events": [
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 110,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "declaration",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 111,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "layout",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 112,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "layout",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 113,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 114,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "preparation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 115,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 116,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "estimation",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 117,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "enter",
+          "monotonic_ns": 118,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 0,
+          "edge": "exit",
+          "monotonic_ns": 119,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "enter",
+          "monotonic_ns": 120,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 1,
+          "edge": "exit",
+          "monotonic_ns": 121,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 2,
+          "edge": "enter",
+          "monotonic_ns": 122,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 2,
+          "edge": "exit",
+          "monotonic_ns": 123,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 3,
+          "edge": "enter",
+          "monotonic_ns": 124,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "reconstruction",
+          "time_index": 3,
+          "edge": "exit",
+          "monotonic_ns": 125,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "enter",
+          "monotonic_ns": 126,
+          "ru_maxrss_native_KiB": 15
+        },
+        {
+          "stage": "result",
+          "time_index": null,
+          "edge": "exit",
+          "monotonic_ns": 127,
+          "ru_maxrss_native_KiB": 15
+        }
+      ]
+    }
+  },
+  "vectors": [
+    {
+      "id": "unprofiled-max-null-big-endian",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted"
+    },
+    {
+      "id": "profile-T1-no-layout",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-T1-layout",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted",
+      "profile_stream": "T1-layout"
+    },
+    {
+      "id": "profile-T2-no-layout",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted",
+      "profile_stream": "T2-no-layout"
+    },
+    {
+      "id": "profile-T2-layout",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted",
+      "profile_stream": "T2-layout"
+    },
+    {
+      "id": "profile-T4-no-layout",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted",
+      "profile_stream": "T4-no-layout"
+    },
+    {
+      "id": "profile-T4-layout",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "finite_observation_pending_qualification",
+      "direct_expected": "accepted",
+      "profile_stream": "T4-layout"
+    },
+    {
+      "id": "status-material_identity_failure",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "status"
+          ],
+          "value": "material_identity_failure"
+        }
+      ],
+      "expected": "material_identity_failure"
+    },
+    {
+      "id": "status-nonfinite_scientific_failure",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "status"
+          ],
+          "value": "nonfinite_scientific_failure"
+        }
+      ],
+      "expected": "nonfinite_scientific_failure"
+    },
+    {
+      "id": "status-workflow_exception",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "status"
+          ],
+          "value": "workflow_exception"
+        }
+      ],
+      "expected": "workflow_exception"
+    },
+    {
+      "id": "status-observation_failure",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "status"
+          ],
+          "value": "observation_failure"
+        }
+      ],
+      "expected": "observation_failure"
+    },
+    {
+      "id": "file-missing",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "missing_child_record",
+      "file_mode": "missing"
+    },
+    {
+      "id": "file-empty",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "missing_child_record",
+      "file_mode": "empty"
+    },
+    {
+      "id": "file-truncated",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "malformed_child_record",
+      "file_mode": "truncated"
+    },
+    {
+      "id": "file-invalid-utf8",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "malformed_child_record",
+      "file_mode": "invalid_utf8"
+    },
+    {
+      "id": "file-array-not-object",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "malformed_child_record",
+      "file_mode": "array_object"
+    },
+    {
+      "id": "file-oversized",
+      "interface": "child_outcome",
+      "changes": [],
+      "expected": "child_record_exceeds_admitted_parse_bound",
+      "file_mode": "oversized"
+    },
+    {
+      "id": "snapshot-map-null",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots"
+          ],
+          "value": null
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-map-missing",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "delete",
+          "path": [
+            "snapshots"
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-pre-null",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "pre_call"
+          ],
+          "value": null
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-post-missing",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "delete",
+          "path": [
+            "snapshots",
+            "post_observation"
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-scope",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "post_observation",
+            "scope"
+          ],
+          "value": "incorrect"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-native-null",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "ru_maxrss_native"
+          ],
+          "value": null
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-native-bool",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "ru_maxrss_native"
+          ],
+          "value": true
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-native-negative",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "ru_maxrss_native"
+          ],
+          "value": -1
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-native-units",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "ru_maxrss_native_units"
+          ],
+          "value": "bytes"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-byte-conversion",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "cumulative_high_water_bytes"
+          ],
+          "value": 1
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-time-zero",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "pre_call",
+            "monotonic_ns"
+          ],
+          "value": 0
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-time-misaligned",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "monotonic_ns"
+          ],
+          "value": 99
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-counter-negative",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "ru_minflt"
+          ],
+          "value": -1
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-cpu-null",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "call_end",
+            "ru_utime_seconds"
+          ],
+          "value": null
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "snapshot-cumulative-decrease",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "snapshots",
+            "post_observation",
+            "ru_maxrss_native"
+          ],
+          "value": 19
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "elapsed-duration",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "elapsed_call_seconds"
+          ],
+          "value": 2
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "finite-boolean",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "finite_common_fields"
+          ],
+          "value": false
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "material-boolean",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "material_identity_matches"
+          ],
+          "value": false
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "material-map-before",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "material_hashes_before"
+          ],
+          "value": {}
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "material-map-after",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "material_hashes_after"
+          ],
+          "value": {}
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "fingerprint-malformed",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "common_output_sha256"
+          ],
+          "value": "invalid"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "array-identity-name",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "input_arrays",
+            "specimen",
+            0
+          ],
+          "value": "wrong"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "array-identity-illegal-f1",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "input_arrays",
+            "specimen",
+            2
+          ],
+          "value": "<f1"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "array-identity-illegal-b16",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "output_hashes",
+            "image",
+            2
+          ],
+          "value": "|b16"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "array-identity-big-endian",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "output_hashes",
+            "image",
+            2
+          ],
+          "value": ">f8"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "array-identity-shape-negative",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "output_hashes",
+            "image",
+            1
+          ],
+          "value": [
+            -1
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "branch-time-count",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "branches"
+          ],
+          "value": []
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "branch-label",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "branches",
+            0,
+            0
+          ],
+          "value": "unknown"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "backend-empty",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "numpy_backend"
+          ],
+          "value": {}
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "fft-workers-zero",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "scipy_fft_default_workers"
+          ],
+          "value": 0
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "context-pid",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "pid"
+          ],
+          "value": 7142
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "context-thread",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "threads",
+            "OMP_NUM_THREADS"
+          ],
+          "value": "2"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "context-rlimit",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "rlimits",
+            "RLIMIT_AS"
+          ],
+          "value": null
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "ancestor-current-null",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "cgroup",
+            "visible_ancestors",
+            0,
+            "memory.current"
+          ],
+          "value": null
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "ancestor-current-negative",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "cgroup",
+            "visible_ancestors",
+            0,
+            "memory.current"
+          ],
+          "value": "-1"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "ancestor-limit-unusable",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "cgroup",
+            "visible_ancestors",
+            0,
+            "memory.max"
+          ],
+          "value": "unknown"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "ancestor-domain-namespace",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "context",
+            "cgroup",
+            "namespace"
+          ],
+          "value": "synthetic:[2]"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "optional-ancestor-missing",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "delete",
+          "path": [
+            "context",
+            "cgroup",
+            "visible_ancestors",
+            0,
+            "memory.events"
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "retention-illegal-dtype",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "caller_retained",
+            "arrays",
+            0,
+            "dtype"
+          ],
+          "value": "|b16"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "retention-missing-arrays",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "result_retained",
+            "arrays"
+          ],
+          "value": []
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "unprofiled-events",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages"
+          ],
+          "value": [
+            {
+              "stage": "declaration",
+              "edge": "enter",
+              "time_index": null,
+              "monotonic_ns": 110,
+              "ru_maxrss_native_KiB": 15
+            }
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused"
+    },
+    {
+      "id": "profile-lone-enter",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages"
+          ],
+          "value": [
+            {
+              "stage": "declaration",
+              "time_index": null,
+              "edge": "enter",
+              "monotonic_ns": 110,
+              "ru_maxrss_native_KiB": 15
+            }
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-timestamp-zero",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            0,
+            "monotonic_ns"
+          ],
+          "value": 0
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-unpaired",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "delete",
+          "path": [
+            "stages",
+            1
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-reordered",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            0,
+            "stage"
+          ],
+          "value": "preparation"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-time-misaligned",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            0,
+            "monotonic_ns"
+          ],
+          "value": 99
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-timestamps-decrease",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            1,
+            "monotonic_ns"
+          ],
+          "value": 109
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-wrong-time-index",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            6,
+            "time_index"
+          ],
+          "value": 1
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-missing-time-index",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "delete",
+          "path": [
+            "stages",
+            6,
+            "time_index"
+          ]
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-unknown-stage",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            0,
+            "stage"
+          ],
+          "value": "transfer-internal"
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-highwater-decrease",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            1,
+            "ru_maxrss_native_KiB"
+          ],
+          "value": 14
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "profile-highwater-exceeds-call-end",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "stages",
+            9,
+            "ru_maxrss_native_KiB"
+          ],
+          "value": 21
+        }
+      ],
+      "expected": "malformed_child_record",
+      "direct_expected": "refused",
+      "profile_stream": "T1-no-layout"
+    },
+    {
+      "id": "outer-pid",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "pid"
+          ],
+          "value": 7142
+        }
+      ],
+      "expected": "malformed_child_record"
+    },
+    {
+      "id": "outer-spec",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "spec",
+            "repetition"
+          ],
+          "value": 2
+        }
+      ],
+      "expected": "malformed_child_record"
+    },
+    {
+      "id": "outer-protocol",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "protocol"
+          ],
+          "value": "WS116-child-v0"
+        }
+      ],
+      "expected": "malformed_child_record"
+    },
+    {
+      "id": "status-unknown",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "set",
+          "path": [
+            "status"
+          ],
+          "value": "complete_science_pass"
+        }
+      ],
+      "expected": "malformed_child_record"
+    },
+    {
+      "id": "status-missing",
+      "interface": "child_outcome",
+      "changes": [
+        {
+          "op": "delete",
+          "path": [
+            "status"
+          ]
+        }
+      ],
+      "expected": "malformed_child_record"
+    },
+    {
+      "id": "bootstrap-arguments",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR {\"stage\":\"arguments\",\"type\":\"SyntheticError\",\"message\":\"not observed\"}\n",
+      "expected": "arguments"
+    },
+    {
+      "id": "bootstrap-setsid",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR {\"stage\":\"setsid\",\"type\":\"SyntheticError\",\"message\":\"not observed\"}\n",
+      "expected": "setsid"
+    },
+    {
+      "id": "bootstrap-readiness",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR {\"stage\":\"readiness\",\"type\":\"SyntheticError\",\"message\":\"not observed\"}\n",
+      "expected": "readiness"
+    },
+    {
+      "id": "bootstrap-exec",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR {\"stage\":\"exec\",\"type\":\"SyntheticError\",\"message\":\"not observed\"}\n",
+      "expected": "exec"
+    },
+    {
+      "id": "bootstrap-unknown-stage",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR {\"stage\":\"unknown\"}",
+      "expected": null
+    },
+    {
+      "id": "bootstrap-malformed",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR {",
+      "expected": null
+    },
+    {
+      "id": "bootstrap-not-object",
+      "interface": "bootstrap_failure",
+      "text": "WS116_BOOTSTRAP_ERROR []",
+      "expected": null
+    },
+    {
+      "id": "bootstrap-no-prefix",
+      "interface": "bootstrap_failure",
+      "text": "{\"stage\":\"exec\"}",
+      "expected": null
+    },
+    {
+      "id": "bootstrap-second-line",
+      "interface": "bootstrap_failure",
+      "text": "first\nWS116_BOOTSTRAP_ERROR {\"stage\":\"exec\"}",
+      "expected": null
+    },
+    {
+      "id": "bootstrap-bounded-prefix",
+      "interface": "bootstrap_failure",
+      "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nWS116_BOOTSTRAP_ERROR {\"stage\":\"exec\"}",
+      "expected": null
+    },
+    {
+      "id": "dtype-legal-0",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|b1",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-1",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|b1",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-2",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|i1",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-3",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|i1",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-4",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|u1",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-5",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|u1",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-6",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i2",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-7",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i2",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-8",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i4",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-9",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i4",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-10",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i8",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-11",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-12",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u2",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-13",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u2",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-14",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u4",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-15",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u4",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-16",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u8",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-17",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-18",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f2",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-19",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f2",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-20",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f4",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-21",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f4",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-22",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f8",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-23",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-24",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f16",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-25",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f16",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-26",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<c8",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-27",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<c8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-28",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<c16",
+      "canonical": true,
+      "expected": true
+    },
+    {
+      "id": "dtype-legal-29",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<c16",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-30",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">i2",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-31",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">i2",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-32",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">i4",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-33",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">i4",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-34",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">i8",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-35",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">i8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-36",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">u2",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-37",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">u2",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-38",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">u4",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-39",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">u4",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-40",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">u8",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-41",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">u8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-42",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f2",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-43",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f2",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-44",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f4",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-45",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f4",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-46",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f8",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-47",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-48",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f16",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-49",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">f16",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-50",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">c8",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-51",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">c8",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-endian-52",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">c16",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-endian-53",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">c16",
+      "canonical": false,
+      "expected": true
+    },
+    {
+      "id": "dtype-illegal-54",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f1",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-55",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|b16",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-56",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<b1",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-57",
+      "interface": "legal_numeric_dtype",
+      "dtype": ">b1",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-58",
+      "interface": "legal_numeric_dtype",
+      "dtype": "|f8",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-59",
+      "interface": "legal_numeric_dtype",
+      "dtype": "=f8",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-60",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<c4",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-61",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<u16",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-62",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<i3",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-63",
+      "interface": "legal_numeric_dtype",
+      "dtype": "<f32",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-64",
+      "interface": "legal_numeric_dtype",
+      "dtype": "object",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-65",
+      "interface": "legal_numeric_dtype",
+      "dtype": "",
+      "canonical": true,
+      "expected": false
+    },
+    {
+      "id": "dtype-illegal-66",
+      "interface": "legal_numeric_dtype",
+      "dtype": null,
+      "canonical": true,
+      "expected": false
+    }
+  ]
+}

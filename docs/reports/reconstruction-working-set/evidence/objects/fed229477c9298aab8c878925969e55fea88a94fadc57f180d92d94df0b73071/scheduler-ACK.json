@@ -1,0 +1,47 @@
+{
+  "campaign_work_suspended": true,
+  "input_observed_at_unix_ns": 1794777391147508562,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "Source8f871 clean, C7prior10controllers/namespaces/proxies/pipesclosed, dedicatedinitstopped. Supportdiagnosticfix/reviews SOURCEonly; no nativeEEruntime launched.",
+    "114": "All priorqualifiedcontrol ownersclosed, resourcequarantine/sourceplanHOLD, no active runtime.",
+    "116": "Firstsearchedcontroller17352 actualterminal0, exact2owners/FDclosed+independentR1reviewa4cad; eligibility15e98 and oldwindowended52e014. FirstR1notrerun; olderfullsup3/60678/otherstagesclosed.",
+    "117": "Provisionaltestsclosed/sourceplansonly; no active runtime.",
+    "118": "Provisionaltestsclosed/adapterneverexecuted/sourceplansonly; no active runtime.",
+    "119": "Intakeonly/no runtime launched.",
+    "120": "Intakeonly/no runtime launched.",
+    "root": "No knownactivecontroller/proxy/workload; reserve new3h fixedremaining2 window, source/fileworkallowed but unrelatedimports/tests/lint/types/native/EE/build/install/benchmarksheld. Outsideactorsunknown_not_scanned."
+  },
+  "observed_at_unix_ns": 1794777391938506432,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "preparation_suspension_input": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-remaining2-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "74e6d330ef0910d4ee99441bb7f4fa0315bb2e33ff49bc5ef5c4bc4411997420"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "ROOT current standing suspension consumed now; outside actors unscanned; ACK is not grant authority.",
+  "stage_id": "largest-full-searched",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794788191938506432,
+    "starts_unix_ns": 1794777391938506432
+  }
+}

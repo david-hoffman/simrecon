@@ -1,0 +1,11 @@
+{
+  "id": "G07-wrong-presence-True",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "branch/profile presence mismatch"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "branch/profile presence mismatch"
+}

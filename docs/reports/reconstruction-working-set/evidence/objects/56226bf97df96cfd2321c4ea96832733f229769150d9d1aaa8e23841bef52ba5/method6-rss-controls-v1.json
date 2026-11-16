@@ -1,0 +1,1170 @@
+{
+  "protocol": "WS116-method6-deterministic-rss-v1",
+  "scope": "Finite fake owner/clock/scalar samples; actual corrected decision/final-status and existing parser helpers only. No real process, kernel event, native RSS, scientific input/result or live-race reproduction.",
+  "base_sample": {
+    "monotonic_ns": 1,
+    "pid": 7141,
+    "VmRSS_bytes": null,
+    "process_status_readable": true,
+    "field_errors": {},
+    "host_available_bytes": 4096,
+    "child_cgroup": "0::/",
+    "ancestor_current_bytes": {
+      "/synthetic": "128"
+    }
+  },
+  "synthetic_grant": {
+    "process_stop_bytes": 1024,
+    "host_min_available_bytes": 512,
+    "ancestor_stop_bytes": {
+      "/synthetic": 2048
+    }
+  },
+  "vectors": [
+    {
+      "id": "valid-RSS-nonterminal",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": 128
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": null,
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "measured-zero-terminal",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "VmRSS_bytes": 0
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": null,
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "immediate-terminal",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "delayed-terminal",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.01,
+          "after": 0.01,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.04,
+          "after": 0.04,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "terminal-exact-bound",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "terminal-after-bound",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.051,
+          "after": 0.051,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "null-RSS-expires",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "missing-RSS-expires",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {},
+          "remove_RSS": true
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {},
+          "remove_RSS": true
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "negative-RSS-expires",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": -1
+          }
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": -1
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "boolean-RSS-expires",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": true
+          }
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": true
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "text-RSS-expires",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": "unknown"
+          }
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": "unknown"
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "RSS-returns-no-terminal",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.01,
+          "after": 0.01,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": 128
+          }
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {
+            "VmRSS_bytes": 128
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "RSS-returns-terminal-within-bound",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.02,
+          "after": 0.02,
+          "owner": "terminal",
+          "sample": {
+            "VmRSS_bytes": 128
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "wait-ownership-loss",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.01,
+          "after": 0.01,
+          "owner": "wait_loss",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "ownership_lost_or_collection_interrupted",
+        "stop_reason": null,
+        "exception": "RuntimeError",
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": true,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "immediate-wait-ownership-loss",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "wait_loss",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "ownership_lost_or_collection_interrupted",
+        "stop_reason": null,
+        "exception": "RuntimeError",
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": true,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "nonterminal-notifications-not-success",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "nonterminal",
+          "sample": {}
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "nonterminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 2
+      }
+    },
+    {
+      "id": "supported-interrupt-propagates",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.01,
+          "after": 0.01,
+          "owner": "interrupt",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "ownership_lost_or_collection_interrupted",
+        "stop_reason": null,
+        "exception": "KeyboardInterrupt",
+        "terminal_present": false,
+        "status": null,
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "deadline-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.02,
+          "after": 0.02,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "deadline": 0.01,
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "timeout",
+        "exception": null,
+        "terminal_present": true,
+        "status": "timeout_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "startup-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.02,
+          "after": 0.02,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "ready": false,
+      "startup_deadline": 0.01,
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "startup_readiness_timeout",
+        "exception": null,
+        "terminal_present": true,
+        "status": "startup_timeout_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "host-low-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "host_available_bytes": 512
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "host_headroom_missing_or_deteriorated",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "host-unknown-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "host_available_bytes": null
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "host_headroom_missing_or_deteriorated",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "ancestor-high-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "ancestor_current_bytes": {
+              "/synthetic": "2048"
+            }
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "cgroup_current_threshold_or_unknown",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "ancestor-unknown-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "ancestor_current_bytes": {
+              "/synthetic": null
+            }
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "cgroup_current_threshold_or_unknown",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "cgroup-moved-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "child_cgroup": "0::/other"
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "child_cgroup_missing_or_moved",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "cgroup-missing-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {
+            "child_cgroup": null
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "child_cgroup_missing_or_moved",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "RSS-threshold-on-return-precedence",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.01,
+          "after": 0.01,
+          "owner": "terminal",
+          "sample": {
+            "VmRSS_bytes": 1024
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "process_current_RSS_threshold",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "independent-stop-remains-latched",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {
+            "host_available_bytes": 512
+          }
+        },
+        {
+          "before": 0.01,
+          "after": 0.01,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "host_headroom_missing_or_deteriorated",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "deadline-crossed-during-collect",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.04,
+          "after": 0.06,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "deadline": 0.05,
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "timeout",
+        "exception": null,
+        "terminal_present": true,
+        "status": "timeout_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "confirmation-bound-crossed-during-collect",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0.051,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "confirmed-terminal-later-host-stop",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        },
+        {
+          "before": 0.06,
+          "after": 0.06,
+          "owner": "terminal",
+          "sample": {
+            "host_available_bytes": 512
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": "host_headroom_missing_or_deteriorated",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "expired-RSS-never-reclassified",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.05,
+          "after": 0.05,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.06,
+          "after": 0.06,
+          "owner": "terminal",
+          "sample": {
+            "VmRSS_bytes": 128
+          }
+        }
+      ],
+      "expected": {
+        "gap_outcome": "strict_required_RSS_failure",
+        "stop_reason": "required_process_RSS_observation_lost",
+        "exception": null,
+        "terminal_present": true,
+        "status": "monitor_stopped",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-normal-finite",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-nonzero-finite",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "terminal_kind": "nonzero",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "child_nonzero_exit",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-signal-finite",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "terminal_kind": "signal",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "child_signaled",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-malformed-child",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "malformed",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "malformed_child_record",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-missing-child",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "missing",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "missing_child_record",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-oversized-child",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "oversized",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "child_record_exceeds_admitted_parse_bound",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-nonfinite-child",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "nonfinite_scientific_failure",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "nonfinite_scientific_failure",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-material-child",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "material_identity_failure",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "material_identity_failure",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-workflow-exception",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "workflow_exception",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "workflow_exception_unclassified",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-observation-failure",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "child": "observation_failure",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "child_observation_failure",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-identity-mismatch",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "identity_matches": false,
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "material_identity_failure",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-bootstrap-exec-error",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "bootstrap_stage": "exec",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "bootstrap_exec_failure",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "status-bootstrap-setsid-error",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "terminal",
+          "sample": {}
+        }
+      ],
+      "bootstrap_stage": "setsid",
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "bootstrap_setsid_failure",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    },
+    {
+      "id": "terminal-collected-before-bound-late-guard-refresh",
+      "steps": [
+        {
+          "before": 0,
+          "after": 0,
+          "owner": "none",
+          "sample": {}
+        },
+        {
+          "before": 0.06,
+          "after": 0.06,
+          "owner": "terminal",
+          "terminal_time": 0.04,
+          "sample": {}
+        }
+      ],
+      "expected": {
+        "gap_outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "stop_reason": null,
+        "exception": null,
+        "terminal_present": true,
+        "status": "complete_child_observed_pending_scientific_qualification",
+        "wait_ownership_lost": false,
+        "nonterminal_notifications": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "active60678_R2R3_data_read": false,
+  "actual_material35_rehashed": true,
+  "all_prior_attempts_errors_unknown_costs_preserved": true,
+  "authority": "ROOT",
+  "closed_summary_controls3_small_hashes_fingerprints_verified": true,
+  "config1774_refs1726_full_JSON_parsed_and_semantic_maps_compared": true,
+  "coordinator_independent_source_review_sha256": "18bf940772e170bb983dec6f870f3f708a804a633804ba573cb7275430fa784c",
+  "display_limit": "Initial combinedREADME/MD/inputrefs display truncated; missing MDtail recovered120-155, full421JSON read1-150/151-300/301-end; repeatedconfig/refs maps parsed/compared rather than wholevisualclaim.",
+  "exact4config_changes": true,
+  "original7family_pins_verified": true,
+  "packet_hashes": {
+    "README.md": "41f567390cee980d76ee3335fd071231aff5ec6964804d4295f07211a191c753",
+    "authority-DRAFT.json": "957224d2b7df7df16ce770dd6c80977fc422a592cf8ca1e88daa044a2f70d30b",
+    "config-row1-UNAUTHORIZED.json": "a60aab9cb312f36daf59d1f324033746a2624a76d426aee81b272ad5dbf509d9",
+    "currentstage-ledger-DRAFT.json": "092fc7d0a7aab458231a95be58d05a9ac8e3afda00b462c186330411349722ce",
+    "full-searched-r1-source-check.json": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76",
+    "full-searched-r1-source-check.md": "0e1df8da0e91272e82306bf1502a56e315be74dc8f43672d67d765ee4ab6733d",
+    "input-references.json": "2d7e88be78b4ffe2217e8010d0b629f301a70ccbdb773657c0d6270e603f048e",
+    "scheduler-ACK-DRAFT.json": "3f5774f07ffa1d6c3802ef0a3aafa09b7531717f91b2e00fe1963af465d56697",
+    "source-handoff.json": "2a262a46628c1e8dd58f342eac5b801ee76557c665979e3195f9b339394a248a",
+    "stage-admission-DRAFT.json": "b2c46af49e69a85cc65cb34da78bd8fd8750cbdd363f2ee943e33b20eb4bf244"
+  },
+  "remaining_gates": "Actualsuppliedfull3closure/8scalartriplets/primary940analysis/coorassessment/wholewindowclosed and NEWROOTsearchedstage decision, then fresh source/case/context/schedule/owner/window prep and separateexplicitfirstR1release. No helper yet.",
+  "same_core28_tool6": true,
+  "schema": "ROOT-WS116-fullsearched-source-packet-review-v1",
+  "source_execution_authorized": false,
+  "source_findings": [],
+  "status": "SOURCE_WORKSHEET_SUITABLE_FOR_FUTURE_MINIMAL_PREPARER_DESIGN_ONLY",
+  "units": "Nine overlaprecords/27backings311427072B aggregate; six supplied207618048B notsearchedtotal, largestnamed single63406080B. Coarse correlation/power/vector captures and dynamic evaluation diagnostics separate; totaltrace/native unknown, partialpayload subsets notRSS/bounds/fit.",
+  "whole_config_refs_visual_read": false,
+  "whole_text_read": {
+    "README": 70,
+    "admission": 206,
+    "authority_ACK_ledger": true,
+    "handoff": true,
+    "worksheet_JSON": 421,
+    "worksheet_MD": 144
+  }
+}

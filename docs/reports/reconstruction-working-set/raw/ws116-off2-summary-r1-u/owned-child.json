@@ -1,0 +1,33 @@
+{
+  "attempt_id": "ws116-off2-summary-r1-u",
+  "observer_pid": 50108,
+  "workload_pid": 50128,
+  "child_identity": {
+    "pid": 50128,
+    "observed_monotonic_ns": 44307994862271,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 4430799,
+    "ppid": 50108,
+    "pgid": 50108,
+    "session_id": 50108,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "session_status": "unverified until bounded readiness",
+  "target_argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r1-u/spec.json",
+    "/workspace/work/issue-116"
+  ],
+  "bootstrap_argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nstage = \"arguments\"\ntry:\n    target = json.loads(sys.argv[3])\n    stage = \"setsid\"\n    os.setsid()\n    stage = \"readiness\"\n    message = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n        \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n        \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\n    if len(message) > 512 or os.write(fd, message) != len(message):\n        raise RuntimeError(\"invalid/incomplete bounded readiness write\")\n    os.close(fd)\n    fd = -1\n    stage = \"exec\"\n    os.execve(target[0], target, os.environ.copy())\nexcept BaseException as error:\n    if fd >= 0:\n        os.close(fd)\n    detail = {\"stage\":stage, \"type\":type(error).__name__, \"message\":str(error)[:160]}\n    os.write(2, (\"WS116_BOOTSTRAP_ERROR \" + json.dumps(detail) + \"\\n\").encode())\n    raise SystemExit(125 if stage == \"exec\" else 124)\n",
+    "68",
+    "ws116-off2-summary-r1-u",
+    "[\"/workspace/work/issue-116/.venv/bin/python\", \"/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py\", \"/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r1-u/spec.json\", \"/workspace/work/issue-116\"]"
+  ],
+  "spec_sha256": "dd1d0516e0ce70ab0b781e697b0b1d6b8d8078546189c85324c70bd296d72dec",
+  "grant_sha256": "5c4c262074b1ee3eb1dd80a9e083367a2d31c582b81c48576a7220e42ef7a53e",
+  "scope": "owned child marker, not terminal receipt; missing identity fields require coordinator discovery"
+}

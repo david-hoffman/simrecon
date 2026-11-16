@@ -1,0 +1,30 @@
+{
+  "status": "case_pass_scoped_only",
+  "attempt_id": "q4-parser-a1",
+  "driver_exit": 0,
+  "execution_count": 1,
+  "prelaunch_epoch_ns": "1794718372648337983",
+  "proof_observed_epoch_ns": "1794718322287136106",
+  "proof_age_ns": "50361201877",
+  "driver_pid": 45985,
+  "vectors_completed": 151,
+  "expectation_mismatches": 0,
+  "interfaces": {
+    "child_outcome": 74,
+    "bootstrap_failure": 10,
+    "legal_numeric_dtype": 67
+  },
+  "expected_protocol_refusals": 63,
+  "fixture_output_bytes": 378698,
+  "spawned_children": 0,
+  "known_process_disposition": {
+    "actual_driver": 45985,
+    "actual_proc_and_fd_absent": true,
+    "correct_actual_pid_check_exit": 0,
+    "initial_check_error": "Initial read-only postcheck mistakenly named unrelated PID45824. It also found absent, but is not ownership evidence. No signals/actions occurred. Immediately corrected exact read-only /proc/45985 and /proc/45985/fd checks both passed."
+  },
+  "receipt_sha256": "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa",
+  "rows_sha256": "b4075111d60219184356bc235e7f81d0a6ccbb8c4ac1b4d9e5ffe243d0a4228a",
+  "scope": "151 synthetic scalar parser vectors only. Q1/Q2 evidence retained for exact unchanged-method subsets; no full new-source relabelling. No science, numerical imports, native wait-status decode, full main status ladder, scientific memory or peak-benefit claim.",
+  "disposition": "HOLD; no Q5/science/source change or retry."
+}

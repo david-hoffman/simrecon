@@ -1,0 +1,1102 @@
+{
+  "authority": "ROOT",
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+    "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+  },
+  "costs": "UNKNOWN",
+  "native_scope": "Exactdirectchild terminalthroughfinalexit; inherited/preexec/execretentionunknown, selfcumulative/observerseparate.",
+  "observed_at_unix_ns": 1794784476649204957,
+  "rows": [
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r1-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r1-p/stdout.json",
+        "sha256": "d69800a1d48c294e8c6f9f231999b5eb563096970eb350cee484ff0c1486e9ac"
+      },
+      "condition_id": "central64-summary-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 93114368,
+        "call_seconds": 101.231239711,
+        "post_observation_cumulative_self_bytes": 93114368,
+        "pre_call_cumulative_self_bytes": 78909440,
+        "spawn_to_terminal_collection_seconds": 102.317440558,
+        "target_start_to_last_snapshot_seconds": 102.095231341,
+        "terminal_kernel_bytes": 93114368,
+        "terminal_native_KiB": 90932
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 88351650659866,
+          "ru_maxrss_native_KiB": 80900,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 88351650704397,
+          "ru_maxrss_native_KiB": 80900,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 88351654829723,
+          "ru_maxrss_native_KiB": 80900,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 88351686009918,
+          "ru_maxrss_native_KiB": 83352,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 88351688940997,
+          "ru_maxrss_native_KiB": 83352,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 88372728323302,
+          "ru_maxrss_native_KiB": 84340,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 88372728531978,
+          "ru_maxrss_native_KiB": 84340,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 88452859314369,
+          "ru_maxrss_native_KiB": 90932,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 88452864420424,
+          "ru_maxrss_native_KiB": 90932,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 88452867388934,
+          "ru_maxrss_native_KiB": 90932,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r1-p/receipt.json",
+        "sha256": "c3e70b283c41a822f8e56e4db2bc87f54ff774473bef8168033845b5a6dd5b52"
+      },
+      "repetition": 1,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2757709824"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17771126784,
+          "monotonic_ns": 88453022815600
+        },
+        "confirmation_decision_monotonic": 88453.022852007,
+        "deadline_monotonic_ns": 88453061761823,
+        "first_helper_entry_monotonic": 88453.011922111,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2777120768"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17746440192,
+          "monotonic_ns": 88453011761823,
+          "pid": 52303,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2757709824"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17771126784,
+          "monotonic_ns": 88453011761823,
+          "pid": 52303,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 88453.011922111,
+            "independent_stop": null,
+            "monotonic": 88453.012304455,
+            "sample_monotonic_ns": 88453011761823,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 88453.022841311,
+            "independent_stop": null,
+            "monotonic": 88453.022852007,
+            "sample_monotonic_ns": 88453011761823,
+            "terminal_collected_monotonic_ns": 88453022562683,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 88453011761823,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 88453022562683
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "sample_count": 9565
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r2-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r2-p/stdout.json",
+        "sha256": "33385befc995ac4d61694f94d4cd55e5a80a4aafe7812c566891642ba438b4af"
+      },
+      "condition_id": "central64-summary-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 93343744,
+        "call_seconds": 86.189078312,
+        "post_observation_cumulative_self_bytes": 93343744,
+        "pre_call_cumulative_self_bytes": 78917632,
+        "spawn_to_terminal_collection_seconds": 87.074599546,
+        "target_start_to_last_snapshot_seconds": 86.92684542,
+        "terminal_kernel_bytes": 93343744,
+        "terminal_native_KiB": 91156
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 89969840679962,
+          "ru_maxrss_native_KiB": 80908,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 89969840746499,
+          "ru_maxrss_native_KiB": 80908,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 89969844276624,
+          "ru_maxrss_native_KiB": 80908,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 89969891144382,
+          "ru_maxrss_native_KiB": 83328,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 89969896141864,
+          "ru_maxrss_native_KiB": 83328,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 89989061922755,
+          "ru_maxrss_native_KiB": 84228,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 89989062043637,
+          "ru_maxrss_native_KiB": 84228,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90056016602855,
+          "ru_maxrss_native_KiB": 91156,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90056017549427,
+          "ru_maxrss_native_KiB": 91156,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90056018649620,
+          "ru_maxrss_native_KiB": 91156,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r2-p/receipt.json",
+        "sha256": "a7bfc6c95e355aab9fac3f31873aceb8722d4d20d932a0c393f991da5895bd66"
+      },
+      "repetition": 2,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "sample_count": 8255
+    },
+    {
+      "attempt_id": "ws116-gp-c64-summary-searched-r3-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r3-p/stdout.json",
+        "sha256": "5616aba57dc2c0f3a41101748ff17f5cb69990e2c8b1935e99ced969fb4f7362"
+      },
+      "condition_id": "central64-summary-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 93519872,
+        "call_seconds": 86.689723094,
+        "post_observation_cumulative_self_bytes": 93519872,
+        "pre_call_cumulative_self_bytes": 78987264,
+        "spawn_to_terminal_collection_seconds": 87.236334373,
+        "target_start_to_last_snapshot_seconds": 87.078767502,
+        "terminal_kernel_bytes": 93519872,
+        "terminal_native_KiB": 91328
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 90060796804525,
+          "ru_maxrss_native_KiB": 80976,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90060796851629,
+          "ru_maxrss_native_KiB": 80976,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90060800389295,
+          "ru_maxrss_native_KiB": 80976,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90060823626836,
+          "ru_maxrss_native_KiB": 83392,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90060827520854,
+          "ru_maxrss_native_KiB": 83392,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90080408290189,
+          "ru_maxrss_native_KiB": 84508,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90080408412955,
+          "ru_maxrss_native_KiB": 84508,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90147470535013,
+          "ru_maxrss_native_KiB": 91328,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90147471211463,
+          "ru_maxrss_native_KiB": 91328,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90147472421222,
+          "ru_maxrss_native_KiB": 91328,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-summary-searched-r3-p/receipt.json",
+        "sha256": "7e128a6311d957603b0a13c688b0a4d6cd6dcdd85e18c42337c4573836bd02b0"
+      },
+      "repetition": 3,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2522292224"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17783189504,
+          "monotonic_ns": 90147597498008
+        },
+        "confirmation_decision_monotonic": 90147.597535409,
+        "deadline_monotonic_ns": 90147636773538,
+        "first_helper_entry_monotonic": 90147.586942248,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2522292224"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17783189504,
+          "monotonic_ns": 90147586773538,
+          "pid": 52434,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2522292224"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17783189504,
+          "monotonic_ns": 90147586773538,
+          "pid": 52434,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 90147.586942248,
+            "independent_stop": null,
+            "monotonic": 90147.586969765,
+            "sample_monotonic_ns": 90147586773538,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 90147.59752357,
+            "independent_stop": null,
+            "monotonic": 90147.597535409,
+            "sample_monotonic_ns": 90147586773538,
+            "terminal_collected_monotonic_ns": 90147597255092,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 90147586773538,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 90147597255092
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "sample_count": 8114
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r1-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r1-p/stdout.json",
+        "sha256": "7117216f396dc0676c9b67829c098f02ddd0bf8418df34447401e3f77e9fe71e"
+      },
+      "condition_id": "central64-full-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 114651136,
+        "call_seconds": 85.212281825,
+        "post_observation_cumulative_self_bytes": 114782208,
+        "pre_call_cumulative_self_bytes": 78831616,
+        "spawn_to_terminal_collection_seconds": 85.873687237,
+        "target_start_to_last_snapshot_seconds": 85.73460762,
+        "terminal_kernel_bytes": 114913280,
+        "terminal_native_KiB": 112220
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 90152082048732,
+          "ru_maxrss_native_KiB": 80824,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90152082112417,
+          "ru_maxrss_native_KiB": 80824,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90152086434713,
+          "ru_maxrss_native_KiB": 80824,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90152118566062,
+          "ru_maxrss_native_KiB": 83116,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90152122420234,
+          "ru_maxrss_native_KiB": 83116,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90171071740171,
+          "ru_maxrss_native_KiB": 103616,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90171071806737,
+          "ru_maxrss_native_KiB": 103616,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90237280906595,
+          "ru_maxrss_native_KiB": 111964,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90237280958362,
+          "ru_maxrss_native_KiB": 111964,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90237281473307,
+          "ru_maxrss_native_KiB": 111964,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r1-p/receipt.json",
+        "sha256": "ad3d24019fe6591b45129cc382a612b2f0af5ad89dbe4fcc5d45aa671d473743"
+      },
+      "repetition": 1,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false,
+      "sample_count": 8131
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r2-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r2-p/stdout.json",
+        "sha256": "172a63743de2f0c1b1be3fcc4df7f98a9a9e8b97e2ab9358ee002907f5cd779c"
+      },
+      "condition_id": "central64-full-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 114999296,
+        "call_seconds": 87.227443249,
+        "post_observation_cumulative_self_bytes": 115130368,
+        "pre_call_cumulative_self_bytes": 78716928,
+        "spawn_to_terminal_collection_seconds": 87.802820121,
+        "target_start_to_last_snapshot_seconds": 87.677278924,
+        "terminal_kernel_bytes": 115130368,
+        "terminal_native_KiB": 112432
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 90243179206052,
+          "ru_maxrss_native_KiB": 80712,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90243179272498,
+          "ru_maxrss_native_KiB": 80712,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90243183443684,
+          "ru_maxrss_native_KiB": 80712,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90243212221602,
+          "ru_maxrss_native_KiB": 83160,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90243215424236,
+          "ru_maxrss_native_KiB": 83160,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90263638585871,
+          "ru_maxrss_native_KiB": 103388,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90263638803169,
+          "ru_maxrss_native_KiB": 103388,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90330400240818,
+          "ru_maxrss_native_KiB": 112304,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90330400388899,
+          "ru_maxrss_native_KiB": 112304,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90330400645199,
+          "ru_maxrss_native_KiB": 112304,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r2-p/receipt.json",
+        "sha256": "88d5a09f07d383cf21b5e293865e5ee53518d391aa643972dd6e66c653629922"
+      },
+      "repetition": 2,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2533552128"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17785810944,
+          "monotonic_ns": 90330514824701
+        },
+        "confirmation_decision_monotonic": 90330.514857422,
+        "deadline_monotonic_ns": 90330554279962,
+        "first_helper_entry_monotonic": 90330.504430113,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2551713792"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17760923648,
+          "monotonic_ns": 90330504279962,
+          "pid": 52553,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2533552128"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17785810944,
+          "monotonic_ns": 90330504279962,
+          "pid": 52553,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 90330.504430113,
+            "independent_stop": null,
+            "monotonic": 90330.50445826,
+            "sample_monotonic_ns": 90330504279962,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 90330.514847562,
+            "independent_stop": null,
+            "monotonic": 90330.514857422,
+            "sample_monotonic_ns": 90330504279962,
+            "terminal_collected_monotonic_ns": 90330514630530,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 90330504279962,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 90330514630530
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "sample_count": 8422
+    },
+    {
+      "attempt_id": "ws116-gp-c64-full-searched-r3-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r3-p/stdout.json",
+        "sha256": "41e28e2465d59337c5aafbaee4ac7b643a70c23f20fe2e2859221c42b4e24990"
+      },
+      "condition_id": "central64-full-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 115208192,
+        "call_seconds": 84.735663461,
+        "post_observation_cumulative_self_bytes": 115339264,
+        "pre_call_cumulative_self_bytes": 79122432,
+        "spawn_to_terminal_collection_seconds": 85.491235199,
+        "target_start_to_last_snapshot_seconds": 85.308712138,
+        "terminal_kernel_bytes": 115339264,
+        "terminal_native_KiB": 112636
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 90334944189409,
+          "ru_maxrss_native_KiB": 81108,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90334944239181,
+          "ru_maxrss_native_KiB": 81108,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90334948443698,
+          "ru_maxrss_native_KiB": 81108,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90334971446303,
+          "ru_maxrss_native_KiB": 83536,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90334974555734,
+          "ru_maxrss_native_KiB": 83536,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90354491589383,
+          "ru_maxrss_native_KiB": 104024,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90354491699439,
+          "ru_maxrss_native_KiB": 104024,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90419669783056,
+          "ru_maxrss_native_KiB": 112508,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 90419670151406,
+          "ru_maxrss_native_KiB": 112508,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 90419670738439,
+          "ru_maxrss_native_KiB": 112508,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-c64-full-searched-r3-p/receipt.json",
+        "sha256": "a317da360646082f2f224bf05592dea30abd48c58f81777f8933a7191588999d"
+      },
+      "repetition": 3,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2540363776"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17769988096,
+          "monotonic_ns": 90419866142828
+        },
+        "confirmation_decision_monotonic": 90419.866053436,
+        "deadline_monotonic_ns": 90419915478875,
+        "first_helper_entry_monotonic": 90419.865703295,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2540363776"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17769988096,
+          "monotonic_ns": 90419865478875,
+          "pid": 52613,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2540363776"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17769988096,
+          "monotonic_ns": 90419865478875,
+          "pid": 52613,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 90419.865703295,
+            "independent_stop": null,
+            "monotonic": 90419.866053436,
+            "sample_monotonic_ns": 90419865478875,
+            "terminal_collected_monotonic_ns": 90419865914996,
+            "terminal_observed": true
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 90419.866160072,
+            "independent_stop": null,
+            "monotonic": 90419.866165874,
+            "sample_monotonic_ns": 90419865478875,
+            "terminal_collected_monotonic_ns": 90419865914996,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 90419865478875,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 90419865914996
+      },
+      "rss_terminal_confirmation_key_present": true,
+      "sample_count": 8099
+    }
+  ],
+  "rss_scope": "RawABSENT-vs-null presence retained, no numericzero/gapcauseinference.",
+  "schema": "ROOT-WS116-central6-independent-sixteen-triplets-v1",
+  "scientific_acceptance": false,
+  "scope": "Independent6closedrawscalar extraction/8metrics per mode and sorted3middlevalue; no statistics/canonical import or crossmode/profile-unprofiled pooling. No isolatedstageallocation/overheadratio/ranking/benefit.",
+  "triplets_by_condition": {
+    "central64-full-searched": {
+      "call_end_cumulative_self_bytes": {
+        "max": 115208192,
+        "median": 114999296,
+        "min": 114651136,
+        "repetition_values": [
+          114651136,
+          114999296,
+          115208192
+        ],
+        "sorted_three": [
+          114651136,
+          114999296,
+          115208192
+        ]
+      },
+      "call_seconds": {
+        "max": 87.227443249,
+        "median": 85.212281825,
+        "min": 84.735663461,
+        "repetition_values": [
+          85.212281825,
+          87.227443249,
+          84.735663461
+        ],
+        "sorted_three": [
+          84.735663461,
+          85.212281825,
+          87.227443249
+        ]
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 115339264,
+        "median": 115130368,
+        "min": 114782208,
+        "repetition_values": [
+          114782208,
+          115130368,
+          115339264
+        ],
+        "sorted_three": [
+          114782208,
+          115130368,
+          115339264
+        ]
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 79122432,
+        "median": 78831616,
+        "min": 78716928,
+        "repetition_values": [
+          78831616,
+          78716928,
+          79122432
+        ],
+        "sorted_three": [
+          78716928,
+          78831616,
+          79122432
+        ]
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 87.802820121,
+        "median": 85.873687237,
+        "min": 85.491235199,
+        "repetition_values": [
+          85.873687237,
+          87.802820121,
+          85.491235199
+        ],
+        "sorted_three": [
+          85.491235199,
+          85.873687237,
+          87.802820121
+        ]
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 87.677278924,
+        "median": 85.73460762,
+        "min": 85.308712138,
+        "repetition_values": [
+          85.73460762,
+          87.677278924,
+          85.308712138
+        ],
+        "sorted_three": [
+          85.308712138,
+          85.73460762,
+          87.677278924
+        ]
+      },
+      "terminal_kernel_bytes": {
+        "max": 115339264,
+        "median": 115130368,
+        "min": 114913280,
+        "repetition_values": [
+          114913280,
+          115130368,
+          115339264
+        ],
+        "sorted_three": [
+          114913280,
+          115130368,
+          115339264
+        ]
+      },
+      "terminal_native_KiB": {
+        "max": 112636,
+        "median": 112432,
+        "min": 112220,
+        "repetition_values": [
+          112220,
+          112432,
+          112636
+        ],
+        "sorted_three": [
+          112220,
+          112432,
+          112636
+        ]
+      }
+    },
+    "central64-summary-searched": {
+      "call_end_cumulative_self_bytes": {
+        "max": 93519872,
+        "median": 93343744,
+        "min": 93114368,
+        "repetition_values": [
+          93114368,
+          93343744,
+          93519872
+        ],
+        "sorted_three": [
+          93114368,
+          93343744,
+          93519872
+        ]
+      },
+      "call_seconds": {
+        "max": 101.231239711,
+        "median": 86.689723094,
+        "min": 86.189078312,
+        "repetition_values": [
+          101.231239711,
+          86.189078312,
+          86.689723094
+        ],
+        "sorted_three": [
+          86.189078312,
+          86.689723094,
+          101.231239711
+        ]
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 93519872,
+        "median": 93343744,
+        "min": 93114368,
+        "repetition_values": [
+          93114368,
+          93343744,
+          93519872
+        ],
+        "sorted_three": [
+          93114368,
+          93343744,
+          93519872
+        ]
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 78987264,
+        "median": 78917632,
+        "min": 78909440,
+        "repetition_values": [
+          78909440,
+          78917632,
+          78987264
+        ],
+        "sorted_three": [
+          78909440,
+          78917632,
+          78987264
+        ]
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 102.317440558,
+        "median": 87.236334373,
+        "min": 87.074599546,
+        "repetition_values": [
+          102.317440558,
+          87.074599546,
+          87.236334373
+        ],
+        "sorted_three": [
+          87.074599546,
+          87.236334373,
+          102.317440558
+        ]
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 102.095231341,
+        "median": 87.078767502,
+        "min": 86.92684542,
+        "repetition_values": [
+          102.095231341,
+          86.92684542,
+          87.078767502
+        ],
+        "sorted_three": [
+          86.92684542,
+          87.078767502,
+          102.095231341
+        ]
+      },
+      "terminal_kernel_bytes": {
+        "max": 93519872,
+        "median": 93343744,
+        "min": 93114368,
+        "repetition_values": [
+          93114368,
+          93343744,
+          93519872
+        ],
+        "sorted_three": [
+          93114368,
+          93343744,
+          93519872
+        ]
+      },
+      "terminal_native_KiB": {
+        "max": 91328,
+        "median": 91156,
+        "min": 90932,
+        "repetition_values": [
+          90932,
+          91156,
+          91328
+        ],
+        "sorted_three": [
+          90932,
+          91156,
+          91328
+        ]
+      }
+    }
+  }
+}

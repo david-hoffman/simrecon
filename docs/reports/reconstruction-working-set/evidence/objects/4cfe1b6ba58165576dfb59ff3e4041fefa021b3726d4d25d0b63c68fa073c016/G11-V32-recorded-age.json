@@ -1,0 +1,11 @@
+{
+  "id": "G11-V32-recorded-age",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "recorded invocation proof/metadata ages invalid"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "recorded invocation proof/metadata ages invalid"
+}

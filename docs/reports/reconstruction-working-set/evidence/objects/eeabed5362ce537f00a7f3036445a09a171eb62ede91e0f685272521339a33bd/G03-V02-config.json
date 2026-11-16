@@ -1,0 +1,11 @@
+{
+  "id": "G03-V02-config",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "actual config/source/table binding differs"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "actual config/source/table binding differs"
+}

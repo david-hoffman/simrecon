@@ -1,0 +1,74 @@
+{
+  "schema": "WS116-largest256-profile-remaining5-source-handoff-v1",
+  "status": "SOURCE_READY_HOLD",
+  "artifacts": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/root-prepare-remaining5-largest256-profiles.py",
+      "sha256": "2b31d4a9dc841b821db2f1fd328a7d2019ae1617c60fb7c6e77f264eb653d13e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/source-manifest.json",
+      "sha256": "d5c1b9a803dd843d8c14c7c31d057eb4658ee4e0d061bcf9d19441e8e854016b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "3e305c4d0e82c90e37cc5f9afeaf7fd1691b1ccc6455799814b842ee80a24e32"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/README.md",
+      "sha256": "ef99ffc8518136f2dcc13fb3ac073a99b8a7b351248cbe4217acb6eb959ba008"
+    }
+  ],
+  "self_hash": "External after exclusive creation; no self-reference.",
+  "source_parents": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-remaining5-source/root-prepare-remaining5-central-profiles.py",
+      "sha256": "818eac071408569fcb43bd81a63437c4e3526cbca099686eb1775c230e4330da"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/root-prepare-first-largest256-profile.py",
+      "sha256": "c012107b04bf5e805a86c7c76a9afd870c72bdd565f85f7550c1545b0b119541"
+    }
+  ],
+  "known_static_inputs": {
+    "first_config_sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6",
+    "SAME_stage_admission_sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80",
+    "scope": "Read only these static frozen inputs and immutable source/case files. Active29012 batch/raw/currentproof/status/process/RSS/outcome not followed."
+  },
+  "unknown_future_inputs": [
+    "Actual first boundary/receipt/postmetadata",
+    "Two actual R1 birth/FD identities",
+    "ROOT actual eligibility",
+    "Controller29012 actual terminal0/no pending proxy",
+    "Explicit old4h window end",
+    "Fresh ROOT authorization/suspension/window/metadata/context"
+  ],
+  "minimal_delta": [
+    "818e finite same-stage continuation port: only global indices2–6 largest256 summarypR2/R3 then fullpR1–R3, selected256/two growthconditions/six controls/prior6; exact first446/ad850 preserved, no R1retry/newstage.",
+    "Future R1 ROOT prerequisite protocol declares explicit semantic facts plus actual hash/expected-JSON bindings without inventing any completed eligibility/window artifact schema or fields. Actual boundary/receipt/finalmetadata/expectedowner2 all unknown now.",
+    "Derive exact owner2 from actual receipt/markers/startupFDs and postmetadata; require one fresh fixed157metadata exact2 absence and one existing472capture; prior-stage owners never refreshed.",
+    "Both largest256 mode-specific ancestor/host margins and frozen7200/7320/disk5915017216 proposals copied unchanged. Six-hour21600 operational reservation does not promise five maximum rows fit; existing every-row deadline+120 stop/HOLD/no autoextend/skip/retry.",
+    "Retain two source passes/13future artifacts/configfalse/ROOTAUTHORITY exactpathSHA neverACK; no grant/intent/binder/workload call."
+  ],
+  "effects": {
+    "new_named_source_files": 5,
+    "existing_source_config_admission_modified": false,
+    "EA_or_Current_edits": false,
+    "active_first_data_read": false,
+    "helper_import_AST_lint_tests_QA": false,
+    "native_probe_resource_capture_metadata_workflow": false,
+    "actual_preparation_or_science": false
+  },
+  "source_validation": "Source/file reads, authoring and SHA only. Syntax and runtime UNVALIDATED. No new preparation failure/runtime finding diagnosed; all old errors/attempts/unknown charges retained.",
+  "accounting": {
+    "author_preparations": 38,
+    "author_executions": 9,
+    "author_total": 47,
+    "original_launches": 1,
+    "costs": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "model_attribution": "UNKNOWN",
+    "all_prior_bytes_errors_attempts_charges_preserved": true
+  },
+  "next": "HOLD for coordinator and ROOT whole-source inspection. No actual prep/release authority inferred."
+}

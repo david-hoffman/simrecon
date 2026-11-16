@@ -1,0 +1,97 @@
+{
+  "approved": true,
+  "scope": "WS116-Q5-tinyhash-v1",
+  "case": "Q5-tinyhash",
+  "attempt_id": "q5-tinyhash-a1",
+  "candidate_head": "86c81b8e68be1e49b8ea2d432cf8659ad81f2538",
+  "python_resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "campaign_ownership_resolved": true,
+  "launch_nonce": "q5-tinyhash-a1",
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/method_qualification.py": "fa0ad84441e272a918a3306b461cf3b8f1947fdfe9a453627bed861d6e99cc34",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json": "e9b1e1261cbc0392ed0240eabe0c07df9b9e6db6eefcb2f8ba760b120a4e644c",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/tiny-hash-vectors-v1.json": "38f32d39f93e15ecdcbb8528914e9190c3af626390b661e2962d0e4b9ee58750",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+  },
+  "bounds": {
+    "sample_seconds": 0.01,
+    "term_grace_seconds": 0.2,
+    "kill_reap_seconds": 2,
+    "soft_deadline_seconds": 20,
+    "life_deadline_seconds": 5,
+    "startup_timeout_seconds": 5,
+    "startup_pipe_bytes": 1024,
+    "max_record_bytes": 1048576,
+    "target_ready_bytes": 2048,
+    "target_self_exit_seconds": 12,
+    "deadline_after_target_ready_seconds": 1,
+    "process_stop_bytes": 268435456,
+    "host_min_available_bytes": 536870912,
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "process_stop_bytes": 268435456,
+  "host_min_available_bytes": 536870912,
+  "ancestor_stop_bytes": {
+    "/sys/fs/cgroup": 4294967296
+  },
+  "prerequisites": {},
+  "retained_method5_Q1": {
+    "receipt_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/receipt.json",
+    "receipt_sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce",
+    "lifecycle_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/normal-lifecycle.json",
+    "lifecycle_sha256": "b6997727dea0d12fe5d497d335f0f2fb483aa44273e997a5380223f197fe729a"
+  },
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "Root explicitly released ONLY q5-tinyhash-a1 with this fresh hashed correspondence; actual admission checks remain mandatory. Coordinator independently read exact finite driver/33 literal vectors/8relations, accepted streaming and frozen reference byte protocols, resolved helper import scope and retained exact Q1/Q2/Q4 applicability;13 source identities and seven-artifact freeze match. NumPy2.5.3+stdlib+two frozen helper imports only; no product/SciPy/workflow/reference pair.32elements/512B declared arrays and references (actual48B maximum); chunk16/31/64B; frozen public iterator capacity1MiB disclosed;20s soft,8KiBrow/128KiBresults/32KiBfixture. Same256MiBprocess/64+64MiB allowances/256MiBreserve/4GiBancestorstop/512MiBhostmin. Actual admission checks source/resource/proofage<=300s/ownership; external ancestors unknown. Failure blocks further progression without retry; no scientific peak or exec-retention claim.",
+    "correspondence_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794719066308481992.json",
+      "sha256": "c287c28ae8fc17f92c6f55ff04c4e67212f527ae12e3c6e02e054687765de7b5",
+      "observed_at_unix_ns": 1794719066308481992,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "phase_bounds": {
+    "fixture_bytes": 32768,
+    "vector_count": 33,
+    "public_relation_count": 8,
+    "chunk_bytes": [
+      16,
+      31,
+      64
+    ],
+    "max_chunk_bytes": 64,
+    "max_elements": 32,
+    "max_backing_bytes": 512,
+    "max_array_bytes": 512,
+    "result_row_bytes": 8192,
+    "results_file_bytes": 131072,
+    "wall_seconds": 20,
+    "reference_iterator_elements": 65536,
+    "reference_iterator_capacity_bytes": 1048576
+  }
+}

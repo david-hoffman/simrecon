@@ -1,0 +1,251 @@
+{
+  "protocol": "WS116-EA-primary-source-full256-supplied-r1-liveness-v1",
+  "status": "SOURCE_REPRESENTATION_LIVENESS_RECONCILED_NOT_RUNTIME_ADMISSION",
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "exact_case": {
+    "shape_TDZYX": [
+      1,
+      3,
+      8,
+      256,
+      256
+    ],
+    "raw_TDPZYX": [
+      1,
+      3,
+      5,
+      8,
+      256,
+      256
+    ],
+    "mode": "full",
+    "entry": "simrecon.reconstruct_workflow",
+    "search": false,
+    "repetition": 1,
+    "profile": false,
+    "orders": 3,
+    "quadrature_slots": 5,
+    "off_exposures": 0,
+    "phase_policy": "uniform",
+    "lateral_zoom": 2,
+    "axial_zoom": 1,
+    "drift_between_within": false
+  },
+  "EA35_primary_source_hashes_verified": {
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec"
+  },
+  "frozen_existing_case_table": {
+    "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+    "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+  },
+  "ROOT_summary_selection": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+    "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+  },
+  "unit_explicit_inventory": {
+    "caller_raw": {
+      "shape": [
+        1,
+        3,
+        5,
+        8,
+        256,
+        256
+      ],
+      "elements": 7864320,
+      "dtype": "float32",
+      "bytes": 31457280
+    },
+    "caller_transfer": {
+      "shape": [
+        3,
+        64,
+        16
+      ],
+      "elements": 3072,
+      "dtype": "complex128",
+      "bytes": 49152
+    },
+    "workflow_raw_snapshot": {
+      "elements": 7864320,
+      "dtype": "float32",
+      "bytes": 31457280
+    },
+    "workflow_transfer_snapshot": {
+      "elements": 3072,
+      "dtype": "complex128",
+      "bytes": 49152
+    },
+    "prepared_q_and_each_full_q_snapshot_or_filter_buffer": {
+      "shape": [
+        1,
+        3,
+        5,
+        8,
+        256,
+        129
+      ],
+      "elements": 3962880,
+      "dtype": "complex128",
+      "bytes": 63406080
+    },
+    "native_one_side_volume": {
+      "shape": [
+        8,
+        256,
+        256
+      ],
+      "elements": 524288,
+      "complex128_bytes": 8388608
+    },
+    "one_overlap_fourier_or_spatial": {
+      "shape": [
+        2,
+        8,
+        256,
+        256
+      ],
+      "elements": 1048576,
+      "dtype": "complex128",
+      "bytes_each": 16777216
+    },
+    "one_overlap_mask": {
+      "elements": 1048576,
+      "dtype": "bool",
+      "bytes": 1048576
+    },
+    "six_overlap_records_aggregate": {
+      "records": 6,
+      "Fourier_spatial_mask_backings": 18,
+      "payload_bytes": 207618048,
+      "NOT_one_allocation": true
+    },
+    "stage_image_and_final_image_each": {
+      "shape": [
+        1,
+        8,
+        512,
+        512
+      ],
+      "elements": 2097152,
+      "dtype": "float64",
+      "bytes_each": 16777216
+    },
+    "one_padded_or_inverse_complex_output_volume": {
+      "elements": 2097152,
+      "dtype": "complex128",
+      "bytes_each": 33554432
+    }
+  },
+  "full_lifetimes": [
+    {
+      "stage": "caller/input snapshots",
+      "facts": "Child retainscase andlaterresult throughfinite/hash/retained observations. Workflow copiesraw preservingf32, copiestransferc128; acceptedtransferbacking isindependentownedreadonlycopy. Nativecase hasno layout/off/drift/calibration volumes. Rawprivateworkflow snapshotdiesafterpreparation; callerrawcontinues."
+    },
+    {
+      "stage": "preparation",
+      "facts": "CameraCorrectionState.load converts/correctsonefloat64plane; on/FFT/separationper-plane scratch andper-directionaxialFFT coexistwithcomplex128q. FullAcquisitionBands retainsq/noise/corediagnostics+phase-designsnapshots; _finish_owned transfersprivatebuffers withoutduplicatefinalcopy. Event ndarraycaptures areindependentcopies. No full-volume float64raw conversion."
+    },
+    {
+      "stage": "estimation",
+      "facts": "Fullpath copiesq onceforstableestimatorinput; supplied3directionsxorders1,2=6overlapbuilds. EachretainsFourier+spatial+boolmask inparameters.overlaps; no compactdescriptor omission. Privateestimatorq snapshotdiesonreturn; overlaps/traces persistthroughfullresult. Preparedq remainsalive."
+    },
+    {
+      "stage": "filtering",
+      "facts": "select_time_bands slicesTaxis asviews retainingpreparedbuffers, nosecondqallocationfortheslice. Fullknown path copiesqintooriginal, allocatesfiltereddestination; filter_native_quadratures makesone-timecopyhelperreturnedintodestination (T1=fullQ). original,destination,helperQ plusonecomplexnativeplus cancoexistwithpreparedq/parametersoverlaps; originaldeletedafterfilterbeforeassembly."
+    },
+    {
+      "stage": "assembly/result",
+      "facts": "Filteredq/image becomeKnownReconstructionreadonlyinplace, _readonly doesNOTcopy. Onepadded andinversecomplexvolume cancoexistduringFFT; paddeddelbeforecarrierphase/product; inverse deletedperorder. Fullworkflow retainsKnownReconstruction(s),preparedbands,parameters/overlaps/trace. concatenatecreatesseparatefinalfloat64image evenT1; readonly_private_arrayonlyflagsit, noextraimagecopy. Fullworkflowcoordinates areindependentC-ordercopies ofknowncoords. Caller+bothstage/finalimages+filteredq+preparedq+overlapsremainthroughoutputobservation."
+    }
+  ],
+  "source_references": {
+    "fixture": "tests/reconstruction_summary_fixture.py:158\u2013214;90\u2013101",
+    "child_ownership": "docs/reports/reconstruction-working-set/workload_child.py:58\u201396",
+    "workflow": "src/simrecon/workflow/reconstruct.py:114\u2013140,278\u2013436,536\u2013565",
+    "views": "src/simrecon/workflow/adapters.py:174\u2013212",
+    "transfercopy": "src/simrecon/workflow/transfer.py:387\u2013429",
+    "finish_and_event_copies": "src/simrecon/acquisition/layout.py:152\u2013176,202\u2013237",
+    "preparation": "src/simrecon/acquisition/modes.py:355\u2013382,711\u2013790,950\u20131005,1094\u20131140",
+    "full_overlaps": "src/simrecon/reconstruction/parameter_estimation.py:492\u2013572,1149\u20131179,1260\u20131273",
+    "filter_assembly_result": "src/simrecon/reconstruction/known_parameters.py:700\u2013762,834\u2013895,1110\u20131120,1170\u20131225",
+    "actual_extent_checks": "parameter_estimation.py:150\u2013186;known_parameters.py:138\u2013149;acquisition/layout.py extent/signed;optical_transfer.py:450\u2013503"
+  },
+  "representation": {
+    "signed_count_max_listed_elements": 7864320,
+    "signed32_positive_limit": 2147483647,
+    "native_64bit_intp_limit": 9223372036854775807,
+    "largest_named_single_backing_bytes": 63406080,
+    "conservative_table_listed_aggregate_byte_extent": 207618048,
+    "table_label_clarification": "native_intp.maximum_listed_allocation_bytes=207618048 isretained6-overlapaggregate, NOToneallocatedndarray. Allnamedactualsinglearraybyteextentsandthislargerlistedaggregate fitnativeintp. Originaltableunchanged; doNOTreportaggregateassingleallocation.",
+    "runtime_scope": "Sourcecheckspositiveactualdimensions/itemsizeproducts/strides plus signedsourcecounts/indices; runtimeallocations/containers/backendfailures remainpossible, fittingintpisnotRAMfit."
+  },
+  "stencil_domain": {
+    "radial_native_support_cyc_um_max": 0.5,
+    "table_dkr_cyc_um": 0.125,
+    "u_max": 4,
+    "native_Z": 8,
+    "actual_clipped_axial_abs_max": 3,
+    "native_and_table_dkz_cyc_um": 0.125,
+    "K": 16,
+    "radii": 64,
+    "flat_elements_per_order": 1024,
+    "maximum_enclosing_vertex_index": 95,
+    "proof": "Optics500nm/NA1/index1 producespreclipaxialcutoff aboveZ//2; estimatorclip>limit andfilterclip>=limit bothgive3here. Estimator/filter supportmasks precedeallactualOTFsamples, inclshiftedotherbands; u<=4,oneaddKfornegativeaxial,all4flatvertices<=95<1024 andsigned32. Thisisconservativesourceenclosure, notruntimequerytrace/scientificvalueproof."
+  },
+  "partial_logical_live_subsets_existing_bytes": {
+    "preparation_caller_snapshot_q_offq_metadata_plane_fft_subset": 153826832,
+    "estimation_caller_q_snapshot_retained_overlap_subset": 367001296,
+    "compact_search_later_overlap_build_subset": null,
+    "filter_caller_prepared_retained_overlap_prior_outputs_dest_original_helper_plus_subset": 502202064,
+    "assembly_inverse_caller_q_retained_overlap_filtered_prior_outputs_image_padded_inverse_subset": 450887376,
+    "assembly_side_product_caller_q_retained_overlap_filtered_images_spatial_product_plane_subset": 473956048,
+    "result_concatenation_subset": 400555728
+  },
+  "partial_inventory_limit": "Existinglargestnamedsubset502202064B/filtering andresultconcat400555728B arebacking-awarepartiallogicalco-live inventories, NOTRSSpredictions/strictupperbounds/fitproof. DoNOTsumstage/subsetvalues. E.gindependentworkflowtransfer49152B andPython/scalar/container/header/allocator/FFTworkspaces/transientfinitebuffers/nativecaches/traceobjects are notfullyclosedbythoseformulas. Fullpreparedmetadata/trace sourcecounts areseparatelylisted below, notheapguarantees.",
+  "full_named_diagnostics_bytes": {
+    "prepared_core_metadata": 1058320,
+    "phase_design_trace_snapshot_payload": 6336,
+    "full_preparation_named_diagnostics_and_trace_payload": 1064656,
+    "off_combination": 0,
+    "drift_large_trace": 0
+  },
+  "unchanged_operating_proposal": {
+    "kind": "unmeasured conservative operating proposal; no admission or measured bound",
+    "predicted_child_peak_bytes": 4294967296,
+    "native_allocator_allowance_bytes": 2147483648,
+    "process_stop_bytes": 8589934592,
+    "reserve_bytes": 4294967296,
+    "host_min_available_bytes": 12884901888,
+    "proposed_each_visible_ancestor_stop_bytes": 16106127360,
+    "ancestor_condition": "apply only if current+process_stop+reserve<=threshold<finite limit; every ancestor mapped separately; max-limited ancestors must still have explicit threshold",
+    "deadline_seconds": 3600,
+    "startup_timeout_seconds": 5,
+    "startup_pipe_bytes": 1024,
+    "terminate_grace_seconds": 0.2,
+    "kill_reap_seconds": 2,
+    "max_child_record_bytes": 4194304,
+    "sample_interval_seconds": 0.01,
+    "correspondence_prelaunch_age_seconds_max": 5,
+    "correspondence_maximum_age_seconds": 3720,
+    "proof_age_basis": "fresh capture at most5s prelaunch; maxage=spawn-to-terminal deadline+120s covers prelaunch5s+cleanup2.2s+final evidence allowance60s+52.8s margin; end validation preserved; no reuse of old captures",
+    "disk_proposal_bytes": 2965897216,
+    "disk_basis": "8192 bytes/sample at100Hz plus16MiB allowance is an operating disk reserve proposal, not exact log-size bound; actual filesystem free/block budget must satisfy it"
+  },
+  "runtime_admission": "NOTgrantedbythissourcecheck. P4GiB+native2/stop8/reserve4/ancestor15/host12/deadline3600/horizon3720 remainROOToperatingproposals, notmeasuredpeak/timepromise. ROOTfreshcase/source/scheduler/domain/current/headroom/rlimits/disk/events/swap/window/authority required. No summaryRSS extrapolation ororiginaltarget16GiBclaim.",
+  "performed": "PrimaryEA-source/text/hash andplainintegerunitreconciliationonly; no scientific/native/productimports/tests/probes/capture/PID/FDreads/worktreechanges. No framework/newrole, investigatorprep26/exec9total35 unchanged; costsUNKNOWN."
+}

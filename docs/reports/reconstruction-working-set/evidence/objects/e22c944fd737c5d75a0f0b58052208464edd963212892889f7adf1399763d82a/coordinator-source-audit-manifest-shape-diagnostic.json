@@ -1,0 +1,6 @@
+{
+  "status": "COORDINATOR_FILE_AUDIT_ASSERTION_FAILED",
+  "cause": "Coordinator treated declared_future_output_files as integer13. Actualmanifest correctly lists13 exact filenames; source and template are unchanged. Initialaudit reached this source-record shape assertion after priorpins/runtime/control/eligibility checks, before review output.",
+  "correction": "Use exactlist/len13, no helper/source/runtime/data repair or target call.",
+  "costs": "UNKNOWN"
+}

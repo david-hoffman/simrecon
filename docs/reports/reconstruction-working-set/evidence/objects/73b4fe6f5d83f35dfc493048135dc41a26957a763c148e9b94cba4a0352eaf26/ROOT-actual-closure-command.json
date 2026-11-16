@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/root-close-fullsupplied256-stage.py",
+    "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-execution-release.json",
+    "21c6db1c1b2d0cb0dcc311933db9627bd3206e2f28ca8744418d061bcf7d686f"
+  ],
+  "tool_result": {
+    "chunk_id": "2d4bd5",
+    "wall_time_seconds": 0.531543465,
+    "exit_code": 0,
+    "original_token_count": 55,
+    "output": "{\"closure\": {\"path\": \"/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json\", \"sha256\": \"41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b\"}}\n"
+  },
+  "execution_attempt": 1,
+  "scope": "fixed closed-file audit; no workload/capture/statistics",
+  "process_elapsed_seconds": "UNKNOWN; tool_result.wall_time_seconds is tool-reported wall wait",
+  "no_retry": true
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "WS116-full-searched-first-source-handoff-v1",
+  "status": "SOURCE_READY_DISABLED_HOLD_PENDING_SOURCE_REVIEW",
+  "author": "/root/issue_116/investigator",
+  "files_sha256": {
+    "full-searched-r1-source-check.json": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76",
+    "full-searched-r1-source-check.md": "0e1df8da0e91272e82306bf1502a56e315be74dc8f43672d67d765ee4ab6733d",
+    "config-row1-UNAUTHORIZED.json": "a60aab9cb312f36daf59d1f324033746a2624a76d426aee81b272ad5dbf509d9",
+    "stage-admission-DRAFT.json": "b2c46af49e69a85cc65cb34da78bd8fd8750cbdd363f2ee943e33b20eb4bf244",
+    "authority-DRAFT.json": "957224d2b7df7df16ce770dd6c80977fc422a592cf8ca1e88daa044a2f70d30b",
+    "scheduler-ACK-DRAFT.json": "3f5774f07ffa1d6c3802ef0a3aafa09b7531717f91b2e00fe1963af465d56697",
+    "currentstage-ledger-DRAFT.json": "092fc7d0a7aab458231a95be58d05a9ac8e3afda00b462c186330411349722ce",
+    "input-references.json": "2d7e88be78b4ffe2217e8010d0b629f301a70ccbdb773657c0d6270e603f048e",
+    "README.md": "41f567390cee980d76ee3335fd071231aff5ec6964804d4295f07211a191c753"
+  },
+  "self_identity": "This tenth file is hashed separately; no self-reference.",
+  "primary_source_findings": [
+    "Successful T1/D3/O3 full searched branch retains9overlaps: coarse(0,2), refinement(0,2), later-order(0,1) per direction; no per-trial overlap rebuild.",
+    "Supplied-six207618048B/18backings is not searched total or one allocation. Frozen searched table311427072B/27backings is also aggregate; largest named single backing63406080B.",
+    "Full coarse correlation_complex/power plus neighbors/alias/carrier arrays are independent retained captures; evaluation carrier/scalar/bracket/parabola diagnostics grow with unknown search count.",
+    "Python-local transient and all-T preparedq/full-result liveness documented; native/backend/container/complete trace totals remain unknown, with no RSS/fit extrapolation."
+  ],
+  "source_proof": {
+    "original_disabled_family_config_SHA_matched": "6a08eb2c6a5b63610a879c4af35c0aa4b9e6ddf7d4abfb5f4a7a7b9e76a82ad5",
+    "all35_EA_small_static_material_SHA_checks_matched": true,
+    "product_fixture_workflow_search_filter_acquisition_observer_source_read_as_text": true,
+    "frozen_table_searched_B9_and_partial_fields_transcribed_literally": true,
+    "new_arithmetic_program_calculator_or_statistical_computation": false,
+    "original_sources_packets_measurement_method_or_EA_changed": false
+  },
+  "disabled_packet_scope": {
+    "stage_id": "largest-full-searched",
+    "fixed_recipe_count": 3,
+    "allowed_attempt_ids": ["ws116-gp-l256-full-searched-r1-u"],
+    "config_top_level_keys": 44,
+    "authorized": false,
+    "numerical_release": false,
+    "selected_largest_size_for_actual_stage_admission": null,
+    "prefix": [],
+    "new_stage_ledger_owners_or_absence_observed": null,
+    "current_authority_window_maps_metadata_events_swap_Docker_schedule": null,
+    "known_prior_closures": "immutablea4c2/0aff/79a; additional suppliedfull closureNULL",
+    "summary_controls": "closed searched r1/r2/r3 boundaries59f0b99b/2fe931f5/67b52ffd +config72b3; small files only, no raw/sample/proof reads",
+    "comparison": "same-rep input/common/branches only across full/summary; public graph equality not required; physical/cache contexts not identical",
+    "future_batch_created_or_actual_absence_checked": false,
+    "root_authority_evidence_never_scheduler_ACK": true
+  },
+  "explicit_future_prerequisites_UNKNOWN": {
+    "ROOT_new_searched_stage_decision_admission": null,
+    "completed_supplied_full_three_eligible_rows": null,
+    "supplied_full_whole_stage_closed_owner_controller_window_artifact": null,
+    "supplied_full_actual_primary_analysis_JSON": null,
+    "supplied_full_actual_independent_analysis_JSON": null,
+    "fresh_source_case_resource_context_schedule_window_authority": null,
+    "ROOT_summary_size_selection_scope": "0f795 size256 only; next_proposed_stage is SUPPLIED and cannot authorize SEARCHED"
+  },
+  "helper": "NOT_AUTHORED; parent scientific-source inspection first; no runtime authorization inferred",
+  "authoring_diagnostic": {
+    "operation": "Source-only metadata copy in authoring orchestration",
+    "error": "ReferenceError: structuredClone is not defined",
+    "effect": "Failed before packet writes; corrected using JSON copy without arithmetic or target execution",
+    "all_failures_charges_preserved": true
+  },
+  "forbidden_reads_or_execution": {
+    "active_fullsup_R2_R3_raw_sample_status_proof_process_PID_FD_RSS_or_outcome": false,
+    "runtime_import_AST_lint_test_native_probe_capture_metadata_science": false,
+    "private_preflight_or_hypothetical_executed_row_payload_created": false,
+    "syntax_or_runtime_validated": false
+  },
+  "accounting": {
+    "author_preparations": 29,
+    "author_execution_continuations": 9,
+    "author_total": 38,
+    "original_launch": 1,
+    "all_prior_bytes_attempts_errors_unknown_charges_preserved": true,
+    "tokens": "UNKNOWN",
+    "costs": "UNKNOWN",
+    "model_serving_attribution": "UNKNOWN"
+  },
+  "next": "HOLD for parent source inspection; no helper or runtime work without explicit followup"
+}

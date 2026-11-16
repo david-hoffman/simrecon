@@ -1,0 +1,187 @@
+{
+  "schema": "WS116-finite-eleven-historical-authoring-pin-questions-v1",
+  "source_closure": {
+    "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/closure-list.json",
+    "sha256": "ae84ab7dfe606862f612d71b3cc3a90c70a09cdf6755145f3c194c9932ffdab9"
+  },
+  "current_qualification_source_gaps": 0,
+  "rows": [
+    {
+      "id": "H01",
+      "sha256": "be7bc7ce0d8cb94a7e9ac168c834290293bbcb346456b17a5e44a56133829202",
+      "original_spelling": "docs/contracts/reconstruction-working-set-v1.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/0/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H02",
+      "sha256": "ee65ecf7b4d6a0c6a56639fe2fc5c86c4e2f0056082fe5e26cb90875b00364cf",
+      "original_spelling": "docs/tasks/reconstruction-working-set.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/0/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H03",
+      "sha256": "0d56d07158a58a4840dec2d2aca6cfc523d93053101670321495d1d375f35351",
+      "original_spelling": "docs/packets/reconstruction-working-set-review.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/0/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H04",
+      "sha256": "fd49e991680fb7fa42be0044b3f501c7cac93648e6cbcdc5963fe262ea045143",
+      "original_spelling": "README.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H05",
+      "sha256": "b8fe8598ec815f38a19a97a5578d0eb3d8a343eb917bf7ba1feef15abbe95402",
+      "original_spelling": "analysis/liveness-draft.md",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H06",
+      "sha256": "43e6a49d32e3c8f3b3b877e3e8837e64089aa521afcb3024c814d907d6e44bf9",
+      "original_spelling": "manifest.json",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H07",
+      "sha256": "ebf2f8afd38b69ea0a9d02cdade1a38c97690a4ac7c74c7b2b0b3f8495216e0a",
+      "original_spelling": "run_attempt.py",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H08",
+      "sha256": "6c62b17956f3117bf17ca340cf64476c159fbb3ee8cfd8c9f7678484e91644b5",
+      "original_spelling": "workload_child.py",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H09",
+      "sha256": "5db29f904d1554313577cece54ad7705ba6bf4ea3611a91dbd53adef683e4555",
+      "original_spelling": "observer.py",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "roles/1/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H10",
+      "sha256": "9e443c3d8c4a2a44a8c8f5306f574e0ab434115740cdbf1602fa613dd0d33431",
+      "original_spelling": "planning-inputs.sha256",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "source_admission_planner/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    },
+    {
+      "id": "H11",
+      "sha256": "5cd9f81b66eeb96cbe740ef166bead432841253e4232c83223b836786a516ca4",
+      "original_spelling": "planner-handoff.json",
+      "binding_primary": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/launches.json",
+        "sha256": "12252f34864ab72acfd6c8894b8a388eeb9b29ef5e442dac5cc042df1e8ce64a",
+        "field": "source_admission_planner/output_sha256"
+      },
+      "original_absolute_basis": null,
+      "preserved_byte_alias": null,
+      "disposition": "HISTORICAL_AUTHORING_OUTPUT_IDENTITY_QUESTION_NOT_CURRENT_SCIENTIFIC_PREREQUISITE",
+      "scope": "Earlyintake/source/planner draft bytes; currentcorpus/material35/qualifiedmethod bindings independentlypresent. Originallaunchledgerbytes preserved. No absenceanywhere asserted.",
+      "required_for": "Any claim to reproduce ALL historical authoring artifact bytes requires exactalias/publiccommit provenance or explicitlimited unavailablehistorical disposition; currentmeasured scientificrecords need no rerun.",
+      "ROOT_resolution": "Bind existingexactbytes/fullSHA withliteralalias or ownpublicancestorcommit+path restoration evidence; do not reinterpretrelativebasename,currentbytes,or privateotherissue ancestry."
+    }
+  ],
+  "metering": "UNKNOWN preservedcharges, no numericbudget"
+}

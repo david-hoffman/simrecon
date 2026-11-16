@@ -1,0 +1,11 @@
+{
+  "id": "G01-disabled-before-evidence",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "ROOT post-window analysis release absent"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "ROOT post-window analysis release absent"
+}

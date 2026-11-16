@@ -1,0 +1,46 @@
+{
+  "closed_owned_processes": [
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r1-u",
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 51050,
+        "start_ticks": 4830051
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/receipt.json",
+        "sha256": "b3751a15599f2171ec7d6d87bb35448a1aa2f3dd3547ec0a0e610805aba7d601"
+      }
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r1-u",
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 51070,
+        "start_ticks": 4830067
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/receipt.json",
+        "sha256": "b3751a15599f2171ec7d6d87bb35448a1aa2f3dd3547ec0a0e610805aba7d601"
+      }
+    }
+  ],
+  "root_authority_sha256": "6b6c67383e4f8799d518fa36abe827c4f7396c76fa8ab47c089dced2cd189b30",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "growth192-summary",
+  "unresolved": []
+}

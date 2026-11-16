@@ -1,0 +1,200 @@
+{
+  "protocol": "WS116-fixed-stage-descriptive-v1",
+  "config_sha256": "424f25993ba834c8537c97127d99819edf7e8458af8b840ad7da31ddd85dbddb",
+  "stage_id": "growth192-summary",
+  "selected_largest_size": null,
+  "expected_stage_rows": [
+    {
+      "serial_index": 1,
+      "stage_id": "growth192-summary",
+      "condition_id": "growth192-summary-supplied",
+      "repetition": 1,
+      "profile": false,
+      "attempt_id": "ws116-gp-g192-summary-supplied-r1-u",
+      "launch_nonce": "ws116-gp-g192-summary-supplied-r1-u"
+    },
+    {
+      "serial_index": 2,
+      "stage_id": "growth192-summary",
+      "condition_id": "growth192-summary-supplied",
+      "repetition": 2,
+      "profile": false,
+      "attempt_id": "ws116-gp-g192-summary-supplied-r2-u",
+      "launch_nonce": "ws116-gp-g192-summary-supplied-r2-u"
+    },
+    {
+      "serial_index": 3,
+      "stage_id": "growth192-summary",
+      "condition_id": "growth192-summary-supplied",
+      "repetition": 3,
+      "profile": false,
+      "attempt_id": "ws116-gp-g192-summary-supplied-r3-u",
+      "launch_nonce": "ws116-gp-g192-summary-supplied-r3-u"
+    },
+    {
+      "serial_index": 4,
+      "stage_id": "growth192-summary",
+      "condition_id": "growth192-summary-searched",
+      "repetition": 1,
+      "profile": false,
+      "attempt_id": "ws116-gp-g192-summary-searched-r1-u",
+      "launch_nonce": "ws116-gp-g192-summary-searched-r1-u"
+    },
+    {
+      "serial_index": 5,
+      "stage_id": "growth192-summary",
+      "condition_id": "growth192-summary-searched",
+      "repetition": 2,
+      "profile": false,
+      "attempt_id": "ws116-gp-g192-summary-searched-r2-u",
+      "launch_nonce": "ws116-gp-g192-summary-searched-r2-u"
+    },
+    {
+      "serial_index": 6,
+      "stage_id": "growth192-summary",
+      "condition_id": "growth192-summary-searched",
+      "repetition": 3,
+      "profile": false,
+      "attempt_id": "ws116-gp-g192-summary-searched-r3-u",
+      "launch_nonce": "ws116-gp-g192-summary-searched-r3-u"
+    }
+  ],
+  "partial_selection_authorized": false,
+  "candidate": {
+    "head": "SYNTHETIC_guard_never_scientific_observation"
+  },
+  "material_hashes": {
+    "label": "96fa10f970f0365becc57b56b387724ca908893c16100a4d505dc23faec67792"
+  },
+  "source_manifest_sha256": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+  "schema_manifest_sha256": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+  "original_extractor_sha256": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+  "stage_binder_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+  "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+  "basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+  "missing_stage_recipes": [],
+  "groups": [
+    {
+      "condition_id": "growth192-summary-supplied",
+      "eligible_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "status": "three_repeat_descriptive_only",
+      "reasons": [],
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "terminal_kernel_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "call_seconds": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        }
+      }
+    },
+    {
+      "condition_id": "growth192-summary-searched",
+      "eligible_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "status": "three_repeat_descriptive_only",
+      "reasons": [],
+      "metrics": {
+        "terminal_native_KiB": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "terminal_kernel_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "call_seconds": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "spawn_to_terminal_collection_seconds": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "target_start_to_last_snapshot_seconds": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "pre_call_cumulative_self_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "call_end_cumulative_self_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        },
+        "post_observation_cumulative_self_bytes": {
+          "min": 1,
+          "median": 1,
+          "max": 1
+        }
+      }
+    }
+  ],
+  "full_summary_pairs": [],
+  "matched_control_pairs": [],
+  "fixed_stage_descriptive_complete": true,
+  "final_scientific_acceptance": false,
+  "initial60_scope": "original f6 dataset unchanged; only explicit exact controls reread here, never counted as new stage repetitions",
+  "referenced_evidence_audit_valid": false,
+  "historical_rm84_inventory": [
+    {
+      "phase": "historical",
+      "reason": "SYNTHETIC_guard_never_scientific_observation",
+      "availability": "unknown",
+      "state": "declared_historical_unknown_or_unavailable",
+      "evidence_errors": []
+    }
+  ],
+  "scope": "kernel terminal/self snapshots distinct; exec retention UNKNOWN; no subtraction, aggregate tree peak, isolated workflow allocation or measured contributor ranking",
+  "analysis_success": false,
+  "status": "descriptive_incomplete_or_reference_audit_failed"
+}

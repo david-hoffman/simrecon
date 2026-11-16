@@ -1,0 +1,565 @@
+{
+  "all35current_materials_match": true,
+  "at_unix_ns": 1794737997272567308,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "closed": true,
+  "closed_known_identity_count": 122,
+  "controller_exit_code": 0,
+  "controller_session": 72996,
+  "eligible_boundaries": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/row1-ea9117d-a1/ws116-spatial32-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "a495112a375a0fa9ecf9c6ec5e685d240aeb58aed6269cd452518ecf05ba442d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-spatial32-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "a38892581ed54349dc59312eb6eb613cf8a4c58d0230e256997a66214fece6c9"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-spatial32-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "f13a6fde2fbe7ffb66f021ed6181f7f21e40fbfcb12798cfe60b2cfcda5622eb"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-supplied-r1-u/eligible-boundary.json",
+      "sha256": "cd9f90af3c85dff9ed7470a488a315a5efbe910e8d932292d4fb0a74e1458072"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-supplied-r2-u/eligible-boundary.json",
+      "sha256": "0e9c80a4377c469b7db403ab08cb876a44adc775d556e96f292e4c40561afbef"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-supplied-r3-u/eligible-boundary.json",
+      "sha256": "4ff298755ed4e1fb292314c26fee60bc7d2127dedd67b122cb002ca0e75ee55a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "8636972ed7995367edfc09dc6ec8285a37777a757d52b4b954787dfe520f9e27"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "03d529e9dae615b76a7497c4efbffe3a57d14466a6a60837349c28dff5bf8e14"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "86708bc7fd40c15999071b09b6bb01a7bf81fd7832d2f3be392880f0295bc681"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "27a3f04f5545909b96937806ec72d58ba6d2be77aac57ac8d15213c56458592b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "04dbcf58340602e3c66fd6da5fe02b04abc54c5765c6e927bbab8f4f5ede69cb"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "aa15d737272cd70597dbb601484e599e7337c5e67c0f37851d2226430d5999ce"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "7a8f3424ddaa0808262ca18cf9daa24b0f749424f5a24f1afda91e35241726c1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "bb629a8ada15b45a4b65b9deb7dbef49bee032535ac2398a5983b0e9311dc339"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "a10f875445267408470f1ac877276e109c24c6529f6d45bb4565a3729226de36"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-supplied-r1-u/eligible-boundary.json",
+      "sha256": "a83b865a8057af5e89faeb7c7e9809ae79601ff1f01894bc6055ace2eab23fe1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-supplied-r2-u/eligible-boundary.json",
+      "sha256": "78686e65b9fc207693cee6a1acd8a3c05c11509856bcfd136124970019d8876f"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-supplied-r3-u/eligible-boundary.json",
+      "sha256": "284f02edcc69ac2f50b282c2e95e6249ba4e07f3973e752f79fc6ff7ef7f6017"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "e421c75d68447d48f601817d3d9280f429dfd8a38b80665dd662d37e46218694"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "e219e8add4d5177d90c5f7ffc5601a71e0acef454d4a5dd32f77a02240538906"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "6d17561f8b1c50b9c4bfcf127714fd95d48ba521dcd6fda9860eddbbbbe623a4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "1f6cdc95fca57dd9369e668312e5dd30db9105bf90893af081fc21bf3688c2d4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "709b5a021115c6b612e7fd7e6fc6fddebfd33b667a8f41629f1476b35f6d0587"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "785ca2dd385c00203f62b7a8de31733eec0041210621112a31fa3e88fa75abdc"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "fd88ddec7da168f7a768b9287532466857262a7bf94fc49766dca3ce67f73007"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "ca0b2853e1d2cbef420746f47292a78a6e59560a5e04725e5c551c0f7bef50f1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-frozen128-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "817bb6e346525af070957edab7504ec7ad41cdd4941dd88663fa16f177418ab2"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-direction1-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "f3fdf0010faa205aa65d7ba15b0dd4c7ed4267f5832e60e0988f1dc295c4d03b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-direction1-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "9e3a26411027e0c58e2a9dcf7a857b9189fb831016983d1b0e500e0c0879546e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-direction1-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "083ed05d12da6d0cb7ed54a5491efa9f034aab98f1c727f7a1764cd863bc03ea"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "b21dbaa25ff223a742a85f64a8e53718e418a1ae0888a2f945785d622e16cf29"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time2-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "245be6a2e7da897b5033a5679bbd557e90688a5c7d04d6e9cfdcdfae6b77e399"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time2-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "e980fe1699c742f831563ec4aa88c3f0e6ac18b2b96636d184dbbae9155f4fbd"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-supplied-r1-u/eligible-boundary.json",
+      "sha256": "665202938a1f9a6ca469c3369e7b81aab031cd3c59466bcc8807403727a6803e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-supplied-r2-u/eligible-boundary.json",
+      "sha256": "2433d2be534852d3263f30d02c36e5b9909c3d46015f48f5e99d3bc5d899607f"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-supplied-r3-u/eligible-boundary.json",
+      "sha256": "a88927d9ebba4d8fa1a55f56d202e8a772380f03f0b83446a02f5fbec6ba441b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "8388b159d8ed01b7b638606d2f8d94d6bd2993c274660991395b9e3f5a298eae"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "ea503891c84a480914edda2b2d88caa5fac14fa4576ec65615f49b28f93ac2b4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-time4-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "e040e495cf7bae07e61d2d059511fbec3a832874ba9948b2e32162e72e8d9c8a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-2d-summary-r1-u/eligible-boundary.json",
+      "sha256": "02c15fff44345383ea17213916f40c4f592eaaed7a8cf4c83b8fff44c4f32bb0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-2d-summary-r2-u/eligible-boundary.json",
+      "sha256": "19f5a3b9fcaddbf4de2f0ea9cf3ce3e6fdf4212b0aca65907f27558648ed170a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-2d-summary-r3-u/eligible-boundary.json",
+      "sha256": "bc2eb87eb70fb86f48ad8502b571aae3c7e4d4fd8e60342ace60e12fc0ef6376"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r1-u/eligible-boundary.json",
+      "sha256": "d28f822a57b7e0ce5dd15b27ab857661cf0f42c0e74a4187ea7ba5cd4f0dc2e8"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r2-u/eligible-boundary.json",
+      "sha256": "9e77c5a3abb5c061fccdd73038bf441d29d7b14eb44861ede15eb0b4986adef6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off1-summary-r3-u/eligible-boundary.json",
+      "sha256": "dd60eff0c04b7e694838d88e57bd34bc2585d238b1a30b7469590f90200664d1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-summary-r1-u/eligible-boundary.json",
+      "sha256": "3c0ba99b8878afa935cb0932f12dfe70dc228523a2b9814d795d6ecb0e37479d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-summary-r2-u/eligible-boundary.json",
+      "sha256": "67ef500692f2ca1a7fa91bc6b9a5212cc18c988f25fc6b1901d44dbd49295654"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-summary-r3-u/eligible-boundary.json",
+      "sha256": "87c6e7453bde5dec35aaecc80c01c0e738e0b1056f4c2bb9f27148a732af00f6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-between-summary-r1-u/eligible-boundary.json",
+      "sha256": "37ea06b4f83f2a23a179f3b2f6376f2365c7d48ca6969bbbbb04443f8bf1467c"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-between-summary-r2-u/eligible-boundary.json",
+      "sha256": "d1ea2363a5886d9115b9812a6ef1caac665624af551c948429e4be3f300b280b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-between-summary-r3-u/eligible-boundary.json",
+      "sha256": "8d6c27ca4018e182bcfe35deafd401fd08235c686e36982c9059e840c49db92b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r1-u/eligible-boundary.json",
+      "sha256": "79cf0fa8c243955ec9625700789de9933c83cef70fab91ac24243ed6531681cd"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r2-u/eligible-boundary.json",
+      "sha256": "4e6b1534d33124524ac9beeea85583c73af60a354022d016b2a77ef31264a3f1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r3-u/eligible-boundary.json",
+      "sha256": "45860163ee202892bfaee6a6e1c57eb1cba5fcb63c665b84d596cb1a76cc5314"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-full-r1-u/eligible-boundary.json",
+      "sha256": "a6ad597396f69888baf79dc0fc735428c6d29269379645ddff36a5cdcb1f0eea"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-full-r2-u/eligible-boundary.json",
+      "sha256": "ef01d7fbf674af059ecc915defaba812764f67e54aef4ab8aac184c32f56e041"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-off2-full-r3-u/eligible-boundary.json",
+      "sha256": "5ec454f1c2357236744a86f76cf60bccaba2cf383a7d3b77fd104114c8b41543"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r1-u/eligible-boundary.json",
+      "sha256": "de8aaabe3ad0f8464791247e87a4383de143028bec3eaf604cd81d1c8f923c83"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r2-u/eligible-boundary.json",
+      "sha256": "ac6fce3c747095f320296a27037f66f27f315bf57332b6c3493ccf7698942e5e"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r3-u/eligible-boundary.json",
+      "sha256": "e68e28e0bd1f53e82f7c0917af6eeea0ff5b28b1e25ef7f49835c81f02887445"
+    }
+  ],
+  "eligible_initial_rows": 60,
+  "full_receipt_marker_metadata_PID_start_boot_FD_coverage_matched": true,
+  "historical_identity_facts_retained": true,
+  "last_post_domain_proof": {
+    "docker_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "inner_status": 0,
+    "observed_at_unix_ns": 1794737951197679273,
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794737951197679273.json",
+    "sha256": "ce050bad4ea0209942f0a737589b698b68a4a48b044c9e64b251a8942b69e132"
+  },
+  "last_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-full-r3-u/post-metadata.json",
+    "sha256": "ee0d05d812bf3276c13c2a68c61ce0b557040b1eca954ed997e4943fae1cc87b"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "next": "Ordinaryanalysis/setup mayproceed; growth/profile requireseparateROOTcase/stage/admission/source/config/windowrelease; no automaticnewtrial",
+  "no_active_memory_window": true,
+  "old_scientific_failed_rows": 1,
+  "operational_prelaunch_refusals_preserved": [
+    "originalfirst40s-age refusal",
+    "time2r2capture7.312s>5 prelaunch refusal"
+  ],
+  "report_scientific_acceptance": false,
+  "scientific_attempts_completed": 61,
+  "scope": "WS116_ROOT_closed_prior_stage",
+  "stage_id": "initial60-with-original-failed-trial-preserved",
+  "terminal_receipts": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/receipt.json",
+      "sha256": "ea1132b9b6d5705768c3efaecb5e02d4d332de9e3186317d1809fb8558f1fee5"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-spatial32-summary-searched-r1-u/receipt.json",
+      "sha256": "b02f1fff4ff324bf7734212d167f23801acd46fa5450b293d83ab8e887344016"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-spatial32-summary-searched-r2-u/receipt.json",
+      "sha256": "ee7ec12b376fdcb5d751b03334aac0984c673b04f1c19f5effaa7df592606212"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-spatial32-summary-searched-r3-u/receipt.json",
+      "sha256": "a6a3c59bf4cfe62515bcb1da11f791f6e7ea4a121d8752b78505f91718995462"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-supplied-r1-u/receipt.json",
+      "sha256": "82d25938fb2e600cfdfa7bcc08ae9776db183196244615e64582e75d4c989183"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-supplied-r2-u/receipt.json",
+      "sha256": "05e77a6dcceb4ba1a924d3a84c319fa5b7f4e50e1f2d681c022f2d60127dd87e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-supplied-r3-u/receipt.json",
+      "sha256": "57cfdc6e9e07888f5a3fca2db665ac9b66275593349e046ab6d91321a173b8f7"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-searched-r1-u/receipt.json",
+      "sha256": "cfbccc9672e73bf563beadae3320ef159032e329d0895cb96ee128ade2bbfa17"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-searched-r2-u/receipt.json",
+      "sha256": "170ea11545f6da9593c06f9e77c4b99f85a5464ca78d4d5413559285afffc467"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-full-searched-r3-u/receipt.json",
+      "sha256": "41a91d9e275b792f52209d1b782af59628d61764da64bcf6f541bbe7af9ff6b3"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-supplied-r1-u/receipt.json",
+      "sha256": "024901df9c763c4bd8d1dd7b0dd92f95d9526f171eed756f44bd39dc7c115f79"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-supplied-r2-u/receipt.json",
+      "sha256": "f08e9ab8e7e36ab9a7e37c83acb66033d773577f7943362c4ab25a5b9a58d554"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-supplied-r3-u/receipt.json",
+      "sha256": "6b506bbe0ae24bf4c770217b24a021491d98a59fe9b4e64eb2dba1814f6e9df7"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-searched-r1-u/receipt.json",
+      "sha256": "64c6adbd58d38c9992ad3eacb669eb9524050e9fdbb78735cd51556035764754"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-searched-r2-u/receipt.json",
+      "sha256": "0454dc1087b1e1d0d2c66bde3c4589dcc3b701a0479ffc5cfa7c865dd4a032fa"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-central64-summary-searched-r3-u/receipt.json",
+      "sha256": "0db629a766840da5474cc97ccd43bd03c1f28b29575c23ffd76d53335d7b41cf"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-supplied-r1-u/receipt.json",
+      "sha256": "fd0cbf93e9bc5bedeeabd0c15cfbdbb47362050f0e8e834ae83d6aba0a1beec0"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-supplied-r2-u/receipt.json",
+      "sha256": "75923b97a041d38c81f37352d634464f8f94c695ff81db25eafe6d85aedb7704"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-supplied-r3-u/receipt.json",
+      "sha256": "5f7d85dbc81413ce1a902155dc469b863bc1bccc723129419c0a65107eeb5627"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-searched-r1-u/receipt.json",
+      "sha256": "30329e0a8dfb207014ac1777a830f5534422ff6fee7733e67a20b708521c67dd"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-searched-r2-u/receipt.json",
+      "sha256": "264478266419fb5c5399a214af03f4ef340385004284677a68c5f628c8ef644a"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-full-searched-r3-u/receipt.json",
+      "sha256": "e49ceffe619c54e32958963e3ee813ca02759e3917ddffc08feb50f1550cc365"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-supplied-r1-u/receipt.json",
+      "sha256": "ca0a350812ff9f570ba049650ec3f022078f600956a1a21f3cc17735cc7afe3a"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-supplied-r2-u/receipt.json",
+      "sha256": "b9eec7a5841b73a3b6ce03c4718a1e0de48658cd9ff88d889b04e13fc61183ca"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-supplied-r3-u/receipt.json",
+      "sha256": "bc7f6909698a30775ac031df59d24757e21a3fc3d023ebb5d9683049af039b9c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-searched-r1-u/receipt.json",
+      "sha256": "bca67840ef724a52bed6590b344248af71ad3dbc6f6637681196e22a86d314fb"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-searched-r2-u/receipt.json",
+      "sha256": "c3e684d06c2d34d7e0d87d6ea56150d45b405911ebe513e18855c4d35edd48a9"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-frozen128-summary-searched-r3-u/receipt.json",
+      "sha256": "db7b6dc28f0142ed3076b3211efd7eccaf84972fe782ba9b4efa0cbbe3d41975"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-direction1-summary-searched-r1-u/receipt.json",
+      "sha256": "75e1009b94130c64ba081913e484d897588d5b485bf0b09ef7605caae2a7d48c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-direction1-summary-searched-r2-u/receipt.json",
+      "sha256": "10689b7bf541d629914bf4fdab96a77e98d1b6011572b2a9603190caa85ad889"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-direction1-summary-searched-r3-u/receipt.json",
+      "sha256": "75b1bf21171a572afee5bfe693953eb4011b18a6eff7ff2b9753eeff2aac3d03"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time2-summary-searched-r1-u/receipt.json",
+      "sha256": "a73c64470639fe469e8cb47fdd3e7e6f969fa83234e5a68921b8b4e3aec6a477"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time2-summary-searched-r2-u/receipt.json",
+      "sha256": "812e2f75557d7898e934a8d912a8b76d0d1f0f2478d5b849af07f9a00e03fe1d"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time2-summary-searched-r3-u/receipt.json",
+      "sha256": "73e8faa726857d39d38bf87343084a393bf4aac180e1254c7a46e0e4292546eb"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r1-u/receipt.json",
+      "sha256": "f56074693d01a3de0d3ff3c63cc4bdad523327837a968ed0ba2e982a963625ce"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r2-u/receipt.json",
+      "sha256": "d43b87dfa0a2924ba0f8ecd15c0bd44df4c00890d92a74f28520d7b09af45043"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-supplied-r3-u/receipt.json",
+      "sha256": "943ff8a71915dc60bd57dd4b133aa91327b5ec31e0ad35ca72fbda595155529e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-searched-r1-u/receipt.json",
+      "sha256": "60e6dfebd3a6c556e6a70ed7d2c3da31cc9b24eb57f566b55191c8e11618494c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-searched-r2-u/receipt.json",
+      "sha256": "a7b346647e5e96b63d5d8dd17b92f9772c911c8fade1d9d3a0b2702384a284e6"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-time4-summary-searched-r3-u/receipt.json",
+      "sha256": "c38088ebaf93dc5ae3cdd2006dc2977d484d0c62397d1154d3adce0ea862ad55"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r1-u/receipt.json",
+      "sha256": "4b5539417c8f753a35dffb3144dc9b8ff24d775969784d759de3a7362da93b7f"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r2-u/receipt.json",
+      "sha256": "f57dfc52ddf01e209fe10e0216deec9f21d2151c15516d9e6dda401ec626440c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-2d-summary-r3-u/receipt.json",
+      "sha256": "66e3e00b3e6eb5ef1668f8da39ed4bcd1fa7a5b62680de24f6ba7b026b5bde9d"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off1-summary-r1-u/receipt.json",
+      "sha256": "9161caeafd927e727b5a52f821b5cce9ab534f688b98ac28350f12877d3c7177"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off1-summary-r2-u/receipt.json",
+      "sha256": "a538ed263ab0b8f67fafbbbfc2f3fe68379bb83d3322a6c23984f5b42f033899"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off1-summary-r3-u/receipt.json",
+      "sha256": "24e1401e2353a9002922d52c54c926b7b559b239265d80768adc9aeda596a677"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r1-u/receipt.json",
+      "sha256": "6fea101385048ca6b580eea808ffeee028c75d39d4fdc8b8a3535f86455d4f67"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r2-u/receipt.json",
+      "sha256": "beeea721347b847258873816fdf83f8e04cef6c4d251c25ac50afe1d1feaf376"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-summary-r3-u/receipt.json",
+      "sha256": "6880e10e2316562bedd58456303b08fd854f58a582ee5bc369fe09857db0b5bb"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-between-summary-r1-u/receipt.json",
+      "sha256": "09dd73e3675a08e57f31e92ee11e9e18a73addb450f5c21a50849a5a760a92ce"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-between-summary-r2-u/receipt.json",
+      "sha256": "bc65e5983e001dfa9bd62e7fe70abb5cce4e89fd1ae2712a90a1508b23635f75"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-between-summary-r3-u/receipt.json",
+      "sha256": "f00ba2892a7c7496607aa7527c14194d67a48371d164edd9b717a66b834c74be"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-summary-r1-u/receipt.json",
+      "sha256": "746ec1ca971b274b0ba3ba50f72b5f3063592520b22b3ca5927c79c8c0b32558"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-summary-r2-u/receipt.json",
+      "sha256": "242d389c07b727aa70badde5866dfd6d291c9175108ea654eaad43ea86d51270"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-summary-r3-u/receipt.json",
+      "sha256": "097fb801c1684d709efbd8628a46d34e9be75e6ce3bcdacac70477f3220b8d07"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-full-r1-u/receipt.json",
+      "sha256": "af8bdcae05b50291482bae8c187d6397256560c7871938c3b00fec1b16eb4b41"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-full-r2-u/receipt.json",
+      "sha256": "6e00562a0bb9b5f3826301e1c3e2f2b196341c8fe57b17adab6064fb24385b5b"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-off2-full-r3-u/receipt.json",
+      "sha256": "2e3ad213934ae53967420a5d74db9a56fd94ebfdd0b054ef85b065f62ed52299"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-full-r1-u/receipt.json",
+      "sha256": "feafb58b90d21859504a2dc954acf5377831c1d94c3fdc47e9085300ddb028de"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-full-r2-u/receipt.json",
+      "sha256": "1982b119fd39a9b0a273e066b681d9221e13a610b40d43d16a625dbbed784e29"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-within-full-r3-u/receipt.json",
+      "sha256": "dd7d46340ba1fe4a89f5c6ef6135af9d2f87036736ae9bf0f9741d7de573a6e9"
+    }
+  ],
+  "unresolved_owners": []
+}

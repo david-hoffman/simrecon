@@ -1,0 +1,106 @@
+{
+  "protocol": "WS116-coordinator-closed-first256-file-scalar-review-v1",
+  "status": "ROW1_ELIGIBILITY_NONBLOCKING_REMAINING5_ROOT_RELEASE_PENDING",
+  "root_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-data-eligibility.json",
+    "sha256": "107412590bb0da1e0c7a48edb64a70bd2c718314169b676c79275a716035d88e"
+  },
+  "verified_small_refs": {
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-data-eligibility.json": "107412590bb0da1e0c7a48edb64a70bd2c718314169b676c79275a716035d88e",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-row1-window-closed-for-checks.json": "f367dfdbb9f81bddaa18dbbc926e49da8fb0c7c172ccae96a03b843b926e3c28",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/receipt.json": "af5c866673b34d53e5ab2a6e432649f2612445f1d1358b902468bfd9788f41b4",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/stdout.json": "5dc6bda724ef6dbdcbcee5f2382e7fd60a76a736f063071c1344e77e5a2f983a",
+    "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata.json": "51bf1a1703ebef6748b81bf5137afa09c4619c41a3a918f9d2cf32bd84348e2e",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/grant.input": "2b144b834255bf02bbd79f657d2ce0fd227409a9c358cf47683e715c927efe6f",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/owned-child.json": "c6d9692c5be04013ff161cecea700efefb60ad210bc0819982ed1d18dc9227e2",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/preflight.json": "331d577a1dfde1c070606d809cc0f7ee7311e08edd46dbf2119215d8e0bcb521",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/session-ready.json": "a27a5bdfeb558c12f885cedbb6f02aeb265e3bc4c1913a355beec9da93f262bc",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/spawn-intent.json": "7460ff1bc2dc6c42907f65f7e5e1881e139fd3246c43264c0e50ebb8e3822922",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/spec.json": "863ba598a94dcafd1e6fd05df3da8a5fd4d788dd4f519ab35abb91a3443d0354",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/startup-readiness.bin": "d235742b6514caf9e7bce73ebac1d6da3e951c800bf51c924131c61467a5d9c1",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g256-summary-supplied-r1-u/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794751363903612807.json": "a50854dac11247949b0fe3f49db790d5e42f03eb7cee9f91fe5c8a84fd3279ef",
+    "/workspace/work/campaign/evidence/116/resource-domain/1794753072210761202.json": "55fab719a9d86950082048f965c942701587a3ddb9fdacc9b64d5066d329b40f"
+  },
+  "raw_inventory_scope": {
+    "small_raw_files_independently_hashed": 10,
+    "samples_jsonl": "NOT reread; ROOT all11 streamhash attestation accepted as scoped support, original45,902,870-byte samples retained",
+    "samples_sha256": "7fb20f6c0f41edbfee42c06afb3f60c4a0359a5fced38c79dad8682557f165fb",
+    "physical_allocated_byte_values": "past-run facts, not clone filesystem requirements"
+  },
+  "row": {
+    "attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+    "condition_id": "growth256-summary-supplied",
+    "launch_nonce": "ws116-gp-g256-summary-supplied-r1-u",
+    "profile": false,
+    "repetition": 1,
+    "serial_index": 1,
+    "stage_id": "growth256-summary"
+  },
+  "native": {
+    "Linux_KiB": 327300,
+    "direct_child_kernel_reported_bytes": 335155200,
+    "MiB": 319.62890625,
+    "scope": "Kernel-reported direct-child terminal high-water through finalexit; inherited/preexec/exec-transition accounting UNKNOWN; no isolatedworkflow/treeaggregate/subtraction/benefit claim."
+  },
+  "call_seconds": 1698.935949891,
+  "collection_seconds": 1701.749911728,
+  "target_start_to_last_snapshot_seconds": 1701.405647586,
+  "cumulative_target_self_bytes": {
+    "pre_call": 140115968,
+    "call_end": 335155200,
+    "post_observation": 335155200
+  },
+  "visible_terminal_gap_ns": 10951303,
+  "gap_scope": "null actualRSSsample retained; causeUNKNOWN, notRSS0/exitraceproof; qualifiedsoleownercollection<=50ms plus independentguards retained.",
+  "actual2birth_identities_FD_absence_matched": [
+    {
+      "pid": 51452,
+      "start_ticks": 5785410,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "pid": 51471,
+      "start_ticks": 5785431,
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    }
+  ],
+  "recorded_invocation_proof_age_seconds": 0.259788891,
+  "original_proof_horizon": "3720s; eligibleboundary follows8190endvalidation path androoteligibilitytimestamp alsoinsidehorizon; exactbinderfinalchecktimestampnotrecorded/UNKNOWN",
+  "pre_end_proofs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794751363903612807.json",
+      "sha256": "a50854dac11247949b0fe3f49db790d5e42f03eb7cee9f91fe5c8a84fd3279ef"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794753072210761202.json",
+      "sha256": "55fab719a9d86950082048f965c942701587a3ddb9fdacc9b64d5066d329b40f"
+    }
+  ],
+  "guard_context": "Both exposed-domain views match namespace/resourcefileIDs/finite16GiB/eventsmax50340other0/swap0; externalphysicalancestors/outsideactorsUNKNOWN.",
+  "source_identity": "Allrecordedcandidatebefore/after/final/EA/material35/childbefore-after match frozenqualifiedbasis andactualconfig. ROOT separatelyfreshhashed35/HEADtree; no coordinatorgit/nativecall.",
+  "expected_geometry_dtype_finite": "raw[1,3,5,8,256,256]<f4,transfer[3,64,16]<c16; image[1,8,512,512]<f8 andcore7shapes/dtypes matched, known3, finite, stages[]; fingerprints actualmatched.",
+  "findings": [],
+  "scope": "Oneactualeligibleunprofiled suppliedsummaryrow, NOT3repstats/ALL256success/largestselection/fullprofilepermission/finalscientificacceptance. Remaining5requireROOTnewwindow/ACK/authority/ledger/freshcontext/percaseguards andsame1f4stageadmission/prefix, no r1rerun.",
+  "read_diagnostics_preserved": "One overlybroadmetadata display truncated; one guessed exit.json path absentread raisedFileNotFoundError. Correct actual observer-exit.json located via closed-owned-directory filelist; corrected boundedread/semantics verified. No scientificfailure/retry or mutation.",
+  "execution_performed": "Onlyfile/scalar/JSON/hash reads andthisrecordauthoring; no product/scientificnative/import/test/probe/lifecycle execution.",
+  "qualified_worktree_mutated": false,
+  "actual_cost": "UNKNOWN",
+  "actual_tokens": "UNKNOWN"
+}

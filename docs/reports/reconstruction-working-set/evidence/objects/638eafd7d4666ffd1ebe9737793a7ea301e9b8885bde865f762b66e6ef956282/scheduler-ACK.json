@@ -1,0 +1,55 @@
+{
+  "campaign_work_suspended": true,
+  "input_observed_at_unix_ns": 1794789095287894890,
+  "known_active_numerical_processes": [],
+  "known_work_closure": {
+    "113": "FiveROOTSFENVfocused singletons each actualtarget/controller0, privateinitwholeclosed+oldhostPIDabsent/proxyreaped/pipesclosed; finalCIDstoppedPid0. Summary69185aa7 preserved; freshboundedreview and possibledriver7 SOURCEONLY, no Native/EE/science/runtime release.",
+    "114": "Source-only quarantine, no active child/controller/runtime.",
+    "116": "Firstlargestprofile29012actualtool0/proxy183035actual0/2stored birthFDsetsclosed; source35+tool6/HEADtree/tracked/FULL935post405c, eligibility5028/window5a1/coor548 allclosed. Investigator40SOURCEONLY futurewholeclosure.",
+    "117": "Provisionalsource evidence only, resource/runtime held, no active process.",
+    "118": "Provisionalsource evidence only/adapter unexecuted/runtime held.",
+    "119": "Intake only, no runtime.",
+    "120": "Intake only, no runtime.",
+    "root": "Allknowncampaigncontrollers/proxies/QA/namespacesclosed; no currentnumericruntime. Unrelatedimports/tests/AST/lint/types/native/build/install/benchmarks/controllers suspendedthrough new21600s or explicitclosure. Source/text/hash/read-onlyGit permitted; outsideactorsunknown. One necessary metadata2+onefreshcapture preparation only now, scientificrelease separate."
+  },
+  "observed_at_unix_ns": 1794789096111588375,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "preparation_suspension_input": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-remaining5-source/ROOT-scheduler-suspension-input.json",
+    "sha256": "bf3c2df8e77a6825b5d5b81c9c4c4cf17a10629986de4be3e62582dc7721ab11"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+    }
+  ],
+  "schema": "ROOT-campaign-stage-suspension-ACK-v1",
+  "scope": "ROOT current standing suspension consumed now; outside actors unscanned; ACK is not grant authority.",
+  "stage_id": "largest-profiles",
+  "unresolved_owners": [],
+  "window": {
+    "ends_unix_ns": 1794810696111588375,
+    "starts_unix_ns": 1794789096111588375
+  }
+}

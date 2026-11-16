@@ -1,0 +1,330 @@
+{
+  "actual_snapshot": {
+    "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json",
+    "sha256": "aaccf876bed3dc6286ef4052a87fd51d9c194ce66ee4e82c12701f7779bd5bb3"
+  },
+  "base": "ace06c861b974b6251a092567c253ae4eb0f56c8",
+  "candidate_head": "d767aaa2b3f58b7e62309db6a1ed5b7fe24054d2",
+  "candidate_tree": "24d9dbedb9773dc55006f627de10083411adeeae",
+  "no_runtime_authorized": true,
+  "primaries": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/README.md",
+      "sha256": "75862602a0889da909a866bb22cf70b9cd818155f951c8fb982fc5aed37cad6e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+      "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/representation-and-provenance.md",
+      "sha256": "662ec35e242427ba0c0c78cd27d78fb475e9ef83b54deceaf1b351c0b8f22e21"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/attempt-ledger.json",
+      "sha256": "6240bc1fadd8e46b8e597389eb5588446e8ac5d3ffc2fb22a70ce80e52f652b7"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/report-input-references.json",
+      "sha256": "98281de866ae0e5a65a6d04a89674445b39e45e8700cba0ab38aff2aea6e912c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/README.md",
+      "sha256": "847a5c0a400e4ba447ec25939df34be107cfd53fea14d920ee323ebfa111e786"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/location-map.json",
+      "sha256": "828b2dad7ad52d5ed1ff1c87b5f76afc1f5592955e9fc8daa6597a17d9eb6ec5"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/material-transition.json",
+      "sha256": "792102c4aa13aa13de110b950e41b390636380bad0ea7cd4532b4b43343a5554"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/sample-restoration.tsv",
+      "sha256": "6930c22469b449af61b6ea52041fa8e8eb8510a028cd903ec1d80b37258c196c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/evidence/integration-provenance.json",
+      "sha256": "37933eadd728f39ba9f34ca5b1900b4c967644bf84dfac1289b21f36a0f5f094"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-integrated-snapshot-factual-audit.json",
+      "sha256": "aaccf876bed3dc6286ef4052a87fd51d9c194ce66ee4e82c12701f7779bd5bb3"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-literal-publication-copy-receipt.json",
+      "sha256": "1fd7c8a42f0244bfc320653a4d67e0717edf9a8da48be54a83c812b69b28c6d8"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-active-Markdown-layout-delta.json",
+      "sha256": "4e1dcfd2bff2eecaa9b3754530c7a2658404d44ccddb11f73bdd1aea9d6fbb4d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-active-status-navigation-delta.json",
+      "sha256": "01df7b553fc6571af4a00441b2416db22d746a6b73b173756766120e4677cb62"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-final-active-link-and-input-check.json",
+      "sha256": "c606601c892fa8817f88285ccb2e3891494fee5e42ba089d6ed1a7ff38e1ffd4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-explicit-local-sample-inputs.json",
+      "sha256": "0604a06dc7c3ab2f28ffeaf44536a4419e4e5138b8aae949461bc01d261255e5"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-sample-transport-manifest.json",
+      "sha256": "85cc0b68e42089d2d8d22e031fa1720676a49fa30ed09bcb571ffd57f4937f91"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/ROOT-sample-publication-layout.json",
+      "sha256": "76ed4c67116e4c7f36e44e768c9ef5fa5b46026175acb34eda41106f699ccb95"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/coordinator-historical-ledger-resolution.json",
+      "sha256": "5eba28ccb2c67f09f8cdfe68a47ca10000b4cc6fe7924d0ad405593270559139"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-accepted-prefix-ancestry-file-proof.json",
+      "sha256": "825554d48a1ed767f7fe3ffe4f0f63ebdc16d4d6566d5a735a9e4fe8176e1757"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/compact-overlap-working-lifetime.md",
+      "sha256": "7c69be6da139d93c980a5958df33e67f683f3102e7caacc35873dbc106d64d1c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/full-diagnostic-retention-ownership.md",
+      "sha256": "d12f629306ef56d7080c5f22606f3639f92a7c5aea1553d84109ada84dca907f"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/native-harmonic-scratch.md",
+      "sha256": "78e425a3dd42be346676058ff57f1456b1bea8674d1cf79a60434f0f865e7b3e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/phase-expression-lifetime.md",
+      "sha256": "da2de3e08d14bc29e6c7b5b148b7f59a2ed9a33058423f1404dd4f6e17893220"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/source-hypotheses.md",
+      "sha256": "feb6067b51fa65a778fc67f9f6f022406ffe5bb04702a39545e040f2a14cd334"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/handoffs/time-aggregation.md",
+      "sha256": "69f1dc5065d8025adae38d6d2aa590704ef7bf2bdfe86b73a893cabec4330258"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/excluded-records.json",
+      "sha256": "29914213c4038e5dce71d2758e5331424f49d629b856e450e33a9cb0e6d4e4e8"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/file-audit.json",
+      "sha256": "dfc65d7fff161553fb6755a95c27edf61caaf3aa8d2d0f4fbc9b249530c65ae2"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/output-identities.json",
+      "sha256": "298057cf4e35237927cf23f1e548c9e08077b9ffdad8ea282decd7de5cba4567"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/per-process.json",
+      "sha256": "ac1391d4c471089c2c70eccc6aa857713650fc5a5bdddfb5e6ff7178c91d7b25"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/summary.json",
+      "sha256": "04fff3ea2045ceb3c5d4a0acb6b4109d37b200d6e1b68c6ab57f7fe28c9fbe4b"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/initial60/three-repeat-summary.csv",
+      "sha256": "e156882e7ae2cd3194f2e500168c83fca517fd4d5d8f4ddee796fe92b80d2b2b"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/excluded-records.json",
+      "sha256": "722096004245809bb1736f55f50ad7e99af37ca35d6d82fc60ef94d813dad240"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/file-audit.json",
+      "sha256": "8a0853e6db7e7eb0db7cee1ab7941336693b13fc87e1668008b809eec504801c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/output-identities.json",
+      "sha256": "a29ecafbad16c3cb7b591e7377b25fc4b27e31aacd61ded2cbffd5d460e560f6"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/per-process.json",
+      "sha256": "d3524a39b298de1d7c4dd6ca3aa837154f4c75d1bdf828da6ad2c30fd1d0eae3"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/summary.json",
+      "sha256": "f7afbc0635dbe1689e7b66104e985678e117c6ad58457631266f10edbfef941a"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/three-repeat-summary.csv",
+      "sha256": "df6be6161500589ebb539bd1638ca02a637b9c224a11feb9723847cfa47ce660"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth192/unprofiled-controls.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/excluded-records.json",
+      "sha256": "0a5389fc844acf940212026ef00b764ff49193de717f5ea945e4185dfca46db7"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/file-audit.json",
+      "sha256": "0fd3e2714ff917b7efd16e0ad4288944492f1a27337d7f375a5991be735d0c50"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/output-identities.json",
+      "sha256": "3919410cd4f8efdc0f099ebb8b8f018eb6297763d91a5ad61aa919c3d3784b63"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/per-process.json",
+      "sha256": "771c6d816c509b3c327003cd443211718cd0c835c64b91d5445780a36af28e2f"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/three-repeat-summary.csv",
+      "sha256": "e1f5beaaf293460d719f9ec7fb52f563d7b6ead1e0513d76e4e012bcb530f7ef"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/growth256/unprofiled-controls.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/excluded-records.json",
+      "sha256": "e842d7286fb67fc6b6d5a383bcd807adbb2df9b17e91652e32367dc31b71def1"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/file-audit.json",
+      "sha256": "22b5babfad1e396d2d9e3a410cc956fa7d6102415eaecb5b30c5cb571585b612"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/output-identities.json",
+      "sha256": "2908d48ac1d630fe6431708c52e6bd50754bd2eb8910e62a8a42dec7e4f3cb87"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/per-process.json",
+      "sha256": "b6bb23f41cbdaa9b5eee9ecd4ae088c1718441ae3c71c0364dac7d72d1995f5b"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/summary.json",
+      "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/three-repeat-summary.csv",
+      "sha256": "9b6cb0628bb0b565a4e0b385970f8e48aed4195240e2e123d4f4501c9378b7ed"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-supplied256/unprofiled-controls.json",
+      "sha256": "50fdb9c143e8ac9cbaba16a1cf5c0ad06efba8d50510ed364a2eaacdb86608fc"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/excluded-records.json",
+      "sha256": "46cb4a507be4172d0e985d29dcaaff9387e5ba7622432ff6a6866f619deb4de5"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/file-audit.json",
+      "sha256": "712b470e22b021d8f3aba17dfac35edb68292a06ee2d6080a2e197892146a707"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/output-identities.json",
+      "sha256": "8e481780e0dd584199f638c0b16c23443047e74cb3446b8ba7e7c40a7a0d7a6a"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/per-process.json",
+      "sha256": "53fe6575474716be4f84f815002c898bd3efdd11fba2b4b931c22948b4e28a7e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/summary.json",
+      "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/three-repeat-summary.csv",
+      "sha256": "bf4956bac8f9e5f70158c11a5e91e0e84e25c0df94bdab8da3bf2f9fb8961bf1"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/full-searched256/unprofiled-controls.json",
+      "sha256": "71045334d7ff276ba7316436c39393aa1d58b532ad299c0ef8efb94e2bf3f728"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/excluded-records.json",
+      "sha256": "055a5279fc277ca357d171989fae215300bc03fe2291a9fdb19845b2f3089471"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/file-audit.json",
+      "sha256": "4f11cc396bc132c4a5137fcd24656bcfb5ee9263f4eea0aeaff991d55715b01c"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/output-identities.json",
+      "sha256": "0c8a0e2c1622f1fe94a6172e1dd6ff3f067d9a00417b7a2033ef49dbc840fe09"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/per-process.json",
+      "sha256": "12c9d528708451064948d66fe017fea3fceba8b4e865bc4d8cd2a666ec4afd34"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/summary.json",
+      "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/three-repeat-summary.csv",
+      "sha256": "bd9f20046ac519085d0eebee53f1d36b6ad2d7d02f280ef4e5c05b14452d53bd"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/central64-profiles/unprofiled-controls.json",
+      "sha256": "08bee7bf0446fbfe117ea99b03de41a28fba19d6e0caaa5f667c210b657eb0dc"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/excluded-records.json",
+      "sha256": "c7df0a388130b22d1a4ca5f546ae0526a0abdaeaf24d915eaff40d422d8858ce"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/file-audit.json",
+      "sha256": "5cd6d3ad1436195b73358bbe6d38fbaca3894d933ae4f286bf9960ea037f9f20"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/output-identities.json",
+      "sha256": "5ce51ed283236c4ecbdf6ca743d5e77a65145b119459ec007cc04c76215cb8cb"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/per-process.json",
+      "sha256": "55fb5ef5194894a9538ebcab67560b0ad278cd2d257475cb6cb14c290b697bd7"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/summary.json",
+      "sha256": "95330cf5ead1e3c1026b8f9e7cf590215835cff7d1244c7e4a24580b5c42f3b6"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/three-repeat-summary.csv",
+      "sha256": "90a7cb97e8e82575df977f353f1bada48a3c9fad4b583b28536c38b447cf68ed"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/largest256-profiles/unprofiled-controls.json",
+      "sha256": "c591ddddb7678b9d456926711d447f4afe114b7516b4c19342b64eac2d97289d"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/figures/figure-input-provenance.json",
+      "sha256": "988da339d897faa6c2f746a98f192c74f09325d569262c8c6296e13793e1c7f9"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/figures/largest256-profile-control-points.csv",
+      "sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/figures/largest256-profile-controls.png",
+      "sha256": "3b32da647ebe1982cf2f37cab51d384a6c47fe98d342ba892b66c0865a54221e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/figures/largest256-profile-controls.svg",
+      "sha256": "fa875573f8c7995e4944fb865cf86c05e92a46c6bd89655eb6dcba84b1e2002f"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/figures/plot_largest256_profile_controls.py",
+      "sha256": "e59e7b18a39fd4b76dbe18c8accc75c3d7378ad7fc5e901962d492c129c16e4b"
+    }
+  ],
+  "schema": "ROOT-116-finite-integrated-snapshot-primaries-v1",
+  "scope": "Same SCI1 finite application/portable closure review over assessed W01\u2013W08; full gate/fresh postgate acceptance pending. No sibling opinions as oracle."
+}

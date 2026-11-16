@@ -1,0 +1,151 @@
+{
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "config_sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda",
+  "end_validation_scope": "binder original-proof hash/horizon + fresh end domain/context/margins/events; runner receipt does not perform this check",
+  "fingerprints": {
+    "branches": [
+      [
+        "known",
+        "known",
+        "known"
+      ]
+    ],
+    "common_output_sha256": "9c00579a90a2670f42321dd1492354d34a18cd0be3d08ba5237dfacea5a5a1cc",
+    "input_sha256": "b61101eb3eccf214e0bba46f642888cad7be24b7b45b0165c6f2cf2b3870db05",
+    "public_result_sha256": "81b8ccd2cd5264009a9cc8f5bfe8a2295ade409b5df3e8c246e33be72bec3878"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "method7": {
+    "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/candidate-config-draft/method7-acceptance.json",
+    "sha256": "66db9f47c6560657c3ae6656cc5420f4cdee28338958443ba3412d3e9da37c19"
+  },
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    }
+  ],
+  "raw_files": {
+    "grant.input": {
+      "allocated_bytes": 16384,
+      "logical_bytes": 15362,
+      "sha256": "d2785355c0303e2ae70ddd6c6cf8df45fd3390464c763e4dfd67760367324d46"
+    },
+    "owned-child.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2564,
+      "sha256": "9049bc363d404e40b70a3d623730437f371126ace922a6eebb844ee34ad271b6"
+    },
+    "preflight.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 2861,
+      "sha256": "eb3db0d8a572ebafb376f51dee9d7336461da9c3916ba4f9f7fae0e8eb42b1c0"
+    },
+    "receipt.json": {
+      "allocated_bytes": 32768,
+      "logical_bytes": 29836,
+      "sha256": "da0f23ea7f77b3f8510fbaea585f843295d9182f24204ad1a0897172c82246f4"
+    },
+    "samples.jsonl": {
+      "allocated_bytes": 39059456,
+      "logical_bytes": 39059417,
+      "sha256": "bcf98c3e2ede8c2751fe450545229a43df66f80a7c4e30d32ea4a33eab27045c"
+    },
+    "session-ready.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 247,
+      "sha256": "023934a14910e0b899a26fd6f645d0ebe71c793583a31bc577045f9f465a47bc"
+    },
+    "spawn-intent.json": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 3006,
+      "sha256": "9c6588313bf2bf6ea4cf745d272b534d7cae7a41955932939131e7f1e6afe526"
+    },
+    "spec.json": {
+      "allocated_bytes": 8192,
+      "logical_bytes": 4900,
+      "sha256": "02952e8db15c41b360be3082f19c716d563837529f36b4fd204693effacf8d27"
+    },
+    "startup-readiness.bin": {
+      "allocated_bytes": 4096,
+      "logical_bytes": 231,
+      "sha256": "0f6f2f4185f5bb6c6625bb7d2f5d744742c01e31889ddd53aaa5e648dc329385"
+    },
+    "stderr.log": {
+      "allocated_bytes": 0,
+      "logical_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.json": {
+      "allocated_bytes": 36864,
+      "logical_bytes": 33217,
+      "sha256": "48375702d12981da7c62bd812eeca5b97c3f1f085cbd4a9002a1c861cacaad02"
+    }
+  },
+  "raw_path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u",
+  "row": {
+    "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+    "condition_id": "growth256-full-supplied",
+    "launch_nonce": "ws116-gp-l256-full-supplied-r3-u",
+    "profile": false,
+    "repetition": 3,
+    "serial_index": 3,
+    "stage_id": "largest-full-supplied"
+  },
+  "source_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+  "stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-full-stage-admission.json",
+    "sha256": "c66480fe821ac6734c2e3ef2adf560e28a67679dacf2e26acfbf40eab29ee78f"
+  },
+  "stage_id": "largest-full-supplied",
+  "status": "ELIGIBLE_PENDING_ROOT_SCIENTIFIC_REVIEW",
+  "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "WS116-CE06-liveness-wording-correction-inputs-v1",
+  "status": "SOURCE_ONLY_COORDINATOR_AND_FRESH_AFFECTED_SCIENTIFIC_REVIEW_PENDING",
+  "inputs": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+      "sha256": "8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/analysis/liveness-draft.md",
+      "sha256": "8fef6fcfd756b48f22e08cccead97387fdd41fc2ed4e10b86d54deb62eb09f07"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/layout.py",
+      "sha256": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/acquisition/modes.py",
+      "sha256": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-plan.md",
+      "sha256": "b7148be4355f32dd4bda70c0824201fe67d89baa27d13f1ccaf3b9b29eb37430"
+    }
+  ],
+  "corrected_output": {
+    "path": "/workspace/work/campaign/evidence/116/report-liveness-wording-correction/liveness-draft-corrected.md",
+    "sha256": "337ae76ca2a685c9ef111cdcc1a9f96a641f6503336898d8cabb6f33f7b79b5c"
+  },
+  "source_proof": {
+    "layout.py:158-164": "owned validates then explicitly np.array(copy=True), yielding independent capture storage.",
+    "layout.py:167-177": "_finish_owned validates the private array, changes its writeable flag and returns that SAME allocation; its docstring explicitly excludes a snapshot copy and separates event captures.",
+    "modes.py:1102-1117": "Full AcquisitionBands publishes q/off_q and other already private arrays through _finish_owned.",
+    "admission-plan.md:13": "Already distinguishes transfer without another q snapshot from independent full event-capture array copies."
+  },
+  "exact_scope": "Only the CE06 lifetime-cell phrase conflating _finish_owned with event/trace copies changes. Full trace/event owned() captures have independent backings and lifetimes; exact transient peak stays unclosed. Every other formula, table value and prose byte is preserved in the copied MD.",
+  "preservation": "Both original bad liveness copies, EA35, Current, old narratives, method/runtime/source and all old attempts remain unchanged. No statistics, RSS, caps, arrays, formulas, numerical trials or campaign totals changed.",
+  "transports_only": "Named cat/sed/sha256sum source reads, source-text copy/apply_patch and complete unified diff; no interpreter script/checker, import, AST, lint, test, metadata, capture, native/product/QA or active98828 access.",
+  "diff_disposition": "File diff exit1 means the intended literal text difference, not an executed test or authoring failure."
+}

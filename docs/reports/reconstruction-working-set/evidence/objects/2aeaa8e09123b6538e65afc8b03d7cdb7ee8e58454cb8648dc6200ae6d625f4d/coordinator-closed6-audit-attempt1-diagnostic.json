@@ -1,0 +1,25 @@
+{
+  "schema": "WS116-coordinator-largest6-fileaudit-diagnostic-v1",
+  "classification": "COORDINATOR_CHECK_ASSUMPTION_NOT_DATA_SOURCE_OR_TRIAL_FAILURE",
+  "command_scope": "Closed-file JSON/hash/scalar audit only; no canonical/product/native/metadata invocation",
+  "observed_error": "AssertionError at stdin line124 before review artifact creation",
+  "invalid_condition": "grant['headroom_evidence']['proof'] == proofrows[0]['proof']",
+  "diagnosis": "Grant proof has six expected fields: path/sha256 plus docker_status/inner_status/external_ancestors/observed_at_unix_ns. Parsed capture pointer deliberately retains only path/sha256. Whole-object equality was not a protocol requirement.",
+  "actual_first_grant_identity": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794786687579137991.json",
+    "sha256": "c315f715033361ac5ccb42c1c57fd8da1cda936491792380fa722dcf3145f07a",
+    "docker_status": 0,
+    "inner_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "observed_at_unix_ns": 1794786687579137991
+  },
+  "actual_capture_reference": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794786687579137991.json",
+    "sha256": "c315f715033361ac5ccb42c1c57fd8da1cda936491792380fa722dcf3145f07a"
+  },
+  "correction": "Compare exact path/SHA identity, require status0/external unknown and recorded observed_at equal actual proof started timestamp separately.",
+  "original_tool_input_and_failure_preserved": true,
+  "outputs_modified": false,
+  "trial_or_canonical_retry": false,
+  "metering": "unknown"
+}

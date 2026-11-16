@@ -1,0 +1,11 @@
+{
+  "id": "G06-V18-terminal-PID",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "exact child PID mismatch"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "exact child PID mismatch"
+}

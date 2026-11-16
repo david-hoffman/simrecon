@@ -1,0 +1,1986 @@
+{
+  "ROOT_execution_release": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/ROOT-execution-release.json",
+    "sha256": "c1397dd3ce548cb088fc6ed5be80547dbd7314af3750af44b2f8b513dddd44b9"
+  },
+  "actual_event_baseline_max": 50340,
+  "all12_currentstage_exact_identities_and_expected_FD_paths_absent": true,
+  "all_in_trial_event_counters_unchanged": true,
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "closed": true,
+  "closed_at_unix_ns": 1794797374508445950,
+  "context_scope": "Recorded per-row proofs/metadata plus one exact12-target fixed metadata query; external ancestors unknown_unobservable, outside actors unknown_not_scanned. No new resource capture, global scan or native/peak measurement.",
+  "controller_terminal_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/ROOT-final-controller-ended.json",
+    "sha256": "9335134861cbf8aed137c61b0945733e41a8bf356fb603e94fc00f00e7427346"
+  },
+  "earlier_row1_window_closure": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-first-largest-profile-window-closed.json",
+    "sha256": "5a1b6d5db7dff7e47e1406c41a6d45e07ae3ec00759d64a9338ea2ebab85d35c"
+  },
+  "eligible_boundaries": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+      "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/eligible-boundary.json",
+      "sha256": "8af497730ea65cea3e97736a90c886a900c9c2036100ad154871c07036b9cea6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/eligible-boundary.json",
+      "sha256": "fde37deb658088bb97f89f033f703c09425d648f00f92dbd58fdc6f2a32e4f43"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/eligible-boundary.json",
+      "sha256": "24a0d4040ae882576d4cfc84afd256b9577590a71122af6423334b0695e86f4f"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/eligible-boundary.json",
+      "sha256": "d61dd7e95711a89291045e6ed90e4e1d2e21f7c8af923abf269a61a0f2bce9e2"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/eligible-boundary.json",
+      "sha256": "488b465a386150326f7fca5b96505ba55d4638258cb91c916c2ffbe775629393"
+    }
+  ],
+  "exact_owned_identities": [
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52672,
+      "start_ticks": 9317771
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52692,
+      "start_ticks": 9317785
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52743,
+      "start_ticks": 9580369
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52763,
+      "start_ticks": 9580389
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52803,
+      "start_ticks": 9728121
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52823,
+      "start_ticks": 9728132
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52863,
+      "start_ticks": 9883874
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52883,
+      "start_ticks": 9883887
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52923,
+      "start_ticks": 10027129
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52943,
+      "start_ticks": 10027140
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 52983,
+      "start_ticks": 10206778
+    },
+    {
+      "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+      "fds": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ],
+      "pid": 53003,
+      "start_ticks": 10206802
+    }
+  ],
+  "final_controller_exit_code": 0,
+  "final_controller_session": 98828,
+  "first_config": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+    "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6"
+  },
+  "fresh_post_controller_owner_absence": {
+    "command": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/execution-a1/fresh-owner-metadata-command.json",
+      "sha256": "5a76cb34a651f3419ac244a24c8aa302fbff0f23574c88b43384195990ce66d7"
+    },
+    "metadata": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/execution-a1/fresh-owner-metadata.json",
+      "sha256": "922e984679f12034db253e78cf38d91b7adca090d90927b03a60f19a865ba01e"
+    },
+    "request": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-stage-closure-source/execution-a1/fresh-owner-metadata-request.json",
+      "sha256": "a93a8aa355a53ded964e994d4acaf3f00e11e416b8dba68607ca7dd408e456f1"
+    },
+    "scope": "One fixed exact12 birth/FD absence query after actual final controller reaped/pipes closed and all6/stored12 validated. Not measurement/native peak/global outside-actor or external-ancestor proof."
+  },
+  "historical_identity_facts_retained": true,
+  "last_config": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+    "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+  },
+  "last_post_metadata": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-metadata.json",
+    "sha256": "e0888e98032f7953f8e369915bed6751c64c069394833c26899e46197a96a8e4"
+  },
+  "material_hashes": {
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "measurement_scope": "Kernel-reported direct-child high-water through final exit; inherited/pre-exec/exec-transition retention unknown. Profile events are cumulative/time observations including perturbation, not incremental allocation or isolated cost. No subtraction, aggregate, decomposition, ranking or benefit.",
+  "metering": "unknown",
+  "next": "No automatic next stage/release; final report acceptance pending.",
+  "no_scientific_report_acceptance": true,
+  "oom_fields_and_swap_zero": true,
+  "prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json",
+      "sha256": "281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6"
+    }
+  ],
+  "raw_files_all_hash_verified": true,
+  "repeat_fingerprints_match_within_condition": true,
+  "required_ROOT_post_success": "ROOT must recheck35/HEADtree/tracked/FULLexpectedrawinventory/helper-manifest and explicitly end whole window before any next admission; helper does not implement that later postcheck.",
+  "retained_row1_eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/ROOT-first-largest-profile-eligibility.json",
+    "sha256": "502847960612fbd17957235f3dbb64e3070f364c27a18e1df00d06e18dc4d53e"
+  },
+  "rows": [
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "446fc4718d6c0075d01a7c69c0deaaeb7e986ef42a92edba81ba1337905a79c6"
+      },
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/eligible-boundary.json",
+        "sha256": "4615cc741ec7919579de26a9b912adef4e4887ed6d7867a1d4cfad18a6ac9d69"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stdout.json",
+        "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c"
+      },
+      "condition_id": "growth256-summary-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "fa7bb2a86783bd354479cf8115b46272143bc70f64def3dbf6132806d9335003"
+      },
+      "matched_unprofiled_control": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+          "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "mode": "summary",
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-summary-searched-r1-p/post-metadata.json",
+        "sha256": "f84847a72576a1f03cd30ef7b6ecb6050ffdca24cf5d6aa4177b4e92efc76f7f"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794788028890197954.json",
+        "sha256": "822404c18b12959952e4a80735e85adfc17f3c23d03ae0d00801619cad2b93c1"
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179302430977,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93179302495549,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179363994205,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93179860876971,
+          "ru_maxrss_native_KiB": 231908,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179935501424,
+          "ru_maxrss_native_KiB": 231908,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93485898196668,
+          "ru_maxrss_native_KiB": 232312,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93485898402579,
+          "ru_maxrss_native_KiB": 232312,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 94514419702790,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 94514425143645,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 94514429088699,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2489982976,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2476019712,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794786687782855713,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794786687579137991.json",
+            "sha256": "c315f715033361ac5ccb42c1c57fd8da1cda936491792380fa722dcf3145f07a"
+          },
+          "started_ns": 1794786687579137991
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2580668416,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2566164480,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794788029056201023,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794788028890197954.json",
+            "sha256": "822404c18b12959952e4a80735e85adfc17f3c23d03ae0d00801619cad2b93c1"
+          },
+          "started_ns": 1794788028890197954
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      },
+      "repetition": 1,
+      "terminal_direct_child_high_water_bytes": 334118912,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 334118912,
+        "pid": 52692,
+        "reaped_monotonic_ns": 94514697242351,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 173232,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 139,
+          "ru_maxrss": 326288,
+          "ru_minflt": 56348,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 6102,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 469,
+          "ru_oublock": 408,
+          "ru_stime": 0.931566,
+          "ru_utime": 1334.580367
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1335.172755667
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/eligible-boundary.json",
+        "sha256": "8af497730ea65cea3e97736a90c886a900c9c2036100ad154871c07036b9cea6"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/stdout.json",
+        "sha256": "2e219d7c86384e7619863bb7f0568e35588a3bd91d7b3555571da932de779a57"
+      },
+      "condition_id": "growth256-summary-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "fa7bb2a86783bd354479cf8115b46272143bc70f64def3dbf6132806d9335003"
+      },
+      "matched_unprofiled_control": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+          "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "mode": "summary",
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r2-p/post-metadata.json",
+        "sha256": "9e63da064e32dd99a38324b591a9f7adb0b8f53c4ff746738fe66ad9ab1a1ffd"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794790790390307670.json",
+        "sha256": "b529be853343086033417141e25302b6f857080df6acb185bef49d14f8a856b6"
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 95805725235542,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 95805725300353,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 95805781094759,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 95806230904725,
+          "ru_maxrss_native_KiB": 231892,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 95806282825954,
+          "ru_maxrss_native_KiB": 231892,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 96134868134650,
+          "ru_maxrss_native_KiB": 232224,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 96134868494052,
+          "ru_maxrss_native_KiB": 232224,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97276202694365,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97276206425614,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97276210054632,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2904678400,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2890502144,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794789313636354752,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794789313276715942.json",
+            "sha256": "5753b187b425647464b7fdbf004ff94b44f83df14e816890e2774e85f129e729"
+          },
+          "started_ns": 1794789313276715942
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2733989888,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2719760384,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794790790539803374,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794790790390307670.json",
+            "sha256": "b529be853343086033417141e25302b6f857080df6acb185bef49d14f8a856b6"
+          },
+          "started_ns": 1794790790390307670
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/receipt.json",
+        "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be"
+      },
+      "repetition": 2,
+      "terminal_direct_child_high_water_bytes": 334983168,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 334983168,
+        "pid": 52763,
+        "reaped_monotonic_ns": 97276433269922,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 86304,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 110,
+          "ru_maxrss": 327132,
+          "ru_minflt": 56914,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 11565,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 333,
+          "ru_oublock": 64,
+          "ru_stime": 1.797232,
+          "ru_utime": 1467.841843
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1470.766478159
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/eligible-boundary.json",
+        "sha256": "fde37deb658088bb97f89f033f703c09425d648f00f92dbd58fdc6f2a32e4f43"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/stdout.json",
+        "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8"
+      },
+      "condition_id": "growth256-summary-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "fa7bb2a86783bd354479cf8115b46272143bc70f64def3dbf6132806d9335003"
+      },
+      "matched_unprofiled_control": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+          "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        }
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "mode": "summary",
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-summary-searched-r3-p/post-metadata.json",
+        "sha256": "da4625d43c3351442d9984e976233ecf3cde60e975943b495a5e20151c283447"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794792347853209528.json",
+        "sha256": "81b8b10f5aa16bd4eaf5e09420ac8623c7977ed730e0a78fba2fe1b4b433cb7a"
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 97282668299035,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97282668362736,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97282720269797,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97283178066481,
+          "ru_maxrss_native_KiB": 231296,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97283226209354,
+          "ru_maxrss_native_KiB": 231296,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97616577055215,
+          "ru_maxrss_native_KiB": 231772,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97616577581814,
+          "ru_maxrss_native_KiB": 231772,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98832842007787,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98832846106169,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98832849512390,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2785120256,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2767962112,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794790791279721096,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794790791101689860.json",
+            "sha256": "e330fe2b0060f184bccca6c04f497d096aa6c44b0877a4a2c6f9e1a3542851cc"
+          },
+          "started_ns": 1794790791101689860
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2780397568,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2766008320,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794792348044235861,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794792347853209528.json",
+            "sha256": "81b8b10f5aa16bd4eaf5e09420ac8623c7977ed730e0a78fba2fe1b4b433cb7a"
+          },
+          "started_ns": 1794792347853209528
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/receipt.json",
+        "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+      },
+      "repetition": 3,
+      "terminal_direct_child_high_water_bytes": 337612800,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 337612800,
+        "pid": 52823,
+        "reaped_monotonic_ns": 98833081823277,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 38952,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 70,
+          "ru_maxrss": 329700,
+          "ru_minflt": 56877,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 10169,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 242,
+          "ru_oublock": 56,
+          "ru_stime": 1.665571,
+          "ru_utime": 1534.632035
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": null,
+      "workflow_call_seconds": 1550.452105608
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/eligible-boundary.json",
+        "sha256": "24a0d4040ae882576d4cfc84afd256b9577590a71122af6423334b0695e86f4f"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/stdout.json",
+        "sha256": "d49bac4ace421e23025707f9e4515988b3c48ee6559f9560b462e757a5e83f56"
+      },
+      "condition_id": "growth256-full-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "80311f4e94acd87c3e92ee12e385f8697119c5043d5c97fb4777b88ed6e3b725"
+      },
+      "matched_unprofiled_control": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+          "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+          "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+        }
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "mode": "full",
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r1-p/post-metadata.json",
+        "sha256": "1472b0739c27d659aedf3f8fc77a366c8c43654ec46ba2f4b92fb8326087a7df"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794793780328117440.json",
+        "sha256": "53416703bc3f8ea4b8c0e615ab7c5b5628d328adb2dd9e6a33d3681b7254ef57"
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 98840458262954,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98840458330970,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98840521223203,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98841117567595,
+          "ru_maxrss_native_KiB": 231776,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98841171820261,
+          "ru_maxrss_native_KiB": 231776,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 99168348581952,
+          "ru_maxrss_native_KiB": 558684,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 99168348800210,
+          "ru_maxrss_native_KiB": 558684,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100264256294657,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100264256801047,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100264259261924,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2822057984,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2807574528,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794792348792214400,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794792348623857039.json",
+            "sha256": "8bf29ad5d891bab973ba8af796e3a3017a01d609a021607bad3aecf0b35b69c9"
+          },
+          "started_ns": 1794792348623857039
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2754998272,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2741256192,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794793780481401679,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794793780328117440.json",
+            "sha256": "53416703bc3f8ea4b8c0e615ab7c5b5628d328adb2dd9e6a33d3681b7254ef57"
+          },
+          "started_ns": 1794793780328117440
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/receipt.json",
+        "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d"
+      },
+      "repetition": 1,
+      "terminal_direct_child_high_water_bytes": 695250944,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 695250944,
+        "pid": 52883,
+        "reaped_monotonic_ns": 100265556453165,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 19808,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 50,
+          "ru_maxrss": 678956,
+          "ru_minflt": 59103,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 5938,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 119,
+          "ru_oublock": 80,
+          "ru_stime": 2.075392,
+          "ru_utime": 1423.773014
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265556772761
+        },
+        "confirmation_decision_monotonic": 100265.556802162,
+        "deadline_monotonic_ns": 100265595893011,
+        "first_helper_entry_monotonic": 100265.546070634,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2700226560"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17742905344,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.546070634,
+            "independent_stop": null,
+            "monotonic": 100265.546155978,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.556793452,
+            "independent_stop": null,
+            "monotonic": 100265.556802162,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": 100265556453165,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 100265545893011,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 100265556453165
+      },
+      "workflow_call_seconds": 1424.11516996
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/eligible-boundary.json",
+        "sha256": "d61dd7e95711a89291045e6ed90e4e1d2e21f7c8af923abf269a61a0f2bce9e2"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/stdout.json",
+        "sha256": "4e6046b6913012535757b19a886139824b46f81d2f3a814ab3c3b07d72b49cc8"
+      },
+      "condition_id": "growth256-full-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "80311f4e94acd87c3e92ee12e385f8697119c5043d5c97fb4777b88ed6e3b725"
+      },
+      "matched_unprofiled_control": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+          "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "mode": "full",
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r2-p/post-metadata.json",
+        "sha256": "4d570b11a9d9c78e881ba15eae664cca264b759a86048c6128bcdba3291d07f5"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794795576549752297.json",
+        "sha256": "9c90e080e3a8b43dcf57738bb20a7e465e71e5d9d6af31ceab86a29d2598720d"
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 100272807883333,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100272808143267,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100272869257190,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100273198761234,
+          "ru_maxrss_native_KiB": 231984,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100273257204578,
+          "ru_maxrss_native_KiB": 231984,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100624459325472,
+          "ru_maxrss_native_KiB": 558628,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100624459469507,
+          "ru_maxrss_native_KiB": 558628,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102063135031442,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102063135493126,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102063141496353,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2793869312,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2779836416,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794793781355004601,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794793781167794096.json",
+            "sha256": "74660bc743c20566a2efe83676311bf93260dcb7f23da43d0e6b4a2e2b6b57fc"
+          },
+          "started_ns": 1794793781167794096
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2736205824,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2721939456,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794795576750609475,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794795576549752297.json",
+            "sha256": "9c90e080e3a8b43dcf57738bb20a7e465e71e5d9d6af31ceab86a29d2598720d"
+          },
+          "started_ns": 1794795576549752297
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/receipt.json",
+        "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41"
+      },
+      "repetition": 2,
+      "terminal_direct_child_high_water_bytes": 696123392,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 696123392,
+        "pid": 52943,
+        "reaped_monotonic_ns": 102064617100957,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 37584,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 63,
+          "ru_maxrss": 679808,
+          "ru_minflt": 59112,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 8475,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 213,
+          "ru_oublock": 88,
+          "ru_stime": 2.689063,
+          "ru_utime": 1780.710506
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064618937624
+        },
+        "confirmation_decision_monotonic": 102064.619011148,
+        "deadline_monotonic_ns": 102064656143575,
+        "first_helper_entry_monotonic": 102064.606490499,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673852416"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.606490499,
+            "independent_stop": null,
+            "monotonic": 102064.606661593,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.618993558,
+            "independent_stop": null,
+            "monotonic": 102064.619011148,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": 102064617100957,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 102064606143575,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 102064617100957
+      },
+      "workflow_call_seconds": 1790.373879817
+    },
+    {
+      "actual_config": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/config-largest-profiles-remaining5-AUTHORIZED.json",
+        "sha256": "a2faf01ead2661777131bd7c91521d1fa36bdffde6761245fa419ace4efe2313"
+      },
+      "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/eligible-boundary.json",
+        "sha256": "488b465a386150326f7fca5b96505ba55d4638258cb91c916c2ffbe775629393"
+      },
+      "branches": [
+        [
+          "searched",
+          "searched",
+          "searched"
+        ]
+      ],
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/stdout.json",
+        "sha256": "b186527b04353deb90135df03a3fa7db175631ed70c9c777541e574ca661de0a"
+      },
+      "condition_id": "growth256-full-searched",
+      "fingerprints": {
+        "branches": [
+          [
+            "searched",
+            "searched",
+            "searched"
+          ]
+        ],
+        "common_output_sha256": "c81ba19f5961d9d634e951af5c38044ac9fcecb7aeae8fe893d7f7becb9cb0db",
+        "input_sha256": "c9323b6a9fc796ba220e412bab09eee230b557488d281c8f68576785309772a9",
+        "public_result_sha256": "80311f4e94acd87c3e92ee12e385f8697119c5043d5c97fb4777b88ed6e3b725"
+      },
+      "matched_unprofiled_control": {
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+          "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+        },
+        "config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+          "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+        }
+      },
+      "metadata_scope": {
+        "external_ancestors": "unknown_unobservable",
+        "outside_campaign_processes": "unknown_not_scanned"
+      },
+      "mode": "full",
+      "post_metadata": {
+        "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-l256-full-searched-r3-p/post-metadata.json",
+        "sha256": "e0888e98032f7953f8e369915bed6751c64c069394833c26899e46197a96a8e4"
+      },
+      "post_resource": {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794797304395189195.json",
+        "sha256": "3c220db5dc072c0653310233044f288fee8f24d0336e6b5c224d980ddc348953"
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 102069794724906,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102069794826398,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102069853662625,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102070240926630,
+          "ru_maxrss_native_KiB": 231720,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102070289954137,
+          "ru_maxrss_native_KiB": 231720,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102471899988050,
+          "ru_maxrss_native_KiB": 558028,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102471900301204,
+          "ru_maxrss_native_KiB": 558028,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 103790182336047,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 103790182822875,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 103790185405256,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "proofs": [
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2778288128,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2764460032,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794795577802454624,
+          "phase": "pre",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794795577427143145.json",
+            "sha256": "c6d5f3b29e7f6b360d485362ef01ab638572705864cac7051a86758d5525bd6c"
+          },
+          "started_ns": 1794795577427143145
+        },
+        {
+          "facts": {
+            "inner": {
+              "current_bytes": 2662690816,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            },
+            "outer": {
+              "current_bytes": 2648027136,
+              "events": {
+                "high": "0",
+                "low": "0",
+                "max": "50340",
+                "oom": "0",
+                "oom_group_kill": "0",
+                "oom_kill": "0"
+              },
+              "swap_bytes": 0
+            }
+          },
+          "finished_ns": 1794797304553226544,
+          "phase": "post",
+          "proof": {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794797304395189195.json",
+            "sha256": "3c220db5dc072c0653310233044f288fee8f24d0336e6b5c224d980ddc348953"
+          },
+          "started_ns": 1794797304395189195
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/receipt.json",
+        "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb"
+      },
+      "repetition": 3,
+      "terminal_direct_child_high_water_bytes": 693915648,
+      "terminal_native": {
+        "core_dumped": false,
+        "exit_code": 0,
+        "exited": true,
+        "kernel_reported_direct_child_high_water_bytes": 693915648,
+        "pid": 53003,
+        "reaped_monotonic_ns": 103791283312819,
+        "returncode": 0,
+        "ru_maxrss_multiplier_to_bytes": 1024,
+        "ru_maxrss_native_units": "Linux KiB",
+        "rusage_native": {
+          "ru_idrss": 0,
+          "ru_inblock": 61592,
+          "ru_isrss": 0,
+          "ru_ixrss": 0,
+          "ru_majflt": 84,
+          "ru_maxrss": 677652,
+          "ru_minflt": 59621,
+          "ru_msgrcv": 0,
+          "ru_msgsnd": 0,
+          "ru_nivcsw": 10204,
+          "ru_nsignals": 0,
+          "ru_nswap": 0,
+          "ru_nvcsw": 249,
+          "ru_oublock": 248,
+          "ru_stime": 3.057941,
+          "ru_utime": 1717.939312
+        },
+        "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim",
+        "signaled": false,
+        "term_signal": null,
+        "wait_status_raw": 0
+      },
+      "visible_terminal_gap": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791283754924
+        },
+        "confirmation_decision_monotonic": 103791.283790267,
+        "deadline_monotonic_ns": 103791322823982,
+        "first_helper_entry_monotonic": 103791.273020485,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2677006336"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17700282368,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.273020485,
+            "independent_stop": null,
+            "monotonic": 103791.27309766,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.283780854,
+            "independent_stop": null,
+            "monotonic": 103791.283790267,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": 103791283312819,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 103791272823982,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 103791283312819
+      },
+      "workflow_call_seconds": 1720.852829409
+    }
+  ],
+  "same_stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/stage-admission.json",
+    "sha256": "850061a7dee83a3e07fca7a32e6638fe3d010f286192c8517b289844b77f6e80"
+  },
+  "scope": "WS116_ROOT_closed_prior_stage",
+  "source_unchanged": true,
+  "stage_id": "largest-profiles",
+  "terminal_receipts": [
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+      "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/receipt.json",
+      "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/receipt.json",
+      "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/receipt.json",
+      "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/receipt.json",
+      "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/receipt.json",
+      "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb"
+    }
+  ],
+  "three_repeat_groups_complete": 2,
+  "unresolved_owners": []
+}

@@ -1,0 +1,51 @@
+{
+  "command": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+    "--grant",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-central64-summary-supplied-r1-u/grant.json",
+    "--attempt-id",
+    "ws116-central64-summary-supplied-r1-u"
+  ],
+  "config_sha256": "a04ec94fa074980328b1d87d687c5ddefed0b2c380a92b595015ef3c49c22c36",
+  "grant_sha256": "fe64e1860bde2370b401a888a271480144c4fa815a1de2bb612fa30abbff6994",
+  "proof": {
+    "docker_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "inner_status": 0,
+    "observed_at_unix_ns": 1794728951707491163,
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794728951707491163.json",
+    "sha256": "bb124ec89f58254681468fe3608d4e805dace6950cfa7d90a31ae6cf6cc7bcf5"
+  },
+  "row": {
+    "attempt_id": "ws116-central64-summary-supplied-r1-u",
+    "command_template": "<PINNED-PYTHON> <NEW-CLEAN-ROOT>/docs/reports/reconstruction-working-set/run_attempt.py --grant <ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-central64-summary-supplied-r1-u.json --attempt-id ws116-central64-summary-supplied-r1-u",
+    "condition_id": "central64-summary-supplied",
+    "condition_plan_ref": "conditions.central64-summary-supplied",
+    "grant_path_template": "<ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-central64-summary-supplied-r1-u.json",
+    "launch_nonce": "ws116-central64-summary-supplied-r1-u",
+    "profile": false,
+    "proposed_predecessor": "ws116-central64-full-searched-r3-u",
+    "repetition": 1,
+    "serial_index": 10,
+    "status": "UNADMITTED"
+  },
+  "scope": "one synchronous existing runner; no retry",
+  "source_sha256": "f6b89920979c0f73a5860190a7d14735c2b63d7b27d6482c02465f3c649d1d24",
+  "time_unix_ns": 1794728951909430384
+}

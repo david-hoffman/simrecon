@@ -1,0 +1,18 @@
+{
+  "created_at_unix_ns": 1794800630824519106,
+  "csv_sha256": "9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90",
+  "limits": "Whole direct-child kernel high-water through final exit includes setup/import/caller/observation and unknown inherited/pre-exec/exec retention. Call-only duration is separate. Structural matching does not control physical/cache context. No isolated profiling cost, mode performance attribution or workstation-feasibility claim.",
+  "rendering_not_numerical_experiment": true,
+  "scope": "Presentation of twelve actual separate process observations from accepted canonical largest256 stage and six controls; no new aggregation/statistic/fit/ratio/subtraction",
+  "sources": {
+    "per-process.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "55fb5ef5194894a9538ebcab67560b0ad278cd2d257475cb6cb14c290b697bd7"
+    },
+    "unprofiled-controls.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "c591ddddb7678b9d456926711d447f4afe114b7516b4c19342b64eac2d97289d"
+    }
+  },
+  "workload": "T1 D3 Z8 Y256 X256; searched, float32 detector input and float64/complex128 computation"
+}

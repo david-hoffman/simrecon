@@ -1,0 +1,172 @@
+{
+  "protocol": "WS116-qualification-phase-small-v2",
+  "case": "Q4-parser",
+  "attempt_id": "q4-parser-a1",
+  "status": "case_pass_scoped_only",
+  "driver_pid": 45985,
+  "interpreter": {
+    "version": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspace/work/issue-116/.venv/bin/python",
+    "resolved": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "argv": [
+    "docs/reports/reconstruction-working-set/method_qualification.py",
+    "--case",
+    "Q4-parser",
+    "--grant",
+    "docs/reports/reconstruction-working-set/qualification/grants/Q4-parser-released.json",
+    "--attempt-id",
+    "q4-parser-a1"
+  ],
+  "started_monotonic_ns": 24862717085536,
+  "not_scientific_evidence": true,
+  "grant_sha256": "08574ed528d04fe31a8c31a8c34b395aa7f58ab78c1638273b40c34c5a1e3962",
+  "source_sha256": {
+    "docs/reports/reconstruction-working-set/method_qualification.py": "d079e099605efb8a98e85ee1143eabf82c968342ef4d8c379654f723688f76d7",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json": "d8cb07b0d896e89420834d05bc8a10ee69fb7be137aaffa5be1cc963b1a845ed",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/parser-vectors-v1.json": "f2f14d334965e7c68baa913e30f5ce032740b87d6bffa5ddaf04c60a3e4197ed"
+  },
+  "exposed_domain": {
+    "membership": "/",
+    "mount_root": "/",
+    "mount": "/sys/fs/cgroup",
+    "namespace": "cgroup:[4026532294]",
+    "visible_memory_max": {
+      "/sys/fs/cgroup": "17179869184"
+    }
+  },
+  "driver_identity": {
+    "pid": 45985,
+    "observed_monotonic_ns": 24862751762929,
+    "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+    "start_ticks": 2486261,
+    "ppid": 0,
+    "pgid": 45985,
+    "session_id": 45985,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13"
+  },
+  "resource_domain": {
+    "scope": "WS116-exposed-domain-conditional-v1",
+    "external_ancestors": "unknown_unobservable",
+    "conditional_rationale": "Root explicitly released ONLY q4-parser-a1 with this fresh hashed correspondence; actual admission checks remain mandatory. Coordinator independently read finite driver/admission/retained-Q1-Q2 mapping, actual accepted parser interfaces and all literal vector expectations/mutations. Exactly151 scalar vectors, no child or scientific imports; bounds128KiB fixture/16KiB record plus one oversized byte/8KiB bootstrap/2MiB total files/20s soft,256MiB process/64+64MiB allowance/256MiB reserve/4GiB ancestor stop/512MiB host minimum. Actual admission must verify current resources/identities/proofage<=300s; external ancestors stay unknown. No science/native peak or full-main status acceptance; failure stops without retry.",
+    "correspondence_evidence": {
+      "path": "/workspace/work/campaign/evidence/116/resource-domain/1794718322287136106.json",
+      "sha256": "471dff4bb4ff7c4e231984c2a4e133d5333d6dedeb4ac3d72ebf7ff2bf6dfcdb",
+      "observed_at_unix_ns": 1794718322287136106,
+      "maximum_age_seconds": 300
+    },
+    "expected_exposed": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_memory_max": {
+        "/sys/fs/cgroup": "17179869184"
+      }
+    },
+    "predicted_child_peak_bytes": 67108864,
+    "native_allocator_allowance_bytes": 67108864,
+    "reserve_bytes": 268435456
+  },
+  "result": {
+    "results_file": "parser-results.jsonl",
+    "vectors_completed": 151,
+    "fixture_output_bytes": 378698,
+    "spawned_children": 0,
+    "scope": "finite synthetic parser expectations only; protocol refusal may be expected; no science, native wait-status classifier or full main status ladder executed"
+  },
+  "finished_monotonic_ns": 24862813836550,
+  "postflight": {
+    "system": "Linux",
+    "kernel": "6.18.57",
+    "machine": "x86_64",
+    "host_id_sha256": "45e7e2ee03331e7e0fb4ce44fe07c21d6c90885f5dc786874f8e86fd70c2ee33",
+    "pid": 45985,
+    "meminfo": "MemTotal:       18440100 kB\nMemFree:        17217832 kB\nMemAvailable:   17461532 kB\nBuffers:            6664 kB\nCached:           306012 kB\nSwapCached:            0 kB\nActive:           248652 kB\nInactive:         144660 kB\nActive(anon):        284 kB\nInactive(anon):   110416 kB\nActive(file):     248368 kB\nInactive(file):    34244 kB\nUnevictable:       29944 kB\nMlocked:               0 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:              3812 kB\nWriteback:             0 kB\nAnonPages:        110728 kB\nMapped:           129132 kB\nShmem:               176 kB\nKReclaimable:     313100 kB\nSlab:             374860 kB\nSReclaimable:     313100 kB\nSUnreclaim:        61760 kB\nKernelStack:        3360 kB\nPageTables:         4488 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9220048 kB\nCommitted_AS:     877104 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:        5684 kB\nVmallocChunk:          0 kB\nPercpu:             1440 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nBalloon:               0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      210944 kB\nDirectMap2M:    10790912 kB\nDirectMap1G:    33554432 kB",
+    "cgroup": {
+      "membership": "/",
+      "mount_root": "/",
+      "mount": "/sys/fs/cgroup",
+      "namespace": "cgroup:[4026532294]",
+      "visible_ancestors": [
+        {
+          "path": "/sys/fs/cgroup",
+          "memory.max": "17179869184",
+          "memory.current": "717852672",
+          "memory.peak": "7725113344",
+          "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+          "memory.swap.max": "max",
+          "memory.swap.current": "0"
+        }
+      ],
+      "hidden_ancestors": "unknown: ancestors outside the exposed domain are unobserved; no absence or unlimited claim"
+    },
+    "rlimits": {
+      "RLIMIT_AS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_DATA": [
+        -1,
+        -1
+      ],
+      "RLIMIT_RSS": [
+        -1,
+        -1
+      ],
+      "RLIMIT_CPU": [
+        -1,
+        -1
+      ],
+      "RLIMIT_FSIZE": [
+        -1,
+        -1
+      ],
+      "RLIMIT_NOFILE": [
+        1024,
+        16384
+      ]
+    },
+    "disk_available_bytes": 60814131200,
+    "threads": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "allocator": {
+      "PYTHONMALLOC": null,
+      "MALLOC_ARENA_MAX": null
+    }
+  },
+  "files_before_receipt": {
+    "retained-Q1-applicability.json": {
+      "logical_bytes": 1537,
+      "allocated_bytes": 4096
+    },
+    "preflight.json": {
+      "logical_bytes": 2855,
+      "allocated_bytes": 4096
+    },
+    "grant.input": {
+      "logical_bytes": 4754,
+      "allocated_bytes": 8192
+    },
+    "retained-Q2-applicability.json": {
+      "logical_bytes": 2639,
+      "allocated_bytes": 4096
+    },
+    "parser-results.jsonl": {
+      "logical_bytes": 45401,
+      "allocated_bytes": 49152
+    }
+  },
+  "limits": "No product workflow, aggregate-tree peak or comparative scientific memory envelope. Terminal wait4 is kernel-reported direct-child usage through final exit. Inherited/pre-exec/exec-transition high-water retention remains unresolved; same PID does not guarantee every bootstrap/startup peak survives exec. No subtraction/aggregate/benefit claim. Parent death/spawn-marker gaps, abrupt-loss recovery, Q5 and science are unqualified. Q4, when selected, covers only its exact synthetic interfaces/vector expectations. Receipt excludes its own disk bytes. No retry; unresolved ownership blocks another case."
+}

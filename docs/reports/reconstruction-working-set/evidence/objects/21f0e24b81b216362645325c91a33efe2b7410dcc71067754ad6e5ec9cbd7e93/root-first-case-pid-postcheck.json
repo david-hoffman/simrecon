@@ -1,0 +1,14 @@
+{
+  "observed_at_unix_ns": 1794720454080575983,
+  "pids": {
+    "46267": {
+      "pid_directory_exists": false,
+      "fd_directory_exists": false
+    },
+    "46287": {
+      "pid_directory_exists": false,
+      "fd_directory_exists": false
+    }
+  },
+  "signals_sent_by_postcheck": false
+}

@@ -1,0 +1,235 @@
+{
+  "actual_rows": 6,
+  "closure_sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1",
+  "complete_groups": 2,
+  "groups": {
+    "growth192-summary-searched": {
+      "call_end_cumulative_self_bytes": {
+        "max": 228704256,
+        "median": 227155968,
+        "min": 226779136
+      },
+      "call_seconds": {
+        "max": 879.263879409,
+        "median": 877.672316616,
+        "min": 836.872943208
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 228704256,
+        "median": 227155968,
+        "min": 226779136
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 111869952,
+        "median": 111849472,
+        "min": 111538176
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 880.550920042,
+        "median": 878.897558759,
+        "min": 838.134494412
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 880.275737066,
+        "median": 878.695996071,
+        "min": 837.854223671
+      },
+      "terminal_kernel_bytes": {
+        "max": 228704256,
+        "median": 227155968,
+        "min": 226779136
+      },
+      "terminal_native_KiB": {
+        "max": 223344,
+        "median": 221832,
+        "min": 221464
+      }
+    },
+    "growth192-summary-supplied": {
+      "call_end_cumulative_self_bytes": {
+        "max": 224399360,
+        "median": 224317440,
+        "min": 221908992
+      },
+      "call_seconds": {
+        "max": 945.767052006,
+        "median": 912.994352388,
+        "min": 890.067089916
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 224399360,
+        "median": 224317440,
+        "min": 221908992
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 112041984,
+        "median": 111824896,
+        "min": 111816704
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 947.170541652,
+        "median": 914.214653351,
+        "min": 891.288073914
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 946.89672438,
+        "median": 913.957134554,
+        "min": 890.910572838
+      },
+      "terminal_kernel_bytes": {
+        "max": 224399360,
+        "median": 224317440,
+        "min": 221908992
+      },
+      "terminal_native_KiB": {
+        "max": 219140,
+        "median": 219060,
+        "min": 216708
+      }
+    }
+  },
+  "method": "Independent direct raw scalar extraction and sorted-three selection; no primary extractor imported.",
+  "metric_triplets": 16,
+  "observations": [
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r1-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/stdout.json",
+        "sha256": "2a85b20859d5983c980d039e727723d6cf4a0ab63cd88edb9030e166472f41d0"
+      },
+      "label": "supplied",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 221908992,
+        "call_seconds": 945.767052006,
+        "post_observation_cumulative_self_bytes": 221908992,
+        "pre_call_cumulative_self_bytes": 111824896,
+        "spawn_to_terminal_collection_seconds": 947.170541652,
+        "target_start_to_last_snapshot_seconds": 946.89672438,
+        "terminal_kernel_bytes": 221908992,
+        "terminal_native_KiB": 216708
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r1-u/receipt.json",
+        "sha256": "b3751a15599f2171ec7d6d87bb35448a1aa2f3dd3547ec0a0e610805aba7d601"
+      },
+      "repetition": 1
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r2-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/stdout.json",
+        "sha256": "aa6d7a6de2d5b0f329894157ed548627a7c2e884644300831d9931491c97a4a3"
+      },
+      "label": "supplied",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 224317440,
+        "call_seconds": 890.067089916,
+        "post_observation_cumulative_self_bytes": 224317440,
+        "pre_call_cumulative_self_bytes": 112041984,
+        "spawn_to_terminal_collection_seconds": 891.288073914,
+        "target_start_to_last_snapshot_seconds": 890.910572838,
+        "terminal_kernel_bytes": 224317440,
+        "terminal_native_KiB": 219060
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r2-u/receipt.json",
+        "sha256": "2c8a6c85ccf30fd1e233862393370541bdc207d266097ac672a551f04f404ea5"
+      },
+      "repetition": 2
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-supplied-r3-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/stdout.json",
+        "sha256": "5ee51344afb6b4d0d27dda2376d92fd8eb5c1353a5d0610dd6787fbb9070f6b4"
+      },
+      "label": "supplied",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 224399360,
+        "call_seconds": 912.994352388,
+        "post_observation_cumulative_self_bytes": 224399360,
+        "pre_call_cumulative_self_bytes": 111816704,
+        "spawn_to_terminal_collection_seconds": 914.214653351,
+        "target_start_to_last_snapshot_seconds": 913.957134554,
+        "terminal_kernel_bytes": 224399360,
+        "terminal_native_KiB": 219140
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-supplied-r3-u/receipt.json",
+        "sha256": "d8ebd21729c567fa90b6c59bd8988a586f520ca28ca259f427c148dcb74c0d59"
+      },
+      "repetition": 3
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-searched-r1-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/stdout.json",
+        "sha256": "101f6c28b7cfb81ac218b9b01c0a31cb351d1e6c99504760525190d428166e1d"
+      },
+      "label": "searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 227155968,
+        "call_seconds": 879.263879409,
+        "post_observation_cumulative_self_bytes": 227155968,
+        "pre_call_cumulative_self_bytes": 111538176,
+        "spawn_to_terminal_collection_seconds": 880.550920042,
+        "target_start_to_last_snapshot_seconds": 880.275737066,
+        "terminal_kernel_bytes": 227155968,
+        "terminal_native_KiB": 221832
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r1-u/receipt.json",
+        "sha256": "524e906a5bc6fee776d07a6fc4e2035cf3112ece82e244b697be1266d763d809"
+      },
+      "repetition": 1
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-searched-r2-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/stdout.json",
+        "sha256": "f5171bdd01358ab9cc83d2209f62af16c68de9cc15a13c65b6b79d93a9fbee06"
+      },
+      "label": "searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 228704256,
+        "call_seconds": 877.672316616,
+        "post_observation_cumulative_self_bytes": 228704256,
+        "pre_call_cumulative_self_bytes": 111849472,
+        "spawn_to_terminal_collection_seconds": 878.897558759,
+        "target_start_to_last_snapshot_seconds": 878.695996071,
+        "terminal_kernel_bytes": 228704256,
+        "terminal_native_KiB": 223344
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r2-u/receipt.json",
+        "sha256": "f2755c3d0e7c1055e4393050e1ca22b8f89f3df7fed331c6844c63201ac64c04"
+      },
+      "repetition": 2
+    },
+    {
+      "attempt_id": "ws116-gp-g192-summary-searched-r3-u",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/stdout.json",
+        "sha256": "bae1b37703d8fb8b7ca587ff8089d764f55acb149ead3e0d821f4abaf3c10ee2"
+      },
+      "label": "searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 226779136,
+        "call_seconds": 836.872943208,
+        "post_observation_cumulative_self_bytes": 226779136,
+        "pre_call_cumulative_self_bytes": 111869952,
+        "spawn_to_terminal_collection_seconds": 838.134494412,
+        "target_start_to_last_snapshot_seconds": 837.854223671,
+        "terminal_kernel_bytes": 226779136,
+        "terminal_native_KiB": 221464
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-g192-summary-searched-r3-u/receipt.json",
+        "sha256": "4eb49dc88173840eac97f64d9262e94b0dca546c28afb847b1a7c7976c8abc2d"
+      },
+      "repetition": 3
+    }
+  ],
+  "schema": "ROOT-WS116-growth192-independent-raw-scalar-summary-v1",
+  "scope": "Descriptive only; terminal kernel direct-child high-water, exec retention unknown. No scientific report acceptance, causal attribution, allocation decomposition or native child experiment."
+}

@@ -1,0 +1,25 @@
+{
+  "ROOT_post_audit": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-post-audit.json",
+    "sha256": "0eaaff99b1d1aa27fd65360c3284c8f37b25ef49e3677dafec23f7ffcefcbd38"
+  },
+  "authority": "ROOT",
+  "closed_first_row_window": true,
+  "controller63755_actual_terminal_exit0_no_proxy": true,
+  "costs": "UNKNOWN",
+  "eligibility": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-first-central-profile-eligibility.json",
+    "sha256": "58cc70bae28800777587b584708ded4d7f5fa14af06041a23e31020e331801bc"
+  },
+  "ended_at_unix_ns": 1794782610831364402,
+  "exact2_birth_FD_sets_closed": true,
+  "no_active_stage_controller": true,
+  "original_window": {
+    "ends_unix_ns": 1794788840916089907,
+    "starts_unix_ns": 1794781640916089907
+  },
+  "schema": "ROOT-WS116-first-central-profile-window-ended-v1",
+  "scope": "Explicit earlyend afteractualfirstprofile terminal/ownership/source/fingerprint audits. No automatic continuation or other runtime release.",
+  "selected_largest_size": null,
+  "stage_id": "central64-profiles"
+}

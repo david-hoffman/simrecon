@@ -1,0 +1,11 @@
+{
+  "id": "G06-V14-missing-EOF",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "KeyError",
+    "reason": "'startup_eof_observed'"
+  },
+  "expected_type": "KeyError",
+  "expected_phrase": "startup_eof_observed"
+}

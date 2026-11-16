@@ -1,0 +1,7 @@
+{
+  "completed_eligible_ids": [],
+  "ownership": "No signals/scans/automatic retry; any pending observer remains ROOT-owned",
+  "reason": "grant window authority differs",
+  "status": "HOLD_WHOLE_QUEUE",
+  "type": "Hold"
+}

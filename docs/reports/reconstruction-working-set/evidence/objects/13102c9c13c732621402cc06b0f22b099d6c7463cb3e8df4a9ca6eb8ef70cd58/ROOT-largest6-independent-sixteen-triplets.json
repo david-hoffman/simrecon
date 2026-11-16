@@ -1,0 +1,981 @@
+{
+  "authority": "ROOT",
+  "closure": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-first-readiness/root-largest256-profiles-stage-closed.json",
+    "sha256": "2bc344e6727ad9b9022faca2336669f812b4c0025ed9230480756dec97dd651f"
+  },
+  "costs": "UNKNOWN",
+  "final_scientific_acceptance": false,
+  "method": "Independent direct raw receipt/child extraction; exact three-value order and middle, no canonical program or coor worksheet read",
+  "native_scope": "Kernel reported exact direct child terminal through final exit, inherited/pre-exec/exec retention UNKNOWN; child self/stage cumulative; snapshot/spawn/collection/call scopes separate",
+  "no_subtraction_ratio_cost_or_causal_claim": true,
+  "observed_at_unix_ns": 1794797533971916817,
+  "rows": [
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r1-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/stdout.json",
+        "sha256": "3298fa910b600306c06e2e9b1d69f523b523cca7a5c0311260e4509ba661c53c"
+      },
+      "condition_id": "growth256-summary-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 334118912,
+        "call_seconds": 1335.172755667,
+        "post_observation_cumulative_self_bytes": 334118912,
+        "pre_call_cumulative_self_bytes": 140357632,
+        "spawn_to_terminal_collection_seconds": 1336.840142247,
+        "target_start_to_last_snapshot_seconds": 1336.570353148,
+        "terminal_kernel_bytes": 334118912,
+        "terminal_native_KiB": 326288
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179302430977,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93179302495549,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179363994205,
+          "ru_maxrss_native_KiB": 186236,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93179860876971,
+          "ru_maxrss_native_KiB": 231908,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93179935501424,
+          "ru_maxrss_native_KiB": 231908,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 93485898196668,
+          "ru_maxrss_native_KiB": 232312,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 93485898402579,
+          "ru_maxrss_native_KiB": 232312,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 94514419702790,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 94514425143645,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 94514429088699,
+          "ru_maxrss_native_KiB": 326288,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r1-p/receipt.json",
+        "sha256": "4f0d9be8a961a9155ac4fc7480599a42e611a716674a0255e188d53ebbc483b7"
+      },
+      "repetition": 1,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r2-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/stdout.json",
+        "sha256": "2e219d7c86384e7619863bb7f0568e35588a3bd91d7b3555571da932de779a57"
+      },
+      "condition_id": "growth256-summary-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 334983168,
+        "call_seconds": 1470.766478159,
+        "post_observation_cumulative_self_bytes": 334983168,
+        "pre_call_cumulative_self_bytes": 140210176,
+        "spawn_to_terminal_collection_seconds": 1472.539334728,
+        "target_start_to_last_snapshot_seconds": 1472.181035445,
+        "terminal_kernel_bytes": 334983168,
+        "terminal_native_KiB": 327132
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 95805725235542,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 95805725300353,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 95805781094759,
+          "ru_maxrss_native_KiB": 186092,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 95806230904725,
+          "ru_maxrss_native_KiB": 231892,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 95806282825954,
+          "ru_maxrss_native_KiB": 231892,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 96134868134650,
+          "ru_maxrss_native_KiB": 232224,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 96134868494052,
+          "ru_maxrss_native_KiB": 232224,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97276202694365,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97276206425614,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97276210054632,
+          "ru_maxrss_native_KiB": 327132,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r2-p/receipt.json",
+        "sha256": "f4a71cb23926836c59e5c02a73ab43990c6c4bf791826286a30a36bd0724e0be"
+      },
+      "repetition": 2,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false
+    },
+    {
+      "attempt_id": "ws116-gp-l256-summary-searched-r3-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/stdout.json",
+        "sha256": "de9879aab7b4e9e51827c33e593d5f607c6d5d7faea273686f51b54d33fafae8"
+      },
+      "condition_id": "growth256-summary-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 337612800,
+        "call_seconds": 1550.452105608,
+        "post_observation_cumulative_self_bytes": 337612800,
+        "pre_call_cumulative_self_bytes": 139669504,
+        "spawn_to_terminal_collection_seconds": 1551.757263874,
+        "target_start_to_last_snapshot_seconds": 1551.534646302,
+        "terminal_kernel_bytes": 337612800,
+        "terminal_native_KiB": 329700
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 97282668299035,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97282668362736,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97282720269797,
+          "ru_maxrss_native_KiB": 185564,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97283178066481,
+          "ru_maxrss_native_KiB": 231296,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97283226209354,
+          "ru_maxrss_native_KiB": 231296,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 97616577055215,
+          "ru_maxrss_native_KiB": 231772,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 97616577581814,
+          "ru_maxrss_native_KiB": 231772,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98832842007787,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98832846106169,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98832849512390,
+          "ru_maxrss_native_KiB": 329700,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-summary-searched-r3-p/receipt.json",
+        "sha256": "5bad7392e4af1813376006afd4072961c9b060a5a8a9d80bfd2baf3074207351"
+      },
+      "repetition": 3,
+      "rss_terminal_confirmation": null,
+      "rss_terminal_confirmation_key_present": false
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r1-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/stdout.json",
+        "sha256": "d49bac4ace421e23025707f9e4515988b3c48ee6559f9560b462e757a5e83f56"
+      },
+      "condition_id": "growth256-full-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 695250944,
+        "call_seconds": 1424.11516996,
+        "post_observation_cumulative_self_bytes": 695250944,
+        "pre_call_cumulative_self_bytes": 140095488,
+        "spawn_to_terminal_collection_seconds": 1426.685453173,
+        "target_start_to_last_snapshot_seconds": 1426.475958986,
+        "terminal_kernel_bytes": 695250944,
+        "terminal_native_KiB": 678956
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 98840458262954,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98840458330970,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98840521223203,
+          "ru_maxrss_native_KiB": 186132,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 98841117567595,
+          "ru_maxrss_native_KiB": 231776,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 98841171820261,
+          "ru_maxrss_native_KiB": 231776,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 99168348581952,
+          "ru_maxrss_native_KiB": 558684,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 99168348800210,
+          "ru_maxrss_native_KiB": 558684,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100264256294657,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100264256801047,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100264259261924,
+          "ru_maxrss_native_KiB": 678956,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r1-p/receipt.json",
+        "sha256": "607aceefeefc3b7d631cd8dcfc49efb88312154e829fa8d4838a7ca04c72718d"
+      },
+      "repetition": 1,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265556772761
+        },
+        "confirmation_decision_monotonic": 100265.556802162,
+        "deadline_monotonic_ns": 100265595893011,
+        "first_helper_entry_monotonic": 100265.546070634,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2700226560"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17742905344,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2696638464"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17751134208,
+          "monotonic_ns": 100265545893011,
+          "pid": 52883,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.546070634,
+            "independent_stop": null,
+            "monotonic": 100265.546155978,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 100265.556793452,
+            "independent_stop": null,
+            "monotonic": 100265.556802162,
+            "sample_monotonic_ns": 100265545893011,
+            "terminal_collected_monotonic_ns": 100265556453165,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 100265545893011,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 100265556453165
+      },
+      "rss_terminal_confirmation_key_present": true
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r2-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/stdout.json",
+        "sha256": "4e6046b6913012535757b19a886139824b46f81d2f3a814ab3c3b07d72b49cc8"
+      },
+      "condition_id": "growth256-full-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 696123392,
+        "call_seconds": 1790.373879817,
+        "post_observation_cumulative_self_bytes": 696123392,
+        "pre_call_cumulative_self_bytes": 140537856,
+        "spawn_to_terminal_collection_seconds": 1793.207664254,
+        "target_start_to_last_snapshot_seconds": 1792.85846156,
+        "terminal_kernel_bytes": 696123392,
+        "terminal_native_KiB": 679808
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 100272807883333,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100272808143267,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100272869257190,
+          "ru_maxrss_native_KiB": 186412,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100273198761234,
+          "ru_maxrss_native_KiB": 231984,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100273257204578,
+          "ru_maxrss_native_KiB": 231984,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 100624459325472,
+          "ru_maxrss_native_KiB": 558628,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 100624459469507,
+          "ru_maxrss_native_KiB": 558628,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102063135031442,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102063135493126,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102063141496353,
+          "ru_maxrss_native_KiB": 679808,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r2-p/receipt.json",
+        "sha256": "1b28474f90b04345f5cd188651bf06cbbd4b2a67d224c373fbf6fd643061bc41"
+      },
+      "repetition": 2,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064618937624
+        },
+        "confirmation_decision_monotonic": 102064.619011148,
+        "deadline_monotonic_ns": 102064656143575,
+        "first_helper_entry_monotonic": 102064.606490499,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673852416"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2673655808"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17764794368,
+          "monotonic_ns": 102064606143575,
+          "pid": 52943,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.606490499,
+            "independent_stop": null,
+            "monotonic": 102064.606661593,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 102064.618993558,
+            "independent_stop": null,
+            "monotonic": 102064.619011148,
+            "sample_monotonic_ns": 102064606143575,
+            "terminal_collected_monotonic_ns": 102064617100957,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 102064606143575,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 102064617100957
+      },
+      "rss_terminal_confirmation_key_present": true
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-searched-r3-p",
+      "child": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/stdout.json",
+        "sha256": "b186527b04353deb90135df03a3fa7db175631ed70c9c777541e574ca661de0a"
+      },
+      "condition_id": "growth256-full-searched",
+      "metrics": {
+        "call_end_cumulative_self_bytes": 693915648,
+        "call_seconds": 1720.852829409,
+        "post_observation_cumulative_self_bytes": 693915648,
+        "pre_call_cumulative_self_bytes": 140124160,
+        "spawn_to_terminal_collection_seconds": 1723.259577329,
+        "target_start_to_last_snapshot_seconds": 1723.029345988,
+        "terminal_kernel_bytes": 693915648,
+        "terminal_native_KiB": 677652
+      },
+      "profile_events": [
+        {
+          "edge": "enter",
+          "monotonic_ns": 102069794724906,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102069794826398,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "declaration",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102069853662625,
+          "ru_maxrss_native_KiB": 186164,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102070240926630,
+          "ru_maxrss_native_KiB": 231720,
+          "stage": "preparation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102070289954137,
+          "ru_maxrss_native_KiB": 231720,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 102471899988050,
+          "ru_maxrss_native_KiB": 558028,
+          "stage": "estimation",
+          "time_index": null
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 102471900301204,
+          "ru_maxrss_native_KiB": 558028,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 103790182336047,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "reconstruction",
+          "time_index": 0
+        },
+        {
+          "edge": "enter",
+          "monotonic_ns": 103790182822875,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "result",
+          "time_index": null
+        },
+        {
+          "edge": "exit",
+          "monotonic_ns": 103790185405256,
+          "ru_maxrss_native_KiB": 677652,
+          "stage": "result",
+          "time_index": null
+        }
+      ],
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-searched-r3-p/receipt.json",
+        "sha256": "15b5ad034916a2717dc42ff3002b11c62a6a827d3022d9a27f8e2c1767a8cbcb"
+      },
+      "repetition": 3,
+      "rss_terminal_confirmation": {
+        "bound_seconds": 0.05,
+        "cached_terminal_guard_refresh": {
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_fields": "last actual sample, not a new post-terminal observation",
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791283754924
+        },
+        "confirmation_decision_monotonic": 103791.283790267,
+        "deadline_monotonic_ns": 103791322823982,
+        "first_helper_entry_monotonic": 103791.273020485,
+        "first_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2677006336"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17700282368,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "last_sample": {
+          "VmRSS_bytes": null,
+          "ancestor_current_bytes": {
+            "/sys/fs/cgroup": "2606690304"
+          },
+          "child_cgroup": "0::/",
+          "field_errors": {},
+          "host_available_bytes": 17766387712,
+          "monotonic_ns": 103791272823982,
+          "pid": 53003,
+          "process_status_readable": true
+        },
+        "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+        "observations": [
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.273020485,
+            "independent_stop": null,
+            "monotonic": 103791.27309766,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": null,
+            "terminal_observed": false
+          },
+          {
+            "RSS_present": false,
+            "VmRSS_bytes": null,
+            "helper_entry_monotonic": 103791.283780854,
+            "independent_stop": null,
+            "monotonic": 103791.283790267,
+            "sample_monotonic_ns": 103791272823982,
+            "terminal_collected_monotonic_ns": 103791283312819,
+            "terminal_observed": true
+          }
+        ],
+        "origin_monotonic_ns": 103791272823982,
+        "outcome": "terminal_confirmed_with_visible_sampling_gap",
+        "terminal_collected_monotonic_ns": 103791283312819
+      },
+      "rss_terminal_confirmation_key_present": true
+    }
+  ],
+  "schema": "ROOT-WS116-largest6-independent-sixteen-triplets-v1",
+  "triplets": [
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 329700,
+      "median": 327132,
+      "metric": "terminal_native_KiB",
+      "minimum": 326288,
+      "values_r1_r2_r3": [
+        326288,
+        327132,
+        329700
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 337612800,
+      "median": 334983168,
+      "metric": "terminal_kernel_bytes",
+      "minimum": 334118912,
+      "values_r1_r2_r3": [
+        334118912,
+        334983168,
+        337612800
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 1550.452105608,
+      "median": 1470.766478159,
+      "metric": "call_seconds",
+      "minimum": 1335.172755667,
+      "values_r1_r2_r3": [
+        1335.172755667,
+        1470.766478159,
+        1550.452105608
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 1551.757263874,
+      "median": 1472.539334728,
+      "metric": "spawn_to_terminal_collection_seconds",
+      "minimum": 1336.840142247,
+      "values_r1_r2_r3": [
+        1336.840142247,
+        1472.539334728,
+        1551.757263874
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 1551.534646302,
+      "median": 1472.181035445,
+      "metric": "target_start_to_last_snapshot_seconds",
+      "minimum": 1336.570353148,
+      "values_r1_r2_r3": [
+        1336.570353148,
+        1472.181035445,
+        1551.534646302
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 140357632,
+      "median": 140210176,
+      "metric": "pre_call_cumulative_self_bytes",
+      "minimum": 139669504,
+      "values_r1_r2_r3": [
+        140357632,
+        140210176,
+        139669504
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 337612800,
+      "median": 334983168,
+      "metric": "call_end_cumulative_self_bytes",
+      "minimum": 334118912,
+      "values_r1_r2_r3": [
+        334118912,
+        334983168,
+        337612800
+      ]
+    },
+    {
+      "condition_id": "growth256-summary-searched",
+      "maximum": 337612800,
+      "median": 334983168,
+      "metric": "post_observation_cumulative_self_bytes",
+      "minimum": 334118912,
+      "values_r1_r2_r3": [
+        334118912,
+        334983168,
+        337612800
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 679808,
+      "median": 678956,
+      "metric": "terminal_native_KiB",
+      "minimum": 677652,
+      "values_r1_r2_r3": [
+        678956,
+        679808,
+        677652
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 696123392,
+      "median": 695250944,
+      "metric": "terminal_kernel_bytes",
+      "minimum": 693915648,
+      "values_r1_r2_r3": [
+        695250944,
+        696123392,
+        693915648
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 1790.373879817,
+      "median": 1720.852829409,
+      "metric": "call_seconds",
+      "minimum": 1424.11516996,
+      "values_r1_r2_r3": [
+        1424.11516996,
+        1790.373879817,
+        1720.852829409
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 1793.207664254,
+      "median": 1723.259577329,
+      "metric": "spawn_to_terminal_collection_seconds",
+      "minimum": 1426.685453173,
+      "values_r1_r2_r3": [
+        1426.685453173,
+        1793.207664254,
+        1723.259577329
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 1792.85846156,
+      "median": 1723.029345988,
+      "metric": "target_start_to_last_snapshot_seconds",
+      "minimum": 1426.475958986,
+      "values_r1_r2_r3": [
+        1426.475958986,
+        1792.85846156,
+        1723.029345988
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 140537856,
+      "median": 140124160,
+      "metric": "pre_call_cumulative_self_bytes",
+      "minimum": 140095488,
+      "values_r1_r2_r3": [
+        140095488,
+        140537856,
+        140124160
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 696123392,
+      "median": 695250944,
+      "metric": "call_end_cumulative_self_bytes",
+      "minimum": 693915648,
+      "values_r1_r2_r3": [
+        695250944,
+        696123392,
+        693915648
+      ]
+    },
+    {
+      "condition_id": "growth256-full-searched",
+      "maximum": 696123392,
+      "median": 695250944,
+      "metric": "post_observation_cumulative_self_bytes",
+      "minimum": 693915648,
+      "values_r1_r2_r3": [
+        695250944,
+        696123392,
+        693915648
+      ]
+    }
+  ]
+}

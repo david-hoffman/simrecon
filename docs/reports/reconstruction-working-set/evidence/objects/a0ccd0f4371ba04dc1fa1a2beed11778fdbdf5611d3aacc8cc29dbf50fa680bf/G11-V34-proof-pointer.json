@@ -1,0 +1,11 @@
+{
+  "id": "G11-V34-proof-pointer",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "KeyError",
+    "reason": "'path'"
+  },
+  "expected_type": "KeyError",
+  "expected_phrase": "path"
+}

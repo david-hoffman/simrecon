@@ -1,0 +1,21 @@
+{
+  "authority": "ROOT",
+  "campaign_work_suspended": true,
+  "known_active_campaign_runtimes": [],
+  "known_work_closure": {
+    "113": "SAMEdriver nextsourcecorrection6 active afterfreshreview3 NOTSUITABLE; all workSOURCEonly. Nativeexternalcomposition assessment/sourceheadrenewal pendingcleancommit, no qualification/QA/native/EEcontroller. DedicatedinitSTOPPED/allC7namespaces/proxies/pipesclosed.",
+    "114": "Scopedcontrol2 exactPID/FDclosed, sourceplanonly/resourceguardsquarantined, investigator/coordinatorHOLD, no activechild.",
+    "116": "Firstcentralprofile63755actualterminal0/noproxy;2storedbirthFDsetsclosed ROOT0eaaff/coor2b6/eligible58cc/oldwindowexplicitEND73a. All78unprofiledclosed, firstprofileclosed; investigator35SOURCEready/held. Currentstage has exactlytwo storedclosedR1owneridentities; freshmetadata must confirmactualabsence, not oldabsenceinferred.",
+    "117": "Provisionalchecksclosed/resourceadapterneverexecuted/sourceplanonly; allruntimeheld pendingactualaccepted116.",
+    "118": "Provisionalchecksclosed/resourceadapterneverexecuted/sourceplanonly; allruntimeheld pendingactualaccepted117.",
+    "119": "Intakeonly/no activeownednumericalprocess or implementationruntime.",
+    "120": "Intakeonly/no activeownednumericalprocess or implementationruntime.",
+    "root": "No activecampaignscientificcontroller/proxy; oldfirstprofilewindowexplicitended. ROOTnew3h preparation-only reservation for exactfivecentralprofileindices2-6; allunrelatedimports/tests/QA/native/EE/build/install/benchmark/controller workloadsheld. Source/file/hash/read-onlyGit permitted; outsideactorsunknown_not_scanned."
+  },
+  "observed_at_unix_ns": 1794783271125477798,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "remains_suspended_through_prepared_window": true,
+  "schema": "ROOT-WS116-remaining5-central-profile-suspension-input-v1",
+  "stage_id": "central64-profiles",
+  "unresolved_owners": []
+}

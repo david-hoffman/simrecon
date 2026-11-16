@@ -1,0 +1,14 @@
+{
+  "protocol":"WS116-selected-launch-route-v1",
+  "execution_status":"not_run_source_preparation_only",
+  "route":"ordinary posix_spawn without setsid attribute; same-PID Python bootstrap calls setsid, writes bounded readiness pipe, closes it and execve's pinned tiny target",
+  "bootstrap_sha256":"3353b2cedc9d17eace4ce5ebc5651799e2bc432e493107a64b924ae2cdf6be37",
+  "target_sha256":"85e5394feb08a8eef86a783e88c1c86bbeddc901da0ab8ee10d0943ac27f9010",
+  "bounds":{"overall_readiness_seconds":5.0,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"poll_seconds":0.01,"pipe_bytes":1024,"target_record_bytes":2048,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456},
+  "nonce_proposal":"WS116-selected-route-a1",
+  "fd_scheme":"All file-action source descriptors and unique readiness destination reserved by F_DUPFD_CLOEXEC at64 or above; readiness destination differs from source; child dup2 then closes source descriptors; parent closes every write alias after spawn; bootstrap closes readiness before target exec",
+  "ownership":"one exact-PID reviewed WaitOwner; own direct-PID TERM/KILL cleanup only, never group cleanup or aggregate waits; no target descendants",
+  "success_obligation":"returned PID == bootstrap PID == target PID; PGID/session == PID; matching nonce/executable/mapped target namespace; normal exit; terminal cache and Linux native units conversion",
+  "limits":"one tiny route only; no method qualification, recovery path, workflow or memory-benefit claim; source/build correlation is not proof of every installed compile-time detail",
+  "no_retry_fork_fallback_or_growth":true
+}

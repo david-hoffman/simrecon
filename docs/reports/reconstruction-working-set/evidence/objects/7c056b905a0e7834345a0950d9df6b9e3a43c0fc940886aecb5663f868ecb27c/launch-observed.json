@@ -1,0 +1,25 @@
+{
+  "schema": "WS116-evidence-curator-role-observed-v1",
+  "role": "/root/issue_116/evidence_curator_1",
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "high",
+  "fork_turns": "none",
+  "packet": {
+    "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/packet.md",
+    "sha256": "4782bb58001e5f1d2d15acc46172670851d6d34f01a139b8a5353fefde98c574"
+  },
+  "inputs": {
+    "path": "/workspace/work/campaign/evidence/116/portable-reference-closure/inputs.json",
+    "sha256": "f47fec841dc7e47b63ffd1b1ee2aa9a45ded83229cbe7a16b3a30e18c63e421b"
+  },
+  "actual_serving": null,
+  "tokens": null,
+  "cost": null,
+  "optional_readonly_and_memory_controls": "unavailable; sharedFS prompt restrictions only",
+  "scope": "bounded artifact curation only; no numerical conclusions or independent scientific verdict",
+  "state": "ACTIVE awaiting literal output list",
+  "later_named_additions": [
+    "ROOT-first-render-closed-files.json ff728c442c14f0bf8122937c9f5e5e0c509f1b0b10f2734bb4455bf67985817f",
+    "ROOT-curator-additional-aliases.json 889ef9e642a5f31e554090668a4f48f1c8722237d25ba7d955ae4de497314a3a"
+  ]
+}

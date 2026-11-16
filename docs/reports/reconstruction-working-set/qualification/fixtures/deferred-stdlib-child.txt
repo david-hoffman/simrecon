@@ -1,0 +1,17 @@
+import json
+import os
+import signal
+import sys
+import time
+
+mode = sys.argv[1]
+if mode not in ("normal", "hold", "ignore-term"):
+    raise SystemExit(2)
+if mode == "ignore-term":
+    signal.signal(signal.SIGTERM, signal.SIG_IGN)
+print(json.dumps({"ready": True, "pid": os.getpid(), "ppid": os.getppid(),
+                  "pgid": os.getpgrp(), "session_id": os.getsid(0), "mode": mode}), flush=True)
+if mode == "normal":
+    raise SystemExit(0)
+while True:
+    time.sleep(0.02)

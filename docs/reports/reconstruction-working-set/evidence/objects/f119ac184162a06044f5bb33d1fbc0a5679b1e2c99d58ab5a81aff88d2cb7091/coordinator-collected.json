@@ -1,0 +1,31 @@
+{
+  "schema": "WS116-F04-affected-scientific-review-collected-v1",
+  "role": "/root/issue_116/scientific_correction_review_f04_1",
+  "launches": 1,
+  "fork_turns": "none",
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "high",
+  "packet": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/packet.md",
+    "sha256": "331f0bd12f8fe58d176a4737443bfd3442ff2a64806b1b2ae414328d27d0f9c6"
+  },
+  "inputs": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/inputs.json",
+    "sha256": "f02b96096fcc790ddbf5c771cca4b9e6b30ce3f2f47ead78c970cf9eecd4ccc5"
+  },
+  "review": {
+    "path": "/workspace/work/campaign/evidence/116/scientific-review-F04-correction/review.md",
+    "sha256": "01624fd51a59a7b926f66220992861bed08b466fd94325788363ba1fd062a461"
+  },
+  "verdict": "ACCEPT_EXACT_F04_EXTERNAL_ROW_ONLY",
+  "coordinator_read_scope": "Wholecorrectionreview, all12boundinputs identities referenced; ownone-row117/source checkfc5667 preserved. No target/source/datarepair or broadacceptance.",
+  "scope": "compact off_q successfulreturn local references vs full retainedoff_q; nofinishingcopy/trace lifetimes and exception/allocator limits preserved; other168rows unchanged",
+  "exposure": "reviewer reports noneprohibited; actualsharedFS promptrestrictionsnotengineered",
+  "charges": {
+    "previous_preserved": true,
+    "actual_serving": null,
+    "tokens": null,
+    "cost": null
+  },
+  "final116_acceptance": "HELD integratedcandidate/portableclosure/gate/postgatepending"
+}

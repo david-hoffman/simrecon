@@ -1,0 +1,8 @@
+{
+  "closed_owned_processes": [],
+  "meaning": "New256stage has no commissioned observer/workload; prior192 owners remain in immutable prior-stage closure, never fresh-scanned.",
+  "root_authority_sha256": "e2508d94265ee451c7f8fe6f5eae99156f650c88fd94940ae47ba22e0757a8a4",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "growth256-summary",
+  "unresolved": []
+}

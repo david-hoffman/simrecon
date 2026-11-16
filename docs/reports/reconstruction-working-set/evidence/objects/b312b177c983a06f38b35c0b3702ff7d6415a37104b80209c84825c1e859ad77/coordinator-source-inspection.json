@@ -1,0 +1,90 @@
+{
+  "schema": "WS116-coordinator-largest256-profile-first-preparer-source-review-v1",
+  "status": "SOURCE_SUITABLE_UNEXECUTED_HOLD",
+  "findings": [],
+  "artifacts": {
+    "root-prepare-first-largest256-profile.py": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/root-prepare-first-largest256-profile.py",
+      "sha256": "c012107b04bf5e805a86c7c76a9afd870c72bdd565f85f7550c1545b0b119541"
+    },
+    "source-manifest.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-manifest.json",
+      "sha256": "b3048b84f9caecf608300950c5f0c9c69484584fccf993b278c02336c6b47bf1"
+    },
+    "ROOT-preparation-inputs-DISABLED.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-preparation-inputs-DISABLED.json",
+      "sha256": "253d4bbdecc0ddfa24ae0f185d6ff36ed36d7634b409a3f552e2ee9bd53e3db7"
+    },
+    "README.md": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/README.md",
+      "sha256": "8629693fc43e286ea801f5a83893845daa32ce478e181074b80c8d6e9176b3ae"
+    },
+    "source-handoff.json": {
+      "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/source-handoff.json",
+      "sha256": "76666ab4c54dcfb1c9a417542244962e1e2516ba9e31685a0dddf49c2ca1a23a"
+    }
+  },
+  "read_scope": "Whole357linec012helper/123README/141disabledtemplate/62handoff read. Manifest1899JSON parsed/topknownpins read/repeatedruntime/proposal/control/prior maps compared exactcase36;26sourcepins+4authorartifactpins+9closedprereq+12controlsmallpins verified. Notclaimedwhole1899visual; no helperimport/AST/QA/runtime.",
+  "source_delta": "e4a/b8e firstpreparer finiteport: central406six/twelve/twogroup88772closure/post/window/940/ind16 prerequisite; NEWlargestselected256 thenprospective6/2growthbindings promoted/adstaledraft removed; firstsummarypR1 only;6+3<=14host9/full8+4<=15host12 retained;7200/7320/5915017216,4h14400;1empty157metadata+1capture/2sourcepasses/14outputs/configfalse/ROOTAUTHneverACK.",
+  "required_named_ROOT_inputs": {
+    "authorization": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-preparation-authorization.json",
+    "suspension": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-scheduler-suspension-input.json",
+    "prerequisites": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/ROOT-central-completion-and-largest-decision.json"
+  },
+  "required_input_protocol": {
+    "authorization_schema": "ROOT-WS116-first-largest256-profile-preparation-authorization-v1",
+    "authorization_fields": "authorityROOT/authorizedtrue/stage largest-profiles/selected256/firstIDonly/preparetrue/scientificfalse/window_seconds14400/freshobserved/exactc012+manifest/suspension/prereqpathSHA",
+    "suspension_schema": "ROOT-WS116-first-largest256-profile-suspension-input-v1",
+    "suspension_fields": "fresh<=60s/campaignsuspended/knownactive[]/unresolved[]/no-prior-largestlaunch/currentstageowners[]/standingwindow/unknownoutside/all8knownactorclosuretexts ROOTactualfacts",
+    "prerequisite_schema": "ROOT-WS116-largest256-profile-first-prerequisites-v1",
+    "positive_semantic_fields": [
+      "largest_profile_stage_admission_authorized",
+      "old_central_profile_window_closed",
+      "actual_88772_terminal_exit0_no_proxy",
+      "central_six_profile_rows_eligible",
+      "canonical940_primary_six_rows_two_complete_groups_auditvalid",
+      "independent_sixteen_triplets_match_primary",
+      "ROOT_analysis_acceptance"
+    ],
+    "nine_exact_JSON_hash_expected_body_names": [
+      "ROOT_largest_profile_stage_decision",
+      "old_central_window_evidence",
+      "primary_analysis_config",
+      "primary_analysis_result",
+      "primary_summary",
+      "independent_sixteen_triplets",
+      "coordinator_output_review",
+      "ROOT_post_source_audit",
+      "ROOT_acceptance_evidence"
+    ],
+    "additional": "central_profile_stage_closure exactpin+expectedbody,actual406central_closure_source+ROOTreleaseexpected,actualcanonical940source; preserveintegerJSON values and explicitROOTstage/selected256 semantics, no fabricatedprojection."
+  },
+  "actual_new_ROOT_fact_refs_verified_without_source_mutation": {
+    "NEW_largest_decision": {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-largest256-profiles-first-stage-decision.json",
+      "sha256": "69856c5b17d58dba712eea8344f4680e3c5c5e305a8caf877dbf6187335baa33"
+    },
+    "central_descriptive_acceptance": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-central6-profile-analysis-acceptance.json",
+      "sha256": "a9fb041d4f5ccd1d2b4c460191963eb815eb79e44e080a97d429e63ccedeb32a"
+    }
+  },
+  "known_scope": "Actual406compatible6rows/12birthFD/2groups/88772tool0/proof/source/primary940d3d exactclosedbindings; oldcentralselectedNone distinct NEWlargestselected256. Historicalowners notrescanned, freshnewstageowner[] onlyROOTcurrentattestation. Original0fsizefact notstagegrant.",
+  "operational_limits": "Source/input/prereq/control validation beforedirectory/effects; regularhost3.12/originaltool6alias; source35/HEADtree/tracked twice no fullpublicationstatusclaim. FreshmetadataUID/ns/9rlimits/FS/disk and mappedfinite16GiB50340other0/swap0 firstsummarymargin required;no contextfactsnow. No overwrite/retry/recapture/advice/caprelax/scientificgrant/intent/binder/workflow. Actualpacket+separateexactROOTrelease mandatory. PromptsharedFSrestrictions notengineeredisolation.",
+  "preserved_authoring_diagnostics": "One string-edit guard rejected an unmatched inherited label before file writes. Manual source-text inspection corrected an extra closing parenthesis and inherited diagnostic labels before final creation. No source or runtime QA was executed; failed tool text retained in session history. No scientific/method/runtime diagnosis inferred.",
+  "coordinator_manifest_shape_assumption_diagnostic": {
+    "path": "/workspace/work/campaign/evidence/116/largest256-profiles-preparer-source/coordinator-source-audit-manifest-output-list-diagnostic.json",
+    "sha256": "ed125a9386c986da66528c1d04d5ee6dd1553032f3c96e94b011c5b6b442bb6c"
+  },
+  "accounting": {
+    "investigator_preparations": 37,
+    "execution_continuations": 9,
+    "total": 46,
+    "original_launch": 1,
+    "costs": "UNKNOWN",
+    "all_prior_bytes_errors_attempts_preserved": true
+  },
+  "helper_or_native_QA_EA_execution_by_coordinator": false,
+  "final_scientific_acceptance": false,
+  "next": "ROOT independentlyfreeze exact357linec012source andactualprereq JSON thenone explicitprepare-only invocation, no science release."
+}

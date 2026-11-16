@@ -1,0 +1,13 @@
+{
+  "protocol":"WS116-finite-qualification-Q0-Q1-method5-v1",
+  "bootstrap_sha256":"81f164f8639bf9aa30bb0a1ae2ddf7029ae7472bfe674d504c173f520dfef14e",
+  "prior_evidence":"v1 Q0 passed and v1 Q1 failed; exact old sources are preserved before method5. Old source maps cannot qualify these changed bytes. Selected tiny route PASS is contextual, not integrated-method qualification.",
+  "execution_status":"not_run_source_preparation_only",
+  "common_bounds":{"sample_seconds":0.01,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"soft_deadline_seconds":20.0,"life_deadline_seconds":5.0,"startup_timeout_seconds":5.0,"startup_pipe_bytes":1024,"max_record_bytes":1048576,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456},
+  "cases":[{"id":"Q0-context","requires":[]},{"id":"Q1-normal","requires":["Q0-context"]}],
+  "deferred":"Q2-Q5 have no execution branch in the active driver. Earlier broad draft is preserved as inert text only. Later source extensions require coordinator inspection/freeze of changed code/commands/grants/bounds and affected prerequisite decisions.",
+  "q3_held_gap":"PID1 is sleep, not a reaper. No deliberate abrupt-observer-loss/orphan topology is implemented or allowed in this slice. Root permits narrowly scoped Linux subreaper scaffolding if a later exact-owned topology is necessary; unavailable adoption/reaping must hold that case. No claim of general nonparent recovery or original observer terminal usage.",
+  "human_total_budget":"not set; these are finite internal design/safety settings, not a human total cap",
+  "no_workflows":true,
+  "no_automatic_retry_or_growth":true
+}

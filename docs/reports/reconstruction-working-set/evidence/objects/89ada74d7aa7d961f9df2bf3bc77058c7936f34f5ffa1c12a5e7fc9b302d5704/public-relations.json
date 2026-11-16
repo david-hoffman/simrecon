@@ -1,0 +1,58 @@
+[
+  {
+    "left": "grid-C",
+    "right": "grid-F",
+    "public_hash_equal": true,
+    "observed_public_hash_equal": true,
+    "expectation_matches": true
+  },
+  {
+    "left": "grid-C",
+    "right": "grid-big-endian",
+    "public_hash_equal": true,
+    "observed_public_hash_equal": true,
+    "expectation_matches": true
+  },
+  {
+    "left": "width-c16",
+    "right": "complex-big-endian",
+    "public_hash_equal": true,
+    "observed_public_hash_equal": true,
+    "expectation_matches": true
+  },
+  {
+    "left": "scalar-0d",
+    "right": "numpy-scalar",
+    "public_hash_equal": false,
+    "observed_public_hash_equal": false,
+    "expectation_matches": true
+  },
+  {
+    "left": "negative-zero",
+    "right": "positive-zero",
+    "public_hash_equal": false,
+    "observed_public_hash_equal": false,
+    "expectation_matches": true
+  },
+  {
+    "left": "grid-C",
+    "right": "grid-row",
+    "public_hash_equal": false,
+    "observed_public_hash_equal": false,
+    "expectation_matches": true
+  },
+  {
+    "left": "width-b1",
+    "right": "width-u1",
+    "public_hash_equal": false,
+    "observed_public_hash_equal": false,
+    "expectation_matches": true
+  },
+  {
+    "left": "empty-0x3",
+    "right": "empty-0x4",
+    "public_hash_equal": false,
+    "observed_public_hash_equal": false,
+    "expectation_matches": true
+  }
+]

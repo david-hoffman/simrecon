@@ -1,0 +1,33 @@
+{
+  "approved":false,
+  "scope":"WS116-Q0-Q1-v1",
+  "case":"Q1-normal",
+  "attempt_id":"q1-normal-a1",
+  "candidate_head":"fad8ac2ded6357fbb579e9693c6d0189f251c446",
+  "python_resolved":"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+  "campaign_ownership_resolved":false,
+  "source_sha256":{
+    "docs/reports/reconstruction-working-set/method_qualification.py":"9bd4ab99d6cd184aa2228ac28df4fb1ac1f91646048da27c07c9d49b66e01442",
+    "docs/reports/reconstruction-working-set/observer.py":"94fec42631c642b2bd5121bfe5e696032895bcda5120c07a92d68f6d82e66ed2",
+    "docs/reports/reconstruction-working-set/run_attempt.py":"238fc597801a6871493db189e1c7eb5acb5af1115d30fc79e1c6a2dfc9ef3cde",
+    "docs/reports/reconstruction-working-set/workload_child.py":"d062c6290dc7ed5bb757ccc8ac0dccaf8dd1e54d0274eb9947ea1dfa2efa0c21",
+    "docs/reports/reconstruction-working-set/qualification/inventory.json":"d2a311141412dce5bd7bec4345cca8d0398901c3ad1689f01c66217ec4f3402f",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt":"35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock":"222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+  },
+  "bounds":{"sample_seconds":0.01,"term_grace_seconds":0.2,"kill_reap_seconds":2.0,"soft_deadline_seconds":20.0,"life_deadline_seconds":5.0,"max_record_bytes":1048576,"process_stop_bytes":268435456,"host_min_available_bytes":536870912,"predicted_child_peak_bytes":67108864,"native_allocator_allowance_bytes":67108864,"reserve_bytes":268435456},
+  "process_stop_bytes":268435456,
+  "host_min_available_bytes":536870912,
+  "ancestor_stop_bytes":{},
+  "prerequisites":{"Q0-context":{"path":"PENDING_SUCCESSFUL_Q0_RECEIPT","sha256":"PENDING_Q0_SUCCESS"}},
+  "resource_domain":{
+    "scope":"WS116-exposed-domain-conditional-v1",
+    "external_ancestors":"unknown_unobservable",
+    "conditional_rationale":"PENDING root fresh correspondence/headroom/competing-work/residual-risk decision; source template is not admission",
+    "correspondence_evidence":{"path":"PENDING_ROOT_FRESH_PROOF","sha256":"PENDING","observed_at_unix_ns":null,"maximum_age_seconds":300},
+    "expected_exposed":{"membership":"PENDING","mount_root":"PENDING","mount":"PENDING","namespace":"PENDING","visible_memory_max":{}},
+    "predicted_child_peak_bytes":67108864,
+    "native_allocator_allowance_bytes":67108864,
+    "reserve_bytes":268435456
+  }
+}

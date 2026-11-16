@@ -1,0 +1,1809 @@
+{
+  "ROOT_acceptance_evidence": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-fullsupplied256-analysis-acceptance.json",
+    "sha256": "f2fa6e4f228e8adefd034d3acc29727b9b0a440b264abd68f2618dadd001a5ba"
+  },
+  "ROOT_acceptance_evidence_expected": {
+    "ROOT_independent8": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-independent-eight-triplets.json",
+      "sha256": "d227037a4c5805beb2fe9f4e518d73e7bae8faa590a47641ff0532e6888c4320"
+    },
+    "ROOT_output_check": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt2-output-check.json",
+      "sha256": "bd639118698b329fa0c3763727c32ddde13d97686c24ff53fb0e623773740eda"
+    },
+    "all8triplets_and3raw_rows_match_primary": true,
+    "authority": "ROOT",
+    "call_seconds_triplet": {
+      "max": 1415.843002078,
+      "median": 1413.251765625,
+      "min": 1405.431346238
+    },
+    "candidate": {
+      "head": "ea9117d3efe2d8de273402d643e732140138e496",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+    },
+    "closure": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    "coordinator_independent8": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-independent-eight-triplets.json",
+      "sha256": "5d96a35dcdb706c15f762054b3eafefb512fb89c9df46c5f4b749406c93a0327"
+    },
+    "coordinator_output_review": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-actual-fullsupplied3-analysis-output-review.json",
+      "sha256": "de843d6c7826f8eac5d498effe7059ca8be8c25be7122c1b9dccd366fe324b3b"
+    },
+    "final_scientific_report_acceptance": false,
+    "first_failed_analysis_preserved": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-failure-diagnosis.json",
+      "sha256": "29a43ece5f78eb6ca68d28529968a298e7663f914dc98cbf206c06984b9490e1"
+    },
+    "limits": "Closedfullsupplied3descriptiveonly, native/self scopes distinct; missingRSSgap causeunknown, inherited/preexec/execretentionunknown. No feasibility/16GiB/benefit/extrapolation/ranking claim.",
+    "material_hashes": {
+      "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+    },
+    "native_bytes_triplet": {
+      "max": 583708672,
+      "median": 582418432,
+      "min": 574902272
+    },
+    "next_stage_workload_released": false,
+    "observed_at_unix_ns": 1794775198738808942,
+    "primary_actual_result": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt2-command.json",
+      "sha256": "e64f86aab31329da738561c2f29c7871f7a916839b0a896515ba208ede9fea1e"
+    },
+    "primary_config": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+      "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa"
+    },
+    "primary_summary": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/summary.json",
+      "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2"
+    },
+    "reference_audit_valid": true,
+    "schema": "ROOT-WS116-fullsupplied256-analysis-acceptance-v1",
+    "selected_largest_size": 256,
+    "stage_id": "largest-full-supplied",
+    "status": "ACCEPT_EXACT_CLOSED_THREE_ROW_DESCRIPTIVE_INPUT",
+    "three_rows_one_complete_group_three_separate_controls": true,
+    "window_ended": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+      "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7"
+    }
+  },
+  "ROOT_analysis_acceptance": true,
+  "ROOT_searched_stage_decision": {
+    "path": "/workspace/work/campaign/evidence/116/ROOT-fullsearched256-first-stage-decision.json",
+    "sha256": "a3107a60a12fa5275e7c8a003196cd2d34371fc77c9b4c79d19c277b4a9a23ca"
+  },
+  "ROOT_searched_stage_decision_expected": {
+    "admission_required": "Same unchanged full4GiBprocessproposal+2GiBnativeallowance, stop8GiB/reserve4GiB/ancestor15GiB<finite16GiB, host>12GiB, zeroOOM/swap and events50340, freshcurrentproofs/metadata; caps not predictions/bounds. Refuse before work on failed admission; no relaxation/retry/capturefallback.",
+    "allowed_attempt_ids": [
+      "ws116-gp-l256-full-searched-r1-u"
+    ],
+    "authority": "ROOT",
+    "candidate": {
+      "head": "ea9117d3efe2d8de273402d643e732140138e496",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+    },
+    "completed_summary_size_fact": {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+      "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+    },
+    "completed_supplied_triple_analysis": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-fullsupplied256-analysis-acceptance.json",
+      "sha256": "f2fa6e4f228e8adefd034d3acc29727b9b0a440b264abd68f2618dadd001a5ba"
+    },
+    "final_scientific_acceptance": false,
+    "material_hashes": {
+      "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+    },
+    "observed_at_unix_ns": 1794775198741869288,
+    "old_supplied_window": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+      "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7"
+    },
+    "prepare_first_row_authority": true,
+    "release_boundary": "Preparation only, actual preparedpacket independent audit and separate ROOT firstR1binder release required. Remaining2/profile held; no auto-nextstage.",
+    "schema": "ROOT-WS116-fullsearched256-first-stage-decision-v1",
+    "scientific_execution_released": false,
+    "searched_preparer_ROOT_source_reading": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-preparer-source/ROOT-source-reading.json",
+      "sha256": "45974d7dddb68c12bedb65336c23e3bf897792a400ccc82d5f4e061673403d49"
+    },
+    "searched_preparer_coordinator_source_review": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-preparer-source/coordinator-source-inspection.json",
+      "sha256": "eb0abb475265643c9fd732ac413faa18f1a21cdbdc91cc6bffd893e0a48a0a90"
+    },
+    "searched_source_ROOT_review": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/ROOT-source-packet-semantic-review.json",
+      "sha256": "42145e5b1b429ae6201d560f70c2995f6bc4e9491cfceff711f8df932fcac368"
+    },
+    "searched_source_worksheet": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/full-searched-r1-source-check.json",
+      "sha256": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76"
+    },
+    "selected_largest_size": 256,
+    "source_basis": "256 is largest completed/tested summary size. Successful supplied3 supplies its own descriptive evidence only; this NEW ROOT decision addresses searched source9overlap/27backings aggregate311427072B, not a supplied-result extrapolation. Largest named singlebacking63406080B; dynamic/native totals remainunknown.",
+    "stage_id": "largest-full-searched"
+  },
+  "actual_60678_terminal_exit0_no_proxy": true,
+  "allowed_attempt_ids": [
+    "ws116-gp-l256-full-searched-r1-u"
+  ],
+  "authority": "ROOT",
+  "canonical940_primary_three_rows_one_complete_group_auditvalid": true,
+  "canonical_primary_program": {
+    "path": "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py",
+    "sha256": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97"
+  },
+  "independent_eight_triplets": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-independent-eight-triplets.json",
+    "sha256": "d227037a4c5805beb2fe9f4e518d73e7bae8faa590a47641ff0532e6888c4320"
+  },
+  "independent_eight_triplets_expected": {
+    "authority": "ROOT",
+    "closure": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    "costs": "UNKNOWN",
+    "missing_rss_confirmation_scope": "ABSENT kept absent/null, never numeric0; present gap raw record retained",
+    "native_scope": "Linux exact directchild terminalwait4 HWM through finalexit; inherited/preexec/execretention unknown, not aggregate/decomposition",
+    "observed_at_unix_ns": 1794774226532954111,
+    "rows": [
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+        "child": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/stdout.json",
+          "sha256": "b86cc1eb9e969c25f8601a51badc37bbfad78e166e7b83f9bf008afff9b927df"
+        },
+        "metrics": {
+          "call_end_cumulative_self_bytes": 582418432,
+          "call_seconds": 1405.431346238,
+          "post_observation_cumulative_self_bytes": 582418432,
+          "pre_call_cumulative_self_bytes": 140316672,
+          "spawn_to_terminal_collection_seconds": 1407.58704629,
+          "target_start_to_last_snapshot_seconds": 1407.349156351,
+          "terminal_kernel_bytes": 582418432,
+          "terminal_native_KiB": 568768
+        },
+        "receipt": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r1-u/receipt.json",
+          "sha256": "de4f1e41576b99f2bd2ad2708581f0cfe2e28b35702c5b5fefed51d2b8f13e2a"
+        },
+        "rss_terminal_confirmation": null,
+        "rss_terminal_confirmation_key_present": false,
+        "sample_count": 132306
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+        "child": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/stdout.json",
+          "sha256": "a7abe15be4a681bf7e81f079093d95c73d857ddc41aa19894c8ffce806848517"
+        },
+        "metrics": {
+          "call_end_cumulative_self_bytes": 583708672,
+          "call_seconds": 1415.843002078,
+          "post_observation_cumulative_self_bytes": 583708672,
+          "pre_call_cumulative_self_bytes": 140402688,
+          "spawn_to_terminal_collection_seconds": 1417.96733011,
+          "target_start_to_last_snapshot_seconds": 1417.692222037,
+          "terminal_kernel_bytes": 583708672,
+          "terminal_native_KiB": 570028
+        },
+        "receipt": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r2-u/receipt.json",
+          "sha256": "6cebe9c135046d88ee664ff4bdc929af956a39ab2ced5f8e5ba6b4247708b82d"
+        },
+        "rss_terminal_confirmation": null,
+        "rss_terminal_confirmation_key_present": false,
+        "sample_count": 135113
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+        "child": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/stdout.json",
+          "sha256": "48375702d12981da7c62bd812eeca5b97c3f1f085cbd4a9002a1c861cacaad02"
+        },
+        "metrics": {
+          "call_end_cumulative_self_bytes": 574902272,
+          "call_seconds": 1413.251765625,
+          "post_observation_cumulative_self_bytes": 574902272,
+          "pre_call_cumulative_self_bytes": 140267520,
+          "spawn_to_terminal_collection_seconds": 1415.825088203,
+          "target_start_to_last_snapshot_seconds": 1415.455972083,
+          "terminal_kernel_bytes": 574902272,
+          "terminal_native_KiB": 561428
+        },
+        "receipt": {
+          "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/ws116-gp-l256-full-supplied-r3-u/receipt.json",
+          "sha256": "da0f23ea7f77b3f8510fbaea585f843295d9182f24204ad1a0897172c82246f4"
+        },
+        "rss_terminal_confirmation": {
+          "bound_seconds": 0.05,
+          "cached_terminal_guard_refresh": {
+            "ancestor_current_bytes": {
+              "/sys/fs/cgroup": "2481471488"
+            },
+            "child_fields": "last actual sample, not a new post-terminal observation",
+            "host_available_bytes": 17744375808,
+            "monotonic_ns": 80416166930166
+          },
+          "confirmation_decision_monotonic": 80416.166851991,
+          "deadline_monotonic_ns": 80416216190450,
+          "first_helper_entry_monotonic": 80416.166393706,
+          "first_sample": {
+            "VmRSS_bytes": null,
+            "ancestor_current_bytes": {
+              "/sys/fs/cgroup": "2481471488"
+            },
+            "child_cgroup": "0::/",
+            "field_errors": {},
+            "host_available_bytes": 17744375808,
+            "monotonic_ns": 80416166190450,
+            "pid": 52008,
+            "process_status_readable": true
+          },
+          "last_sample": {
+            "VmRSS_bytes": null,
+            "ancestor_current_bytes": {
+              "/sys/fs/cgroup": "2481471488"
+            },
+            "child_cgroup": "0::/",
+            "field_errors": {},
+            "host_available_bytes": 17744375808,
+            "monotonic_ns": 80416166190450,
+            "pid": 52008,
+            "process_status_readable": true
+          },
+          "meaning": "required RSS observation gap; cause unknown, not RSS=0 or proof of exit",
+          "observations": [
+            {
+              "RSS_present": false,
+              "VmRSS_bytes": null,
+              "helper_entry_monotonic": 80416.166393706,
+              "independent_stop": null,
+              "monotonic": 80416.166851991,
+              "sample_monotonic_ns": 80416166190450,
+              "terminal_collected_monotonic_ns": 80416166646448,
+              "terminal_observed": true
+            },
+            {
+              "RSS_present": false,
+              "VmRSS_bytes": null,
+              "helper_entry_monotonic": 80416.166947975,
+              "independent_stop": null,
+              "monotonic": 80416.166953638,
+              "sample_monotonic_ns": 80416166190450,
+              "terminal_collected_monotonic_ns": 80416166646448,
+              "terminal_observed": true
+            }
+          ],
+          "origin_monotonic_ns": 80416166190450,
+          "outcome": "terminal_confirmed_with_visible_sampling_gap",
+          "terminal_collected_monotonic_ns": 80416166646448
+        },
+        "rss_terminal_confirmation_key_present": true,
+        "sample_count": 133766
+      }
+    ],
+    "schema": "ROOT-WS116-fullsupplied256-independent-eight-triplets-v1",
+    "scientific_acceptance": false,
+    "scope": "Independent fixed3row raw scalar extraction; no canonical940/statistics import or like-unlike pooling",
+    "self_scope": "Cumulative samechild snapshots, not peaks for isolated workflow",
+    "triplets": {
+      "call_end_cumulative_self_bytes": {
+        "max": 583708672,
+        "median": 582418432,
+        "min": 574902272,
+        "repetition_values": [
+          582418432,
+          583708672,
+          574902272
+        ],
+        "sorted_three": [
+          574902272,
+          582418432,
+          583708672
+        ]
+      },
+      "call_seconds": {
+        "max": 1415.843002078,
+        "median": 1413.251765625,
+        "min": 1405.431346238,
+        "repetition_values": [
+          1405.431346238,
+          1415.843002078,
+          1413.251765625
+        ],
+        "sorted_three": [
+          1405.431346238,
+          1413.251765625,
+          1415.843002078
+        ]
+      },
+      "post_observation_cumulative_self_bytes": {
+        "max": 583708672,
+        "median": 582418432,
+        "min": 574902272,
+        "repetition_values": [
+          582418432,
+          583708672,
+          574902272
+        ],
+        "sorted_three": [
+          574902272,
+          582418432,
+          583708672
+        ]
+      },
+      "pre_call_cumulative_self_bytes": {
+        "max": 140402688,
+        "median": 140316672,
+        "min": 140267520,
+        "repetition_values": [
+          140316672,
+          140402688,
+          140267520
+        ],
+        "sorted_three": [
+          140267520,
+          140316672,
+          140402688
+        ]
+      },
+      "spawn_to_terminal_collection_seconds": {
+        "max": 1417.96733011,
+        "median": 1415.825088203,
+        "min": 1407.58704629,
+        "repetition_values": [
+          1407.58704629,
+          1417.96733011,
+          1415.825088203
+        ],
+        "sorted_three": [
+          1407.58704629,
+          1415.825088203,
+          1417.96733011
+        ]
+      },
+      "target_start_to_last_snapshot_seconds": {
+        "max": 1417.692222037,
+        "median": 1415.455972083,
+        "min": 1407.349156351,
+        "repetition_values": [
+          1407.349156351,
+          1417.692222037,
+          1415.455972083
+        ],
+        "sorted_three": [
+          1407.349156351,
+          1415.455972083,
+          1417.692222037
+        ]
+      },
+      "terminal_kernel_bytes": {
+        "max": 583708672,
+        "median": 582418432,
+        "min": 574902272,
+        "repetition_values": [
+          582418432,
+          583708672,
+          574902272
+        ],
+        "sorted_three": [
+          574902272,
+          582418432,
+          583708672
+        ]
+      },
+      "terminal_native_KiB": {
+        "max": 570028,
+        "median": 568768,
+        "min": 561428,
+        "repetition_values": [
+          568768,
+          570028,
+          561428
+        ],
+        "sorted_three": [
+          561428,
+          568768,
+          570028
+        ]
+      }
+    }
+  },
+  "independent_eight_triplets_match_primary": true,
+  "old_supplied_window_closed": true,
+  "old_supplied_window_evidence": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+    "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7"
+  },
+  "old_supplied_window_evidence_expected": {
+    "authority": "ROOT",
+    "closed_fullsupplied_window": true,
+    "closure": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    "controller_terminal_attestation": {
+      "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+      "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e"
+    },
+    "ended_at_unix_ns": 1794774054248774710,
+    "future_scientific_execution_authorized": false,
+    "no_active_stage_controller": true,
+    "old_reservation": {
+      "ends_unix_ns": 1794781645327963666,
+      "starts_unix_ns": 1794770845327963666
+    },
+    "postclosure_source_check": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-postclosure-source-check.json",
+      "sha256": "82d79a3a73caa8c425fa224cc1953968dda77c1ac93da533c6509207b2f512ae"
+    },
+    "schema": "ROOT-WS116-fullsupplied256-window-closed-v1",
+    "scope": "Explicit early end after actual whole3row closure; no automatic searched/profile release",
+    "stage_id": "largest-full-supplied",
+    "unresolved_owners": []
+  },
+  "primary_analysis_config": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+    "sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa"
+  },
+  "primary_analysis_config_expected": {
+    "allow_partial_selection": false,
+    "allowed_evidence_roots": [
+      "/workspace/work/campaign/evidence/116/initial-batch-binder",
+      "/workspace/work/campaign/evidence/116/resource-domain",
+      "/workspace/work/campaign/evidence/116/first-corpus-readiness",
+      "/workspace/work/campaign/evidence/116/qualified-method7-source-basis.json",
+      "/workspace/work/campaign/evidence/116/static-method-review-7.md",
+      "/workspace/work/campaign/evidence/116/initial60-analysis",
+      "/workspace/work/campaign/evidence/116/growth192-first-readiness",
+      "/workspace/work/issue-116/docs/reports/reconstruction-working-set",
+      "/workspace/work/issue-116/tests",
+      "/workspace/work/campaign/evidence/116/growth256-first-readiness",
+      "/workspace/work/campaign/evidence/116/growth256-stage-closure-source",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-remaining2-source",
+      "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-independent-eight-triplets.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-closed-fullsupplied3-review.json",
+      "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-command.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/summary.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/excluded-records.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/file-audit.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/output-identities.json",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-attempt1-nested-root-diagnosis.json"
+    ],
+    "analysis_scope": "one_fixed_stage",
+    "basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+    "control_selection": [
+      {
+        "attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+        "batch_config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+          "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+        },
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+          "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+        },
+        "phase": "stage",
+        "support": {
+          "grant.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/grant.json",
+            "sha256": "2b144b834255bf02bbd79f657d2ce0fd227409a9c358cf47683e715c927efe6f"
+          },
+          "intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/intent.json",
+            "sha256": "5c60fb472c261fbc0f3a3e3b0650318ddf6944c790d6160fc1da2ea771761f26"
+          },
+          "observer-exit.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/observer-exit.json",
+            "sha256": "f537db914d1755055e3e908daa2b7cb17c3f5223f92a77d9404214b168e80d7e"
+          },
+          "post-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-capture-command.json",
+            "sha256": "0dce926cd8dae6d1ef60b048c65fe8cfbe3256ad089148c6386e35ccd3bc13e2"
+          },
+          "post-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata-command.json",
+            "sha256": "bb5a2bd03398d1a7516289644dd574b3f85f844ebaaa0ba1c01a5e556fc761ca"
+          },
+          "post-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata-intent.json",
+            "sha256": "a9f9a6ab29733e210bb1a7392dceb2ee8004798f64343ae11d3f06798050cb28"
+          },
+          "post-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata-request.json",
+            "sha256": "4dccd32a1f57f6f08622cae980a8b9ad63b7b8ad05ed03193c63877a4bd4bd88"
+          },
+          "post-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/post-metadata.json",
+            "sha256": "51bf1a1703ebef6748b81bf5137afa09c4619c41a3a918f9d2cf32bd84348e2e"
+          },
+          "pre-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/pre-capture-command.json",
+            "sha256": "051fcf6cac25fbae96406d0d3c4698b382ffdba09fe9760dad30d258579d4187"
+          },
+          "pre-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/pre-metadata-command.json",
+            "sha256": "3f1ed4518e23ed3097ad6e09f28058cf6febfb84464e77d54d868e618f98f756"
+          },
+          "pre-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/pre-metadata-intent.json",
+            "sha256": "22e251cb8a523742d1337bf9c666cc8e57a3a70ffe3dda573efae6191beb7906"
+          },
+          "pre-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/pre-metadata-request.json",
+            "sha256": "3469b68d6f8f380f4430b6c50b92b884e318542f5da8b7c060761b3647a1cc44"
+          },
+          "pre-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/pre-metadata.json",
+            "sha256": "f2db56fa960046b1625406e403e93638b3f3ddc0ab223a1087a7ec7f6b56f238"
+          },
+          "raw-files.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/raw-files.json",
+            "sha256": "678acf80db7895f1cd1794625d10029061e620df7297ffba64ae83dbd79745d3"
+          }
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-g256-summary-supplied-r2-u",
+        "batch_config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        },
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/eligible-boundary.json",
+          "sha256": "78ccec0912df2944a53938a7d4dccb3f9be665bcd52f04888cd9a59f74e613eb"
+        },
+        "phase": "stage",
+        "support": {
+          "grant.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/grant.json",
+            "sha256": "5f75cfd640de82ab039ed360028bfc9a7bea614c6b3f752040d7364a02b2e439"
+          },
+          "intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/intent.json",
+            "sha256": "b66472be973d0d203c8f2e6e82839e565e4ec725b536024efb80c87551d9f92a"
+          },
+          "observer-exit.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/observer-exit.json",
+            "sha256": "fd9e90c9baed2c1fb798f382faa97a7eda829c152d7535503b5512c8cdebdfa3"
+          },
+          "post-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/post-capture-command.json",
+            "sha256": "37342b6ee2f99ce5d0dc42d89dd885b6d4aa9bccd62a5fc9546ae3167210e15c"
+          },
+          "post-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/post-metadata-command.json",
+            "sha256": "37dccd3ec52510aeb805c6ef1744a4f3728456238666557113b106d24ee6d721"
+          },
+          "post-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/post-metadata-intent.json",
+            "sha256": "67f60243ee126d8dc9a06fd82c5a905c5c6b644b116cae2a9c167a00cc596249"
+          },
+          "post-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/post-metadata-request.json",
+            "sha256": "527ba6a216dc075070318b6ad826c33306bc4b63b525ea5f13ea029e92f55e29"
+          },
+          "post-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/post-metadata.json",
+            "sha256": "39ed198064088fe162e9aaa90871087383698ce50b0c377412540fd2dd22ea43"
+          },
+          "pre-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/pre-capture-command.json",
+            "sha256": "2c602606f4367c50725e0956aa3fb8332d4e7ed9170dccd4ae4e36e01c48f115"
+          },
+          "pre-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/pre-metadata-command.json",
+            "sha256": "e58f2a3361368ffe01ac13567083695dad12aa3b73f2265ee018e8a73ff9ace1"
+          },
+          "pre-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/pre-metadata-intent.json",
+            "sha256": "1420173cd97b53bfdc91e6c6e25fed096c21c1996b4fc305b23a892d20022e96"
+          },
+          "pre-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/pre-metadata-request.json",
+            "sha256": "cf79b670b2c65a0448f87d5cb36a437dea7756a2326d092304b239df802f1579"
+          },
+          "pre-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/pre-metadata.json",
+            "sha256": "1e965ae6f6c167b7eebef1db35fcc1b1f662f386830d86fe55db7288d56f4fc7"
+          },
+          "raw-files.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/raw-files.json",
+            "sha256": "db4aed31dd2fd0bf47f2752a5190c6d332868ab0fb9e9b85c70275d71a749b9a"
+          }
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-g256-summary-supplied-r3-u",
+        "batch_config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+          "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+        },
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/eligible-boundary.json",
+          "sha256": "75fd75b9887adbdc511cac8494af5f14f211b0eaa100e763394514d276c87bcd"
+        },
+        "phase": "stage",
+        "support": {
+          "grant.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/grant.json",
+            "sha256": "1d1ae765ca480b0fa347bdb25bd6f1070f55e8cab53517dba21fce9997333a9c"
+          },
+          "intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/intent.json",
+            "sha256": "854efd2977b5a46611690e501104c1254dc5eb0889f9deac6586c0ae6dcdc10d"
+          },
+          "observer-exit.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/observer-exit.json",
+            "sha256": "3156bfacdf583c1860fe0b6b532a8f25a5149cff7525736c13b24700207de2c6"
+          },
+          "post-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/post-capture-command.json",
+            "sha256": "10395debc65b8cc03b8381c105776306e1c8c36d740a83c8d871e3bf57ae0dfc"
+          },
+          "post-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/post-metadata-command.json",
+            "sha256": "8df6107f6d7cd8bb56e3d2a60fbfd8c0f3294f0c93fbc75351d283f0fd7df421"
+          },
+          "post-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/post-metadata-intent.json",
+            "sha256": "7806522960ef79c400a8abf70df6bf15990830cd0c15a8c03f4c95d1db8902ac"
+          },
+          "post-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/post-metadata-request.json",
+            "sha256": "5f92138bb18ce4497da737c88ac4b96404954abe0f884e8a9e1a202ca62846ad"
+          },
+          "post-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/post-metadata.json",
+            "sha256": "249e02d5086dda7e6f177ae5b4a95565c874a9a36e1bc90955504130d82ff8d0"
+          },
+          "pre-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/pre-capture-command.json",
+            "sha256": "ca392864c11934d89c31b01d0613351afc7e48137ba168757d49c84045a9df27"
+          },
+          "pre-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/pre-metadata-command.json",
+            "sha256": "887f945797e146bc322f430df242d7aa7c9f1546fbb36ce3865fce90dffc999e"
+          },
+          "pre-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/pre-metadata-intent.json",
+            "sha256": "1e67d66661edfd81b41e04cf25cbdd2203671a0e109515899c69365843f8873b"
+          },
+          "pre-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/pre-metadata-request.json",
+            "sha256": "527ba6a216dc075070318b6ad826c33306bc4b63b525ea5f13ea029e92f55e29"
+          },
+          "pre-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/pre-metadata.json",
+            "sha256": "3e8ac57e8145e381072b6c4e28d9e75d65c70dbafde24280d945baab88279984"
+          },
+          "raw-files.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/raw-files.json",
+            "sha256": "2b06c0580103c82ebe3f10f897e345e5eb0753e5a86723a64ee0990688f27a52"
+          }
+        }
+      }
+    ],
+    "data_window_closed": true,
+    "excluded_records": [
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/receipt.json",
+            "sha256": "ea1132b9b6d5705768c3efaecb5e02d4d332de9e3186317d1809fb8558f1fee5"
+          },
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/stdout.json",
+            "sha256": "c95aa88eba27d90374ecde2d284183c8752814cfd60c8440f3cea600c1a91dd7"
+          },
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/grant.input",
+            "sha256": "374f1ee725ba5504ceba41a93d1d9f0986663945797000d7c3c765da8bb76136"
+          },
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/owned-child.json",
+            "sha256": "3a47bb38a9b89d8ef59af630b99268a64347b2e8b206f7d1ae18a5dcfb7cbbfe"
+          },
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/spec.json",
+            "sha256": "0a7b732c50d7e58ef46080fcd0d010dfbefb95d4809c4e01bdf536c53e660b69"
+          }
+        ],
+        "phase": "failed",
+        "reason": "Original3965 real workflow monitor failure; finite child never accepted or pooled"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q0-context-a1/receipt.json",
+            "sha256": "e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q0-context-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-normal-a1/receipt.json",
+            "sha256": "f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q1-normal-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q0-method5-a1/receipt.json",
+            "sha256": "055048597eb084341aac3d16e50e6bfec5814587b54d2a01f75b3420016b33b0"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q0-method5-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/receipt.json",
+            "sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q1-method5-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-default-term-a1/receipt.json",
+            "sha256": "04adceb4b0362c55902889d01738beb582850655604dfe478ef8a2c27edba68f"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-default-term-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-ignore-term-kill-a1/receipt.json",
+            "sha256": "14945d428577e75365b5c3202d31c265577520a5ee8e8018c84d60b868a1bc8d"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-ignore-term-kill-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-deadline-a1/receipt.json",
+            "sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-deadline-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-supported-sigint-a1/receipt.json",
+            "sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-supported-sigint-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q4-parser-a1/receipt.json",
+            "sha256": "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q4-parser-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q5-tinyhash-a1/receipt.json",
+            "sha256": "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q5-tinyhash-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/method6-rss-controls-a1/receipt.json",
+            "sha256": "5d7f96701e749126d0dbc5df2eb380f36c210a4147aceb183ac268c53dc5870d"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: method6-rss-controls-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/method7-rss-readiness-controls-a1/receipt.json",
+            "sha256": "ee45f1976ae813535506e25beb2c42c49d07ce5f85a951132093b748891e8f52"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 protocol/capability qualification history only, not scientific corpus: method7-rss-readiness-controls-a1"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/launch-route-attempts/launch-selected-a1/receipt.json",
+            "sha256": "17b6a0519bdb80437e2652572245ba15142890d968cd3b923a783facc2a99658"
+          }
+        ],
+        "phase": "historical",
+        "reason": "WS116 selected-launch capability probe only; native context never scientific data"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/first-corpus-readiness/root-prerelease-freshness-refusal.json",
+            "sha256": "0cf0a70bb56fedd12404215164ec2076066391fdd1182c19b79fe7933a03dd0d"
+          }
+        ],
+        "phase": "refused",
+        "reason": "Original root prerelease freshness refusal before grant/runner/product, not a scientific trial"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/HOLD.json",
+            "sha256": "a6c1ba8b408c614413e6d5eb8c96878a0f9052f70d68091546cd0eacc8b0ea06"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata.json",
+            "sha256": "325516d5341f761728fb17690a1ba5620b4ae0f7270c473ff568303fc5acc38c"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-request.json",
+            "sha256": "ac6ccbd52ec60dce762aa9b75a54510f85e386d3cf9901b6abf2d111bbe39059"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-intent.json",
+            "sha256": "4fc20c62cd34f43a7502d2d69f6327b35f293f06789123ac8a79c7b3159059d4"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-command.json",
+            "sha256": "712dbb7ad28040b5c9e5dd4f4eaefe503dcb37d9d59d114af24a7dea2a9609b8"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-capture-command.json",
+            "sha256": "499a3f4eb6a1e5bda7a620fb2f8a2b561866d4996437cd5fe5a3d9ab84d73794"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/resource-domain/1794734105823978897.json",
+            "sha256": "96e01872cf234c4df12035952f1eed33bda8d1a326223f679482af2a3a9453c9"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/coordinator-time2-r2-prerelease-refusal.md",
+            "sha256": "754aebe89e7d69aec902f4dc1f50bb28f5e12a7adea116a1b02110e398490de9"
+          }
+        ],
+        "phase": "refused",
+        "reason": "7.312247017s context capture exceeded unchanged5s prelaunch policy; no grant/intent/raw child; later independent release retained same intended row"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+            "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+          }
+        ],
+        "phase": "historical",
+        "reason": "ROOT initial60 exact closure and final known-owner disposition; control evidence, not an additional observation"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-first-binder-prelaunch-failure.json",
+            "sha256": "4d068700dd9aae1a97b7ba79257f01901f5beb01932e0dbef5f042ec3ff57625"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/config-row1-AUTHORIZED-v2.json",
+            "sha256": "92008dec3e520e8bc7f4d23b0f7ed38ec9028af48ab81e0ee174c61b6a962980"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-v3-source-audit.md",
+            "sha256": "93cce5a5e525e792e9693a86f264d431552d42d11735f319b003ef1e6314db2e"
+          }
+        ],
+        "phase": "refused",
+        "reason": "Actual growth192 v2 stage-admission Markdown-in-JSON priorref failure before metadata/capture/batch/runner/scientific child; preserved then separately explicitv3 release"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+            "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json",
+            "sha256": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+            "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240"
+          }
+        ],
+        "phase": "historical",
+        "reason": "ROOT complete192stage/12ownerclosure, coordinator closedfile/scalar inspection and independently executed ROOTscalar; controls not extra scientific repetitions"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-window-closed-for113-qualification.json",
+            "sha256": "314b6ad3ed506ca1d03809d568146b70178810be09aa85d3e126e98abbd50e61"
+          }
+        ],
+        "phase": "historical",
+        "reason": "Temporary ROOTsciencewindow closure afterr1 for separate113qualification, before explicitremaining5newwindow; no new192scientifictrial fromclosure"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-first-binder-prelaunch-failure.json",
+            "sha256": "fd3073c0b0458d7637d942b2c2361cb92729e6053e6b6742c8ee5897478657a5"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-prepared-v2-file-audit.json",
+            "sha256": "40992ecffc8848d8ccefe86b333ac4394f99ce34fff4847740c31f35c1d49fd2"
+          }
+        ],
+        "phase": "refused",
+        "reason": "Actual first256 prelaunch grant authority-reference refusal before metadata/capture/grant/intent/raw scientific child; later explicit correctedrelease isseparate, notscientifictrial/retry."
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+            "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+            "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-window-closed-for-checks.json",
+            "sha256": "ace3ddeb3a3889d4b58001025310f42953abef60e1b988e7497656900f1ff7d9"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-growth256-closed-file-scalar-review.json",
+            "sha256": "0e4d3508b25a8e0b01c7b62211a7c14ea6e6d8619fd54e8a093b8ccf6e7b57b2"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-controller-94974-ended.json",
+            "sha256": "a2f5d0e18fe567996f3c18d2e21623cc2b2e5de02ce21112c7d419e4c94a7f3a"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-execution-release.json",
+            "sha256": "c5a57ac1b39bb543e603d748c3e3f8985d0abac3a506e0da5402e17d35ecb9ce"
+          }
+        ],
+        "phase": "historical",
+        "reason": "ROOT complete256 stage/controller/66rawhash/12birthFDclosure pluspostsource/fullstatus andexplicitwindowend; coordinator independentclosedfile/scalarreview only, notextrascientificrepetitions."
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-release-construction-attempt1-failure.json",
+            "sha256": "b3e5b9bbd32da619d9fcd7b0d2b9e9b99c989de05687269925b61522a4d466e2"
+          }
+        ],
+        "phase": "refused",
+        "reason": "ROOT release-construction assertion mistyped binder hash before binder invocation; original authorized copy preserved then exact validation/release, no scientific retry."
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+            "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+            "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-postclosure-source-check.json",
+            "sha256": "82d79a3a73caa8c425fa224cc1953968dda77c1ac93da533c6509207b2f512ae"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-postclosure-sourcecheck-attempt1-diagnostic.json",
+            "sha256": "0e4579a8d01ff813985d103e796b2ef3b79e37d88dd5ff81c0c7a5928328d1c8"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+            "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-closed-fullsupplied3-review.json",
+            "sha256": "3da4293f9b70caa2dc98d823aa7374abc38719219cec09b38c28be7d2b252964"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-independent-eight-triplets.json",
+            "sha256": "5d96a35dcdb706c15f762054b3eafefb512fb89c9df46c5f4b749406c93a0327"
+          }
+        ],
+        "phase": "historical",
+        "reason": "Fullsupplied3 actual closure/controller/window/source and independent scalar/file audit; operational provenance not additional observations"
+      },
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-command.json",
+            "sha256": "398c34fd4584867888bc4df521e9c2ebac07a57fe390cd34dc5f4811f693eb65"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/summary.json",
+            "sha256": "6359c0575569239bce4e83b53d67852083e8940bba7997e82d43a4c59fb1bc58"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/excluded-records.json",
+            "sha256": "a87c236548dcc1ea7e1de42be7cb3ac60f699f6c7655e7ddecaa2005a6868bb6"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/file-audit.json",
+            "sha256": "7c47f6deb2754042ac6488952539e33c9960deb059bdbad55451d7782cafb12f"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/output-identities.json",
+            "sha256": "5c0f13efc7d4ce161947ff728449d41039f80a26645a2cbcaac04abbb1c95f68"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-attempt1-nested-root-diagnosis.json",
+            "sha256": "afbf988d1869e85a2084dd2e6883136a4e6a45434815f9484829b29f62837c58"
+          }
+        ],
+        "phase": "failed",
+        "reason": "Canonical940 actual fileanalysis attempt1: full rows excluded by nested stage-admission FILE allowlist omission; controls3 succeeded; no scientific/numerical failure or repeat. Original failed outputs retained, not pooled."
+      }
+    ],
+    "historical_rm84_inventory": [
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/contracts/reconstruction-memory-v1.md",
+            "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/tasks/reconstruction-memory.md",
+            "sha256": "eaf33f1318799cf7f31a856e803f8fef515324e2c7a0938911361737bd5e2473"
+          },
+          {
+            "path": "/workspace/work/issue-116/tests/reconstruction_summary_fixture.py",
+            "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+          },
+          {
+            "path": "/workspace/work/issue-116/tests/reconstruction_memory_benchmark.py",
+            "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+          }
+        ],
+        "phase": "historical",
+        "reason": "Original public-main RM84 tracked contract/task/fixture/value benchmark preserved; no rerun or alternate private branch baseline"
+      },
+      {
+        "availability": "unknown",
+        "phase": "historical",
+        "reason": "Historical RM84 task names artifacts/rm84/current-state.md; artifacts/rm84 unavailable in issue116 worktree at this inventory. Other locations not asserted absent; original run receipts/measurements unknown here."
+      }
+    ],
+    "original_extractor_sha256": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "output_root": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2",
+    "protected_output_roots": [
+      "/workspace/work/issue-116",
+      "/workspace/work/campaign/evidence/116/report-source-preparation",
+      "/workspace/work/campaign/evidence/116/stage-analysis-source",
+      "/workspace/work/campaign/evidence/116/growth192-first-readiness",
+      "/workspace/work/campaign/evidence/116/initial60-analysis",
+      "/workspace/work/campaign/evidence/116/growth256-first-readiness",
+      "/workspace/work/campaign/evidence/116/growth256-stage-closure-source",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-remaining2-source",
+      "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source"
+    ],
+    "protocol": "WS116-fixed-stage-report-v1",
+    "root_analysis_approved": true,
+    "schema_manifest_sha256": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+    "selected_largest_size": 256,
+    "source_manifest_sha256": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+    "stage_binder_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+    "stage_id": "largest-full-supplied",
+    "stage_selection": [
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+        "batch_config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-row1-AUTHORIZED.json",
+          "sha256": "36d74d13cf6ef10b3997b9a633815839772d2f31fa3cf2fa900d20bb7313aaeb"
+        },
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/eligible-boundary.json",
+          "sha256": "d8b84fc4f4514e81d830c903b2e82ea464254a9ad80898822e44b4b69be16ea6"
+        },
+        "phase": "stage",
+        "support": {
+          "grant.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/grant.json",
+            "sha256": "9fa12e19b52888292cff9492096abb1fc5c5b1c0d282236df54b64be29c5f4ab"
+          },
+          "intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/intent.json",
+            "sha256": "27ba5326e14a3270161f2f709802f91074502bd269ca05bff7e3e7fd018f07bf"
+          },
+          "observer-exit.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/observer-exit.json",
+            "sha256": "41b9c4177b71c9db902459585173227a87ae2cb3a12a8936d4a3ca1a07677303"
+          },
+          "post-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-capture-command.json",
+            "sha256": "3e216e8c825750c64ac817dea33c365e2c252602fc46531ed2344329ea07b4bf"
+          },
+          "post-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata-command.json",
+            "sha256": "b908a9102be610aa4bc98a7989d436d82719167260b870bd17b872250e003728"
+          },
+          "post-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata-intent.json",
+            "sha256": "3f4f64914aa2f43d9c6d869f02fa2f4cc61fea52db363d1c8da00d655a1f1200"
+          },
+          "post-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata-request.json",
+            "sha256": "453e4bd807467a2af7b617a61f5c5281ef08cbd216f80304cc320ecbf27d42d4"
+          },
+          "post-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/post-metadata.json",
+            "sha256": "cf3ca0fc9eba2f497e4eb524de9379adcd7121ef477c1aadfe5cff4d1a5feb90"
+          },
+          "pre-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/pre-capture-command.json",
+            "sha256": "53edd7f1631cb97c45aed6442f11b5dfdf41b0f0d93367d2e37b7938f29d328f"
+          },
+          "pre-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/pre-metadata-command.json",
+            "sha256": "5603feba0605b89d849a1e371a4ac11987a575b4ac4107482d70e152d48ea29b"
+          },
+          "pre-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/pre-metadata-intent.json",
+            "sha256": "54cae0d8a2438b053e5608c816d4ad7a21872ca24a1438c862e7ad4273d53d26"
+          },
+          "pre-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/pre-metadata-request.json",
+            "sha256": "297017a28aacbdd700bdb35467cd2d5da483400f1a769bb2c05a228254c6e61d"
+          },
+          "pre-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/pre-metadata.json",
+            "sha256": "93ba87cdb9dce5d283d30836d14f0d434ae9547d910592db0874fa0e4cbcdf79"
+          },
+          "raw-files.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-supplied-r1-u/raw-files.json",
+            "sha256": "a1cd95f829922423adbb8bd4539f98737c44d8f9b23381a3a0056abc5e4ebc46"
+          }
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+        "batch_config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-full-supplied-remaining2-AUTHORIZED.json",
+          "sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda"
+        },
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/eligible-boundary.json",
+          "sha256": "b099f53181920e0787b7c93374d8632bf1b306b36d9814eb52609bb325364ccc"
+        },
+        "phase": "stage",
+        "support": {
+          "grant.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/grant.json",
+            "sha256": "66857bd98bc243b4ad984ed486f542fe479de71afb52055c5de1b360816989f5"
+          },
+          "intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/intent.json",
+            "sha256": "58046a3a65d5e5f73cedf09d57227903b5a3e72693ecf149731ede60b8a2e9c1"
+          },
+          "observer-exit.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/observer-exit.json",
+            "sha256": "aa4203c1db6194740d147294eb12199c479befce3b50c0f237ef6055e03b59de"
+          },
+          "post-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/post-capture-command.json",
+            "sha256": "c7c4038374c34e22a8cbe648b03f547317638964d34782d1ee91667334853be5"
+          },
+          "post-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/post-metadata-command.json",
+            "sha256": "b87d9fffceffad329f37ea677ea7e9a3e2e6587412b121921617ef4c85b923fc"
+          },
+          "post-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/post-metadata-intent.json",
+            "sha256": "03e319f8c94349e3efc451b941699473805d1a6ae546b167e8b3cc972075e035"
+          },
+          "post-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/post-metadata-request.json",
+            "sha256": "def04817c2dae89185e17b07c0d066d9adea788c487e8a152125726eafc0f7da"
+          },
+          "post-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/post-metadata.json",
+            "sha256": "b1b3b3549461fffb5e21b9431fd626fc6d590a438b848671459a87e50272d334"
+          },
+          "pre-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/pre-capture-command.json",
+            "sha256": "20be0ade1317fae1512f33ae784bef178584ba4e5589c7feb38861672ff17557"
+          },
+          "pre-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/pre-metadata-command.json",
+            "sha256": "01246b4a3cdfcaf94904b221752257cbb65cf8caca7d53f4f4c16a410573b285"
+          },
+          "pre-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/pre-metadata-intent.json",
+            "sha256": "0c42c50a107b18592b143c4dffb8cb41d5f65bd0f96d3902b660aa1ecef07ed2"
+          },
+          "pre-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/pre-metadata-request.json",
+            "sha256": "3a9d69dd5dcfe9f280bcf4c60d26910da21183dcf984d62f87acfe17c20007a1"
+          },
+          "pre-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/pre-metadata.json",
+            "sha256": "c2f8232f2001ca4ca78576b6c2e0d1755db93e244e915f4724c12d1c40502daa"
+          },
+          "raw-files.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r2-u/raw-files.json",
+            "sha256": "4e43595897bf18b1058956eb1324c20cb37cb0576d38a96c4b535913014d4cb0"
+          }
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+        "batch_config": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/config-full-supplied-remaining2-AUTHORIZED.json",
+          "sha256": "e32e2a107093ad3157183bfdc943b19176fa79057a6a8d9a56505403a09fcbda"
+        },
+        "boundary": {
+          "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/eligible-boundary.json",
+          "sha256": "fbad233b4d532f7073da86222e85ffc87338be4a933268e60dd10c6aa968b696"
+        },
+        "phase": "stage",
+        "support": {
+          "grant.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/grant.json",
+            "sha256": "d2785355c0303e2ae70ddd6c6cf8df45fd3390464c763e4dfd67760367324d46"
+          },
+          "intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/intent.json",
+            "sha256": "6c687f54273d34fd51f13c09b34320f98bd750c0e00cb1ab2c2b99408b07da8e"
+          },
+          "observer-exit.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/observer-exit.json",
+            "sha256": "79341811caf43a31298c06ff484503119066912b64434534c997cd04b7d120cb"
+          },
+          "post-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-capture-command.json",
+            "sha256": "52b008cab13e4fbbe137a29587b96882fe4ff55f703d1c4ca7a464212e52a518"
+          },
+          "post-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-metadata-command.json",
+            "sha256": "5b9800debc34a068b30963d31baf6a852a1bda35d4f2e2ad8d3e22ef4c21cc6b"
+          },
+          "post-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-metadata-intent.json",
+            "sha256": "915992935a87a8f3adf8acb463899edcca8b3713354cdafde41ab30c500e10fb"
+          },
+          "post-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-metadata-request.json",
+            "sha256": "d0759cadd81abe44d9225f13878268f0426cb4b74748636524316da63e8c88f7"
+          },
+          "post-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/post-metadata.json",
+            "sha256": "69490f53601103e6af60d07d81b5e5105d43879ef25a816bfc41fb6fc958824c"
+          },
+          "pre-capture-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/pre-capture-command.json",
+            "sha256": "03238f6d4b172bcc35a567cc67f0263273b7519a1e125988aabe87547f7afeb5"
+          },
+          "pre-metadata-command.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/pre-metadata-command.json",
+            "sha256": "b4a09d84f61e9f3e40f9dfdedcf9910c170922afe53fbc4e31e0394abe98af4a"
+          },
+          "pre-metadata-intent.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/pre-metadata-intent.json",
+            "sha256": "47bba6b4d2e5b34663ba58d655006861522ed0cc338bd638909a7d0bb285d32d"
+          },
+          "pre-metadata-request.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/pre-metadata-request.json",
+            "sha256": "def04817c2dae89185e17b07c0d066d9adea788c487e8a152125726eafc0f7da"
+          },
+          "pre-metadata.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/pre-metadata.json",
+            "sha256": "f58df88c5b5495129214ea144be127c3b218b2489aa97df82d8c5d3dad2c325c"
+          },
+          "raw-files.json": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-supplied-r3-u/raw-files.json",
+            "sha256": "2c9c4514042ffec10e6183b79bdb49582c21b8980aa1fb3b383a13df1521d836"
+          }
+        }
+      }
+    ],
+    "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+  },
+  "primary_analysis_result": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt2-command.json",
+    "sha256": "e64f86aab31329da738561c2f29c7871f7a916839b0a896515ba208ede9fea1e"
+  },
+  "primary_analysis_result_expected": {
+    "argv": [
+      "/usr/local/bin/docker",
+      "exec",
+      "--user",
+      "1000:1000",
+      "-w",
+      "/workspace/work/campaign/evidence/116/stage-analysis-source",
+      "-e",
+      "PYTHONDONTWRITEBYTECODE=1",
+      "simrecon-campaign-ubuntu",
+      "/workspace/work/issue-116/.venv/bin/python",
+      "-I",
+      "-B",
+      "-c",
+      "import hashlib,json,pathlib,random,runpy,statistics,sys,types\nassert sys.flags.isolated and sys.dont_write_bytecode and __debug__\nassert type(statistics) is types.ModuleType and type(random) is types.ModuleType\nfacts={\"label\":\"ROOT_REAL_STDLIB_FILE_ANALYSIS_INITIALIZATION\",\"python\":sys.version,\"executable\":str(pathlib.Path(sys.executable).resolve()),\"statistics_file\":str(pathlib.Path(statistics.__file__).resolve()),\"statistics_sha256\":hashlib.sha256(pathlib.Path(statistics.__file__).read_bytes()).hexdigest(),\"random_file\":str(pathlib.Path(random.__file__).resolve()),\"random_sha256\":hashlib.sha256(pathlib.Path(random.__file__).read_bytes()).hexdigest(),\"median_code_filename\":statistics.median.__code__.co_filename,\"median_firstlineno\":statistics.median.__code__.co_firstlineno,\"normal_full_initialization\":True,\"median_stub_used\":False}\nassert facts[\"statistics_sha256\"]==\"80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18\"\nassert facts[\"random_sha256\"]==\"39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0\"\nprint(json.dumps(facts,sort_keys=True),file=sys.stderr,flush=True)\ntarget=\"/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py\"\nassert hashlib.sha256(pathlib.Path(target).read_bytes()).hexdigest()==\"940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97\"\nsys.argv=[target]+sys.argv[1:]\nrunpy.run_path(target,run_name=\"__main__\")\n",
+      "--config",
+      "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/config-fullsupplied256-attempt2-AUTHORIZED.json",
+      "--config-sha256",
+      "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa"
+    ],
+    "config_sha256_after": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa",
+    "elapsed_seconds": 1.2803584979992593,
+    "execution_attempt": 2,
+    "intent_sha256": "b878807d1728fa2a259341f4bc04066e522b1e6902ee124c683333e3ed26b1b2",
+    "returncode": 0,
+    "scope": "ONE newlyreviewed canonical940 fileanalysis at correctedconfig, ordinaryrealstdlib initialization, no numericalrepeat",
+    "source_pins_after": {
+      "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+      "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18",
+      "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/aggregate_observations.py": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/admission-table.json": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/qualified-method7-source-basis.json": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/source-identities.json": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+      "/workspace/work/campaign/evidence/116/report-source-preparation/schema-inputs/source-identities.json": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+      "/workspace/work/campaign/evidence/116/stage-analysis-source/aggregate_stage_observations.py": "940f6e62cbf3bf817e7173bfa896f329658f1d4b5bb9ccca7228a51051b45f97",
+      "/workspace/work/campaign/evidence/116/stage-analysis-source/config-template.json": "6b7d7b98b115cecb98cfe5e37056ce4687307ff35a7b7e8b55c6b2bcb19bb967",
+      "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/fixture-vectors.json": "580f6febd42a3c1440dd35623f0351213a956e30572391acb46a07df5a3d9e7b",
+      "/workspace/work/campaign/evidence/116/stage-analysis-source/focused-guards-preparation/focused_stage_guards.py": "73afc23caa3421235a53ad71ebf7dcdb8a4f22341af60d99a615a572b8c03929"
+    },
+    "source_pins_match": true,
+    "stderr": "{\"executable\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13\", \"label\": \"ROOT_REAL_STDLIB_FILE_ANALYSIS_INITIALIZATION\", \"median_code_filename\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py\", \"median_firstlineno\": 621, \"median_stub_used\": false, \"normal_full_initialization\": true, \"python\": \"3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]\", \"random_file\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py\", \"random_sha256\": \"39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0\", \"statistics_file\": \"/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py\", \"statistics_sha256\": \"80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18\"}\n",
+    "stdout": ""
+  },
+  "primary_summary": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt2/summary.json",
+    "sha256": "6c0ced7f218655a3d06306adc3d589883e6458cec57b2595f571a1c7893a5db2"
+  },
+  "primary_summary_expected": {
+    "analysis_success": true,
+    "basis_sha256": "bcfbb0352618325a4363952ed2f58bd2fe0660d730b0d6138093bdbc8a22303c",
+    "candidate": {
+      "head": "ea9117d3efe2d8de273402d643e732140138e496",
+      "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+    },
+    "config_sha256": "085c672b56e88cacdfa97ee8f1e4069df5a449e5044b527df91efce4fe3b28fa",
+    "expected_stage_rows": [
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+        "condition_id": "growth256-full-supplied",
+        "launch_nonce": "ws116-gp-l256-full-supplied-r1-u",
+        "profile": false,
+        "repetition": 1,
+        "serial_index": 1,
+        "stage_id": "largest-full-supplied"
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+        "condition_id": "growth256-full-supplied",
+        "launch_nonce": "ws116-gp-l256-full-supplied-r2-u",
+        "profile": false,
+        "repetition": 2,
+        "serial_index": 2,
+        "stage_id": "largest-full-supplied"
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+        "condition_id": "growth256-full-supplied",
+        "launch_nonce": "ws116-gp-l256-full-supplied-r3-u",
+        "profile": false,
+        "repetition": 3,
+        "serial_index": 3,
+        "stage_id": "largest-full-supplied"
+      }
+    ],
+    "final_scientific_acceptance": false,
+    "fixed_stage_descriptive_complete": true,
+    "full_summary_pairs": [],
+    "groups": [
+      {
+        "condition_id": "growth256-full-supplied",
+        "eligible_repetitions": [
+          1,
+          2,
+          3
+        ],
+        "metrics": {
+          "call_end_cumulative_self_bytes": {
+            "max": 583708672,
+            "median": 582418432,
+            "min": 574902272
+          },
+          "call_seconds": {
+            "max": 1415.843002078,
+            "median": 1413.251765625,
+            "min": 1405.431346238
+          },
+          "post_observation_cumulative_self_bytes": {
+            "max": 583708672,
+            "median": 582418432,
+            "min": 574902272
+          },
+          "pre_call_cumulative_self_bytes": {
+            "max": 140402688,
+            "median": 140316672,
+            "min": 140267520
+          },
+          "spawn_to_terminal_collection_seconds": {
+            "max": 1417.96733011,
+            "median": 1415.825088203,
+            "min": 1407.58704629
+          },
+          "target_start_to_last_snapshot_seconds": {
+            "max": 1417.692222037,
+            "median": 1415.455972083,
+            "min": 1407.349156351
+          },
+          "terminal_kernel_bytes": {
+            "max": 583708672,
+            "median": 582418432,
+            "min": 574902272
+          },
+          "terminal_native_KiB": {
+            "max": 570028,
+            "median": 568768,
+            "min": 561428
+          }
+        },
+        "reasons": [],
+        "status": "three_repeat_descriptive_only"
+      }
+    ],
+    "historical_rm84_inventory": [
+      {
+        "availability": "available",
+        "evidence": [
+          {
+            "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/contracts/reconstruction-memory-v1.md",
+            "sha256": "3630933e71fbda5cf78ae36943cbbb9dc4fbfe1c0e3d993622dd37da4fcb196a"
+          },
+          {
+            "path": "/workspace/work/campaign/evidence/116/report-source-preparation/inputs/docs/tasks/reconstruction-memory.md",
+            "sha256": "eaf33f1318799cf7f31a856e803f8fef515324e2c7a0938911361737bd5e2473"
+          },
+          {
+            "path": "/workspace/work/issue-116/tests/reconstruction_summary_fixture.py",
+            "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+          },
+          {
+            "path": "/workspace/work/issue-116/tests/reconstruction_memory_benchmark.py",
+            "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+          }
+        ],
+        "evidence_errors": [],
+        "phase": "historical",
+        "reason": "Original public-main RM84 tracked contract/task/fixture/value benchmark preserved; no rerun or alternate private branch baseline",
+        "state": "excluded_never_pooled"
+      },
+      {
+        "availability": "unknown",
+        "evidence_errors": [],
+        "phase": "historical",
+        "reason": "Historical RM84 task names artifacts/rm84/current-state.md; artifacts/rm84 unavailable in issue116 worktree at this inventory. Other locations not asserted absent; original run receipts/measurements unknown here.",
+        "state": "declared_historical_unknown_or_unavailable"
+      }
+    ],
+    "initial60_scope": "original f6 dataset unchanged; only explicit exact controls reread here, never counted as new stage repetitions",
+    "matched_control_pairs": [
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+        "control_attempt_id": "ws116-gp-g256-summary-supplied-r1-u",
+        "control_refs": {
+          "boundary": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-row1-ea9117d-a2/ws116-gp-g256-summary-supplied-r1-u/eligible-boundary.json",
+            "sha256": "9da7715f05d723386764c538a6de90009be8edf5977db5e4a660d7ebf125da86"
+          },
+          "config": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-row1-AUTHORIZED-v2.json",
+            "sha256": "66a9c74c206ead2ea307eddd87e914ca114660fb3032d13dd0e0b66aa40335c3"
+          }
+        },
+        "kind": "full_summary_common",
+        "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit",
+        "observed_metrics": {
+          "call_end_cumulative_self_bytes": 582418432,
+          "call_seconds": 1405.431346238,
+          "post_observation_cumulative_self_bytes": 582418432,
+          "pre_call_cumulative_self_bytes": 140316672,
+          "spawn_to_terminal_collection_seconds": 1407.58704629,
+          "target_start_to_last_snapshot_seconds": 1407.349156351,
+          "terminal_kernel_bytes": 582418432,
+          "terminal_native_KiB": 568768
+        },
+        "profile": false,
+        "profile_events": [],
+        "repetition": 1,
+        "status": "matched",
+        "unprofiled_control_metrics": {
+          "call_end_cumulative_self_bytes": 335155200,
+          "call_seconds": 1698.935949891,
+          "post_observation_cumulative_self_bytes": 335155200,
+          "pre_call_cumulative_self_bytes": 140115968,
+          "spawn_to_terminal_collection_seconds": 1701.749911728,
+          "target_start_to_last_snapshot_seconds": 1701.405647586,
+          "terminal_kernel_bytes": 335155200,
+          "terminal_native_KiB": 327300
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+        "control_attempt_id": "ws116-gp-g256-summary-supplied-r2-u",
+        "control_refs": {
+          "boundary": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r2-u/eligible-boundary.json",
+            "sha256": "78ccec0912df2944a53938a7d4dccb3f9be665bcd52f04888cd9a59f74e613eb"
+          },
+          "config": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+            "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+          }
+        },
+        "kind": "full_summary_common",
+        "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit",
+        "observed_metrics": {
+          "call_end_cumulative_self_bytes": 583708672,
+          "call_seconds": 1415.843002078,
+          "post_observation_cumulative_self_bytes": 583708672,
+          "pre_call_cumulative_self_bytes": 140402688,
+          "spawn_to_terminal_collection_seconds": 1417.96733011,
+          "target_start_to_last_snapshot_seconds": 1417.692222037,
+          "terminal_kernel_bytes": 583708672,
+          "terminal_native_KiB": 570028
+        },
+        "profile": false,
+        "profile_events": [],
+        "repetition": 2,
+        "status": "matched",
+        "unprofiled_control_metrics": {
+          "call_end_cumulative_self_bytes": 345235456,
+          "call_seconds": 1595.365597385,
+          "post_observation_cumulative_self_bytes": 345235456,
+          "pre_call_cumulative_self_bytes": 140419072,
+          "spawn_to_terminal_collection_seconds": 1596.981876252,
+          "target_start_to_last_snapshot_seconds": 1596.651275396,
+          "terminal_kernel_bytes": 345235456,
+          "terminal_native_KiB": 337144
+        }
+      },
+      {
+        "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+        "control_attempt_id": "ws116-gp-g256-summary-supplied-r3-u",
+        "control_refs": {
+          "boundary": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-supplied-r3-u/eligible-boundary.json",
+            "sha256": "75fd75b9887adbdc511cac8494af5f14f211b0eaa100e763394514d276c87bcd"
+          },
+          "config": {
+            "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+            "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+          }
+        },
+        "kind": "full_summary_common",
+        "limits": "raw scoped metrics kept separate; no perturbation ratio, allocation difference or benefit",
+        "observed_metrics": {
+          "call_end_cumulative_self_bytes": 574902272,
+          "call_seconds": 1413.251765625,
+          "post_observation_cumulative_self_bytes": 574902272,
+          "pre_call_cumulative_self_bytes": 140267520,
+          "spawn_to_terminal_collection_seconds": 1415.825088203,
+          "target_start_to_last_snapshot_seconds": 1415.455972083,
+          "terminal_kernel_bytes": 574902272,
+          "terminal_native_KiB": 561428
+        },
+        "profile": false,
+        "profile_events": [],
+        "repetition": 3,
+        "status": "matched",
+        "unprofiled_control_metrics": {
+          "call_end_cumulative_self_bytes": 342667264,
+          "call_seconds": 1629.813659062,
+          "post_observation_cumulative_self_bytes": 342667264,
+          "pre_call_cumulative_self_bytes": 140156928,
+          "spawn_to_terminal_collection_seconds": 1631.288856958,
+          "target_start_to_last_snapshot_seconds": 1630.992819917,
+          "terminal_kernel_bytes": 342667264,
+          "terminal_native_KiB": 334636
+        }
+      }
+    ],
+    "material_hashes": {
+      "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+      "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+      "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+      "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+      "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+      "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+      "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+      "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+      "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+      "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+      "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+      "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+      "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+      "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+      "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+      "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+      "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+      "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+      "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+      "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+      "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+      "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+      "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+      "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+      "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+      "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+      "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+      "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+      "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+      "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+      "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+      "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+      "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+      "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+      "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b"
+    },
+    "missing_stage_recipes": [],
+    "original_extractor_sha256": "a0758714c64798a39ded0b1beaf76f8dbbfc24c023d83cc8244172f106235dac",
+    "partial_selection_authorized": false,
+    "protocol": "WS116-fixed-stage-descriptive-v1",
+    "referenced_evidence_audit_valid": true,
+    "schema_manifest_sha256": "1350a5cfacb72e4a7d18b9947b002a56a6178bef45cd6b399a87bc66a5b3395d",
+    "scope": "kernel terminal/self snapshots distinct; exec retention UNKNOWN; no subtraction, aggregate tree peak, isolated workflow allocation or measured contributor ranking",
+    "selected_largest_size": 256,
+    "source_manifest_sha256": "49db118fc930f6c86c8f24201fb9de001a7d3b47aac9fdc7670143c59f922a72",
+    "stage_binder_sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9",
+    "stage_id": "largest-full-supplied",
+    "status": "descriptive_complete_audit_valid_pending_scientific_review",
+    "table_sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+  },
+  "schema": "ROOT-WS116-searched-first-prerequisites-v1",
+  "searched_stage_admission_authorized": true,
+  "selected_largest_size": 256,
+  "stage_id": "largest-full-searched",
+  "supplied_full_stage_closure": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+    "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+  },
+  "supplied_triple_eligible": true
+}

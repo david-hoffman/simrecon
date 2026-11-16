@@ -1,0 +1,60 @@
+{
+  "argv": [
+    "/workspace/work/issue-116/.venv/bin/python",
+    "-c",
+    "import json\nimport os\nimport sys\n\nfd = int(sys.argv[1])\nnonce = sys.argv[2]\nos.setsid()\nmessage = json.dumps({\"role\":\"bootstrap\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":nonce,\n    \"executable\":os.readlink(\"/proc/self/exe\")}).encode() + b\"\\n\"\nif len(message) > 512:\n    raise RuntimeError(\"bootstrap readiness exceeds frozen bound\")\nif os.write(fd, message) != len(message):\n    raise RuntimeError(\"incomplete bootstrap readiness write\")\nos.close(fd)\nos.execve(sys.argv[3], [sys.argv[3], \"-c\", sys.argv[4], nonce], os.environ.copy())\n",
+    "68",
+    "WS116-selected-route-a1",
+    "/workspace/work/issue-116/.venv/bin/python",
+    "import json\nimport os\nimport sys\n\nprint(json.dumps({\"role\":\"target\", \"pid\":os.getpid(), \"ppid\":os.getppid(),\n    \"pgid\":os.getpgrp(), \"session_id\":os.getsid(0), \"nonce\":sys.argv[1],\n    \"executable\":os.readlink(\"/proc/self/exe\"),\n    \"cgroup_namespace\":os.readlink(\"/proc/self/ns/cgroup\")}), flush=True)\nraise SystemExit(0)\n"
+  ],
+  "file_actions": [
+    [
+      0,
+      0,
+      "/dev/null",
+      0,
+      0
+    ],
+    [
+      2,
+      66,
+      1
+    ],
+    [
+      2,
+      67,
+      2
+    ],
+    [
+      2,
+      65,
+      68
+    ],
+    [
+      1,
+      64
+    ],
+    [
+      1,
+      65
+    ],
+    [
+      1,
+      66
+    ],
+    [
+      1,
+      67
+    ]
+  ],
+  "fd_plan": {
+    "read": 64,
+    "write_source": 65,
+    "ready_destination": 68,
+    "stdout_source": 66,
+    "stderr_source": 67
+  },
+  "nonce": "WS116-selected-route-a1",
+  "intent_only": true
+}

@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3.12",
+    "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/root-close-central64-profiles-stage.py",
+    "/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/ROOT-execution-release.json",
+    "1aca80134eb685d8965b65e59737f92c859d56270b2afa2de100afe5db83d850"
+  ],
+  "tool_result": {
+    "chunk_id": "7d8743",
+    "wall_time_seconds": 0.167398877,
+    "exit_code": 0,
+    "original_token_count": 55,
+    "output": "{\"closure\": {\"path\": \"/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/root-central64-profiles-stage-closed.json\", \"sha256\": \"281fe013806b4019eb2697fed68197ed7fba4204afa2f323365dd48f9d3e5db6\"}}\n"
+  },
+  "execution_attempt": 1,
+  "scope": "fixedclosedfile audit only; no workload/capture/statistics",
+  "process_elapsed_seconds": "UNKNOWN; tool_result.wall_time_seconds is tool reported wallwait",
+  "no_retry": true
+}

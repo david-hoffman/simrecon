@@ -1,0 +1,74 @@
+{
+  "ROOT_independent16": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-central6-independent-sixteen-triplets.json",
+    "sha256": "454e2895826449531b33d7525ceb5f59ba4629fbd6d4da1fdc4ae0afc80f7f59"
+  },
+  "actual_command": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "35ba754076f480c68cda1f3191a250478f2a1b7b03a3911f94aeb4fd51d2403a"
+  },
+  "all16grouptriplets_and6row8metrics_and60events_exact_match": true,
+  "all7_output_pins": {
+    "excluded-records.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "055a5279fc277ca357d171989fae215300bc03fe2291a9fdb19845b2f3089471"
+    },
+    "file-audit.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "4f11cc396bc132c4a5137fcd24656bcfb5ee9263f4eea0aeaff991d55715b01c"
+    },
+    "output-identities.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "0c8a0e2c1622f1fe94a6172e1dd6ff3f067d9a00417b7a2033ef49dbc840fe09"
+    },
+    "per-process.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/per-process.json",
+      "sha256": "12c9d528708451064948d66fe017fea3fceba8b4e865bc4d8cd2a666ec4afd34"
+    },
+    "summary.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/summary.json",
+      "sha256": "d3d9367d87a8184c6fe5e99091fc9ba49d8c5828aedcdcfc261df1ce0cc23f54"
+    },
+    "three-repeat-summary.csv": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "bd9f20046ac519085d0eebee53f1d36b6ad2d7d02f280ef4e5c05b14452d53bd"
+    },
+    "unprofiled-controls.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "08bee7bf0446fbfe117ea99b03de41a28fba19d6e0caaa5f667c210b657eb0dc"
+    }
+  },
+  "authority": "ROOT",
+  "controls": 6,
+  "costs": "UNKNOWN",
+  "excluded_records": 28,
+  "file_audit_entries": 1714,
+  "final_scientific_acceptance": false,
+  "groups": 2,
+  "historical_entries": 2,
+  "identity_map_hash_pinned_separately": true,
+  "next_stage_authorized": false,
+  "no_evidence_errors": true,
+  "normal_full_realstdlib_initialization": {
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "label": "ROOT_REAL_STDLIB_FILE_ANALYSIS_INITIALIZATION",
+    "median_code_filename": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "median_firstlineno": 621,
+    "median_stub_used": false,
+    "normal_full_initialization": true,
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "random_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/random.py",
+    "random_sha256": "39f53b25d84a27e1be0b9116d74497c9466d749660692a25a0d14687175a6db0",
+    "statistics_file": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/statistics.py",
+    "statistics_sha256": "80b677e786418c299ced99993f4a89804d4532e0b5e26971286713a6de538c18"
+  },
+  "observed_at_unix_ns": 1794785222380509149,
+  "rows": 6,
+  "schema": "ROOT-WS116-central6-actual-output-check-v1",
+  "scope": "Descriptive fixed6profile/2group results only; no profile-unprofiled pooling, ratio, causaloverhead, isolatedstageallocation, ranking or budget. RawABSENT/null distinction preserved inROOTrawworksheet; canonicalnull nevernumeric0.",
+  "six_identity_map_digests_match_actual": true,
+  "six_same_mode_controls_all4_fingerprints_match": true,
+  "source15_afterpins_match_again": true,
+  "three_cross_mode_common_pairs_match_publicgraphs_not_equated": true,
+  "unique_file_audit_paths": 652
+}

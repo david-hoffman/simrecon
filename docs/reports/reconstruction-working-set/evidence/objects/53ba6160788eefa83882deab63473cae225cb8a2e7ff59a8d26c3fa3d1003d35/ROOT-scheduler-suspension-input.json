@@ -1,0 +1,23 @@
+{
+  "authority": "ROOT",
+  "campaign_work_suspended": true,
+  "current_stage_owned_processes": [],
+  "known_active_campaign_runtimes": [],
+  "known_work_closure": {
+    "113": "All priorC7/privateinit controllers/proxies/pipes/namespaces closed; dedicatedinitSTOPPED/Pid0.575trackedclean and external sourceonly corrections frozen; freshreview3 sourceonly, allruntime/QA/native/EEHOLD.",
+    "114": "Control2 exactPID/FD ownership closed, resources quarantined; coordinator/source author held, no activechild.",
+    "116": "Whole fullsearched3 controller74202 actualterminal0/no proxy;6storedbirthFDsetsclosed7f73/post510f/windowended2ea0. Canonical940 onecall0/cmd bacd and actual7output audits acceptedf091. Investigator34 sourceheld. No priorcentral profile attempt or owner.",
+    "117": "Provisionalchecks closed; resourceadapter neverexecuted, sourceplanonly/safeHOLD pendingactual116.",
+    "118": "Provisionalchecks closed; resourceadapter neverexecuted, sourceplanonly/safeHOLD pendingactual117.",
+    "119": "Intake/source-only, no implementation/runtime or activeownednumericalprocess.",
+    "120": "Intake/source-only, no implementation/runtime or activeownednumericalprocess.",
+    "root": "All known campaign scientificcontrollers ended/proxiesclosed, no activeworkload. Prior memorywindow explicitlyended. New centralfirst preparation-only2h reservation; unrelatedQA/imports/native/build/install/benchmarks remain held, source/file/hash/read-onlyGit allowed; outsideactors unknown_not_scanned."
+  },
+  "new_stage_has_no_prior_scientific_launches": true,
+  "observed_at_unix_ns": 1794781640106547343,
+  "outside_campaign_actors": "unknown_not_scanned",
+  "remains_suspended_through_prepared_window": true,
+  "schema": "ROOT-WS116-first-central-profile-suspension-input-v1",
+  "stage_id": "central64-profiles",
+  "unresolved_owners": []
+}

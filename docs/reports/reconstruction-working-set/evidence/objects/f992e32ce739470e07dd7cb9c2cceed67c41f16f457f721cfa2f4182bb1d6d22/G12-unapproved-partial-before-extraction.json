@@ -1,0 +1,11 @@
+{
+  "id": "G12-unapproved-partial-before-extraction",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "partial data requires explicit ROOT analysis selection"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "partial data requires explicit ROOT analysis selection"
+}

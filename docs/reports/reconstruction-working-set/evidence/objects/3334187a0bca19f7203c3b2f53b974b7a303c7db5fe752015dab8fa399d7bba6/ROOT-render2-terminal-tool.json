@@ -1,0 +1,7 @@
+{
+  "chunk_id": "11effd",
+  "wall_time_seconds": 0.000016134,
+  "exit_code": 0,
+  "original_token_count": 48,
+  "output": "{\"matplotlib\": \"3.10.8\", \"rows\": 12, \"source_csv_sha256\": \"9024675ce39237becf666267ba1ab8df5511861003fe3796a7d3269fa327fc90\", \"scope\": \"Presentation only; no aggregation or reconstruction\"}\n"
+}

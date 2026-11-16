@@ -1,0 +1,11 @@
+{
+  "id": "G02-refuse-central-selected",
+  "label": "SYNTHETIC_guard_never_scientific_observation",
+  "matched": true,
+  "observed": {
+    "type": "ValueError",
+    "reason": "central-only profiles do not select a largest size"
+  },
+  "expected_type": "ValueError",
+  "expected_phrase": "central-only profiles"
+}

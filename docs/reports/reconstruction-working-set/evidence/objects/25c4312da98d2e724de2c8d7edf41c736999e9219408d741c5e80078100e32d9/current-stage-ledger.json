@@ -1,0 +1,9 @@
+{
+  "closed_owned_processes": [],
+  "note": "Empty central-stage ledger only from actual ROOT fresh no-prior-launch/owner attestation. Historical six searched owners remain stored, never rescanned.",
+  "root_authority_sha256": "4e4fa34f060cf6465586a20c7afb9a4a5ce2333ee8625d900b84b48b8d6a8198",
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "central64-profiles",
+  "status": "NEW_STAGE_ROOT_PREPARED_NO_PROFILE_LAUNCH",
+  "unresolved": []
+}

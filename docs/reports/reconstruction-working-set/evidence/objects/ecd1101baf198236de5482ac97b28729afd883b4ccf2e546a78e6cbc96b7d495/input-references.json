@@ -1,0 +1,300 @@
+{
+  "schema": "WS116-largest256-profile-source-inputs-v1",
+  "status": "SOURCE_ONLY_NOT_ADMITTED",
+  "sources": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/config-UNAUTHORIZED.json",
+      "sha256": "56039f59c6d792d2146999ee67680dddd1ecb0f6743edab6d379a11d96da5c6a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/stage-admission-DRAFT.json",
+      "sha256": "5f53b93bc4e4a561a69278d5141828bd48e1338f7a6c46581a1ee3d4f3c76566"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/authority-DRAFT.json",
+      "sha256": "c08178eeaa9f149f1faa1ddee72c618a483a477a726b499d1f59b43ccadab9c9"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/scheduler-ACK-DRAFT.json",
+      "sha256": "f69b6762da59c14c695343ebc5cf8300067e3a1c7c10f3ca350c0406e1649ee6"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/currentstage-ledger-DRAFT.json",
+      "sha256": "8cbd6880700933bc225d63ec9bf3d9d5941a718d0181f166be3608aaacbabfc4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/input-references.json",
+      "sha256": "9d98ca23130423bd305b5adff395d2d29fa40bbec16bb6daf35d8d94059445c5"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/future-fixed-stage-readiness/largest-profiles/README.md",
+      "sha256": "ac2ee0e6989fc0dcde93b758ee64d1b85d8b4188267a5ef046886a55892c6083"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/full-searched-r1-source-check.json",
+      "sha256": "16b12208cd5bbd7fd0710eb0c3b98eeef805ae070330eb620d216c60e7bb1e76"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-source/full-searched-r1-source-check.md",
+      "sha256": "0e1df8da0e91272e82306bf1502a56e315be74dc8f43672d67d765ee4ab6733d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-source/central64-profile-source-check.json",
+      "sha256": "88bdc12c8c1bd2b2be59b148a34980437ef8eb0b6a72f0483b89c6384fcf8d81"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-source/central64-profile-source-check.md",
+      "sha256": "54644108d6d5ee73fbc98c80092239c3ad749958fb211154845ea56ff049e693"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/output-attempt1/summary.json",
+      "sha256": "666f5214d991bce32e3b2d9c27d0b0fc14aba8997f48cdacf732719586928205"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-actual-fullsearched3-analysis-output-review.json",
+      "sha256": "ed9c20b85185f4b0c2f07ad60f4971112ba749ecfd7d158761c69b0cd10909d5"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/ROOT-fullsearched256-analysis-acceptance.json",
+      "sha256": "f0911ebe23c8da0a706cad0f5ccd2845e2de36fdf96f4274ed553d64a4416564"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/ROOT-largest-completed-summary-selection.json",
+      "sha256": "0f7950bff52c736d6d5dfd42acd03f010a05a0c0b541eb4a2b59bd418207be8a"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth-profile-binder/source-final-coordinator-frozen/stage_batch_binder.py",
+      "sha256": "8190db99ef7fca49659e2979172a111f1c1f325eccef27c991caea06c1a2c4e9"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/corpus-admission-plan/admission-table.json",
+      "sha256": "0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+      "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+      "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+      "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+      "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+      "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+      "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+      "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+      "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+      "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/observer.py",
+      "sha256": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/workload_child.py",
+      "sha256": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+    },
+    {
+      "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+      "sha256": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/result.py",
+      "sha256": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/workflow/reconstruct.py",
+      "sha256": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/reconstruction/parameter_estimation.py",
+      "sha256": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8"
+    },
+    {
+      "path": "/workspace/work/issue-116/src/simrecon/reconstruction/known_parameters.py",
+      "sha256": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645"
+    },
+    {
+      "path": "/workspace/work/issue-116/tests/reconstruction_memory_benchmark.py",
+      "sha256": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f"
+    },
+    {
+      "path": "/workspace/work/issue-116/tests/reconstruction_summary_fixture.py",
+      "sha256": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-independent-eight-triplets.json",
+      "sha256": "03890c75eaf74b4b27bfc64fd3abf70bc3ea178d4cf2157638b9b4f8be52788d"
+    }
+  ],
+  "known_prior_stage_closures": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+      "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+      "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+      "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+      "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/root-fullsearched256-stage-closed.json",
+      "sha256": "7f73e06e58c355ffb03bd30cde5be57460c65454ed8939b09718e45d6aa939f0"
+    }
+  ],
+  "future_central_profile_whole_stage_closure": null,
+  "matched_unprofiled": {
+    "ws116-gp-l256-summary-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r1-u/eligible-boundary.json",
+        "sha256": "59f0b99b9404ff78d5d10ab3732b5013c3635207c7a6c33c81775f017ebeaef3"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r2-u/eligible-boundary.json",
+        "sha256": "2fe931f5aa6b7e2111d3d09a4d6a3130b60696fdb4465ccaff1824e1c26e7259"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-summary-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/batch-remaining5-ea9117d-a1/ws116-gp-g256-summary-searched-r3-u/eligible-boundary.json",
+        "sha256": "67b52ffd198df027ddef0a694247563abe22d6568c4dd0158203c390d24e47a4"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/config-remaining5-AUTHORIZED.json",
+        "sha256": "72b3830ff1f6936b7332cb54a2b64fb6c3d86e5af532fd8999f7dfeaf8a3d197"
+      }
+    },
+    "ws116-gp-l256-full-searched-r1-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-row1-ea9117d-a1/ws116-gp-l256-full-searched-r1-u/eligible-boundary.json",
+        "sha256": "9e1e78a38e53024b6c295be7b8889001defce7ca5b26728e03bf71d72456ce6f"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-row1-AUTHORIZED.json",
+        "sha256": "5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3"
+      }
+    },
+    "ws116-gp-l256-full-searched-r2-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r2-u/eligible-boundary.json",
+        "sha256": "701fcc1f2a6272e6a8a0a8fc3864144fbaf35e8b925c6a78ede1c660bc422786"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    },
+    "ws116-gp-l256-full-searched-r3-p": {
+      "boundary": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/batch-remaining2-ea9117d-a1/ws116-gp-l256-full-searched-r3-u/eligible-boundary.json",
+        "sha256": "c01c2b2e51dfd93797ab2ce156ab9b23cfbc6f24c2891c2b5ce815ceb9f46624"
+      },
+      "config": {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/config-full-searched-remaining2-AUTHORIZED.json",
+        "sha256": "7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2"
+      }
+    }
+  },
+  "control_scope": "Named CLOSED small boundary/config bytes hashed; no raw/sample/proof contents followed. Future unchanged8190 requires all four input/common/public/branches fingerprints equal for same-mode same-rep profile vs unprofiled. No profile output exists in this packet.",
+  "recorded_material_basis": {
+    "src/simrecon/__init__.py": "c5808de01aacf7c9a3f4ddc469ba00345a293a63d3166956bb193fc71882c310",
+    "src/simrecon/acquisition/__init__.py": "f6e059e68fbf67ccfb91b629b24f5acdcda92187577549520bb929f37550446f",
+    "src/simrecon/acquisition/declarations.py": "3099bf1e7cd16b3051383660e755a026552389d57c0e1c6000e9266740b85b82",
+    "src/simrecon/acquisition/drift.py": "7af922cd3e7105b624ad99d2379333d1a90c9ee24ebae95c797530a6c75d6174",
+    "src/simrecon/acquisition/layout.py": "6f9284ceba55f2747c3b238dc568bff2d4154d718b4511d943a6aab0014c320e",
+    "src/simrecon/acquisition/modes.py": "4958415d1864b2e1a25fef4601ff8f9f911e242ff19549d49c838a050f5e2db1",
+    "src/simrecon/acquisition/preparation.py": "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da",
+    "src/simrecon/cli.py": "fad387d4ef3274659fce4c12a6c0bcdd32acc9d7655da7b7cd8a16159c13c70c",
+    "src/simrecon/io/__init__.py": "ce2a50707c2de2500c64d6d50a3523fd128d9fcde21873a776e837891f3ea688",
+    "src/simrecon/io/imagej.py": "845fc42d43d619cf443b4071659d2a33da96d65c5216107abf2dd56ed4201183",
+    "src/simrecon/io/imagej_metadata.py": "0f3f5f0480367f7cd32ae5d7e8e3cb934b2ce9fd4033e3bba61713e09f4bebf8",
+    "src/simrecon/io/metadata.py": "13b957bdadde9a2c494fd03b348752888e34f2430c564917dfbcee6244a1d017",
+    "src/simrecon/io/mrc_writer.py": "d2ec3fcbc3ee12c25e40bf599f657dacf86c6079f719ec72493aef6804a69152",
+    "src/simrecon/io/pixels.py": "fa20c14448029597db21bbe4084503e8680f196f650e1a8a714887e035724f9c",
+    "src/simrecon/io/priism.py": "c2f3089343a40d1167e0b0768f1c7cf5575a2c24446c388b334e764312e050f9",
+    "src/simrecon/models.py": "07b1339d5f233bb632c296496aa10349488c320d417ecc1f9f90e3da4ef6002b",
+    "src/simrecon/optical_transfer.py": "0d16f22a5ee9fde4b5e8edf9bd1e6bcbaa364ce11f18879d3f408e1ae5697dec",
+    "src/simrecon/reconstruction/__init__.py": "daa3eaeff1fd958527a9b0bcf95dd98a22bc9ef3aa6668ced3cc2a8d26dd5c70",
+    "src/simrecon/reconstruction/known_parameters.py": "edb87b64e1691b7f437194aabc0df8d4ab22e3e67b6b05639dbd3bad26e2c645",
+    "src/simrecon/reconstruction/parameter_estimation.py": "f9a924d277518cdb0717c7fe82961f3d36a480109bcbef9f8d19b42fdae7d7e8",
+    "src/simrecon/workflow/__init__.py": "2f1cde0e2173a66773a43055023afd8046a156f5b654751a2ef4818813e6f415",
+    "src/simrecon/workflow/adapters.py": "f3fe6853271a8a0d2dd0a579a99f115abb56a2b9b2fd7e289e4f753e370f13c5",
+    "src/simrecon/workflow/config.py": "430bbc9c3425296ed071bb9f938eaafea9c01edb217f7f670417a81e651dc8f0",
+    "src/simrecon/workflow/identity.py": "67cd133947118216ed3f7fcf1c0c44ba54c566d3c1eb09ff59c9bb3897bd068e",
+    "src/simrecon/workflow/reconstruct.py": "50a4ce199f0cceca6ba9147a1ee218441b1b5588c03beabecef95828802e28fa",
+    "src/simrecon/workflow/result.py": "6bceb80c5e63062ab273554b9352d344155d3a02f405673890c9c67c456e30f6",
+    "src/simrecon/workflow/summary.py": "f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e",
+    "src/simrecon/workflow/transfer.py": "5709bf245382eaa857861a330cd3d9a40c7127112b0f32d23328ce07f59dcd4f",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "tests/reconstruction_summary_fixture.py": "271335a5065791a986de239cdf89e4d15eb0f2e5df80943d6cb084167516d20f",
+    "tests/reconstruction_memory_benchmark.py": "929106da36b47bcd03ed785d1a7f6b941d04299403b6c0ffe7df9846f3809b8f",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "2c2358bbcb801a970de6b1d3c786cf510394887ef397b1e14d7ad4a843efea1e",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459"
+  },
+  "material_basis_scope": "Exact35 identities copied unchanged from immutable source packet; only the explicitly listed source files were rehashed here. No HEAD/status/runtime refresh. Core28/tool6/method/environment unchanged.",
+  "future_authority_context_window_and_owner_facts": null,
+  "diagnostics_preserved": [
+    "Closed summary closure full-text display was truncated; attempted JSON.parse of the warning-prefixed display failed. Bounded jq extraction of literal control references replaced it. No target program/scientific data ran or changed; no value inferred."
+  ],
+  "accounting": {
+    "author_preparations": 36,
+    "author_executions": 9,
+    "author_total": 45,
+    "original_launches": 1,
+    "costs": "UNKNOWN",
+    "tokens": "UNKNOWN",
+    "model_attribution": "UNKNOWN",
+    "all_prior_errors_attempts_bytes_charges_preserved": true
+  }
+}

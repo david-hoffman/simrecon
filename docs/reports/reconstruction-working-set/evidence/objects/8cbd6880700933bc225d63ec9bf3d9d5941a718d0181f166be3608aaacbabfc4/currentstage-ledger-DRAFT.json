@@ -1,0 +1,9 @@
+{
+  "scope": "WS116_current_stage_scientific_observer_workload_processes",
+  "stage_id": "largest-profiles",
+  "root_authority_sha256": null,
+  "unresolved": null,
+  "closed_owned_processes": null,
+  "status": "DRAFT_UNKNOWN_NOT_OBSERVED",
+  "note": "Null ownership fields are intentional; no false unresolved[] or closed-owner absence assertion. ROOT binds actual stage-only ledger after prior closures."
+}

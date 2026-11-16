@@ -1,0 +1,40 @@
+{
+  "scope": "four exact Q2 results for unchanged method/bootstrap/fixtures/lock only; no relabelled new-driver pass",
+  "evidence": [
+    {
+      "attempt_id": "q2-default-term-a1",
+      "receipt_sha256": "04adceb4b0362c55902889d01738beb582850655604dfe478ef8a2c27edba68f",
+      "lifecycle_sha256": "3db07d01c27eebb4b7ff5698f1b13be00da4e973f11544d4069fa7175050d0ed",
+      "prior_driver_sha256": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4"
+    },
+    {
+      "attempt_id": "q2-ignore-term-kill-a1",
+      "receipt_sha256": "14945d428577e75365b5c3202d31c265577520a5ee8e8018c84d60b868a1bc8d",
+      "lifecycle_sha256": "770881e6f83e0e8bdd03f12154724dcdb76d21898690ecb85a70bba2bb8a2396",
+      "prior_driver_sha256": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4"
+    },
+    {
+      "attempt_id": "q2-deadline-a1",
+      "receipt_sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733",
+      "lifecycle_sha256": "5d44e75d98d30cde5eeb5fef59829e7d440c734e6146ceb673d175149d06140c",
+      "prior_driver_sha256": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4"
+    },
+    {
+      "attempt_id": "q2-supported-sigint-a1",
+      "receipt_sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946",
+      "lifecycle_sha256": "91d9219f68482219ed385fb2b57b397c407067cfaae86279e181736d593d8c63",
+      "prior_driver_sha256": "add67acf1a40891860deb3eafcfa15f37a233d4ef5201e845e7c9e4c55af4ce4"
+    }
+  ],
+  "unchanged_source_sha256": {
+    "docs/reports/reconstruction-working-set/observer.py": "384b4f1a95ad135136c60b9bb750437fe72e5bbb1a94fc21bd7cc1ae14ff6c9e",
+    "docs/reports/reconstruction-working-set/run_attempt.py": "1e554fdadffdfc54cbc14758e072224db5cd278f1e7b7e91b813c11c65b5fd61",
+    "docs/reports/reconstruction-working-set/workload_child.py": "5249e4cdadbee6523012127468fd9c3d90228df2558c81087929bc35e60e5459",
+    "docs/reports/reconstruction-working-set/manifest.json": "bd633265f3ac1967420b2032401b4f52c2a525271da510ed16dfb3506ef05234",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/stdlib-child.txt": "35024379416bb5e509568dad073feaab8ac6b58caaf968dc52e96162e8e3df5d",
+    "uv.lock": "222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b",
+    "docs/reports/reconstruction-working-set/qualification/fixtures/lifecycle-target-v1.txt": "d9262207e14a7bee185a0c6accb641f8ebb0e4f3ceb257bddcdc0d52d9d6b32b"
+  },
+  "current_driver_sha256": "d079e099605efb8a98e85ee1143eabf82c968342ef4d8c379654f723688f76d7",
+  "current_inventory_sha256": "d8cb07b0d896e89420834d05bc8a10ee69fb7be137aaffa5be1cc963b1a845ed"
+}

@@ -1,0 +1,240 @@
+--- /workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source/root-close-fullsearched256-stage.py
++++ /workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source/root-close-central64-profiles-stage.py
+@@ -1,4 +1,4 @@
+-"""UNEXECUTED fixed CLOSED fullsearched256 three-row file audit; only ROOT may release this helper.
++"""UNEXECUTED fixed CLOSED central64 profile six-row file audit; only ROOT may release this helper.
+ 
+ No capture, workload, process/FD scan, signal, wait, retry, or statistical summary.
+ The only subprocesses, after explicit release, are three fixed read-only git calls.
+@@ -10,17 +10,17 @@
+ import sys
+ import time
+ 
+-B = Path('/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness')
++B = Path('/workspace/work/campaign/evidence/116/central64-profiles-first-readiness')
+ W = Path('/workspace/work/issue-116')
+-S = Path('/workspace/work/campaign/evidence/116/fullsearched256-stage-closure-source')
+-OUTPUT = B / 'root-fullsearched256-stage-closed.json'
++S = Path('/workspace/work/campaign/evidence/116/central64-profiles-stage-closure-source')
++OUTPUT = B / 'root-central64-profiles-stage-closed.json'
+ RELEASE = S / 'ROOT-execution-release.json'
+-ATTESTATION = S / 'ROOT-controller-74202-ended.json'
++ATTESTATION = S / 'ROOT-controller-88772-ended.json'
+ CONFIGS = [
+-    (B / 'config-row1-AUTHORIZED.json', '5f1d5052d34c42bf0021987c862982b2660643f517a06b2e72a8c712edab9be3'),
+-    (B / 'config-full-searched-remaining2-AUTHORIZED.json', '7ebe5bfdca3de22618f6977f84675ab181485df4f3f25221561973b6a0c556a2'),
++    (B / 'config-row1-AUTHORIZED.json', '56a8bc675544ebb1f9160473c038d0163b2a6907484476e00aaa1ffbf2762fd7'),
++    (B / 'config-central-profiles-remaining5-AUTHORIZED.json', '676cf336524d39e5f546aaebb951471b59794fbf17a8b2803b178a7cb5229a7e'),
+ ]
+-IDS = [f'ws116-gp-l256-full-searched-r{rep}-u' for rep in (1, 2, 3)]
++IDS = [f'ws116-gp-c64-{mode}-searched-r{rep}-p' for mode in ('summary', 'full') for rep in (1, 2, 3)]
+ 
+ 
+ def require(value, message):
+@@ -63,7 +63,7 @@
+     wanted = {identity_key(item) for item in expected}
+     require(wanted <= set(keyed), 'current pair absent from accumulated metadata')
+     if exact:
+-        require(set(keyed) == wanted, 'final metadata must exactly cover all6 owners')
++        require(set(keyed) == wanted, 'final metadata must exactly cover all12 owners')
+     for key in wanted:
+         item = keyed[key]
+         require(item['identity_state'] == 'absent', 'recorded owner not absent')
+@@ -88,12 +88,16 @@
+     for name, expected in config['metadata_expected']['disk_identity'].items():
+         for key, value in expected.items():
+             require(item['disks'][name][key] == value, f'disk identity: {name}/{key}')
+-        require(item['disks'][name]['free_bytes'] >= 2965897216 and item['disks'][name]['free_inodes'] > 0, 'recorded disk headroom')
++        require(item['disks'][name]['free_bytes'] >= 803209216 and item['disks'][name]['free_inodes'] > 0, 'recorded disk headroom')
+     absent_items(item, request['owned_processes'], True)
+     return item
+ 
+ 
+-def resource_proofs(directory, config, end):
++def resource_proofs(directory, config, end, mode):
++    stop, reserve, ancestor, host_minimum = {
++        'summary': (1073741824, 1073741824, 8589934592, 2147483648),
++        'full': (1610612736, 1073741824, 8589934592, 2684354560),
++    }[mode]
+     proofs = []
+     for phase in ('pre', 'post'):
+         command = load(directory / (phase + '-capture-command.json'))
+@@ -119,15 +123,15 @@
+             require(int(files['/sys/fs/cgroup/memory.swap.current']) == 0, 'swap nonzero')
+             current = int(files['/sys/fs/cgroup/memory.current'])
+             maximum = int(files['/sys/fs/cgroup/memory.max'])
+-            require(current + 8589934592 + 4294967296 <= 16106127360 < maximum, 'ancestor headroom')
++            require(current + stop + reserve <= ancestor < maximum, 'ancestor headroom')
+             mem = dict(line.split(':', 1) for line in files['/proc/meminfo'].splitlines())
+             require(mem['MemAvailable'].strip().endswith('kB'), 'host memory units')
+-            require(int(mem['MemAvailable'].split()[0]) * 1024 > 12884901888, 'host headroom')
++            require(int(mem['MemAvailable'].split()[0]) * 1024 > host_minimum, 'host headroom')
+             facts[label] = {'current_bytes': current, 'events': events, 'swap_bytes': 0}
+         proofs.append({'phase': phase, 'proof': pointer, 'started_ns': proof['started_at_unix_ns'],
+                        'finished_ns': proof['finished_at_unix_ns'], 'facts': facts})
+     require(0 <= end['runner_invocation_unix_ns'] - proofs[0]['started_ns'] <= 5000000000, 'initial proof age')
+-    require(0 <= proofs[1]['finished_ns'] - proofs[0]['started_ns'] <= 3720 * 1000000000, 'original proof horizon')
++    require(0 <= proofs[1]['finished_ns'] - proofs[0]['started_ns'] <= 1080 * 1000000000, 'original proof horizon')
+     return proofs
+ 
+ 
+@@ -142,9 +146,11 @@
+     require(boundary['status'] == 'ELIGIBLE_PENDING_ROOT_SCIENTIFIC_REVIEW', 'boundary status')
+     require(boundary['config_sha256'] == sha(config_path), 'boundary config identity')
+     require(boundary['source_sha256'] == config['binder_sha256'], 'boundary source')
+-    expected_row = {'serial_index': index + 1, 'stage_id': 'largest-full-searched',
+-                    'condition_id': 'growth256-full-searched',
+-                    'repetition': index % 3 + 1, 'profile': False, 'attempt_id': aid, 'launch_nonce': aid}
++    mode = 'summary' if index < 3 else 'full'
++    condition = f'central64-{mode}-searched'
++    expected_row = {'serial_index': index + 1, 'stage_id': 'central64-profiles',
++                    'condition_id': condition,
++                    'repetition': index % 3 + 1, 'profile': True, 'attempt_id': aid, 'launch_nonce': aid}
+     require(boundary['row'] == expected_row and boundary['raw_path'] == str(raw), 'exact boundary row/raw path')
+     require(boundary['table_sha256'] == '0058ccffffd86448c613351319a7b892e813d123014ab0205cf5b69c85a4b49d', 'boundary table')
+     require(boundary['method7'] == config['accepted_method7'], 'boundary method7')
+@@ -184,17 +190,21 @@
+         require(grant[key] == value, f'grant binding: {key}')
+     for key in ('candidate', 'material_hashes'):
+         require(grant[key] == config[key], 'grant source identity')
+-    require(grant['launch_nonce'] == grant['attempt_id'] == aid and grant['profile'] is False, 'grant attempt')
++    require(grant['launch_nonce'] == grant['attempt_id'] == aid and grant['profile'] is True, 'grant attempt')
+     require(child['protocol'] == config['child_protocol'] and child['status'] == 'finite_observation_pending_qualification', 'child protocol/status')
+     require(child['finite_common_fields'] is True and child['material_identity_matches'] is True, 'finite/material child')
+     search = True
+-    condition = 'growth256-full-searched'
+     branches = [['searched' if search else 'known'] * 3]
+-    require(child['branches'] == branches and child['stages'] == [], 'actual branch/profile')
++    require(child['branches'] == branches and isinstance(child['stages'], list) and len(child['stages']) == 10, 'actual branch/profile')
+     require(boundary['fingerprints'] == {key: child[key] for key in ('input_sha256', 'common_output_sha256', 'public_result_sha256', 'branches')}, 'actual child/boundary fingerprints')
++    anchor = config['matched_unprofiled'][aid]
++    control, control_config = checked(anchor['boundary']), checked(anchor['config'])
++    require(control['row']['condition_id'] == condition and control['row']['repetition'] == index % 3 + 1 and control['row']['profile'] is False, 'same-mode/same-rep control')
++    require(control['candidate'] == config['candidate'] and control['material_hashes'] == config['material_hashes'] and control['config_sha256'] == anchor['config']['sha256'] and control_config['environment_expected'] == config['environment_expected'], 'control software/context bindings')
++    require(control['fingerprints'] == boundary['fingerprints'], 'all4 same-mode input/common/public/branches profile control fingerprints')
+     spec = child['spec']
+-    require(spec['shape'] == [1, 3, 8, 256, 256] and spec['mode'] == 'full', 'workload shape/mode')
+-    require(spec['search'] is search and spec['repetition'] == index % 3 + 1 and spec['profile'] is False, 'workload case')
++    require(spec['shape'] == [1, 3, 8, 64, 64] and spec['mode'] == mode, 'workload shape/mode')
++    require(spec['search'] is search and spec['repetition'] == index % 3 + 1 and spec['profile'] is True, 'workload case')
+     require(spec['launch']['nonce'] == receipt['launch']['nonce'] == aid, 'launch nonce')
+     require(spec.get('case') is None, 'unexpected fixture case')
+     require(receipt['interpreter']['resolved'] == config['python_resolved'] and receipt['session_ready']['pid'] == receipt['workload_pid'], 'interpreter/session')
+@@ -204,6 +214,12 @@
+     require(snapshots['pre_call']['monotonic_ns'] <= child['call_start_monotonic_ns'] <= child['call_end_monotonic_ns'], 'call start ordering')
+     require(child['call_end_monotonic_ns'] <= snapshots['call_end']['monotonic_ns'] <= snapshots['post_observation']['monotonic_ns'] <= terminal['reaped_monotonic_ns'], 'last snapshot ordering')
+     require(child['elapsed_call_seconds'] == (child['call_end_monotonic_ns'] - child['call_start_monotonic_ns']) / 1e9, 'recorded call duration')
++    events = child['stages']
++    expected_events = [(stage, time_index, edge) for stage, time_index in (('declaration', None), ('preparation', None), ('estimation', None), ('reconstruction', 0), ('result', None)) for edge in ('enter', 'exit')]
++    require([(item['stage'], item['time_index'], item['edge']) for item in events] == expected_events, 'fixed10 scalar stage-event sequence')
++    require(all(set(item) == {'stage', 'time_index', 'edge', 'monotonic_ns', 'ru_maxrss_native_KiB'} and type(item['monotonic_ns']) is int and type(item['ru_maxrss_native_KiB']) is int for item in events), 'scalar stage-event fields')
++    require([item['monotonic_ns'] for item in events] == sorted(item['monotonic_ns'] for item in events) and [item['ru_maxrss_native_KiB'] for item in events] == sorted(item['ru_maxrss_native_KiB'] for item in events), 'ordered cumulative stage observations')
++    require(child['call_start_monotonic_ns'] <= events[0]['monotonic_ns'] <= events[-1]['monotonic_ns'] <= child['call_end_monotonic_ns'] and 0 <= events[0]['ru_maxrss_native_KiB'] <= events[-1]['ru_maxrss_native_KiB'] <= terminal['rusage_native']['ru_maxrss'], 'stage observation bounds')
+     require(end['returncode'] == 0 and end['overdue'] is False and end['wait_gaps'] == [], 'observer exit evidence')
+     pre = metadata(directory / 'pre-metadata.json', config)
+     post = metadata(directory / 'post-metadata.json', config)
+@@ -214,7 +230,7 @@
+     require([item['pid'] for item in expected] == [receipt['observer_pid'], receipt['workload_pid']], 'marker PIDs')
+     require(all(type(item['pid']) is int and item['pid'] > 1 and type(item['start_ticks']) is int and item['start_ticks'] > 0 and item['boot_id'] == post['boot_id'] for item in expected), 'exact birth identities')
+     absent_items(post, expected, False)
+-    proofs = resource_proofs(directory, config, end)
++    proofs = resource_proofs(directory, config, end, mode)
+     gap = receipt.get('rss_terminal_confirmation')
+     if gap is not None:
+         require(gap['bound_seconds'] == 0.05 and gap['outcome'] == 'terminal_confirmed_with_visible_sampling_gap', 'gap outcome')
+@@ -225,7 +241,7 @@
+         'boundary': ref(directory / 'eligible-boundary.json'), 'receipt': ref(raw / 'receipt.json'),
+         'child': ref(raw / 'stdout.json'), 'post_metadata': ref(directory / 'post-metadata.json'),
+         'post_resource': proofs[1]['proof'], 'actual_config': ref(config_path),
+-        'branches': branches, 'fingerprints': boundary['fingerprints'], 'proofs': proofs,
++        'branches': branches, 'mode': mode, 'profile_events': events, 'matched_unprofiled_control': anchor, 'fingerprints': boundary['fingerprints'], 'proofs': proofs,
+         'terminal_native': terminal, 'terminal_direct_child_high_water_bytes': terminal['kernel_reported_direct_child_high_water_bytes'],
+         'workflow_call_seconds': child['elapsed_call_seconds'], 'visible_terminal_gap': gap,
+         'metadata_scope': {'external_ancestors': post['external_ancestors'], 'outside_campaign_processes': post['outside_campaign_processes']},
+@@ -236,14 +252,14 @@
+     require(len(sys.argv) == 3 and Path(sys.argv[1]) == RELEASE, 'exact ROOT release path and hash argv required')
+     require(sha(RELEASE) == sys.argv[2], 'ROOT release hash')
+     release = load(RELEASE)
+-    require(release['schema'] == 'ROOT-WS116-close-fullsearched256-release-v1' and release['authorized'] is True, 'ROOT explicit authorization')
+-    require(release['stage_id'] == 'largest-full-searched' and release['output'] == str(OUTPUT), 'release fixed stage/output')
++    require(release['schema'] == 'ROOT-WS116-close-central64-profiles-release-v1' and release['authorized'] is True, 'ROOT explicit authorization')
++    require(release['stage_id'] == 'central64-profiles' and release['output'] == str(OUTPUT), 'release fixed stage/output')
+     require(not OUTPUT.exists() and not OUTPUT.is_symlink(), 'closure output already exists')
+     require(release['helper_sha256'] == sha(__file__), 'released helper source')
+     require(release['controller_attestation']['path'] == str(ATTESTATION), 'exact attestation path')
+     attestation = checked(release['controller_attestation'])
+     require(attestation['schema'] == 'ROOT-WS116-controller-terminal-attestation-v1', 'attestation schema')
+-    require(attestation['controller_session'] == 74202 and attestation['actual_terminal_observed'] is True, 'actual74202 terminal evidence')
++    require(attestation['controller_session'] == 88772 and attestation['actual_terminal_observed'] is True, 'actual88772 terminal evidence')
+     require(attestation['exit_code'] == 0 and attestation['no_pending_proxy'] is True, 'controller/proxy still unresolved')
+     require(attestation['authority'] == 'ROOT' and attestation['basis'] == 'actual_tool_terminal_receipt', 'ROOT terminal provenance')
+     tool_receipt = checked(attestation['tool_receipt'])
+@@ -257,14 +273,15 @@
+         require(sha(path) == digest, 'fixed config bytes')
+         configs.append(load(path))
+     first, rest = configs
+-    require(first['allowed_attempt_ids'] == IDS[:1] and rest['allowed_attempt_ids'] == IDS[1:], 'fixed three attempts')
+-    require(first['external_batch_directory'] == str(B / 'batch-row1-ea9117d-a1') and rest['external_batch_directory'] == str(B / 'batch-remaining2-ea9117d-a1'), 'fixed batch directories')
++    require(first['allowed_attempt_ids'] == IDS[:1] and rest['allowed_attempt_ids'] == IDS[1:], 'fixed six profile attempts')
++    require(first['external_batch_directory'] == str(B / 'batch-row1-ea9117d-a1') and rest['external_batch_directory'] == str(B / 'batch-remaining5-ea9117d-a1'), 'fixed batch directories')
++    require(first['selected_largest_size'] is None and rest['selected_largest_size'] is None and first['grant_fixed']['declared_growth_conditions'] == rest['grant_fixed']['declared_growth_conditions'] == [], 'central-only None/empty growth')
+     require(first['prior_eligible'] == [] and first['continuation_authorized'] is False and rest['continuation_authorized'] is True, 'prefix continuation')
+     require(rest['prior_eligible'] == manifest['retained_row1_boundary'], 'recorded row1 prefix')
+-    require(first['stage_admission'] == manifest['stage_admission'] and first['prior_stage_closures'] == manifest['prior_stage_closures'], 'fixedd1b/a4c2/0aff/79a/41a')
++    require(first['stage_admission'] == manifest['stage_admission'] and first['prior_stage_closures'] == manifest['prior_stage_closures'], 'fixed94d/prior5closedstages')
+     old_row1 = checked(manifest['retained_row1_eligibility'])
+-    require(old_row1['schema'] == 'ROOT-WS116-full-searched-r1-eligibility-v1' and old_row1['eligible_for_same_stage_continuation'] is True and old_row1['actual_controller_exit'] == 0 and old_row1['no_pending_proxy'] is True, 'recorded15e98 row1 eligibility')
+-    require(sha(CONFIGS[0][0]) == CONFIGS[0][1] and old_row1['boundary'] == rest['prior_eligible'][0], 'recorded15e98 prefix/config')
++    require(old_row1['schema'] == 'ROOT-WS116-central-profile-r1-eligibility-v1' and old_row1['eligible_for_same_stage_continuation'] is True and old_row1['actual_controller_exit'] == 0 and old_row1['no_pending_proxy'] is True, 'recorded58cc row1 eligibility')
++    require(sha(CONFIGS[0][0]) == CONFIGS[0][1] and old_row1['boundary'] == rest['prior_eligible'][0], 'recorded58cc prefix/config')
+     early_window = checked(manifest['retained_row1_window_closure'])
+     require(early_window['closed_first_row_window'] is True and early_window['eligibility'] == manifest['retained_row1_eligibility'] and early_window['no_active_stage_controller'] is True, 'recorded first window closure')
+     for key in ('candidate', 'material_hashes', 'stage_admission', 'prior_stage_closures', 'binder_sha256', 'expected_core', 'accepted_method7', 'environment', 'tool_hashes'):
+@@ -279,7 +296,7 @@
+         require(subprocess.check_output([first['git'], 'rev-parse', arg], cwd=W, text=True).strip() == first['candidate'][key], 'actual git candidate')
+     require(subprocess.check_output([first['git'], 'diff', '--binary', 'HEAD'], cwd=W) == b'', 'tracked working bytes changed')
+     rows, owners = [], []
+-    for index in range(3):
++    for index in range(6):
+         config_index = 0 if index == 0 else 1
+         result, expected, post, pre = row(index, configs[config_index], CONFIGS[config_index][0])
+         absent_items(pre, owners, False)
+@@ -287,19 +304,19 @@
+         owners.extend(expected)
+         absent_items(post, owners, False)
+         rows.append(result)
+-    require(len(owners) == 6, 'all6 identities')
++    require(len(owners) == 12, 'all12 identities')
+     absent_items(post, owners, True)
+     require(rows[0]['boundary'] == rest['prior_eligible'][0], 'actual retained first boundary')
+-    require(rows[0]['post_metadata'] == old_row1['final_metadata'], 'recorded15e98 first-row metadata linkage')
+-    for group in (rows,):
++    require(rows[0]['post_metadata'] == old_row1['final_metadata'], 'recorded58cc first-row metadata linkage')
++    for group in (rows[:3], rows[3:]):
+         require(all(item['fingerprints'] == group[0]['fingerprints'] for item in group), 'within-condition repeat fingerprints')
+     closure = {
+-        'scope': 'WS116_ROOT_closed_prior_stage', 'stage_id': 'largest-full-searched',
++        'scope': 'WS116_ROOT_closed_prior_stage', 'stage_id': 'central64-profiles',
+         'closed': True, 'historical_identity_facts_retained': True, 'unresolved_owners': [],
+-        'all6_currentstage_exact_identities_and_expected_FD_paths_absent': True,
++        'all12_currentstage_exact_identities_and_expected_FD_paths_absent': True,
+         'exact_owned_identities': owners, 'candidate': first['candidate'], 'material_hashes': first['material_hashes'],
+         'source_unchanged': True, 'raw_files_all_hash_verified': True,
+-        'repeat_fingerprints_match_within_condition': True, 'three_repeat_groups_complete': 1,
++        'repeat_fingerprints_match_within_condition': True, 'three_repeat_groups_complete': 2,
+         'all_in_trial_event_counters_unchanged': True, 'oom_fields_and_swap_zero': True,
+         'actual_event_baseline_max': int(first['mapping']['inner']['events_exact']['max']),
+         'same_stage_admission': first['stage_admission'], 'prior_stage_closures': first['prior_stage_closures'],
+@@ -309,10 +326,10 @@
+         'last_post_metadata': rows[-1]['post_metadata'], 'rows': rows,
+         'terminal_receipts': [item['receipt'] for item in rows],
+         'eligible_boundaries': [item['boundary'] for item in rows],
+-        'final_controller_session': 74202, 'final_controller_exit_code': 0,
++        'final_controller_session': 88772, 'final_controller_exit_code': 0,
+         'controller_terminal_attestation': release['controller_attestation'], 'ROOT_execution_release': ref(RELEASE),
+         'no_scientific_report_acceptance': True, 'metering': 'unknown',
+-        'measurement_scope': 'Kernel-reported direct-child high-water through final exit; inherited/pre-exec/exec-transition retention unknown. No subtraction, aggregate, decomposition, ranking or benefit.',
++        'measurement_scope': 'Kernel-reported direct-child high-water through final exit; inherited/pre-exec/exec-transition retention unknown. Profile events are cumulative/time observations including perturbation, not incremental allocation or isolated cost. No subtraction, aggregate, decomposition, ranking or benefit.',
+         'context_scope': 'Recorded per-row proofs/metadata only; external ancestors unknown_unobservable, outside actors unknown_not_scanned; no present-day PID/FD/resource scan.',
+         'next': 'No automatic profile/next stage or release; ROOT owns future admission.',
+         'closed_at_unix_ns': time.time_ns(),

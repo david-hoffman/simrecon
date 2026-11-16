@@ -1,0 +1,136 @@
+{
+  "ROOT_authority_not_ACK_grant_chain": true,
+  "actual_prior5_wholeclosures_bound": true,
+  "all6_exact_recipe_proposals_match_frozen_worksheet": true,
+  "authority": "ROOT",
+  "central_selected_largest_size": null,
+  "changed_keys_vs_source_template": [
+    "authority_expected",
+    "conditional_rationale",
+    "docker_inspect_stdout",
+    "expected_exposed",
+    "grant_fixed",
+    "mapping",
+    "metadata_expected",
+    "owned_ledger",
+    "prior_stage_closures",
+    "root_authority",
+    "scheduler_ack",
+    "scheduler_ack_expected",
+    "stage_admission",
+    "window"
+  ],
+  "config_authorized": false,
+  "costs": "UNKNOWN",
+  "first_allowed_attempt": [
+    "ws116-gp-c64-summary-searched-r1-p"
+  ],
+  "freshmetadata_and_onecapture_success": true,
+  "grant_growth_conditions": [],
+  "new_stage_owner_request_and_ledger_empty_from_fresh_ROOT_facts": true,
+  "observed_at_unix_ns": 1794781720509925986,
+  "preparation_command": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-preparer-source/ROOT-actual-preparation-command.json",
+    "sha256": "456232ef100d2997559732fece32414cfcc125c611b029a68b4357dfd3799ec0"
+  },
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-PREPARED.json",
+    "sha256": "45b4d4a64bc51b6f97535497c37c58f132290361462511e9ceaca829ed1b3dd5"
+  },
+  "program_outputs14": {
+    "ROOT-authority.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-authority.json",
+      "sha256": "4e4fa34f060cf6465586a20c7afb9a4a5ce2333ee8625d900b84b48b8d6a8198"
+    },
+    "ROOT-preparation-authorization.input.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-preparation-authorization.input.json",
+      "sha256": "6b785105b0188cf34a397c8d3b957cc80bf93876a53de1a76119de77b8fa1529"
+    },
+    "ROOT-prerequisites.input.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-prerequisites.input.json",
+      "sha256": "80bc644523a15b3cec551debe32e33d0acd0a936d9e729fe6ce0fd893495e0ca"
+    },
+    "ROOT-scheduler-suspension.input.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-scheduler-suspension.input.json",
+      "sha256": "53ba6160788eefa83882deab63473cae225cb8a2e7ff59a8d26c3fa3d1003d35"
+    },
+    "case-preflight.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/case-preflight.json",
+      "sha256": "4b65400e07a36460df7478c5b96a12e562e24910101282ee5207ae489807b428"
+    },
+    "config-row1-PREPARED.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-PREPARED.json",
+      "sha256": "45b4d4a64bc51b6f97535497c37c58f132290361462511e9ceaca829ed1b3dd5"
+    },
+    "context-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/context-command.json",
+      "sha256": "862eeec3d3ed7ac854c913a1b6c09d6bfd17f2970a70c2fde605186aff1fa872"
+    },
+    "current-stage-ledger.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/current-stage-ledger.json",
+      "sha256": "25c4312da98d2e724de2c8d7edf41c736999e9219408d741c5e80078100e32d9"
+    },
+    "metadata-command.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/metadata-command.json",
+      "sha256": "a1de54a445c49aa8439d8eb3cb301936752c8b17f74dded308a9232e9c795a53"
+    },
+    "metadata-request.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/metadata-request.json",
+      "sha256": "d4ee031f3f972029261a7d220a5d2b2d12fb94319b67e25019a272ecff0cab3b"
+    },
+    "metadata.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/metadata.json",
+      "sha256": "856eb9ad0a8fb00fafea788f7b65cac93d6731402406c5ca2ed19a71f0be3482"
+    },
+    "preparation-status.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/preparation-status.json",
+      "sha256": "e8c32fc0aba43f115347fc6a2d327f7b9085cae18856809c34294872ba222a85"
+    },
+    "scheduler-ACK.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/scheduler-ACK.json",
+      "sha256": "2313c117605250bf58f8465274f5571d0887b725f3567a3beaabf7bed923c47c"
+    },
+    "stage-admission.json": {
+      "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+      "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+    }
+  },
+  "resource_facts": {
+    "inner": {
+      "current_bytes": 2763247616,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17776926720,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    },
+    "outer": {
+      "current_bytes": 2748448768,
+      "events": {
+        "high": "0",
+        "low": "0",
+        "max": "50340",
+        "oom": "0",
+        "oom_group_kill": "0",
+        "oom_kill": "0"
+      },
+      "host_available_bytes": 17796313088,
+      "maximum_bytes": 17179869184,
+      "swap_bytes": 0
+    }
+  },
+  "schema": "ROOT-WS116-first-central-profile-actual-packet-review-v1",
+  "science_execution_released": false,
+  "source_material35_core28_tool6_method_environment_and6controls_unchanged": true,
+  "status": "PREPARED_DISABLED_PENDING_COOR_PACKET_REVIEW_AND_SEPARATE_SCIENTIFIC_RELEASE",
+  "window": {
+    "ends_unix_ns": 1794788840916089907,
+    "starts_unix_ns": 1794781640916089907
+  }
+}

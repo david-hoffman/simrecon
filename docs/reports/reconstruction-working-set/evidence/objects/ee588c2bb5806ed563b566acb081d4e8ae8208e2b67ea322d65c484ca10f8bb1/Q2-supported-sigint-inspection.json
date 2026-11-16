@@ -1,0 +1,82 @@
+{
+  "status": "case_pass_scoped_only",
+  "attempt_id": "q2-supported-sigint-a1",
+  "driver_exit": 0,
+  "execution_count": 1,
+  "prelaunch_epoch_ns": "1794717650625079774",
+  "proof_observed_epoch_ns": "1794717515773269482",
+  "proof_age_ns": "134851810292",
+  "driver_pid": 45806,
+  "workload_pid": 45813,
+  "target_ready": {
+    "role": "holding-target",
+    "pid": 45813,
+    "ppid": 45806,
+    "pgid": 45813,
+    "session_id": 45813,
+    "nonce": "q2-supported-sigint-a1",
+    "mode": "default",
+    "term_handler_native": 0,
+    "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13",
+    "self_exit_backstop_seconds": 12
+  },
+  "target_ready_monotonic_ns": 24140747154603,
+  "supported_sigint_requested_monotonic_ns": 24140747510084,
+  "cancellation_disposition": "expected_one_shot_SIGINT_entered_finally_cleanup",
+  "signals": [
+    {
+      "signal": 9,
+      "delivery": "direct_pid_sent",
+      "monotonic_ns": 24140747587881
+    }
+  ],
+  "terminal": {
+    "pid": 45813,
+    "wait_status_raw": 9,
+    "returncode": -9,
+    "exited": false,
+    "signaled": true,
+    "exit_code": null,
+    "term_signal": 9,
+    "core_dumped": false,
+    "reaped_monotonic_ns": 24140757816780,
+    "rusage_native": {
+      "ru_idrss": 0,
+      "ru_inblock": 0,
+      "ru_isrss": 0,
+      "ru_ixrss": 0,
+      "ru_majflt": 0,
+      "ru_maxrss": 17492,
+      "ru_minflt": 3925,
+      "ru_msgrcv": 0,
+      "ru_msgsnd": 0,
+      "ru_nivcsw": 0,
+      "ru_nsignals": 0,
+      "ru_nswap": 0,
+      "ru_nvcsw": 2,
+      "ru_oublock": 8,
+      "ru_stime": 0.02053,
+      "ru_utime": 0.038095
+    },
+    "ru_maxrss_native_units": "Linux KiB",
+    "ru_maxrss_multiplier_to_bytes": 1024,
+    "kernel_reported_direct_child_high_water_bytes": 17911808,
+    "scope": "kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention unresolved; same PID does not guarantee every bootstrap/startup peak survives exec; no subtraction/aggregate/benefit claim"
+  },
+  "startup_parent_fds_closed": true,
+  "startup_eof_observed": true,
+  "wait_ownership_lost": false,
+  "error": null,
+  "known_process_disposition": {
+    "check_exit": 0,
+    "driver_proc_absent": true,
+    "driver_fd_table_absent": true,
+    "workload_proc_absent": true,
+    "workload_fd_table_absent": true,
+    "scope": "Read-only checks of exact known /proc/45806 and /proc/45813 and fd paths after successful terminal receipt; no signal, aggregate scan or further workload."
+  },
+  "receipt_sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946",
+  "lifecycle_sha256": "91d9219f68482219ed385fb2b57b397c407067cfaae86279e181736d593d8c63",
+  "scope": "Tiny stdlib supported cancellation/reaping qualification only. Terminal wait4 is kernel-reported direct-child usage through final exit; inherited/pre-exec/exec-transition high-water retention remains unresolved; same PID does not guarantee every bootstrap/startup peak survives exec. No subtraction/aggregate/benefit/scientific-memory claim.",
+  "disposition": "HOLD; no Q3–Q6, product or scientific work."
+}

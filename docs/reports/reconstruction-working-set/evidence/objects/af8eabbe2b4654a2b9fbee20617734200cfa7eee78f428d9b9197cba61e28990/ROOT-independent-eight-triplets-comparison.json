@@ -1,0 +1,22 @@
+{
+  "ROOT_raw_scalar_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-first-readiness/ROOT-fullsearched256-independent-eight-triplets.json",
+    "sha256": "2c1aaf316e04316e431260fad992ccc87cab0d1c5acf2311de14929819f42674"
+  },
+  "all_eight_triplets_exact_match": true,
+  "authority": "ROOT",
+  "coordinator_closed_file_review": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-closed-fullsearched3-review.json",
+    "sha256": "30222b9219ba69a3438bd218abfb3386d54d57f5589842382f976e03f10ea82a"
+  },
+  "coordinator_independent_worksheet": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-searched-file-analysis/coordinator-independent-eight-triplets.json",
+    "sha256": "03890c75eaf74b4b27bfc64fd3abf70bc3ea178d4cf2157638b9b4f8be52788d"
+  },
+  "costs": "UNKNOWN",
+  "future_analysis_authorized": false,
+  "observed_at_unix_ns": 1794781017977092964,
+  "schema": "ROOT-WS116-fullsearched256-independent-comparison-v1",
+  "scientific_acceptance": false,
+  "scope": "Independent raw extraction results compared only after both worksheets complete. No scalar fitting/new numerical run; whole native/self/timing scopes unchanged. Coordinator review projected nonrepeated fields read;30smallmap/3samples/6proof/6owner facts remain explicit prior audit sources, no whole350line visual claim from truncated duplicate map display."
+}

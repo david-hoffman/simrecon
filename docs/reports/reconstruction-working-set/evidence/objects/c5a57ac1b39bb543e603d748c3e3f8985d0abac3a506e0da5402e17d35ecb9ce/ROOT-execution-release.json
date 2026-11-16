@@ -1,0 +1,15 @@
+{
+  "authorized": true,
+  "controller_attestation": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-controller-94974-ended.json",
+    "sha256": "a2f5d0e18fe567996f3c18d2e21623cc2b2e5de02ce21112c7d419e4c94a7f3a"
+  },
+  "helper_sha256": "aaf4bd12fd655508a346db7550a7448340da589de565e2648ba15af1bd563b94",
+  "output": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+  "schema": "ROOT-WS116-close-growth256-release-v1",
+  "source_manifest": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/source-manifest.json",
+    "sha256": "eb95b03a5080468f6466dfbe00fb0ef747f97c86719c78d4917134efa9e00a20"
+  },
+  "stage_id": "growth256-summary"
+}

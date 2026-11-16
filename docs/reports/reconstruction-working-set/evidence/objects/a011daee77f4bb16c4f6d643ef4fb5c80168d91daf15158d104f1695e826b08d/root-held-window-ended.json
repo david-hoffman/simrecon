@@ -1,0 +1,70 @@
+{
+  "schema": "ROOT-WS116-held-initial-window-ended-v1",
+  "at_unix_ns": 1794734596833713623,
+  "status": "ENDED_ALL_KNOWN_SCIENTIFIC_OWNERS_CLOSED",
+  "previous_authority": {
+    "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-release-remaining59.json",
+    "sha256": "2612ee843c4ae94e2bcf9e04034fcbc03f652cf4f84c28a6944be5fba159a1ac"
+  },
+  "controller_session": 87297,
+  "controller_exit_code": 1,
+  "eligible_completed_ids": [
+    "ws116-spatial32-summary-searched-r1-u",
+    "ws116-spatial32-summary-searched-r2-u",
+    "ws116-spatial32-summary-searched-r3-u",
+    "ws116-central64-full-supplied-r1-u",
+    "ws116-central64-full-supplied-r2-u",
+    "ws116-central64-full-supplied-r3-u",
+    "ws116-central64-full-searched-r1-u",
+    "ws116-central64-full-searched-r2-u",
+    "ws116-central64-full-searched-r3-u",
+    "ws116-central64-summary-supplied-r1-u",
+    "ws116-central64-summary-supplied-r2-u",
+    "ws116-central64-summary-supplied-r3-u",
+    "ws116-central64-summary-searched-r1-u",
+    "ws116-central64-summary-searched-r2-u",
+    "ws116-central64-summary-searched-r3-u",
+    "ws116-frozen128-full-supplied-r1-u",
+    "ws116-frozen128-full-supplied-r2-u",
+    "ws116-frozen128-full-supplied-r3-u",
+    "ws116-frozen128-full-searched-r1-u",
+    "ws116-frozen128-full-searched-r2-u",
+    "ws116-frozen128-full-searched-r3-u",
+    "ws116-frozen128-summary-supplied-r1-u",
+    "ws116-frozen128-summary-supplied-r2-u",
+    "ws116-frozen128-summary-supplied-r3-u",
+    "ws116-frozen128-summary-searched-r1-u",
+    "ws116-frozen128-summary-searched-r2-u",
+    "ws116-frozen128-summary-searched-r3-u",
+    "ws116-direction1-summary-searched-r1-u",
+    "ws116-direction1-summary-searched-r2-u",
+    "ws116-direction1-summary-searched-r3-u",
+    "ws116-time2-summary-searched-r1-u"
+  ],
+  "eligible_count": 31,
+  "operational_refusal": "time2r2 PRE-LAUNCH capture took7.312247017s, outeralready7.311092815s oldatfinish>5; no grant/intent/raw/scientificPID forr2",
+  "refusal_proof": {
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794734105823978897.json",
+    "sha256": "96e01872cf234c4df12035952f1eed33bda8d1a326223f679482af2a3a9453c9"
+  },
+  "known_ownership_closure": {
+    "metadata_path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata.json",
+    "sha256": "325516d5341f761728fb17690a1ba5620b4ae0f7270c473ff568303fc5acc38c",
+    "exact_known_identity_count": 64,
+    "all_terminal_receipts_and_marker_IDs_matched": true,
+    "all_PID_start_boot_and_requested_FD_coverage_absent": true
+  },
+  "candidate": {
+    "head": "ea9117d3efe2d8de273402d643e732140138e496",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tree": "e8fe2b1b01d9e7abf476a71a2241309255bb0587"
+  },
+  "all35current_materials_match": true,
+  "coordinator_diagnosis_sha256": "754aebe89e7d69aec902f4dc1f50bb28f5e12a7adea116a1b02110e398490de9",
+  "scientific_attempts_completed": 32,
+  "eligible_rows": 31,
+  "first_scientific_failed_still_excluded": true,
+  "next_action": "Explicitnewremaining29continuationwithfreshcontext/window/ACK; unchanged5spolicy; noautomaticscience retry/rerun31/skip",
+  "ordinary_nonmemory_preparation_allowed": true,
+  "no_active_memory_window": true
+}

@@ -1,0 +1,51 @@
+{
+  "command": [
+    "/usr/local/bin/docker",
+    "exec",
+    "--user",
+    "1000:1000",
+    "-w",
+    "/workspace/work/issue-116",
+    "-e",
+    "OMP_NUM_THREADS=1",
+    "-e",
+    "OPENBLAS_NUM_THREADS=1",
+    "-e",
+    "MKL_NUM_THREADS=1",
+    "-e",
+    "NUMEXPR_NUM_THREADS=1",
+    "simrecon-campaign-ubuntu",
+    ".venv/bin/python",
+    "/workspace/work/issue-116/docs/reports/reconstruction-working-set/run_attempt.py",
+    "--grant",
+    "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining29-ea9117d-a2/ws116-within-summary-r1-u/grant.json",
+    "--attempt-id",
+    "ws116-within-summary-r1-u"
+  ],
+  "config_sha256": "2103f69ca5152c4174cc04354756452399d096e95c1da0c947bd89a5d16c9c3b",
+  "grant_sha256": "bfa5f1bdb826ffb1b6ba749264f13547a0cecad0349be547ec3c148dfd72f900",
+  "proof": {
+    "docker_status": 0,
+    "external_ancestors": "unknown_unobservable",
+    "inner_status": 0,
+    "observed_at_unix_ns": 1794737865131901288,
+    "path": "/workspace/work/campaign/evidence/116/resource-domain/1794737865131901288.json",
+    "sha256": "8430e4a10f1b2a78dd470860fa699d7db6c2fb925378a70706dcf172f5c9b37b"
+  },
+  "row": {
+    "attempt_id": "ws116-within-summary-r1-u",
+    "command_template": "<PINNED-PYTHON> <NEW-CLEAN-ROOT>/docs/reports/reconstruction-working-set/run_attempt.py --grant <ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-within-summary-r1-u.json --attempt-id ws116-within-summary-r1-u",
+    "condition_id": "within-summary",
+    "condition_plan_ref": "conditions.within-summary",
+    "grant_path_template": "<ROOT-FROZEN-EXTERNAL-GRANTS>/ws116-within-summary-r1-u.json",
+    "launch_nonce": "ws116-within-summary-r1-u",
+    "profile": false,
+    "proposed_predecessor": "ws116-between-summary-r3-u",
+    "repetition": 1,
+    "serial_index": 52,
+    "status": "UNADMITTED"
+  },
+  "scope": "one synchronous existing runner; no retry",
+  "source_sha256": "f6b89920979c0f73a5860190a7d14735c2b63d7b27d6482c02465f3c649d1d24",
+  "time_unix_ns": 1794737865293311920
+}

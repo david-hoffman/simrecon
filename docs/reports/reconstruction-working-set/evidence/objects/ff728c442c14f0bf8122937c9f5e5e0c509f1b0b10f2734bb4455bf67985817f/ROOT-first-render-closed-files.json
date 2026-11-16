@@ -1,0 +1,38 @@
+{
+  "cache_directories_not_evidence": "Temporary first Matplotlib cache and final task-owned rendering caches are disposable runtime caches; no sample/scientific source content",
+  "files": [
+    {
+      "logical_bytes": 442,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/presentation-history/render1/README.md",
+      "sha256": "307ecdc96cd6cd1bd52612d629831e1feec6859427aabcd8c9d5c1cce56c5599"
+    },
+    {
+      "logical_bytes": 3013,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/presentation-history/render1/plot_largest256_profile_controls.py",
+      "sha256": "05f9510e6bfe3e8c8bd0451cc83242d5f56fd4474e7d1faa579e28e9b818499e"
+    },
+    {
+      "logical_bytes": 116033,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/presentation-history/render1/largest256-profile-controls.png",
+      "sha256": "b8da15229e4de840c485e7c49be8b66c5d2f9dbe0a6686d3af55fabc7b501b26"
+    },
+    {
+      "logical_bytes": 69397,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/presentation-history/render1/largest256-profile-controls.svg",
+      "sha256": "c3d16bda888704a78fd8713619e65be4a86846bb9700e900d526fdba87292a86"
+    },
+    {
+      "logical_bytes": 1016,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-render-first-tool.json",
+      "sha256": "8f9b924c03dccb13cc3ee3337ce649af3e515d1d28730f1b790c9d95c2a61ba2"
+    },
+    {
+      "logical_bytes": 332,
+      "path": "/workspace/work/campaign/evidence/116/publication-staging/figures/ROOT-render-terminal-tool.json",
+      "sha256": "e8018c14c6613c71cd39d8620244c4bf604a1e3415ff6b12829a6149e7fa062b"
+    }
+  ],
+  "observed_at_unix_ns": 1794802187653969765,
+  "schema": "ROOT-WS116-first-render-closed-file-list-v1",
+  "scope": "Exact immutable first presentation attempt files only; all six closed, first axes clipping/cache warning preserved, no new or changed scientific observation"
+}

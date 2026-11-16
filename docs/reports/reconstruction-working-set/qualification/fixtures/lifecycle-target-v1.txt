@@ -1,0 +1,18 @@
+import json
+import os
+import signal
+import sys
+import time
+
+mode, nonce, backstop_text = sys.argv[1:4]
+if mode not in ("default", "ignore-term") or float(backstop_text) != 12.0:
+    raise SystemExit(2)
+signal.signal(signal.SIGTERM, signal.SIG_IGN if mode == "ignore-term" else signal.SIG_DFL)
+expires = time.monotonic() + 12.0
+print(json.dumps({"role":"holding-target", "pid":os.getpid(), "ppid":os.getppid(),
+    "pgid":os.getpgrp(), "session_id":os.getsid(0), "nonce":nonce, "mode":mode,
+    "term_handler_native":int(signal.getsignal(signal.SIGTERM)),
+    "executable":os.readlink("/proc/self/exe"), "self_exit_backstop_seconds":12.0}), flush=True)
+while time.monotonic() < expires:
+    time.sleep(0.02)
+raise SystemExit(0)

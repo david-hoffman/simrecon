@@ -1,0 +1,32 @@
+{
+  "ACK": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/scheduler-ACK.json",
+    "sha256": "2313c117605250bf58f8465274f5571d0887b725f3567a3beaabf7bed923c47c"
+  },
+  "authority": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/ROOT-authority.json",
+    "sha256": "4e4fa34f060cf6465586a20c7afb9a4a5ce2333ee8625d900b84b48b8d6a8198"
+  },
+  "case_preflight": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/case-preflight.json",
+    "sha256": "4b65400e07a36460df7478c5b96a12e562e24910101282ee5207ae489807b428"
+  },
+  "execution_released": false,
+  "ledger": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/current-stage-ledger.json",
+    "sha256": "25c4312da98d2e724de2c8d7edf41c736999e9219408d741c5e80078100e32d9"
+  },
+  "prepared_config": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/config-row1-PREPARED.json",
+    "sha256": "45b4d4a64bc51b6f97535497c37c58f132290361462511e9ceaca829ed1b3dd5"
+  },
+  "stage_admission": {
+    "path": "/workspace/work/campaign/evidence/116/central64-profiles-first-readiness/stage-admission.json",
+    "sha256": "94d322b17dd981b5d3b51f40d8b93c638b0a58708b9e844b625659fd97ae0ece"
+  },
+  "status": "PREPARED_CENTRAL_PROFILE_CONFIG_DISABLED",
+  "window": {
+    "ends_unix_ns": 1794788840916089907,
+    "starts_unix_ns": 1794781640916089907
+  }
+}

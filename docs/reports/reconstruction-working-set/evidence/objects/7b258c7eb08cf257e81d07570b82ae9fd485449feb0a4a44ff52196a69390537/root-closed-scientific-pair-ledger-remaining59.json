@@ -1,0 +1,59 @@
+{
+  "capacity": "2failed+120batch=122<=128; binder performs fresh exactinnerPID/start/FDchecks",
+  "closed_owned_processes": [
+    {
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 46267,
+        "start_ticks": 2672492
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/receipt.json",
+        "sha256": "ea1132b9b6d5705768c3efaecb5e02d4d332de9e3186317d1809fb8558f1fee5"
+      },
+      "role": "observer",
+      "scientific_outcome": "failed monitor, retained for process closure only"
+    },
+    {
+      "identity": {
+        "boot_id": "917ac2a5-d964-495b-98ae-77fb119cb0fd",
+        "fds": [
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "pid": 46287,
+        "start_ticks": 2672505
+      },
+      "receipt": {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/receipt.json",
+        "sha256": "ea1132b9b6d5705768c3efaecb5e02d4d332de9e3186317d1809fb8558f1fee5"
+      },
+      "role": "workload",
+      "scientific_outcome": "failed monitor, retained for process closure only"
+    }
+  ],
+  "closure_evidence": {
+    "root_PID_FD_postcheck": {
+      "path": "/workspace/work/campaign/evidence/116/first-corpus-readiness/root-first-case-pid-postcheck.json",
+      "sha256": "21f0e24b81b216362645325c91a33efe2b7410dcc71067754ad6e5ec9cbd7e93"
+    },
+    "root_outer_exit": {
+      "path": "/workspace/work/campaign/evidence/116/first-corpus-readiness/root-first-command-exit.json",
+      "sha256": "b9f87d4ceb14f54a8787da14c5985aa499e13197fe39c8f0f4ecf87e7a01957e"
+    }
+  },
+  "root_authority_sha256": "2612ee843c4ae94e2bcf9e04034fcbc03f652cf4f84c28a6944be5fba159a1ac",
+  "scope": "WS116_scientific_observer_workload_processes",
+  "scope_limits": "Only first failed scientific observer/workload pair plus future eligible batch pairs; qualification/control and othercampaign closures belong ROOTscheduler ACK, no global host absence",
+  "unresolved": []
+}

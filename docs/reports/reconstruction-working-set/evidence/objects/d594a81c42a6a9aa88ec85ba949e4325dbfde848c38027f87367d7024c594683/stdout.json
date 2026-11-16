@@ -1,0 +1,1 @@
+{"role": "holding-target", "pid": 45813, "ppid": 45806, "pgid": 45813, "session_id": 45813, "nonce": "q2-supported-sigint-a1", "mode": "default", "term_handler_native": 0, "executable": "/workspace/.simrecon-tools/python/cpython-3.13.12-linux-x86_64-gnu/bin/python3.13", "self_exit_backstop_seconds": 12.0}

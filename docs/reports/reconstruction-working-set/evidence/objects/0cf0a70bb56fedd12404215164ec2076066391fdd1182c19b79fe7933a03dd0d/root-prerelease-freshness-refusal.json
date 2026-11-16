@@ -1,0 +1,9 @@
+{
+  "recorded_at_unix_ns": 1794720208980494278,
+  "phase": "root approval before grantwrite and before runner invocation",
+  "guard": "proof age <40s to retain full240s child allowance within300s proofvalidity",
+  "actual_age_seconds": 50.881757169,
+  "outcome": "assertion refused before releasedgrant/rawattempt/command existed",
+  "scientific_attempt": false,
+  "disposition": "oldproof retained, prepare operational launch binder before recapturing; no numerical retry or threshold increase"
+}

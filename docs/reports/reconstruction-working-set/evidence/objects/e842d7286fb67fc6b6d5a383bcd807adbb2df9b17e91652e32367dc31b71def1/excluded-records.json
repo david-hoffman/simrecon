@@ -1,0 +1,455 @@
+[
+  {
+    "phase": "failed",
+    "reason": "Original3965 real workflow monitor failure; finite child never accepted or pooled",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/receipt.json",
+        "sha256": "ea1132b9b6d5705768c3efaecb5e02d4d332de9e3186317d1809fb8558f1fee5"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/stdout.json",
+        "sha256": "c95aa88eba27d90374ecde2d284183c8752814cfd60c8440f3cea600c1a91dd7"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/grant.input",
+        "sha256": "374f1ee725ba5504ceba41a93d1d9f0986663945797000d7c3c765da8bb76136"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/owned-child.json",
+        "sha256": "3a47bb38a9b89d8ef59af630b99268a64347b2e8b206f7d1ae18a5dcfb7cbbfe"
+      },
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/raw/corpus-spatial32-summary-searched-r1-a1/spec.json",
+        "sha256": "0a7b732c50d7e58ef46080fcd0d010dfbefb95d4809c4e01bdf536c53e660b69"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q0-context-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q0-context-a1/receipt.json",
+        "sha256": "e20af779dcb9e23dd480293343f906ffb5e7406c68dfffb6b9f3be1741b63fa7"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q1-normal-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-normal-a1/receipt.json",
+        "sha256": "f1aa18a0cf4f1afe0ec399cc141226330c447dbd59e499b7ec84c70ce340c70a"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q0-method5-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q0-method5-a1/receipt.json",
+        "sha256": "055048597eb084341aac3d16e50e6bfec5814587b54d2a01f75b3420016b33b0"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q1-method5-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q1-method5-a1/receipt.json",
+        "sha256": "23534b9f0298fd2de621a6e2b8b0b7bb993d9ce094d3d716aefdd5b29d7016ce"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-default-term-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-default-term-a1/receipt.json",
+        "sha256": "04adceb4b0362c55902889d01738beb582850655604dfe478ef8a2c27edba68f"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-ignore-term-kill-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-ignore-term-kill-a1/receipt.json",
+        "sha256": "14945d428577e75365b5c3202d31c265577520a5ee8e8018c84d60b868a1bc8d"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-deadline-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-deadline-a1/receipt.json",
+        "sha256": "ab9589156df4668b0109317776a52a314b131a35ed541be86bb9ccd5cede0733"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q2-supported-sigint-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q2-supported-sigint-a1/receipt.json",
+        "sha256": "6d8d320f5649c1440f53811623a820e28363a8b0d400894fb1bfac1135d9b946"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q4-parser-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q4-parser-a1/receipt.json",
+        "sha256": "9e58d30b4cdfa97249fb3ed17fe15757d03477c52473933c9bd9dc76b1a1d7aa"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: q5-tinyhash-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/q5-tinyhash-a1/receipt.json",
+        "sha256": "164ecf085b44b51bbc26a01fba523ab7e1ca388e2d8074e94fdf19297e7bcb3d"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: method6-rss-controls-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/method6-rss-controls-a1/receipt.json",
+        "sha256": "5d7f96701e749126d0dbc5df2eb380f36c210a4147aceb183ac268c53dc5870d"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 protocol/capability qualification history only, not scientific corpus: method7-rss-readiness-controls-a1",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/attempts/method7-rss-readiness-controls-a1/receipt.json",
+        "sha256": "ee45f1976ae813535506e25beb2c42c49d07ce5f85a951132093b748891e8f52"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "WS116 selected-launch capability probe only; native context never scientific data",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/issue-116/docs/reports/reconstruction-working-set/qualification/launch-route-attempts/launch-selected-a1/receipt.json",
+        "sha256": "17b6a0519bdb80437e2652572245ba15142890d968cd3b923a783facc2a99658"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "refused",
+    "reason": "Original root prerelease freshness refusal before grant/runner/product, not a scientific trial",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/first-corpus-readiness/root-prerelease-freshness-refusal.json",
+        "sha256": "0cf0a70bb56fedd12404215164ec2076066391fdd1182c19b79fe7933a03dd0d"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "refused",
+    "reason": "7.312247017s context capture exceeded unchanged5s prelaunch policy; no grant/intent/raw child; later independent release retained same intended row",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/HOLD.json",
+        "sha256": "a6c1ba8b408c614413e6d5eb8c96878a0f9052f70d68091546cd0eacc8b0ea06"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata.json",
+        "sha256": "325516d5341f761728fb17690a1ba5620b4ae0f7270c473ff568303fc5acc38c"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-request.json",
+        "sha256": "ac6ccbd52ec60dce762aa9b75a54510f85e386d3cf9901b6abf2d111bbe39059"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-intent.json",
+        "sha256": "4fc20c62cd34f43a7502d2d69f6327b35f293f06789123ac8a79c7b3159059d4"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-metadata-command.json",
+        "sha256": "712dbb7ad28040b5c9e5dd4f4eaefe503dcb37d9d59d114af24a7dea2a9609b8"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/remaining59-ea9117d-a1/ws116-time2-summary-searched-r2-u/pre-capture-command.json",
+        "sha256": "499a3f4eb6a1e5bda7a620fb2f8a2b561866d4996437cd5fe5a3d9ab84d73794"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/resource-domain/1794734105823978897.json",
+        "sha256": "96e01872cf234c4df12035952f1eed33bda8d1a326223f679482af2a3a9453c9"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/coordinator-time2-r2-prerelease-refusal.md",
+        "sha256": "754aebe89e7d69aec902f4dc1f50bb28f5e12a7adea116a1b02110e398490de9"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "ROOT initial60 exact closure and final known-owner disposition; control evidence, not an additional observation",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/initial-batch-binder/root-initial60-window-closed.json",
+        "sha256": "a4c22675d1e4d674bf216e29daaa698a9e784d89f77e35e4d39113e899b189aa"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "refused",
+    "reason": "Actual growth192 v2 stage-admission Markdown-in-JSON priorref failure before metadata/capture/batch/runner/scientific child; preserved then separately explicitv3 release",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-first-binder-prelaunch-failure.json",
+        "sha256": "4d068700dd9aae1a97b7ba79257f01901f5beb01932e0dbef5f042ec3ff57625"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/config-row1-AUTHORIZED-v2.json",
+        "sha256": "92008dec3e520e8bc7f4d23b0f7ed38ec9028af48ab81e0ee174c61b6a962980"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-v3-source-audit.md",
+        "sha256": "93cce5a5e525e792e9693a86f264d431552d42d11735f319b003ef1e6314db2e"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "ROOT complete192stage/12ownerclosure, coordinator closedfile/scalar inspection and independently executed ROOTscalar; controls not extra scientific repetitions",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-stage-closed.json",
+        "sha256": "0affac7112b093baa1759080fa864241f9d95d80cbf685aeca1c935909c252b1"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/coordinator-growth192-closed-file-scalar-review.json",
+        "sha256": "311eabff259e07e35f1b3890d9ffdb7603d526cfc9ecbdd0584fe22eaa64a6ab"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-growth192-independent-scalar.json",
+        "sha256": "2cc066edb5ebeeb52d8d2a0e41d8d3435e5628d60113a72d2b85bf19e0b2c240"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "Temporary ROOTsciencewindow closure afterr1 for separate113qualification, before explicitremaining5newwindow; no new192scientifictrial fromclosure",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth192-first-readiness/root-row1-window-closed-for113-qualification.json",
+        "sha256": "314b6ad3ed506ca1d03809d568146b70178810be09aa85d3e126e98abbd50e61"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "refused",
+    "reason": "Actual first256 prelaunch grant authority-reference refusal before metadata/capture/grant/intent/raw scientific child; later explicit correctedrelease isseparate, notscientifictrial/retry.",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-first-binder-prelaunch-failure.json",
+        "sha256": "fd3073c0b0458d7637d942b2c2361cb92729e6053e6b6742c8ee5897478657a5"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-prepared-v2-file-audit.json",
+        "sha256": "40992ecffc8848d8ccefe86b333ac4394f99ce34fff4847740c31f35c1d49fd2"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "ROOT complete256 stage/controller/66rawhash/12birthFDclosure pluspostsource/fullstatus andexplicitwindowend; coordinator independentclosedfile/scalarreview only, notextrascientificrepetitions.",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-stage-closed.json",
+        "sha256": "79a176211f3f513380f2e339c83ab19d4beaee79e0afc988e7fcb2e97be5f0aa"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/ROOT-growth256-post-audit.json",
+        "sha256": "28b3b11fc0fe1404c98b53c6bfa86de0a9a5892f4d786ced7abb0bf736203c4d"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/root-growth256-window-closed-for-checks.json",
+        "sha256": "ace3ddeb3a3889d4b58001025310f42953abef60e1b988e7497656900f1ff7d9"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-first-readiness/coordinator-growth256-closed-file-scalar-review.json",
+        "sha256": "0e4d3508b25a8e0b01c7b62211a7c14ea6e6d8619fd54e8a093b8ccf6e7b57b2"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-controller-94974-ended.json",
+        "sha256": "a2f5d0e18fe567996f3c18d2e21623cc2b2e5de02ce21112c7d419e4c94a7f3a"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-stage-closure-source/ROOT-execution-release.json",
+        "sha256": "c5a57ac1b39bb543e603d748c3e3f8985d0abac3a506e0da5402e17d35ecb9ce"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "refused",
+    "reason": "ROOT release-construction assertion mistyped binder hash before binder invocation; original authorized copy preserved then exact validation/release, no scientific retry.",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-release-construction-attempt1-failure.json",
+        "sha256": "b3e5b9bbd32da619d9fcd7b0d2b9e9b99c989de05687269925b61522a4d466e2"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "historical",
+    "reason": "Fullsupplied3 actual closure/controller/window/source and independent scalar/file audit; operational provenance not additional observations",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/root-fullsupplied256-stage-closed.json",
+        "sha256": "41a94c2ed898dcb347a0560c5a49241d61e30542faf9b556258109081c32484b"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-window-closed.json",
+        "sha256": "98022969dd30820d6398eab58f73893eaa94d2cf1e73a9b5309d08a8cf2d09b7"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-fullsupplied256-postclosure-source-check.json",
+        "sha256": "82d79a3a73caa8c425fa224cc1953968dda77c1ac93da533c6509207b2f512ae"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-first-readiness/ROOT-postclosure-sourcecheck-attempt1-diagnostic.json",
+        "sha256": "0e4579a8d01ff813985d103e796b2ef3b79e37d88dd5ff81c0c7a5928328d1c8"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/fullsupplied256-stage-closure-source/ROOT-controller-60678-ended.json",
+        "sha256": "55383cd5a680e6632157519524148ea15a0da00a615a93929966847ed9313e4e"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-closed-fullsupplied3-review.json",
+        "sha256": "3da4293f9b70caa2dc98d823aa7374abc38719219cec09b38c28be7d2b252964"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-independent-eight-triplets.json",
+        "sha256": "5d96a35dcdb706c15f762054b3eafefb512fb89c9df46c5f4b749406c93a0327"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  },
+  {
+    "phase": "failed",
+    "reason": "Canonical940 actual fileanalysis attempt1: full rows excluded by nested stage-admission FILE allowlist omission; controls3 succeeded; no scientific/numerical failure or repeat. Original failed outputs retained, not pooled.",
+    "availability": "available",
+    "evidence": [
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-command.json",
+        "sha256": "398c34fd4584867888bc4df521e9c2ebac07a57fe390cd34dc5f4811f693eb65"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/summary.json",
+        "sha256": "6359c0575569239bce4e83b53d67852083e8940bba7997e82d43a4c59fb1bc58"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/excluded-records.json",
+        "sha256": "a87c236548dcc1ea7e1de42be7cb3ac60f699f6c7655e7ddecaa2005a6868bb6"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/file-audit.json",
+        "sha256": "7c47f6deb2754042ac6488952539e33c9960deb059bdbad55451d7782cafb12f"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/output-identities.json",
+        "sha256": "5c0f13efc7d4ce161947ff728449d41039f80a26645a2cbcaac04abbb1c95f68"
+      },
+      {
+        "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/coordinator-attempt1-nested-root-diagnosis.json",
+        "sha256": "afbf988d1869e85a2084dd2e6883136a4e6a45434815f9484829b29f62837c58"
+      }
+    ],
+    "state": "excluded_never_pooled",
+    "evidence_errors": []
+  }
+]

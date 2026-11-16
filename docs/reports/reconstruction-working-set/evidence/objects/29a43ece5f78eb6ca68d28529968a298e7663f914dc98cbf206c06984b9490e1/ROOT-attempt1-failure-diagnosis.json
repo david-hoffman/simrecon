@@ -1,0 +1,74 @@
+{
+  "actual_analysis_returncode": 1,
+  "actual_elapsed_seconds": 1.141561381999054,
+  "all35_measured_source_and_fullstatus_unchanged": true,
+  "all7outputs": {
+    "excluded-records.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/excluded-records.json",
+      "sha256": "a87c236548dcc1ea7e1de42be7cb3ac60f699f6c7655e7ddecaa2005a6868bb6"
+    },
+    "file-audit.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/file-audit.json",
+      "sha256": "7c47f6deb2754042ac6488952539e33c9960deb059bdbad55451d7782cafb12f"
+    },
+    "output-identities.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/output-identities.json",
+      "sha256": "5c0f13efc7d4ce161947ff728449d41039f80a26645a2cbcaac04abbb1c95f68"
+    },
+    "per-process.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/per-process.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "summary.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/summary.json",
+      "sha256": "6359c0575569239bce4e83b53d67852083e8940bba7997e82d43a4c59fb1bc58"
+    },
+    "three-repeat-summary.csv": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/three-repeat-summary.csv",
+      "sha256": "8aeddd3b26d2a5e15ad5a6ec88d4abba6bc2319eec66f3d0e89cdb84dfbf40e4"
+    },
+    "unprofiled-controls.json": {
+      "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/output-attempt1/unprofiled-controls.json",
+      "sha256": "50fdb9c143e8ac9cbaba16a1cf5c0ad06efba8d50510ed364a2eaacdb86608fc"
+    }
+  },
+  "all_prior_failures_unknown_charges_preserved": true,
+  "canonical_source_unchanged": true,
+  "cause": "ROOT/coordinator checks covered explicitconfig refs, missed additional prior_data_refs loaded by canonical audit_stage_context. Files boundary rejected all3fullrows before rawscalar aggregation.",
+  "command": {
+    "path": "/workspace/work/campaign/evidence/116/growth256-full-supplied-file-analysis/ROOT-attempt1-command.json",
+    "sha256": "398c34fd4584867888bc4df521e9c2ebac07a57fe390cd34dc5f4811f693eb65"
+  },
+  "correction_scope": "Review fresh disabled configuration adding onlytwo actualpriorfiles; preserve every oldconfig/source/intent/receipt/output and newattemptidentity. No data/programsource/numericalrepeat.",
+  "exact_missing_stageadmission_nested_refs": [
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/output-attempt1/summary.json",
+      "sha256": "29c100f71af5f2b11e8651088b16dd7fbf4a443b53557505b913dc7890ce000b"
+    },
+    {
+      "path": "/workspace/work/campaign/evidence/116/growth256-file-analysis/coordinator-actual256-analysis-output-review.json",
+      "sha256": "0cb03d5b65ca57e75f137a22233361730a30dcd5765f85e1ab12f292f66c5b9e"
+    }
+  ],
+  "full_row_failure_reasons": [
+    {
+      "attempt_id": "ws116-gp-l256-full-supplied-r1-u",
+      "reason": "file outside explicit roots"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-supplied-r2-u",
+      "reason": "file outside explicit roots"
+    },
+    {
+      "attempt_id": "ws116-gp-l256-full-supplied-r3-u",
+      "reason": "file outside explicit roots"
+    }
+  ],
+  "native_data_validity": "Closed3raw/owners/proofs and independent8 still retained; this failed analysis is not scientific acceptance",
+  "no_automatic_retry": true,
+  "normal_fullstdlib_initialization": true,
+  "observed_at_unix_ns": 1794774824057007668,
+  "process_and_dockerproxy_call_returned": true,
+  "schema": "ROOT-WS116-fullsupplied256-primaryanalysis-attempt1-failure-v1",
+  "status": "ACTUAL_FILE_ANALYSIS_FAILED_CONFIG_READ_ALLOWLIST_NOT_ACCEPTED"
+}
