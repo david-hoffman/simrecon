@@ -10,9 +10,11 @@
   The concrete [study contract](../contracts/lower-memory-fourier-assembly-study-v1.md)
   records the finite outcome and inherited mathematical boundary.
 - Worktree `/workspace/work/issue-120`; branch `docs/120-fourier-assembly-design`.
-  Provisional accepted #115 base `ace06c861b974b6251a092567c253ae4eb0f56c8`.
-  Actual final integration parent is accepted #119, not yet frozen. Root owns
-  integration/push/PR/CI. Proposed title:
+  Historical intake used accepted #115 base
+  `ace06c861b974b6251a092567c253ae4eb0f56c8`. ROOT has integrated the owned
+  intake onto locally accepted #119
+  `2393e4a8473a4741902aca2aaa70b589bb33353a`; PR126 CI is pending. ROOT owns
+  the actual study-head freeze, integration/push/PR/CI. Proposed title:
   `docs(reconstruction): qualify a lower-memory Fourier assembly design`.
   Stacked PR uses `Refs #120`, records eventual default-branch closure intent,
   and targets the immediately preceding campaign branch. No merge/release/manual
@@ -42,9 +44,10 @@
   required native statement/branch integers globally/per package/per owned file,
   never-imported/subprocess scope, JSON/HTML and same-run M25 on Ubuntu 24.04.
   This report changes no product runtime obligation or coverage policy.
-- Checks: intake source/doc/Git inspection only. No native/model probe, import,
-  lint/test/install, numerical, benchmark, memory or resource-monitor work during
-  the current #116 exclusive window. Later root schedules cheap preflight,
+- Checks: study work remains source/doc/Git/hash only under ROOT's current
+  source/integration release; numerical/control/import/test work is held.
+  ROOT's completed intake-only infrastructure preflight is recorded below;
+  it is not actual-parent study qualification. Later root schedules cheap preflight,
   finite study and matched children, followed separately by exact clean final
   candidate `make verify` (all 13 phases) on actual parent and fresh acceptance.
   No CI-authoritative exemption; changed material inputs renew affected evidence.
@@ -80,41 +83,81 @@
 
 ## Current state
 
-- Status: **WAITING — intake recorded; investigation not started**. Hard
-  dependency is accepted #116 plus affected #117/#118 working-set refresh and
-  independent review. Root must freeze actual accepted #119 parent before study.
-- Authority/constraints: campaign and actual #120 body; root temporary pure
-  source/doc-only window. No additional material human decision is requested.
-- Scenarios: S01–S12 (12); concrete witness/example/run count unknown until the
-  accepted-parent manifest is frozen. #113 absent; no single-precision work.
-- Baseline/checkpoint: provisional accepted #115 above; no accepted #120 study,
-  test/fixture checkpoint, numerical baseline or final candidate receipt exists.
-- Roles: fresh issue coordinator `/root/issue_120` launched by root with no
-  inherited conversation. No study worker/reviewer/observer launched. This
-  intake is not independent scientific acceptance.
-- Candidate/evidence: final identity belongs outside tracked bytes in the root
-  campaign handoff. Local intake commits are incomplete and unpublished; no
-  final-parent integration, full gate, resource measurement or CI result claimed.
-- Checks: source/doc/Git reads only; no scientific/native/import/lint/test/
-  install/benchmark/resource execution. Required `make verify` **not run**.
-- Classified blockers: prerequisite/evidence applicability and central resource
-  scheduling, not product failure. Numerical/backend/host behavior is unknown;
-  no corrective implementation or coverage finding is commissioned.
-- Accounting: coordinator launches=1; study launches=0; scientific review
-  rounds=0; product repairs=0; numerical/measurement attempts=0 for this issue.
-  These zeroes describe observed issue-local actions only. Earlier campaign/
-  prerequisite attempts and costs stay in root records; no reset or double count.
-  Per-role responses/input/cached/output tokens, verified money, elapsed/owner
-  wait/check time and actual serving attribution are unknown. Actual limits not
-  set. No calibration/failed attempt from another issue is relabeled here.
-- Next: root resumes issue coordinator after dependency acceptance, integrates
-  actual parent, refreshes this contract/packets with exact material identities,
-  and authorizes a finite resource interval. Launch nonblind study author, then
-  fresh independent scientific review; finish gate/readiness/publication through
-  root. [Handoff](../packets/fourier-120/handoff.md) contains continuation inputs,
-  not a competing status store.
-- Housekeeping: no owned numerical process, fixture or scratch; current worktree
-  and intake documents kept as required continuation inputs; no cleanup errors.
+- Status: **SOURCE PREPARATION COMPLETE; runtime and review launch HELD**.
+  ROOT integrated the sole owned intake commit onto locally accepted #119;
+  no study numerical execution, measured conclusion or #120 acceptance exists.
+- Actual parent: #119 head `2393e4a8473a4741902aca2aaa70b589bb33353a`, tree
+  `7b42883aaad07076308eb6be26c5ea611fda6c81`, base accepted #118
+  `61f3647e50e69b3f702fd0ea35fb4df9b0d8ae03`. ROOT records SCI, exact full
+  13-phase second Ubuntu gate and fresh D accepted. PR126 is open; CI run
+  `43922720381` is queued/pending, **not passed**. Exact prerequisite release:
+  `/workspace/work/campaign/evidence/120/ROOT-accepted119-source-integration-release-1.json`,
+  SHA256 `38738aa856f7f0928a0c5b4fca2ad18f03122a324767b05cd6814320f4e5ba40`.
+- Integration snapshot before this factual Current refresh: head
+  `e7f187173065d66c8025e0f4c49f15339716f901`, tree
+  `0a03b301dbbae683c02cc708fa61388af970034f`, parent2393; ROOT's rebase had
+  no conflict. This snapshot is not the final study-head freeze. ROOT will
+  commit/freeze after this authorized task-only edit; final identity/evidence
+  belongs outside tracked bytes in ROOT's campaign record.
+- Preserved intake: `refs/campaign/120-intake-before-parent2393` retains
+  `c962ccfff03ca78de31e6a0af746ec091e822989`. The previous Current body is
+  preserved externally at
+  `/workspace/work/issue-120-sourceprep/review-launch-preparation/historical-current-e7f187-before-refresh.md`.
+  Historical source/preflight/review statuses and all prior charges remain.
+- Authority/holds: campaign/#120 scope unchanged. Current ROOT release is
+  SOURCE/INTEGRATION ONLY. All numerical/control/import/test work remains held
+  until119 CI passes, actual120 binding and fresh method/scientific acceptance.
+  No reviewer or resource admission is launched by this record. #113 remains
+  absent/optional; ordinary double only. No new human decision is requested.
+- Scenarios: S01–S12 (12); fixed27 proposed matched kernel rows, not executed.
+  W1–W6 qualification source is prepared separately, not added measured cases.
+  No A/B/C/D product-test checkpoint or accepted numerical baseline exists.
+- Roles: coordinator `/root/issue_120` launch1; original nonblind math SOURCE
+  owner `/root/issue_120/scientific_study_source_author` launch1, cumulative
+  events6/completions-corrections5; separate apparatus SOURCE author
+  `/root/issue_120/apparatus_source_author` launch1/events2/sourcecorrection1.
+  No source reviewer/scientific qualification role or observer has run for120.
+- Held source pointers under `/workspace/work/issue-120-sourceprep/`: original
+  childd2d6/writer298f/witness930e and math events1–4 preserved in
+  `study-source-preparation/`; event5 held child4c655/map79b625/handoffc400 in
+  `math-interface-source-amendment/`; event6 qualification165eae/map6f361c/
+  handoff8f2848/inventory2355c7 in `qualification-source-preparation/`;
+  apparatus handoff0e4a/inventoryeafa in `apparatus-source-preparation/`.
+  Each directory's exact hash inventory preserves original/new bytes and read
+  limits. All executable source remains unconditionally held before imports.
+  Actual runtime source/material/environment/fixtures/grants are UNBOUND.
+- Checks: source authors performed text/Git/hash work only. ROOT separately
+  recorded host AST-only syntax sanity for held4c655/298f/165eae (d489f901),
+  not source SCI, imports or required Ubuntu qualification. ROOT documented
+  infrastructure preflight passed on old clean intakec962: own.venv/locked
+  groups/reader/imports/Python3.13.12; exact result
+  `/workspace/work/campaign/evidence/120/ROOT-infrastructure-preflight-result-1.json`,
+  SHA256 `f05511a298a89245c445de7bb4890ea806699ccf1da5de341793fab8767e59a3`.
+  Lock pins are unchanged, but this is not actual-parent120 binding. Required
+  #120 exact-candidate full Ubuntu `make verify` is **not run**; no120 PR/CI.
+- Scientific limits: literal and public-derived qualification lanes are
+  distinct. Pointwise exact-dyadic signed/absolute errors are threshold-free;
+  native/general bounds remain unqualified. W4 sparse-target public provenance,
+  W5 actual capability/ownership and W6 inverse/backend failure evidence are
+  not established. No measured memory/latency benefit, no-go, workflow peak,
+  current-largest/scaling/RAM or16GiB claim is accepted here.
+- Accounting: above role counts are separate cumulative records, not additive
+  re-counts of their children. #120 scientific/numerical/measurement attempts=0;
+  independent source/scientific reviews=0; product repairs=0. Preserve source
+  corrections, operational attempts and earlier campaign/prerequisite charges.
+  Per-role serving/effort attribution, responses/input/cached/output tokens,
+  verified money and elapsed/owner-wait/check meters remain unknown; actual
+  human numeric limits not set. ROOT infrastructure actions are separate facts,
+  not a reset or an author's validation claim.
+- Next: ROOT freezes the clean study head, then authorizes the actual binding/
+  source-activation event7 and fresh independent method+science source review
+  through the prepared external packet. No source hold is removed now. ROOT
+  owns subsequent qualification/individual exclusive admissions, report
+  acceptance, exact final gate/fresh D/publication/CI. Existing tracked handoff
+  is historical intake context, not a competing Current.
+- Housekeeping: no120 numerical process or generated scientific fixture exists.
+  Keep current checkout, own.venv, all external source/history/hash/review inputs
+  and prior evidence; no cleanup or source/lock/cache removal performed.
 
 ## PR presentation
 
