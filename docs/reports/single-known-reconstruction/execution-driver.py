@@ -1243,6 +1243,8 @@ def archived_child(record,spec,spec_sha):
             'setup_calls','reconstruction_calls','observations','status','error'},'exact qualification child fields')
         require(record['qid']==spec['qid'] and record['control_id']==spec['control_id'],'qualification identity')
     else:
+        require(type(record['repetition']) is int and record['repetition'] in (1,2,3),
+                'formal record repetition must be an actual integer in 1,2,3')
         require(record['trial_id']==spec['trial_id'] and record['repetition']==spec['repetition'] and
                 record['stage']==spec['stage'] and record['candidate']==spec['candidate'],'formal identity')
     if record['status']!='complete':
@@ -1507,6 +1509,7 @@ def assemble(index_path):
                      'attempt':attempt['attempt'],'superseded':attempt['superseded'],
                      'superseded_reason':attempt['superseded_reason'],'disposition':attempt['disposition'],
                      'reason':attempt['reason'],'parse_category':'missing','record':None,'controller':None,'runtime_eligible':False}
+        matched_control=False; formal_eligible=False
         try:
             require(raw_spec is not None,'missing spec')
             spec=decode(raw_spec)
@@ -1518,6 +1521,11 @@ def assemble(index_path):
             else:
                 require(spec['purpose']=='formal' and spec['schema']=='EE113-direct-known-v1' and
                         spec['trial_id']==row['trial_id'],'formal closed spec identity')
+                require(type(spec['repetition']) is int and spec['repetition'] in (1,2,3),
+                        'formal spec repetition must be an actual integer in 1,2,3')
+                formal_id=f"{spec['case_id']}-{spec['mode']}-r{spec['repetition']}"
+                require(spec['trial_id']==formal_id==row['trial_id'] and formal_id in FORMAL,
+                        'formal spec case/mode/repetition must match the closed trial schedule')
             require(spec['attempt']==attempt['attempt'],'attempt/spec identity')
             require(type(spec['driver_sha256']) is str and re.fullmatch('[0-9a-f]{64}',spec['driver_sha256']),
                     'all formal/control specs require explicit actual driver identity pin')
@@ -1577,8 +1585,9 @@ def assemble(index_path):
                 observation['parse_category']='expected_malformed_child_record'
             else:
                 record=decode(raw_stdout)
+                observation['record']=record
                 archived_child(record,spec,digest(raw_spec))
-                observation['record']=record; observation['parse_category']=record['status']
+                observation['parse_category']=record['status']
                 if not qualification and record['status']=='complete':
                     archived_accuracy(record)
             require(receipt_raw is not None,'missing controller receipt')
@@ -1608,6 +1617,7 @@ def assemble(index_path):
                     by_path[str(directory/'admission.json')] is not None and
                     inner_record['admission_sha256']==digest(by_path[str(directory/'admission.json')]),'immutable inner/admission receipt')
             terminal=inner_record.get('terminal')
+            observation['terminal']=terminal
             require(terminal is not None and terminal['pid']==inner_record['workload_pid'] and
                     not inner_record['wait_ownership_lost'] and not inner_record.get('cleanup_gap'),'sole child terminal usage')
             if observation['record'] is not None:
@@ -1618,15 +1628,28 @@ def assemble(index_path):
                         inner_record['attempt']==spec['attempt'] and inner_record['expected']==spec['expected_outcome'] and
                         inner_record['expected_outcome_matched_before_closure'] is True and
                         all(check['passed'] is True for check in inner_record['checks'].values()),'qualification not matched')
-                if current_matches and attempt['disposition']=='completed':
-                    qualified_controls.add(row['control_id'])
-                    qualified_bindings.setdefault(binding,set()).add(row['control_id'])
+                matched_control=current_matches and attempt['disposition']=='completed'
             else:
                 require(observation['parse_category']=='complete' and spec['stage']=='final-integrated' and
                         inner_record['status']=='complete_child_observed_pending_scientific_qualification' and
                         not inner_record.get('stop_reason') and terminal['returncode']==0,'formal runtime eligibility')
-                observation['runtime_eligible']=attempt['disposition']=='completed' and current_matches
-                observation['terminal']=terminal
+                retained_bytes=observation['record']['observations']['retention']['unique_known_backing_bytes']
+                require(type(retained_bytes) is int and retained_bytes>=0,
+                        'retained unique_known_backing_bytes must be an actual nonnegative integer, not bool')
+                elapsed=observation['record']['timing']['elapsed_call_seconds']
+                require(type(elapsed) in (int,float) and elapsed>=0 and
+                        (type(elapsed) is int or math.isfinite(elapsed)),
+                        'elapsed_call_seconds must be an actual finite nonnegative int/float, not bool')
+                peak_bytes=terminal['kernel_reported_direct_child_high_water_bytes']
+                require(type(peak_bytes) is int and peak_bytes>=0,
+                        'terminal high-water bytes must be an actual nonnegative integer, not bool')
+                native_peak=terminal['rusage_native']['ru_maxrss']
+                multiplier=terminal['ru_maxrss_multiplier_to_bytes']
+                require(type(native_peak) is int and native_peak>=0 and
+                        terminal['ru_maxrss_native_units']=='Linux KiB' and type(multiplier) is int and
+                        multiplier==1024 and peak_bytes==native_peak*multiplier,
+                        'terminal native ru_maxrss/Linux KiB/integer1024 multiplier/bytes must agree')
+                formal_eligible=attempt['disposition']=='completed' and current_matches
         except (ValueError,KeyError,TypeError,UnicodeError,AttributeError,IndexError,OverflowError,RecursionError) as error:
             observation['runtime_eligible']=False
             observation['validation_failure']={'category':type(error).__name__[:512],
@@ -1643,6 +1666,36 @@ def assemble(index_path):
                 observation['validation_failure']={key:diagnostic[key] for key in ('category','message')}
             if observation['parse_category']=='missing' and raw_stdout is not None:
                 observation['parse_category']='malformed_or_unvalidated_raw_child_record'
+        # Check all three fixed parsed convenience views even after an ordinary
+        # validation failure, before any positive eligibility/control update.
+        for view,raw_name in (('record','stdout.json'),('terminal','launcher-receipt.json'),
+                              ('controller','controller-receipt.json')):
+            try:
+                canonical(observation.get(view))
+            except (ValueError,TypeError,OverflowError,RecursionError) as encoding_error:
+                observation[view]=None
+                detail=('parsed '+view+' view unavailable: strict JSON encoding failed; complete original '+
+                        raw_name+' bytes remain in the existing blob/restore map; raw artifact is not missing')
+                try:
+                    diagnostic=caught_diagnostic(encoding_error)
+                except Exception as diagnostic_error:
+                    detail+=('; original encoding category='+type(encoding_error).__name__[:512]+
+                        '; category retained first 512 of '+str(len(type(encoding_error).__name__))+
+                        ' characters at most; encoding message/chain/frame locations unavailable: renderer raised '+
+                        type(diagnostic_error).__name__[:512]+'; rendering category retained first 512 of '+
+                        str(len(type(diagnostic_error).__name__))+' characters at most; rendering-error detail unrecorded')
+                else:
+                    detail+='\n'+diagnostic['message']
+                if 'validation_failure' in observation:
+                    observation['validation_failure']['message']+='\nAdditional parsed-view encoding failure: '+detail
+                else:
+                    observation['validation_failure']={'category':type(encoding_error).__name__[:512],'message':detail}
+        if 'validation_failure' not in observation:
+            if qualification and matched_control:
+                qualified_controls.add(row['control_id'])
+                qualified_bindings.setdefault(binding,set()).add(row['control_id'])
+            elif not qualification:
+                observation['runtime_eligible']=formal_eligible
         observations.append(observation)
     for observation in observations:
         if observation['purpose']=='formal' and observation['runtime_eligible']:
