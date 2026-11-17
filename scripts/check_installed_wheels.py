@@ -32,9 +32,11 @@ expected = {
     'WorkflowReconstruction', 'declare_acquisition', 'declare_otf', 'estimate_parameters',
     'export_imagej', 'harmonize', 'inspect', 'prepare_bands', 'prepare_bead_otf', 'read',
     'reconstruct_known', 'reconstruct_summary', 'reconstruct_workflow', 'sample_otf', 'write',
+    'declare_prepared_bands32', 'PreparedBands32', 'KnownReconstruction32',
 }
-assert len(simrecon.__all__) == 38 and set(simrecon.__all__) == expected
+assert len(simrecon.__all__) == 41 and set(simrecon.__all__) == expected
 assert all(callable(getattr(simrecon, name)) for name in expected)
+assert all(getattr(simrecon, name).__name__ == name for name in expected)
 assert Path(simrecon.__file__).resolve().is_relative_to(Path(sys.prefix).resolve())
 for name in ('simrecon_devtools', 'simrecon._delivery', 'simrecon._pytest_policy',
              'pytest', 'coverage', 'ruff', 'pyright'):
@@ -53,7 +55,7 @@ assert all(command in help_result.stdout for command in ('inspect', 'convert', '
 missing = subprocess.run([cli, 'inspect', 'absent.mrc'], capture_output=True, text=True, timeout=30)
 assert missing.returncode == 1 and not missing.stdout, missing
 assert json.loads(missing.stderr)['code'] == 'io_error', missing.stderr
-print('installed product: 38 exports, console CLI, runtime-only environment', simrecon.__file__)
+print('installed product: 41 exports, console CLI, runtime-only environment', simrecon.__file__)
 """
 
 DEVTOOLS_PROBE = """\

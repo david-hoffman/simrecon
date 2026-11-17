@@ -53,7 +53,7 @@ def test_installed_product_and_devtools_are_independent(wheel_repository: tuple[
         timeout=180,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "installed product: 38 exports, console CLI, runtime-only environment" in result.stdout
+    assert "installed product: 41 exports, console CLI, runtime-only environment" in result.stdout
     assert "installed devtools: doctor caller and strict pytest" in result.stdout
     assert result.stdout.count("sha256=") == 2
 

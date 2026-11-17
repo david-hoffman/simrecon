@@ -1,0 +1,78 @@
+{
+  "accepted_test_checkpoint": "7629dc8ef7df9de0d2a31ee727e0490f6f80b479",
+  "execution": {
+    "exact_three_corrected": "3 passed,1.46seconds",
+    "fresh_full_compatible_selection": "795 passed,57.68seconds",
+    "fresh_full_compatible_stdout_sha256": "10dbc348cccb27bfc44bcde00c7c9ff1b3f6ff72036a7cef511f606271cb5f3d",
+    "installed_tests": "Canonical nonblind route2 passed,6.47seconds; separate actual isolated wheel checker passed41 exports",
+    "installed_tests_stdout_sha256": "a2b0545e9f8cfc697ec2dfd088c695ce7a91ea947029894cced0b57bfc64e407",
+    "original_selection": "3 failed,792 passed,56.15seconds; preserved",
+    "preceding_compatible_selection_scope": "795-pass and IE41/installed2 results above retain actual clean5bb identity before this typing correction; not relabelled as a new candidate execution.",
+    "type_correction_checks": {
+      "affected_cases": "3 passed in1.29seconds, strict2workers, no skips/xfails/restarts",
+      "affected_stdout_sha256": "5df9750e1d3662f754180380581206ced8dd4dabce585fa604cab03ea27e8221",
+      "canonical_types": "attempt1 failed one remaining initializer diagnostic; attempt2 passed with 0errors/0warnings/0infos",
+      "canonical_types_stdout_sha256": "6f317c7b046df753e6cd36d7d316cba1afc661bf9f35c662324afc010972e91b",
+      "failed_final_gate": "Candidate67c32671 first finalfullgate stopped at types9errors beforetests; receipt ea707f8e32b3b467e7948e09ef9cf8c6c7d6e6260e380329fd7320afec56ad83 retained. Newexactfull13/freshD required."
+    }
+  },
+  "files": [
+    {
+      "byte_count": 57646,
+      "path": "tests/single_known_fixture.py",
+      "sha256": "a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b"
+    },
+    {
+      "byte_count": 37162,
+      "path": "tests/test_single_known_boundary.py",
+      "sha256": "ccceed2cb641914c31b4b602399ed39583d9b7e750965978b0f8b8e8d3b8e79b"
+    },
+    {
+      "byte_count": 26843,
+      "path": "tests/test_single_known_filter.py",
+      "sha256": "e3c1c16382380d0d65e2b4dff3d547ec893413ab5734b754452b1b5df9972932"
+    },
+    {
+      "byte_count": 31439,
+      "path": "tests/test_single_known_assembly.py",
+      "sha256": "a52fa0172e092187e1b0fc53a660c9a747e13de898e43e181aaeab819d89955f"
+    },
+    {
+      "byte_count": 26121,
+      "path": "tests/test_single_known_precision.py",
+      "sha256": "1c2cc104ee53835f4f62c3d5672f98e834ce76e060f5053cb23d36337965fadf"
+    },
+    {
+      "byte_count": 7656,
+      "path": "tests/test_single_known_typing.py",
+      "sha256": "cc6a7313f99132361e8a755926f2e326e9f3d1dc039e63ba65895df622417f30"
+    },
+    {
+      "byte_count": 3735,
+      "path": "tests/test_module_migration.py",
+      "sha256": "a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804"
+    },
+    {
+      "byte_count": 3080,
+      "path": "tests/test_installed_wheels.py",
+      "sha256": "ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e"
+    }
+  ],
+  "independent_B": {
+    "distinct_final_sha256": "dfebefab4b059a4b870cd3cf9cf598811751efb76b1994589afbc917907ff603",
+    "primary_sha256": "bbf5ac0733138b5afa89a1d2595b7067f17f414179261f4b804d6a57442141be",
+    "report_sha256": "21569fd8e74c30112cfa3044763ead38d642334a2c6d01f27c88c7a42ee90370",
+    "scope": "Fresh blind B accepts exact two-file typing correction and retains applicable complete-eight fixture/mathematical/oracle/algorithmic evidence within original limits. Narrow casts and TypedDict setup preserve relevant runtime observations; no assertion/branch/value/tolerance/shared fixture/product/helper/gate change. No native/material/measurement or fullgate/D requalification.",
+    "target_assessment_sha256": "6ab4edfe7bdd7b4bc2e90d193f05eb728cb849232e3c9368a5b22ef1e0345023"
+  },
+  "limits": "Supplemental post-implementation test corrections are not retroactive product-red. All failures and prior checkpoints remain. Actual5bb numerical/control/archive identities are preserved, with later source applicability assessed separately by final D; no automatic native/control/measurement replay or raw archive relabelling solely for this typing delta.",
+  "previous_accepted_test_checkpoint": "726c174cac936aaa3947da2a6a5eb54e18a3d77b",
+  "prior_B_test_correction": {
+    "primary_sha256": "429017c782ba11aa2146d0af9fc038876d0731cb9dc3fa56b86df9e0fac3e02c",
+    "report_sha256": "160abaf1f395f67b73c0a4d98a1e48078efa747db2303dea54afad5ae5ee0b39",
+    "scope": "Whole eight test/fixture/dependency retention and exact three local test-body corrections, static own primary before A opinions; no tolerance/shared fixture/product change"
+  },
+  "schema": "SP113-reviewed-test-checkpoint-v1",
+  "status": "Accepted revised TEST checkpoint and retained prior scientific/test evidence; exact final fullgate/fresh D results recorded externally",
+  "test_manifest_sha256": "ef890ea5d4a6815d02209c489f54f0f7a90acfcb0d2d2889453c0d696aac4a11"
+}
