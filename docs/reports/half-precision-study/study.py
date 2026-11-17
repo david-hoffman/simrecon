@@ -1404,6 +1404,7 @@ def run_workflow(args):
                 for k, v in acquisition.items()
                 if k not in ("phase_policy", "acquisition_mode")
             }
+            options["lateral_zoom"] = int(options["lateral_zoom"])
             qualification["half_prepare_bands"] = sim.prepare_bands(half, **options)
         summary = timed(
             "wider.summary",
