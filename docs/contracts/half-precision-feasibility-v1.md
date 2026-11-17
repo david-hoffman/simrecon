@@ -193,6 +193,28 @@ GPU evidence, if authorized, must include host RSS, device allocation/reservatio
 workspace, transfer costs and synchronization; asynchronous dispatch is not elapsed
 compute time.
 
+Resource evidence has two distinct scopes. Every completed numerical comparison
+retains the required fresh-process diagnostic lifecycle observations, including
+cold/setup and call-only monotonic seconds, conversion-inclusive end-to-end time,
+native whole-process peak RSS, pre-call high-water and retained reachable array
+payload. Successful W01–W06 comparisons retain three fresh successful repetitions.
+Diagnostic runs retain a wider reference beside the candidate, so their cross-mode
+timings and peaks cannot establish optimized storage or speed benefit. The selected
+additional standalone matched experiment is PREPARED_WIDER versus PREPARED_HALF
+on W02 and W05 only, with three fresh successful repetitions per arm and row.
+It includes setup packing, required unpacking, wider downstream computation and
+the same caller/result retention through exit. Report its whole-child native peak
+and separately scoped cold/setup, pack, conversion/call and setup-to-call elapsed
+intervals; do not subtract high-waters or omit setup conversions. No standalone
+resource benefit is claimed for H1, H1_PROMOTED, other H2 sites or W01/W03/W04/W06.
+Their matched-resource cells remain explicitly UNMEASURED, while all original
+numerical comparisons and diagnostic resource observations remain required.
+These unselected standalone UNMEASURED dispositions are permitted finite-study
+completion outcomes; they are not evidence of no benefit and waive no numerical,
+compatibility, safety, qualification, independent-review or final-gate obligation.
+A scientific recommendation is limited to the evidence actually qualified; no
+product precision mode or broader resource feasibility is activated by the study.
+
 Before each resource step, make a conservative simultaneous-buffer ledger using
 wider workspaces, conversion temporaries and retained callers/results, compare with
 current physical/available/cgroup limits and swap pressure, and record why headroom

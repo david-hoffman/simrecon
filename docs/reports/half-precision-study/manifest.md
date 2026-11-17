@@ -1,4 +1,419 @@
-# HP114 frozen study manifest — source-method preparation v2
+# HP114 reconciled source-phase manifest — operational HOLD
+
+Completed authored P1 metadata continuation for the separately frozen source
+transition. Current source and exact metadata identities belong in external
+reports/hash inventories, not in these determining bytes. The five unconditional
+refusal CALLS at module, authorize, main, resource_parent and resource_child have
+been retired. Both raising definitions and RESOURCE_LAUNCH_HOLD remain dormant;
+they are not current entry calls. ROOT/EVIDENCE/EXPECTED and BINDINGS retain None
+initialization and derive actual values only from the existing external B loader.
+
+Stdlib imports and the local source clock are reachable if invoked; this lane
+has no execution grant and has invoked neither. Main/authorize/resource routes
+retain genuine binding, ROOT grant/context/run/source/material/environment/native,
+qualification and safety checks. SOURCE suitability is not acceptance of the
+actual integrated pair, parent/material applicability, native method, controls,
+numerical science or final study. Actual accepted113, integration, default/single
+profiles, interpreter/native/material/startup evidence and B/C/G/L remain pending.
+All operational, native, scientific, runtime and integration releases remain held.
+Nothing here is a READY command, grant or independent actual-bound acceptance.
+
+## Current preparation declaration and historical phase scope
+
+Option A now explicitly supplies **OPTICS, linespacing_um=carrier["linespacing_um"]
+and phase_start_angle_rad=carrier["phase_start_angle_rad"] to the existing
+resource_child public preparation call. On selected W02/W05 these declare 520 nm,
+NA 1.2, immersion 1.33, spacing 0.4 um and start 0 rad. negative_angle_step remains
+omitted: its defaultFalse already equals the unchanged selected workflow setting.
+The five former metadata differences (optics/spacing None and start1.57193) are
+predecessor history, not current defaults. This is declaration/validation/recorded
+metadata alignment before data, not measured numerical inactivity, equality,
+zero setup cost or a product defect. Actual raw/prepared/seed/used-field/output
+and independent scientific/error applicability remain pending. Setup validation
+stays inside the existing setup clocks and cumulative/terminal resource scope.
+
+The harness still admits one attempt under one resource grant. ROOT may routinely
+orchestrate the finitely predeclared cases, with separate fresh/current admission,
+B/C/G/L and whole-attempt closure per case. No shared-grant batch, automatic retry,
+fallback, new science framework, manual human approval per case or new role per
+grant is introduced or required by this prose.
+
+All scientific equations, recipes, metrics, precision meanings and accepted
+obligations below remain inherited and binding. The exact accepted §8A selection,
+149 nominal targets, ten rows, three fresh successful-W repetitions and fixed
+twelve order remain current design, not superseded history. The historical
+source/phase/receipt/check/launch claims below describe their named predecessor
+stages only; their old hashes/commands are not current pins or READY invocations.
+Their scientific and method obligations are not discarded by that phase scoping.
+
+The issue and contract govern finite completion. First assess retained actual
+QUALIFY evidence and precisely applicable accepted public runtime/math/compatibility
+evidence under actual113/default-material/import provenance. Missing independent
+premises may remain scoped UNRESOLVED with noactivation. A finite conditional
+polynomial evaluation is future work only if needed for a concrete claim under
+separate ROOT release and affected review, with honest reference uncertainty.
+No full upstream recreation, measured-child reference, new capture extension or
+broad oracle framework is commissioned here. Generic RM84 reuse and known/T1
+returned-carrier used-seed inference remain proposed pending actual applicability.
+
+The five-row resource table below retains available experimental meanings. Its
+normative selection paragraph is now the exact accepted §8A replacement. All
+resource90/all-five-arm proposals and old preparation/qualification statements
+in retained historical layers describe their original inputs and scope; none
+selects those arms now or requalifies an old attempt. The selected standalone
+inventory is exactly the following fixed order, one independently ROOT-admitted
+fresh child per invocation, with no batch/retry/order enforcement helper:
+
+| Order | Row | Repetition | Arm |
+| --- | --- | --- | --- |
+| 1 | W02 | 1 | PREPARED_WIDER |
+| 2 | W02 | 1 | PREPARED_HALF |
+| 3 | W02 | 2 | PREPARED_HALF |
+| 4 | W02 | 2 | PREPARED_WIDER |
+| 5 | W02 | 3 | PREPARED_WIDER |
+| 6 | W02 | 3 | PREPARED_HALF |
+| 7 | W05 | 1 | PREPARED_WIDER |
+| 8 | W05 | 1 | PREPARED_HALF |
+| 9 | W05 | 2 | PREPARED_HALF |
+| 10 | W05 | 2 | PREPARED_WIDER |
+| 11 | W05 | 3 | PREPARED_WIDER |
+| 12 | W05 | 3 | PREPARED_HALF |
+
+The complete nominal primary inventory remains 126 numerical W observations
+(W01–W06 × seven numerical modes × three fresh successful repetitions), six
+separate QUALIFY observations, four KERNEL observations (K01–K04), one bounded
+K01 CPU observation, and these twelve additional matched resource observations:
+149 nominal records if all succeed. These counts are experimental design, not a
+human quota, retry budget, permission or guaranteed result. Failed/refused/unsafe/
+skipped/partial attempts remain separate original records and do not replace a
+required successful repetition. All ten rows, scientific arithmetic/settings,
+sites, errors/decisions, full-grid/upstream witness obligations and all six full
+RM84 common-contract compatibility assessments remain required.
+
+## Local scalar clock records — unexecuted
+
+All new endpoints use the existing time.monotonic_ns() and seconds=(end-start)/1e9
+convention. No new timer, sampler framework, backend or methodology is added.
+LOCAL_COLD_START_NS is captured immediately after importing stdlib time. It is a
+LOCAL source origin: it excludes interpreter startup and all earlier stdlib
+imports. With the five CALLS retired, this local clock is reachable if invoked;
+this preparation has no execution grant. main/resource_child entry_start_ns
+precedes authorization as before, without a preceding unconditional refusal CALL.
+Neither local origin nor existing started/start clocks is process birth or OS exec time.
+
+main and resource_child retain numerical_import_start_ns immediately before the
+first NumPy import and numerical_import_end_ns immediately after simrecon import,
+before identity validation/environment observation. numerical_import_seconds
+uses those endpoints. This measures this fresh invocation's numerical import
+interval; it makes no cold-cache or filesystem-cache guarantee. Endpoints after
+an unsuccessful stage remain absent; they are missing evidence, never zero.
+
+Diagnostic run_workflow records setup_start_ns before generator and setup_end_ns
+after settings/transfer declaration/retention, with setup_seconds. Its separately
+named post-setup pre_call_high_water_rss_kib/bytes is immediately before the wider
+workflow; the legacy outer main pre_call_high_water_rss_kib remains a pre-dispatch
+high-water taken BEFORE row setup, not a baseline to subtract. baseline_start_ns/
+baseline_end_ns and setup_to_baseline_end_seconds identify the first workflow.
+Each non-QUALIFY result also records candidate_start_ns/candidate_end_ns and
+setup_to_candidate_end_seconds; WIDER uses the baseline endpoints. For half/site
+modes setup-to-candidate includes the retained reference, fixture guards and
+intervening diagnostic work. It is explicitly unmatched diagnostic timing, not
+optimized resource benefit. main operation_start_ns/operation_end_ns surround
+the complete selected diagnostic/QUALIFY/kernel/control dispatch, including its
+observers; cold_to_operation_start_seconds and local_cold_to_operation_end_seconds
+retain those broader scopes. QUALIFY retains baseline local_clocks and the outer
+complete-operation interval, including oracles/boundaries/full+summary work.
+
+Existing timed() now retains start_ns and end_ns beside operation/seconds, even
+on a failed operation. Existing labels distinguish H1.pack-unpack,
+prepared.pack-unpack, filtered.<t>.pack-unpack and wider/candidate stage calls.
+These preserve the original conversion operations, not new arithmetic. Corrected
+and embedded packing stays within its existing timed replay interval; no isolated
+pack cost is invented where no such endpoint exists. K timing usefulness remains
+unresolved until workload/timer resolution is qualified.
+
+Resource-child setup_start_ns precedes resource_caller. setup_end_ns follows
+settings/transfer, public preparation, metadata extraction, selected packing and
+release of raw/source setup storage, caller identity/statistics and finite checks,
+immediately before the pre_call snapshot. The
+PREPARED_HALF setup_pack_start_ns precedes packed allocation and setup_pack_end_ns
+follows both component assignments. setup_pack_seconds is that interval; it is
+null (not zero measured cost) when no separate setup pack applies. setup_seconds
+includes preparation, packing and caller identity/statistics/finite checks.
+The existing conversion_start_ns starts after
+caller observations and pre_call snapshot, call_start_ns follows required wider
+unpacking/record construction, and call_end_ns follows the unchanged operation.
+setup_to_call_seconds=(call_end_ns-setup_start_ns)/1e9 includes setup packing,
+caller observations, conversion and call; conversion_and_call_seconds excludes
+setup packing. local_cold_to_call_end_seconds includes local cold/import/setup/
+observation/conversion/call; cold_to_setup_start_seconds identifies the pre-setup
+part. No disjoint-interval sum or peak subtraction is needed or claimed.
+
+Parent spawn-to-terminal-observed elapsed includes bootstrap/exec, setup, output,
+JSON/teardown, exit and delayed wait observation; it is not exact child death time.
+The unchanged sole exact-PID wait4 terminal native RSS is direct-child usage
+through exit/JSON/teardown and excludes parent memory. Bootstrap/pre-exec peak
+retention across exec remains unresolved; same PID does not establish it. These
+local scalars do not replace terminal native usage, isolate numerical RSS,
+measure exact child death or qualify native usage.
+No lifetime/guard/allowlist/bound/control changes accompany these clock fields.
+
+## Standalone scientific applicability remains HOLD
+
+resource_caller uses bounded x-row evaluation/casts; generator uses volume/vector
+evaluation. resource_stage uses Python math scalar trigonometry for its initial
+vectors; diagnostic compose uses baseline.initial_carriers_cyc_um. The real
+magnitude is the same declared 1.25 cycles/um on W02/W05, but finite operands and
+evaluation order may differ. There is no claim of scalar/vector bit equality.
+No seed, formula or tolerance was changed to force a match. Option A changes only
+the explicit preparation declarations described above, not result-driven tuning.
+qualification-obligations.md now specifies exact raw/seed/prepared metadata/
+downstream-operation/output and numerical-evidence comparisons. Missing/unequal
+premises leave applicability HOLD and block any resource/scientific combined
+conclusion or execution release. Existing resource guards attest a ROOT-reviewed
+qualification hash; their unchanged structural checks do not themselves prove
+that ROOT fulfilled this richer scientific obligation. ROOT must withhold grant
+and all hold releases until actual applicability is independently disposed.
+
+Resource children still retain one caller and one declared result, never load
+qualification/reference arrays, and perform no reference workflow. Required
+comparison work belongs in a separately admitted diagnostic qualification and
+independent assessment. Source-only identity matching is neither a numerical
+acceptance tolerance nor complete independent scientific qualification.
+
+Backend documentary note SHA256
+5ba05641f3ce4def1824159a15cb3f832ff44300dc310ae9e4a3b02f6eb4263b
+is completed primary-document preparation with final SCI pending. GPU runtime and
+host/device peak/timing remain UNMEASURED. H3 unavailability, noisy/zero RSS or a
+failed prepared comparison cannot support a broad optimized-negative conclusion.
+
+The exact proposed contract insertion, manifest selection and task S7 row are
+in proposed-contract-manifest.patch. Tracked integration, actual parent/material
+bindings, affected independent source/method review, qualifications, scientific
+runs, complete report/SCI, exact Ubuntu full gate and fresh D remain ROOT work.
+inputs.sha256 and outputs.sha256 carry external identities without backedges.
+
+---
+
+## Retained predecessor layers — phase facts historical, obligations inherited
+
+The following witness1/loader2/R1/v2 descriptions retain their original hashes,
+results, failures and charges. Statements below that holds "remain unchanged",
+that every import/route is unconditionally held, or that no grant can enable a
+route are facts about those predecessor sources, not the current five-call
+transition. Historical preparation checks confer no check permission or pass on
+the current source. Historical source receipts, partial deliveries and incomplete
+command examples do not supply actual parent/material/profile/native bindings.
+Current external B/C/G/L sequencing and literal one-Bsha operand below remain
+required; old no-B examples cannot instantiate it. Scientific equations, anchors,
+full-grid/upstream/RM84 procedures, exact §8A and current inventory remain binding.
+
+# HP114 scientific witness SOURCE correction 1 — historical accepted component
+
+2026-11-16. Completed authored SOURCE proposal for fresh independent affected
+review, derived from immutable source2 study.py SHA256
+4011064e31cf21c837c788b70b91b146213253f2f24cc5c4cc531c6955e48d83 and
+manifest.md SHA256
+03f766262a119759ff2dbc0eb06d8c2502dbc54f0896aaabec12d151e898b22c.
+The release and exact final identities are external in inputs.sha256 and
+outputs.sha256; no selfhash, live pin or command binding is introduced.
+Every unconditional import/main/authorize/resource HOLD and the entire B/C/G/L
+loader remain verbatim. All actual pins remain UNBOUND. No route, refusal,
+syntax/import/check/control/native operation or numerical work was executed.
+
+Only the diagnosed scientific fixture/prerequisite scope changes here:
+
+- SR1: make_transfer receives explicit acquisition_mode at both run_workflow
+  and resource_child. Native W01 Z1 now declares radial (2,64,1); all other W
+  rows retain (3,64,64). Table values, increments, physical/precision meanings
+  and the resource/native lifecycle remain unchanged. This is a fixture SOURCE
+  correction, not observed product failure or a half-precision negative.
+- SR2: oracle_checks records independent row alpha denominators and centered
+  coordinate vectors. Selected forward sums use that alpha instead of returned
+  input_scale; assembly corroboration uses those x/y labels instead of returned
+  coordinates. Shared separators, filtered arrays and carriers remain explicit
+  dependencies. Small diagnostics do not establish full-grid baseline truth.
+  qualification-obligations.md supplies the finite all-grid native-coefficient
+  conditional assembly polynomial and separately required raw/phase/preparation/
+  transfer/filter/estimator premises. Its floating/reference evaluation and
+  every actual finite row remain UNQUALIFIED; no tolerance/gain is selected.
+- SR5: summary_compatibility is explicitly selected diagnostics. The concrete
+  retained-record procedure in qualification-obligations.md covers every common
+  RM84 field/projection, scalar/array zero-sign bits, metadata and ordered trace/
+  decision. JSON alone cannot establish original container/ownership properties;
+  missing evidence stays missing. No new comparator/parser is commissioned.
+
+W06's valid ideal rank/noise/sign reasoning is not actual factorization,
+residual/noise or final-image evidence. K04 remains formula witnesses: scalar
+outside-range fit is not a reachable coarse-global-maximum branch; energy
+equality is not execution of the public combined-fit failure. Their formulas and
+limited source labels are untouched. All ten rows, three successful-W
+repetitions, existing guards/retention, H1/H2 meanings and resource90 PROPOSAL
+remain. H3 unavailability/noisy RSS cannot dispose H1/H2. ROOT120 exclusive gate,
+actual-parent/113/binding/native/scientific qualification and final SCI/D remain.
+
+The source2/R1/historical text below retains its original scope except the
+explicit transfer shape and selected-compatibility clarifications. Statements
+that earlier layers preserved science verbatim describe those earlier deltas,
+not this correction. Earlier checks/controls/partial deliveries/charges are not
+requalified. This manifest is a reproducibility artifact, not a competing Current.
+
+---
+
+# HP114 external binding-loader SOURCE proposal 2 — historical phase HOLD
+
+This finite proposal is derived from R1, not an integrated or runtime-qualified
+candidate. R1's complete manifest follows verbatim after this addition, with its
+historical preparation outcomes retaining their original materials and scope.
+All unconditional import/main/authorize/resource holds remain unchanged. This
+proposal was assessed only as text; even its refusal path has not been executed.
+This author2 delivery uses partial1 as historical starting text. Partial1 has no
+observed final handoff or outputs.sha256; its report filenames establish no
+completed delivery. Its availability transition and all costs remain preserved.
+
+## External binding and freeze boundary — SOURCE PROPOSAL ONLY
+
+Actual accepted113/candidate/parent/base/profile/material/native/startup/root/
+interpreter/context/grant/run/output/argv identities remain **UNBOUND**. The shipped
+`binding-receipt-template.json` contains no executable pins or grant. No command
+is READY. ROOT later supplies the receipt path and its expected byte SHA256 as
+independent `--binding-receipt` and `--binding-sha256` launch operands. Neither the
+receipt nor the grant supplies an independent identity or ROOT authenticity.
+
+Once ROOT separately authorizes and reviews any hold release, the dormant loader
+runs after argparse, before route dispatch or raw-directory creation, and before
+all numerical imports. Authorize loads independently for direct internal entry;
+resource_parent loads before its first EVIDENCE access. Root/evidence/materials
+derive solely from the validated external receipt. The explicit canonical source
+must match the eventual tracked `__file__`; manifest is its sibling. This external
+proposal directory and current working directory never supply the project root.
+
+ROOT first freezes final source/manifest/tracked inputs and actual-parent candidate,
+immutable material/interpreter/profile evidence and the invocation SHAPE/recipe.
+Binding receipt B names those immutable inputs and grant paths, with no later
+context/grant/launch hashes. ROOT freezes B and obtains Bsha; obtains fresh physical
+context C; then freezes one-attempt grant G identifying actual Bpath/Bsha and
+Cpath/Csha plus existing guards, candidate/artifacts and unchanged B.bindings.
+C remains immutable once G binds Csha. No selfhash or later launch digest occurs
+in B/C/G. Final identities remain outside source/manifest determining bytes.
+
+ROOT constructs the literal command with known B/G identities, then records
+separate independent launch receipt L with full actual argv, B/C/G identities and
+a last-moment physical guard/recheck. That recheck is an L fact (or separate C2
+bound only by L), never an update to C. No L hash feeds B/C/G or literal argv.
+L independently binds original G's hash; G does not hash itself. The source
+validates G.binding_receipt against the independent argv pair and validates
+G.context; context is never stored in B. No more hash-slot normalization is used.
+All G admission evidence must already exist before G, such as C or independently
+frozen earlier proof; it cannot name later L/C2. Direct B material/startup/profile/
+native paths exclude receipt and original/copy grant paths. Opaque evidence's
+semantic dependencies still require independent review; the loader is no DAG
+proof or authority mechanism.
+
+The historical transition requires "after-command-READY ROOT context/proof";
+R1 pending-invocations says context "only after command READY". Proposed narrow
+sequencing disposition is shapeREADY -> fresh C -> G -> literalcomplete -> fresh
+headroom/recheck/L. This does not claim the old ordering is fulfilled or establish
+new human approval requirements. Actual final binding/admission, independent
+affected method review and ROOT release remain necessary before activation.
+
+Each receipt invocation SHAPE uses literal `$ROOT_BINDING_SHA256` once, solely
+as the operand of exactly one `--binding-sha256`. Loader expansion substitutes
+only ROOT's independently supplied digest. No placeholder may appear elsewhere.
+The grant repeats the unexpanded shape object; actual launch/target argv have the
+known digest and must match its exact completion. B contains recipes, not literal
+complete argv. ROOT's independent L records actual expansion and B/C/G identities.
+
+`grant.original` and `grant.copy` bind distinct canonical paths. Resource copy
+must be exactly output/grant.original.json; original stays outside that attempt.
+Parent opens the original; direct child opens the copy. Both verify original and
+copied streams byte-for-byte, and later observations compare both digests. No
+grant hashes itself. Diagnostic/controls bind copy=null and target_argv_shape=[] when
+ROOT fills that route; this does not make any present template value executable.
+The resource parent propagates the same independent receipt operands through the
+fixed bootstrap into the exact direct target argv, without a qualification file.
+
+Named material capture before/after includes explicit source/manifest, receipt,
+startup, context/profile evidence and original/copy grants. Receipt drift or a
+copy mismatch fails closed; other captured drift cannot yield a complete status.
+Diagnostic identity drift/observation failure also returns nonzero after retention.
+Existing serialization/fsync/observer-loss limits remain. This is consistency and
+audit evidence under trusted ROOT provisioning, not adversarial authentication,
+atomic snapshotting or a substitute for actual-parent and runtime qualification.
+
+Only binding checks/argv/material capture change against R1. Numerical rows,
+generators, scientific functions, precision boundaries, formulas, oracles,
+repetitions, resource ledgers and the native exact-PID wait4/live-headroom method
+remain verbatim. Required fixed FFT module applicability, especially for non-FFT
+K routes, remains unresolved; no module is imported to manufacture evidence.
+Control1 stays INCOMPLETE; control2 remains clean64edcad-specific. Resource90 is
+still a proposal; reduced scope needs independent S7 contract/design disposition.
+H3 unsupported/noisy RSS cannot dispose of H1/H2 or prove a scientific negative.
+
+---
+
+# HP114 external R1 resource-method source preparation — historical phase HOLD
+
+2026-11-16. This external copy is source preparation only. **Every execution and
+import route is unconditionally HELD**, including direct/internal entry. No grant
+can enable it. No syntax/import/lint/types/test/control/native check was run for
+this copy. Historical preparation passes and source identities below apply only
+to their historical materials, never to R1 or a final integrated candidate.
+
+All actual accepted113/parent/integration/candidate/default-profile/single-profile,
+material/startup/native/grant/context/root/output/argv/manifest bindings are
+**UNBOUND**. `BASE` and `HISTORICAL_EXPECTED` are historical scientific provenance;
+they cannot qualify final inputs. Root and output are not inferred from this
+external file location. No precision argument, profile API or matrix is added.
+
+R1 changes only HOLD/binding checks, context uncertainty labels, localized dormant
+launch/readiness/direct-PID cleanup, capture, JSON creation and FFT provenance.
+All numerical functions, formulas, row values, strategy meanings, payload ledgers,
+hash/rounding/error/finite observers and retained-science controls are verbatim.
+The original v2 protocol text below remains historical wherever superseded here.
+
+Dormant route: plain `posix_spawn` starts the fixed inline bootstrap; the same PID
+calls `setsid`, writes nonce/PID/PPID/group/session/resolved-executable readiness,
+closes its writer and `execve`s the direct target. Unsupported spawn `setsid=True`
+is absent; it remains unsupported, with no retry or fallback. Existing nested
+`collect()` alone owns cached `wait4(exact_pid,WNOHANG)` usage. Parent closes writer
+aliases after obtaining the PID and signals only its still-owned direct PID.
+Terminal collection does not bypass draining buffered readiness. Pre-session birth
+identity compares PID/boot/start; child group/session compares verified readiness.
+An earlier stop/deadline remains primary; cleanup/readiness failures stay separate.
+
+Pipe descriptors are CLOEXEC-owned and reserved above stdio; only the deliberate
+readiness destination survives bootstrap startup. Stdin is `/dev/null`; exclusive
+raw stdout/stderr capture starts before bootstrap imports and continues through
+target exit, covering numerical imports before warning contexts. Outer parent
+startup capture must be supplied by a future root-owned invocation. No Popen
+reaper, observer framework, guardian or descendant workload is introduced.
+
+`startup_seconds` and `readiness_bytes`, as well as existing deadline/TERM/reap
+bounds and all per-case resource/output/context admission fields, are **UNBOUND**.
+No #116 caps, peaks or scientific truth are adopted. The fixed readiness nonce is
+protocol identity only. Exposed-domain admission remains conditional on root's
+actual host/cgroup correspondence; external ancestors are `unknown_unobservable`.
+The existing leaf headroom guard alone is insufficient admission evidence.
+
+Pre-call environment snapshots may contain null optional module paths. Required
+FFT identities must instead be actual loaded file paths/hashes after calls and
+match renewed native pins; opaque optional attributes serialize as type identity.
+Required FFT-module applicability to each non-FFT kernel route remains a review
+gap; no pre-call null can qualify a binary. JSON is completely serialized with
+`allow_nan=False` before exclusive final JSON creation. Filesystem write/fsync
+failure can still leave partial raw bytes and never proves a completed attempt.
+
+Whole direct-child terminal wait4 high-water remains distinct from cumulative
+pre-call/call-end/post-observation self samples. Same-PID exec does not guarantee
+bootstrap/pre-exec high-water retention. No subtraction, tree aggregate, precise
+allocation, native-half arithmetic, throughput or storage/speed benefit is claimed.
+
+See `preparation-report.md`, `pending-invocations.md`, `author-accounting.md`,
+`frozen-inputs.sha256`, `outputs.sha256` and `source-delta.patch` for this finite
+handoff. Actual final113 integration/rebinding and fresh affected method review
+must precede any separately root-authorized execution; full science, gate and D
+remain later root-owned work. No command is READY.
 
 This is a source-prepared experimental protocol, not numerical evidence. All
 scientific cases below are frozen before candidate trials. The standalone
@@ -26,7 +441,7 @@ Root's actual #116 Q1 challenge established that this interpreter rejects
 `posix_spawn(..., setsid=True)` before returning a child PID. Preparation passes
 do not repair or qualify that capability. No retry/fallback was performed here.
 
-## Scope and identities
+## Historical source-preparation identities — not current pins
 
 Public source baseline/initial HEAD: `b344e41a8b52de76d7cbbf8450319893904c3b8f`.
 Branch/worktree: `chore/114-half-precision-study`, `/workspace/work/issue-114`.
@@ -46,11 +461,13 @@ No private ancestry, retained C implementation, retired API or product change.
 | `workflow/summary.py` | `f0ccb2f0c566ba255eb02b0047c7000c3fe6530a0a7c797224e185d3f31ebb2e` |
 | `uv.lock` | `222666a37b442986ea7652b657ece340f2f0b4ba8ed90a939763c2e86b97d93b` |
 
-Product paths above are under `src/simrecon/`. The harness checks those material
-hashes before numerical imports and records the current mutable task hash at run
-time. Root must reconcile actual candidate/base/tree and supporting source identity
-before granting a run; the fixed BASE string is a declared baseline, not a Git
-measurement. Coordinator-only task/ledger refresh does not change science inputs.
+Product paths above are under `src/simrecon/`. This table records historical
+source-preparation material identities, not current EXPECTED. The existing B
+loader supplies actual EXPECTED; genuine material checks remain before numerical
+imports and record the task hash at run time. ROOT must reconcile actual
+candidate/base/tree and supporting source identity before granting a run; BASE
+and HISTORICAL_EXPECTED remain historical, not actual Git/version measurements.
+Coordinator-only task/ledger refresh does not change science inputs.
 
 Root reports preflight attempt 1 passed in Ubuntu 24.04.5,
 `simrecon-campaign-ubuntu`, per-worktree `.venv`: Python 3.13.12, NumPy 2.5.3,
@@ -112,8 +529,9 @@ The first pair nearly cancels; background subtraction produces signed samples.
 No assertion that a half cast preserves the residual is made before measurement.
 
 Optics: wavelength 520 nm; numerical aperture 1.2; immersion index 1.33.
-Transfer is a complete radial `(O,64,64)` complex64-exact table, constant per
-order: `H_m=1-m/8+i*m/32`; increments `dkr=dkz=0.25 cycles/um`.
+Transfer is a complete radial complex64-exact table: `(O,64,1)` for native
+W01 Z1, `(O,64,64)` for the existing 3D rows, constant per order:
+`H_m=1-m/8+i*m/32`; increments `dkr=dkz=0.25 cycles/um`.
 It is artificial, nonzero and complex; no physical calibration claim. Retain
 caller complex64 samples plus `declare_otf`'s complex128 record. No fitted OTF.
 No edge treatment (`edge_pixels=0`), equalization, off exposure, drift, omission,
@@ -199,8 +617,10 @@ Corrected replay supports exactly these no-drift/no-edge/no-equalization fixture
 including source x-Nyquist raw-phase identity and axial FFT. It is not a general
 replacement preparation implementation. Assembly replay preserves positive native
 Nyquist placement, conjugate negative-x reflection, unnormalized inverse,
-centered positive carrier ramps and signed accumulation. Full/summary record
-compatibility is checked on unmodified wider public workflow for each W row;
+centered positive carrier ramps and signed accumulation. Selected full/summary
+diagnostics are recorded on unmodified wider public workflow for each W row;
+complete exact common-contract compatibility requires the retained-record
+assessment in qualification-obligations.md before any complete claim.
 H1 summary acceptance beyond the selected W01 full-path witness is unmeasured.
 No half-phase/half-fit/half-final-accumulation strategy is activated.
 
@@ -253,16 +673,17 @@ Missing metrics remain unknown. No acceptance tolerance is selected here.
 
 ## Run authorization, environment and resource protocol
 
-Original-source checks remain historical. The later preparation-checks packet
-permits only AST/compile and existing Ruff on this owned harness, not its import
-or execution. Resource launch is now quarantined after the known #116 Q1 failure;
-no numerical/control/lifecycle run or independent capability probe is released.
-Root prepares the destination and grants any later runs
-only after pinning candidate/source/harness/manifest and scheduling resources.
-The harness's local JSON grant is an audit receipt, not permission isolation.
-Root can write one receipt containing explicit run triples, then extend it after
-baseline qualification; it does not require another human approval ceremony.
-Example receipt fields (placeholders are not valid evidence):
+Original-source and v2 preparation checks are historical only; their narrow
+AST/compile/Ruff permission does not apply to this static metadata continuation.
+No current import/check/numerical/control/lifecycle run or capability probe is
+released. ROOT owns later destination preparation and scheduling; any execution
+still requires actual source/manifest/parent/material/profile/native review and
+independent B/C/G/L admission.
+The local JSON grant remains audit evidence, not permission isolation. Genuine
+exact route/run/qualification and one-attempt resource-grant checks are unchanged.
+The predecessor receipt example below lacks current B/context operands and is
+retained only as historical incomplete prose, not a current schema or grant;
+placeholders are invalid and do not authorize any invocation:
 
 ```json
 {
@@ -293,12 +714,15 @@ Changed formula/constants need diagnosed correction and new frozen identities.
 The grant must include actual candidate commit/tree/tracked status, integration
 base and parent, with root's applicability reconciliation after #113 integration.
 The raw run retains this complete grant; BASE alone is not actual Git/version
-identity. Reconcile EXPECTED and this manifest before execution if material
-integration inputs change. The harness does not independently verify root's Git
+identity. Reconcile the actual external B material index and final manifest before
+execution if integration inputs change; do not refresh historical source literals.
+The harness does not independently verify root's Git
 attestation, and source hashes alone are not Git-derived version provenance.
 
-After grant run via pinned container, with every listed thread variable =1 before
-interpreter startup; SciPy context also sets workers=1:
+Historical incomplete command example follows, NOT READY and not a current run
+instruction: it lacks required independent --binding-receipt/--binding-sha256
+operands and actual B/C/G/L/current-material admission. The retained thread and
+SciPy workers=1 declarations remain inherited requirements for any later grant:
 
 ```sh
 docker exec --user 1000:1000 -w /workspace/work/issue-114 \
@@ -311,9 +735,10 @@ docker exec --user 1000:1000 -w /workspace/work/issue-114 \
   --row W01 --strategy QUALIFY --repetition 1 --run-id W01-qualify-attempt1
 ```
 
-This is a future command, not an executed command. Root supplies actual filenames.
-For comparisons add `--qualification .../W01-qualify-attempt1/run.json`, select
-one mode and repetition. Never overwrite a run ID. Raw JSON contains exact grant,
+That predecessor command and its comparison --qualification suffix are historical
+incomplete examples, not current literal argv. ROOT must separately construct the
+actual invocation under the existing B/C/G/L protocol; none is authored here.
+Never overwrite a run ID. Raw JSON contains exact grant,
 source hashes, environment, all warnings/failures, stage timings, records and array
 index. NPY arrays preserve dtype/shape/signed/nonfinite values; file SHA256 and
 byte count accompany each. JSON nonfinite scalars have explicit tagged encoding.
@@ -351,8 +776,9 @@ retains only its baseline. Their RSS and warmed candidate times are systematical
 unmatched. They measure diagnostic comparison-harness lifecycle, not actual
 whole-pipeline storage benefit or speed ratio. **Actual benefit is UNMEASURED.**
 The distinct v2 standalone method below removes reference/result coexistence.
-It is now source-prepared, but neither statically accepted nor runtime-qualified.
-It supplies no completed resource evidence or memory/speed recommendation.
+Its predecessor source preparation and later conditional SOURCE suitability do not
+accept an actual integrated source/manifest/material pair or qualify native/runtime
+behavior. It supplies no completed resource evidence or memory/speed recommendation.
 
 16 GiB=17,179,869,184 bytes is an objective, not a measured limit or guarantee.
 K02 large metadata alpha is not a crop/full-volume measurement. No full-volume
@@ -365,9 +791,13 @@ GPU timing/memory and actual native-half execution are unmeasured.
 
 ## Standalone matched resource method v2 — unexecuted
 
-**Inactive launch draft.** `resource_parent` and internal `resource_child` both
-call an unconditional refusal before any raw writes, authorization work or spawn.
-Even a valid-looking grant cannot enable these routes. Root reports #116 Q1 in
+**Operationally HELD, unexecuted method.** The current resource_parent and
+resource_child refusal CALLS are retired; their raising helper/constant remain
+dormant. Genuine B/grant/context/run/material/native/safety/qualification checks
+remain. No route is released by this metadata preparation. The old unconditional
+quarantine and failed setsid=True call describe predecessor sources only; the
+preserved current plain-spawn/bootstrap method still needs actual qualification.
+Root reports historical #116 Q1 in
 the same Ubuntu CPython 3.13.12 raised `NotImplementedError: posix_spawn: setsid
 unavailable on this platform` before any child PID. This is external environment/
 tooling capability context, not HP114 scientific/numerical data. Root cites Q1
@@ -399,12 +829,27 @@ is introduced. All routes remain unexecuted under the current hold.
 | PREPARED_WIDER | Complex128 quadratures plus required unchanged band metadata | Public `estimate_parameters`, per-time `reconstruct_known`, concatenated image and full parameter/known records | Prepared-band-to-image stage only; public acquisition setup also remains in cumulative/terminal high-water |
 | PREPARED_HALF | Explicit `(...,2)` little-endian real/imag float16 caller plus same metadata | Unpack complex128, then same public stages/output policy | Same stage interval; packed caller plus required unpacked working bands coexist |
 
-These are representations/sites within original W01–W06, not new workload rows
-or a Cartesian extension. Three fresh successful repetitions retain the original
-design. Corrected-frame, filtered and embedded replay have no standalone resource
-claim; they stay diagnostic/isolated. PREPARED_* is rejected on the diagnostic
-route rather than silently becoming a wider baseline. No native half arithmetic
-is inferred from caller packing.
+These five variants define available representations/sites within original
+W01–W06, not five commissioned arms on every row or a Cartesian extension.
+The selected additional standalone observations are W02 and W05, each with
+PREPARED_WIDER and PREPARED_HALF, each at repetitions 1, 2 and 3: twelve planned
+successful observations. Each invocation is a separately admitted fresh child;
+no batch, automatic retry or outcome-dependent selection is authorized. Keep all
+W01–W06 numerical modes and their three fresh successful repetitions, all ten W/K
+rows and every per-comparison diagnostic lifecycle observation. WIDER, H1 and
+H1_PROMOTED remain numerical modes, but their standalone resource cells are
+UNMEASURED. PREPARED resource benefit on W01/W03/W04/W06 and corrected-frame,
+filtered and embedded replay resource benefit also remain UNMEASURED. Corrected,
+filtered and embedded modes retain their diagnostic/isolated scope. PREPARED_*
+remains rejected on the diagnostic route. Only the W02/W05 prepared-stage pair
+can support a matched resource comparison, after independent qualification of
+numerical applicability, conversions, clocks, caller/result lifetime and native
+usage. Setup packing and public preparation remain in cumulative/terminal peak
+and setup-to-call elapsed time; conversion-and-call excludes setup packing and
+is labeled accordingly. No full-workflow saving, native-half arithmetic or
+extrapolation to other rows or volumes follows. Every failed/refused/skipped or
+partial attempt remains indexed with its reason and original bytes. Missing
+required evidence leaves the affected conclusion unresolved.
 
 `resource_caller` evaluates the frozen field one x-row at a time and casts through
 float32 admission, then half if selected. H1 retains half only; H1_PROMOTED stores
@@ -417,7 +862,11 @@ from matching formulas. A mismatch is a generator-method defect to diagnose and
 refreeze, never permission to tune scientific constants to outcomes.
 
 PREPARED_* setup generates one float32 raw acquisition and calls public preparation
-once. It does not estimate/reconstruct a baseline. Raw setup is released. Metadata
+once, now explicitly supplying **OPTICS, carrier linespacing_um and
+phase_start_angle_rad under Option A. negative_angle_step defaultFalse already
+matches; no explicit extra argument is required. These are setup declaration,
+validation and metadata changes, not measured inactivity/equality/zero cost.
+It does not estimate/reconstruct a baseline. Raw setup is released. Metadata
 storage temporarily carries `quadratures=None` as an internal storage holder;
 that holder is never passed to a public numerical entry. The wider caller retains
 the prepared quadratures; the half caller retains only packed components after
@@ -478,8 +927,9 @@ Untracked raw files are outside the tracked-diff fingerprint. The original grant
 is copied in bounded blocks to each unique attempt before spawning, and that
 captured copy is passed to the child. No attempt overwrite or automatic retry.
 
-Future command: use the same pinned docker/interpreter/thread prefix above, add
-`--route resource`, select one resource strategy and use its one-attempt grant.
+The predecessor resource-command suffix using the old prefix above is historical
+and incomplete, NOT READY; it lacks current independently pinned B operands and
+actual binding/admission. No replacement executable command is authored here.
 `--qualification` is not passed to a child. Full WIDER/H1/H1_PROMOTED compare only
 with the same full-result retention policy. PREPARED_* compare only with each
 other, separately from full workflow resource results. The child exports bounded
@@ -504,7 +954,8 @@ Full workflow modes have identical clock boundaries and no separate promoted
 caller copy. Whole-child time/high-water includes setup and observations.
 Array payload, native RSS and Python/allocator metadata remain separate.
 
-The quarantined stdlib parent draft uses `os.posix_spawn(..., setsid=True)` and one cached
+The historical v2 stdlib parent draft used `os.posix_spawn(..., setsid=True)`; R1
+replaces that dormant launch with plain spawn/bootstrap and retains one cached
 `os.wait4(exact_pid, WNOHANG)` owner. There is no workload Popen/poll/wait or
 `RUSAGE_CHILDREN` aggregate. Git subprocesses occur only as separate provenance
 work; they are not workload waiters. Terminal rusage covers the direct child's
@@ -514,6 +965,8 @@ allocation. No numerical grandchildren/accelerator are commissioned. Parent
 pre-spawn self high-water is disclosed; inherited/pre-exec contribution is not
 isolated or subtracted. API availability and these Linux semantics are source
 candidates requiring actual runtime qualification, never proven by this draft.
+Bootstrap/pre-exec peak retention across exec remains unresolved; the parent's
+spawn-to-terminal-observed elapsed coverage does not establish that RSS premise.
 
 No process-RSS sampling is commissioned, so sampled maxima cannot replace native
 terminal usage. The parent records nominal 50 ms wait sleeps, wait-poll count and
@@ -639,17 +1092,21 @@ lost ownership, changed identities and null/omitted snapshot/identity fields nee
 explicit runtime fault controls under a later grant, without modifying product
 science or treating a missing measurement as zero.
 
-Resource-parent lifecycle controls are also quarantined. The source refusal is
-unconditional; `control_release` cannot bypass it. No control, refusal path or
-launcher was exercised by AST/Ruff preparation checks.
+Resource-parent lifecycle controls remain operationally HELD. Their predecessor
+unconditional source refusal CALL is retired; the dormant raising definition is
+not a current entry call. Existing control_release, binding/grant/context/run,
+material/environment/native/safety/admission checks still apply and confer no
+release here. Historical AST/Ruff preparation checks exercised no control or
+launcher and establish no current-source runtime result.
 
 ## Narrow launch reconciliation boundary — blocked pending root evidence
 
-Root must first supply the diagnosed working #116 route and accepted affected-scope
+For R1 the method-only accepted #116 source reference has been supplied. Root must
+still supply actual final113 integration and final named bindings with affected-scope
 evidence, exact source/check/environment identities and applicability to HP114.
 An unaccepted draft or AST/Ruff pass is insufficient. Only a separately scoped
-author correction may then reconcile the launch layer; no replacement is authored
-here. Fresh affected static review must assess launch/readiness/exec errors and
+author correction may reconcile further gaps. This external R1 is an unqualified
+localized launch-layer draft. Fresh affected static review must assess launch/readiness/exec errors and
 returned-PID semantics; the sole exact-PID wait4 owner without Popen/fallback
 reaping; terminal-usage/status preservation; PID/boot/start/group/session identity;
 signal-race ownership, marker gaps and bounded cleanup/recovery. No scientific
@@ -692,23 +1149,29 @@ are outside that role. Concrete challenges:
    reconciliation, observer disappearance/marker gaps and recovery obligations
    sufficient to block reuse or another attempt when evidence is lost?
 
-AST/compile, lint and format preparation checks now pass for the corrected owned
-source, using only pinned Ubuntu `uv run --locked --no-sync`. Ruff check 1 found
+Historical v2 AST/compile, lint and format preparation checks passed for that
+predecessor source only, using pinned Ubuntu `uv run --locked --no-sync`.
+No such check was run or authorized for this current source/metadata turn.
+Historical Ruff check 1 found
 46 findings; import correction fixed one, formatting resolved layout findings,
 and three remaining long strings were wrapped without changing content. Exact
 attempts/statuses remain in the report and scratch. No report/product source or
-control was imported/executed. Launcher capability is blocked by the actual
-root-reported failure; other API/control/serialization/buffer/thread/backend/
+control was imported/executed. That predecessor launcher capability was blocked
+by the root-reported failure; current plain-spawn/bootstrap applicability remains
+unqualified. Other API/control/serialization/buffer/thread/backend/
 headroom qualification and all science remain unexecuted. Preserve all original
 S1 failed checks/repairs, prior static findings and unavailable meters.
 
 ## Evidence index and remaining preparation limits
 
 - Source-read identities: tables above; root owns exact candidate/role ledger.
-- Historical original-source and current narrow v2 preparation outcomes:
-  [study report](study.md). Current passes execute/import none of the owned source.
-- Resource parent/child launch: unconditionally quarantined after root's actual
-  #116 Q1 capability failure. No HP114 attempt or independent retry occurred.
+- Historical original-source and narrow v2 preparation outcomes:
+  [study report](study.md). Those passes execute/import none of the owned source
+  and do not pass or authorize any check on the current source.
+- Resource parent/child launch: operationally HELD; five refusal CALLS retired,
+  helpers dormant. Historical #116 Q1 failure is predecessor capability context,
+  not qualification of the current plain-spawn/bootstrap method. No HP114 attempt
+  or independent retry is supplied by this metadata continuation.
 - Numerical environment qualification: pending numerical grant; root preflight
   is separately identified, not reused as an investigator result.
 - W01–W06 qualifications, all W comparisons/repetitions, K01–K04 and H3 CPU:

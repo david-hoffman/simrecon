@@ -85,7 +85,7 @@ technical isolation.
 | S4 | Finite range and explicit invalid/operation failures | Contract §2–3 | K01–K03; nonfinite and paired finite cases | Counts/ranges/failure context, no clipping |
 | S5 | Signed image, physical scale and parameter deviations | Contract §3–4 | W01/W02/W06, K04 | Analytic and wider references; units/zero rules |
 | S6 | Search/reuse/fit/threshold decisions and wider-site boundary | Contract §3–4 | W03/W04/W06, K04 singular/nonsingular | Full discrete comparison and error proposal |
-| S7 | Resource feasibility with conversion/workspace/headroom | Contract §5 | W02/W05 and other completed workflow rows | Fresh-process raw runs; unsupported envelope explicit |
+| S7 | Resource feasibility with conversion/workspace/headroom | Contract §5 | W01–W06 diagnostic lifecycle; W02/W05 matched PREPARED_WIDER/PREPARED_HALF pair | Fresh-process raw observations and three fresh repetitions for successful W comparisons; matched benefit restricted to the selected prepared-stage pair; other standalone benefit UNMEASURED; unsupported envelope explicit |
 | S8 | Compatibility, finite conclusion, review and future handoff | Contract §1, §4–5; PROJECT | Existing summary/full records retained; negative outcome allowed | Supported matrix/next slice; substantive review then post-gate D |
 
 There are eight distinct scenarios and ten finite matrix rows; the named variants
@@ -95,79 +95,13 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **SAFE HOLD — exact bounded control2 qualified; full study unfinished.**
-  Completed the method/dependency subset only: controls/K01/KERNEL/rep1 and six
-  raw-generator identity examples, not W preparation/reconstruction/scientific
-  workflows, resource routes, phase/noise qualification or overall precision utility.
-  Source349bf30 study9daa4744…02c7/manifest6ae262ce…604d remain unchanged.
-- Actual qualified execution candidate was clean64edcadb2b042c334b9ff73ea0b2b0aee1f04367,
-  tree1ef51da1655ff2935ea27a1ca1c714799186278f, with wrapperc90997a5 and exact
-  command198794e6. Final source-hold/checkpoint identities stay outside tracked
-  bytes; no rebase/push/PR or final-parent speculation. Root owns integration.
-- Exact scoped qualification receipt:
-  `/workspace/work/campaign/evidence/114/control-attempt2-scoped-qualification.json`
-  and companion `.md`. Actual run038da931…db60b, fullpost e0a1828c…613d and
-  rootexecution receipt e793bfcc…61ce are preserved. This is not B/D/product,
-  full-scientific-report acceptance, memory benefit or an overall task completion.
-- Attempt1 remains INCOMPLETE (renderer2; ModuleType optional version broke JSON,
-  truncated post/maps absent). Inputs/output were preserved, never repaired or
-  relabeled. Root-authorized narrow typed-attribute/pre-serialization correction
-  had one focused pure-stdlib check PASS (10attribute/2synthetic module cases,
-  failure-before-file/exclusivity), followed by independent affected-delta ACCEPT.
-  No operating-limit, study/vector, helper/gate or dependency change.
-- Root executed exact attempt2 ONCE after new reviewed context/proof/once release:
-  renderer/target0, samePID46240, verified AS1114644480B/CPU31,32s/wall90, no
-  alarm/failure/immutable change, empty raw startup stderr and complete91572B maps.
-  All19 recorded warnings match intentional frozen range/product cases. Root
-  exactPID and FD directory checks report absent/no signals, renderer completed.
-- Selected expectations met:7scalar IEEE/7canonical hash/4tiny NPY examples,
-  18unique generator identities,16dyadic energy/cross cases, error/empty/zero/stride
-  rules,16real-half boundary words/32paired components/cancellation witness,
-  2incomplete-record refusals and public NP/SciPy FFT16 dtype/norm/worker diagnostics.
-  All78array files passed hashes/headers; only bounded tiny witnesses were decoded.
-  No array-library load or target/helper rerun in assessment. Actual internal FFT
-  multiplier/accumulator precision remains unknown; no native-half/complex32 claim.
-- Both required actual FFT extension paths/hashes exactly match admitted binaries;
- 342file-bearing module rows independently rehash correctly. Two raw null-file
-  rows (scipy._external and its packaging_version) have source-supported fileless
-  namespace-container disposition: installed directories lack __init__.py,
-  actual executable descendant is admitted. No file hash invented; runtime loader
-  object was not recorded. Optional module-valued versions remain explicit typed
-  unsupported/null facts, not forged strings.
-- Admission used actual reviewed EXPOSED outer/inner directory/current/max identity
-  correspondence and visible headroom, not hidden-host certainty. External ancestors
-  remain unknown_unobservable. Root context/proof edb65c47…bed6/6e4f14c5…59bf were
-  captured after command-ready and read; actual admission3a41de83…5f23 and grant
-  ba1f0f91 bind the recorded candidate. These case safety limits do not select
-  a product RAM cap, performance budget or16GiB workstation guarantee.
-- Preservation: full executed inputs/transport/study for both attempts under
-  `control-attempt1-preserved/` and `control-attempt2-preserved/`, all capture
-  diff checks0; original archives/proposals/reports/logs retained. Metadata receipt
-  c686d1da, tiny-payload881383e5, loaded-file indexa40182ec and protocol indexe9f50fa8
-  detail independent bounded checks. Inspection-only truncation/source-navigation
-  limitations are disclosed; raw execution evidence was not changed.
-- Accounting: I1/S1 launches1each, S1 continuations2; independent method-review
-  sessions2 with4verdicts (review1/2 INCOMPLETE; same reviewer2 delta1/2 ACCEPT).
-  Native method-control attempts2 (one incomplete/one scoped pass), focused serde
-  check1 PASS. Historical syntax/Ruff failures/repairs retained in detailed
-  [role ledger](../reports/half-precision-study/role-ledger.md). Scientific report
-  reviews/workflow/resource/lifecycle trials/full-gate/D remain0; root preflight1
-  passed separately. Missing serving/effort/token/cache/cost/time meters unknown;
-  no human scientific numeric limits selected. Operational case bounds are separate.
-- Next: await root's accepted113/material reconciliation and qualified116method
-  before full study/runtime-resource grants. Resource parent/internal child remain
-  unconditionally quarantined. Reconcile launch/observer/caller lifetimes, current
-  source/lock/environment, then complete finite scientific W/K study, backend
-  documentation, numerical-acceptance proposal and one next slice or negative
-  outcome; fresh independent scientific review, exact integrated clean Ubuntu
-  make verify and fresh external D remain required. Do not automatically migrate
-  this finite qualification to changed material inputs or force a positive result.
-- No active child/owned process/command; all checks/metadata readers exited. Root's
-  first116window was respected and ended before resumed reads. No additional
-  imports/tests/numerical work/probes/lint/types/install/benchmarks are authorized;
-  remain ready to suspend for the next announced exclusive window. Worktree,
-  tracked sources, environments and durable evidence kept; no new disposable
-  fixture or uncertain cleanup. Earlier captured scratch removal is retained in ledger.
+- **Integrated source preparation; actual method and data still pending.** ROOT preserved the old provisional public-b344 branch at refs/campaign/114-before-accepted113-d5d6ff0 and rebased only its eleven HP114 documentation commits onto accepted113 `274c71912afba4f976f0b7ec248af6347c2addde`, tree `c5a18e225c303e696a295df0605665a49c36a8ba`. Parent [PR128](https://github.com/david-hoffman/simrecon/pull/128) has exact clean full Ubuntu13 PASS and completed fresh D ACCEPT, including default compatibility, IE41 and coverage configuration. Its CI is pending at this preparation snapshot. No public runtime/test/dependency change belongs to114.
+- **Prepared exact source and protocol:** study d4239c63 derives from accepted3cf and changes only five unconditional refusal CALL removals plus explicit optics/spacing/phase-start preparation arguments. Source-only fresh reviewer22db conditionally accepted this transition; both raising definitions remain dormant, globals remain None-initialized and the existing B loader/genuine authorization/material/native/run/qualification/lifecycle guards remain. P1 manifestddf038c0 and obligationsd02b904f truthfully scope current phase versus predecessor HOLD/receipt/check history. ROOT inspected completed reports/finals/diffs and verified all hashes; this is preparation, not independent actual-bound pair or scientific acceptance.
+- **Frozen finite design:** exact independently accepted resource-plan8A is now integrated into contract section5 and S7; manifest already contained its exact selection. Retain sixQUALIFY,126 numerical observations (sixW rows, seven modes, three fresh repetitions), four kernels, oneCPU and twelve W02/W05 PREPARED_WIDER/HALF matched resource observations. Resource order per row is wider/half, half/wider, wider/half. Other standalone resource benefits remain UNMEASURED. All original numerical, compatibility, qualification, safety and independent review obligations survive.
+- **Scientific and evidence limits:** all actual public default-versus-opt-in-single/material/startup/native/interpreter/physical applicability must be freshly bound. Precisely applicable accepted public RM84/math/runtime evidence may be reused; actual retained QUALIFY records are assessed first. Missing independent premises may remain scoped UNRESOLVED/noactivation. No full upstream recreation, broad oracle framework, measured-child references, native-half assumption, arbitrary tolerance, physical recovery, general speed/RAM or16GiB promise is introduced. The cuFFT documentary note remains optional named feasibility evidence, not GPU execution or adoption.
+- **Next and ownership:** ROOT supplies actual final source/manifest/material/profile/interpreter/native/startup/physical context, then the issue coordinator launches fresh actual-bound method/scientific review. Explicit Root releases are still required for cheap environment checks, current selected controls, sixQUALIFY and subsequent comparisons/resources. Each existing harness invocation has one attempt/one resource grant; ordinary finite ROOT orchestration is permitted with separate fresh/current admission, B→C→G→literalargv→L and whole closure per case. No automatic retry, shared-grant batch, favorable-result replacement, new role or human approval per case.
+- **Prior evidence remains historical:** original controlattempt1 INCOMPLETE and scoped controlattempt2 at actual64edcad/source9daa/manifest6ae, all earlier source/loader/resource reviews, rejected/partial/corrected outputs and charges retain their exact revisions and limits. They are not relabeled as this integrated source or new method qualification. The old provisional branch/reference and external campaign evidence preserve their complete state; the role ledger retains prior accounting.
+- **Completion and accounting:** actual study observations, retained-record interpretation/report/recommendation, fresh independent scientific review, exact clean full local Ubuntu13, fresh D and authorized PR/observedCI remain pending. Final identities/results go outside these determining tracked bytes. Human numeric quota NOT SET; actual serving/model attribution/token/cache/money/complete elapsed UNKNOWN. Shared prompt restrictions are not engineered isolation. No114 numerical process is live; durable evidence, required worktrees/environments/caches are retained.
 
 ## PR presentation
 

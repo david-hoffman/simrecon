@@ -11,8 +11,16 @@ resource and finite control methods are unexecuted source preparation v2.
 
 from __future__ import annotations
 
+
+def execution_hold():
+    """Reject module execution/import and direct/internal entry without a grant bypass."""
+    raise RuntimeError("HP114 external R1 source preparation: unconditional execution HOLD")
+
+
+
 import argparse
 import dataclasses
+import fcntl
 import hashlib
 import json
 import math
@@ -24,15 +32,28 @@ import struct
 import subprocess
 import sys
 import time
+
+# Local source clock only: interpreter startup/earlier stdlib imports precede it.
+# This uses the existing monotonic_ns clock; native wait4 remains whole-lifecycle.
+LOCAL_COLD_START_NS = time.monotonic_ns()
+
 import traceback
 import warnings
 from fractions import Fraction
 from pathlib import Path
 
-BASE = "b344e41a8b52de76d7cbbf8450319893904c3b8f"
-ROOT = Path(__file__).resolve().parents[3]
-EVIDENCE = Path("/workspace/work/campaign/evidence/114/study")
-EXPECTED = {
+BASE = "b344e41a8b52de76d7cbbf8450319893904c3b8f"  # Historical science only.
+ROOT = EVIDENCE = EXPECTED = None  # UNBOUND; never infer root from this external copy.
+BINDING_RECEIPT = None  # (external path, independent launch SHA256); not ROOT authenticity.
+GRANT_CONTEXT = None  # Later grant's (context path, SHA256); never a binding-receipt input.
+BINDING_DIGEST_SLOT = "$ROOT_BINDING_SHA256"  # Only the argv digest operand is expanded.
+BINDINGS = dict.fromkeys((
+    "accepted113", "parent", "integration_base", "candidate", "default_profile",
+    "single_profile", "materials", "startup", "native", "grant",
+    "root", "evidence", "output", "source", "interpreter", "route",
+    "parent_argv_shape", "target_argv_shape", "manifest", "bootstrap_sha256",
+))  # Every actual final binding is UNBOUND. No value here confers authorization.
+HISTORICAL_EXPECTED = {
     "src/simrecon/acquisition/preparation.py": (
         "2c5bb8eb536f8b1edd0c4d155da603bb66c838ce2298a899cdd6f23a3eedd0da"
     ),
@@ -96,11 +117,36 @@ OBSERVATION_BYTES = 65536  # Per numeric buffer, never a total-scratch ceiling.
 RESOURCE_STRATEGIES = ("WIDER", "H1", "H1_PROMOTED", "PREPARED_WIDER", "PREPARED_HALF")
 RECORD_LIMIT_BYTES = 4 * 1024 * 1024  # Finite JSON admission bound, not a human limit.
 RESOURCE_LAUNCH_HOLD = (
-    "HP114 resource launch is quarantined: campaign root's #116 Q1 in the same "
-    "pinned CPython 3.13.12 raised NotImplementedError: posix_spawn: setsid "
-    "unavailable on this platform, before a child PID. No retry/fallback is "
-    "authorized. Await root's diagnosed accepted launch route and scoped review."
+    "HP114 external R1: unconditional execution HOLD; all actual final bindings "
+    "UNBOUND. Plain-spawn bootstrap is unexecuted and unqualified. No retry/fallback."
 )
+SESSION_BOOTSTRAP = r'''import json
+import os
+import sys
+
+fd = int(sys.argv[1])
+stage = "arguments"
+try:
+    nonce, target, bound = sys.argv[2], json.loads(sys.argv[3]), int(sys.argv[4])
+    stage = "setsid"
+    os.setsid()
+    stage = "readiness"
+    message = json.dumps(dict(pid=os.getpid(), ppid=os.getppid(),
+        process_group=os.getpgrp(), session=os.getsid(0), nonce=nonce,
+        executable=os.readlink("/proc/self/exe"))).encode() + b"\n"
+    if len(message) > bound or os.write(fd, message) != len(message):
+        raise RuntimeError("readiness bound or incomplete write")
+    os.close(fd)
+    fd = -1
+    stage = "exec"
+    os.execve(target[0], target, os.environ.copy())
+except BaseException as error:
+    if fd >= 0:
+        os.close(fd)
+    os.write(2, ("HP114_BOOTSTRAP_ERROR " + json.dumps(dict(stage=stage,
+        exception=type(error).__name__)) + "\n").encode())
+    raise SystemExit(125)
+'''
 SNAPSHOT_SCOPES = {
     "pre_call": "after caller setup/identity; before conversion-inclusive and call clocks",
     "call_end": "after operation clock; before output observers",
@@ -125,13 +171,261 @@ def text_file(path):
         return None
 
 
+def binding_hash(value, length=64):
+    """Reject placeholders and malformed external digest/commit fields."""
+    if type(value) is not str or len(value) != length or any(
+        char not in "0123456789abcdef" for char in value
+    ):
+        raise RuntimeError("binding requires a lowercase hexadecimal identity")
+    return value
+
+
+def binding_path(value):
+    """Require an explicit canonical absolute path, independent of cwd."""
+    if type(value) is not str or not Path(value).is_absolute() or str(
+        Path(value).resolve()
+    ) != value:
+        raise RuntimeError("binding requires a canonical absolute path")
+    return Path(value)
+
+
+def expanded_binding_argv(argv, expected):
+    """Complete an invocation shape from the independent digest, without a backedge."""
+    if type(argv) is not list or not argv or any(type(item) is not str for item in argv):
+        raise RuntimeError("binding argv must be a nonempty string list")
+    if argv.count("--binding-sha256") != 1 or argv.count(BINDING_DIGEST_SLOT) != 1:
+        raise RuntimeError("binding argv requires exactly one independent digest slot")
+    index = argv.index("--binding-sha256") + 1
+    if index >= len(argv) or argv[index] != BINDING_DIGEST_SLOT or any(
+        BINDING_DIGEST_SLOT in item for offset, item in enumerate(argv) if offset != index
+    ):
+        raise RuntimeError("digest slot is permitted only at its exact argv operand")
+    return [*argv[:index], binding_hash(expected), *argv[index + 1:]]
+
+
+def load_bindings(args):
+    """Load one independently pinned external input; confer no execution authority."""
+    global ROOT, EVIDENCE, EXPECTED, BINDINGS, BINDING_RECEIPT
+    path = binding_path(args.binding_receipt)
+    expected = binding_hash(args.binding_sha256)
+    with path.open("rb") as stream:
+        raw = stream.read(RECORD_LIMIT_BYTES + 1)
+    if len(raw) > RECORD_LIMIT_BYTES or hashlib.sha256(raw).hexdigest() != expected:
+        raise RuntimeError("external binding receipt exceeds bound or independent identity differs")
+    receipt = json.loads(raw)
+    if type(receipt) is not dict or set(receipt) != {"schema", "bindings", "artifacts"}:
+        raise RuntimeError("unexpected external binding receipt structure")
+    if receipt["schema"] != "HP114-root-binding-v1":
+        raise RuntimeError("unsupported external binding schema")
+    bound = receipt["bindings"]
+    if type(bound) is not dict or set(bound) != set(BINDINGS) or any(
+        value is None for value in bound.values()
+    ):
+        raise RuntimeError("external binding fields are missing or UNBOUND")
+    root, evidence, output, source, manifest = (
+        binding_path(bound[key]) for key in ("root", "evidence", "output", "source", "manifest")
+    )
+    if (
+        source != Path(__file__).resolve() or not source.is_relative_to(root)
+        or manifest != source.with_name("manifest.md")
+        or output != evidence / args.run_id or root == evidence or path.is_relative_to(root)
+        or not args.run_id.replace("-", "").replace("_", "").isalnum()
+    ):
+        raise RuntimeError("source/manifest/root/output/run binding contradicts invocation")
+    interpreter = bound["interpreter"]
+    if type(interpreter) is not dict or set(interpreter) != {"path", "resolved", "prefix"}:
+        raise RuntimeError("missing explicit interpreter path/resolved/prefix binding")
+    if (
+        type(interpreter["path"]) is not str or not Path(interpreter["path"]).is_absolute()
+        or interpreter["path"] != sys.executable
+        or binding_path(interpreter["resolved"]) != Path(sys.executable).resolve()
+        or binding_path(interpreter["prefix"]) != Path(sys.prefix).resolve()
+        or Path(sys.prefix).resolve() != root / ".venv"
+    ):
+        raise RuntimeError("interpreter identity differs from root-provisioned prefix")
+    for key in ("accepted113", "candidate", "default_profile", "single_profile"):
+        if type(bound[key]) is not dict or not bound[key]:
+            raise RuntimeError("missing structured actual-parent/profile/candidate attestation")
+    for key in ("default_profile", "single_profile"):
+        if set(bound[key]) != {"path", "sha256"} or digest(
+            binding_path(bound[key]["path"])
+        ) != binding_hash(bound[key]["sha256"]):
+            raise RuntimeError("actual profile-boundary evidence missing or changed")
+    for key in ("commit", "tree"):
+        binding_hash(bound["accepted113"].get(key), 40)
+        binding_hash(bound["candidate"].get(key), 40)
+    for key in ("parent", "integration_base"):
+        binding_hash(bound[key], 40)
+        if bound["candidate"].get(key) != bound[key]:
+            raise RuntimeError("candidate parent/base contradicts external binding")
+    if bound["candidate"].get("tracked_status") != "clean":
+        raise RuntimeError("candidate must attest clean tracked state")
+    binding_hash(bound["candidate"].get("tracked_diff_sha256"))
+    for key in ("materials", "startup"):
+        if type(bound[key]) is not dict or not bound[key]:
+            raise RuntimeError("missing named material/startup index")
+        for name, identity in bound[key].items():
+            binding_hash(identity)
+            if key == "startup":
+                binding_path(name)
+            elif type(name) is not str or Path(name).is_absolute() or not name or (
+                ".." in Path(name).parts or not (root / name).resolve().is_relative_to(root)
+            ):
+                raise RuntimeError("material name must remain inside the explicit root")
+    if type(bound["native"]) is not dict or not bound["native"]:
+        raise RuntimeError("missing native index; route applicability requires later review")
+    for native in bound["native"].values():
+        if type(native) is not dict or set(native) != {"path", "sha256"}:
+            raise RuntimeError("malformed native binding")
+        binding_path(native["path"])
+        binding_hash(native["sha256"])
+    if binding_hash(bound["bootstrap_sha256"]) != hashlib.sha256(
+        SESSION_BOOTSTRAP.encode()
+    ).hexdigest():
+        raise RuntimeError("bootstrap identity differs")
+    artifacts = receipt["artifacts"]
+    if type(artifacts) is not dict or set(artifacts) != {"harness_sha256", "manifest_sha256"}:
+        raise RuntimeError("missing final external source/manifest identities")
+    for key, material in (("harness_sha256", source), ("manifest_sha256", manifest)):
+        if digest(material) != binding_hash(artifacts[key]):
+            raise RuntimeError("final frozen artifact differs: " + key)
+    grant = bound["grant"]
+    if type(grant) is not dict or set(grant) != {"original", "copy"}:
+        raise RuntimeError("grant must bind original and per-attempt copy paths explicitly")
+    original = binding_path(grant["original"])
+    if bound["route"] not in ("diagnostic", "controls", "resource") or (
+        args.route != bound["route"] and not (
+            bound["route"] == "resource" and args.route == "resource-child"
+        )
+    ):
+        raise RuntimeError("binding route differs")
+    parent = expanded_binding_argv(bound["parent_argv_shape"], expected)
+    for flag, value in (
+        ("--route", bound["route"]), ("--grant", str(original)), ("--row", args.row),
+        ("--strategy", args.strategy), ("--repetition", str(args.repetition)),
+        ("--run-id", args.run_id),
+    ):
+        if parent.count(flag) != 1:
+            raise RuntimeError("parent argv requires one exact operand: " + flag)
+        index = parent.index(flag) + 1
+        if index >= len(parent) or parent[index] != value:
+            raise RuntimeError("parent argv contradicts invocation: " + flag)
+    target = []
+    if bound["route"] == "resource":
+        copied = binding_path(grant["copy"])
+        if copied != output / "grant.original.json" or original == copied or original.is_relative_to(output):
+            raise RuntimeError("grant original/copy paths contradict unique attempt")
+        target = expanded_binding_argv(bound["target_argv_shape"], expected)
+        required = [
+            sys.executable, str(source), "--route", "resource-child", "--grant", str(copied),
+            "--binding-receipt", str(path), "--binding-sha256", expected,
+            "--row", args.row, "--strategy", args.strategy, "--repetition", str(args.repetition),
+            "--run-id", args.run_id,
+        ]
+        if target != required:
+            raise RuntimeError("bound child argv contradicts parent invocation")
+    elif grant["copy"] is not None or bound["target_argv_shape"] != []:
+        raise RuntimeError("nonresource invocation must not bind an unused grant copy/target")
+    excluded = {str(path), str(original), grant["copy"]}
+    if len({str(path), str(original), str(source), str(manifest)}) != 4 or (
+        grant["copy"] is not None and grant["copy"] in {str(path), str(source), str(manifest)}
+    ):
+        raise RuntimeError("receipt/grant/artifact paths must be distinct")
+    determining_paths = [str((root / name).resolve()) for name in bound["materials"]]
+    determining_paths += list(bound["startup"]) + [
+        bound[key]["path"] for key in ("default_profile", "single_profile")
+    ] + [native["path"] for native in bound["native"].values()]
+    if any(name in excluded for name in determining_paths):
+        raise RuntimeError("receipt/grant identity cannot be embedded in duplicated bindings")
+    for argv in (parent, target) if target else (parent,):
+        if argv[:2] != [sys.executable, str(source)] or argv.count("--binding-receipt") != 1:
+            raise RuntimeError("argv source/interpreter/receipt path missing or contradictory")
+        index = argv.index("--binding-receipt") + 1
+        if index >= len(argv) or argv[index] != str(path):
+            raise RuntimeError("argv external receipt path differs")
+    actual = target if args.route == "resource-child" else parent
+    if actual != [sys.executable, *sys.argv] or args.grant != str(
+        copied if args.route == "resource-child" else original
+    ):
+        raise RuntimeError("actual argv or correct-route grant path differs")
+    if BINDING_RECEIPT is not None and (
+        BINDING_RECEIPT != (str(path), expected) or BINDINGS != bound
+    ):
+        raise RuntimeError("binding receipt changed during invocation")
+    ROOT, EVIDENCE, EXPECTED = root, evidence, bound["materials"]
+    BINDINGS, BINDING_RECEIPT = bound, (str(path), expected)
+
+
 def authorize(args):
     """Check the root receipt; provide audit evidence, not technical isolation."""
+    global GRANT_CONTEXT
+    load_bindings(args)  # Independent fail-closed internal entry, before numerical imports.
+    if any(value is None for value in BINDINGS.values()) or any(
+        value is None for value in (ROOT, EVIDENCE, EXPECTED)
+    ):
+        raise RuntimeError("actual final bindings are UNBOUND")
+    if Path(args.grant).stat().st_size > RECORD_LIMIT_BYTES:
+        raise RuntimeError("grant exceeds finite parse bound")
     receipt = json.loads(Path(args.grant).read_text())
+    if (
+        str(ROOT.resolve()) != BINDINGS["root"]
+        or str((EVIDENCE / args.run_id).resolve()) != BINDINGS["output"]
+        or str(Path(__file__).with_name("manifest.md").resolve()) != BINDINGS["manifest"]
+        or [sys.executable, *sys.argv] != expanded_binding_argv(BINDINGS[
+            "target_argv_shape" if args.route == "resource-child" else "parent_argv_shape"
+        ], args.binding_sha256)
+        or hashlib.sha256(SESSION_BOOTSTRAP.encode()).hexdigest()
+        != BINDINGS["bootstrap_sha256"]
+        or str(Path(args.grant).resolve()) != BINDINGS["grant"][
+            "copy" if args.route == "resource-child" else "original"
+        ]
+    ):
+        raise RuntimeError("named root/output/argv/manifest/bootstrap/grant differs")
+    for path, expected in BINDINGS["startup"].items():
+        if digest(path) != expected:
+            raise RuntimeError("startup material identity changed: " + path)
+    if EXPECTED != BINDINGS["materials"] or not EXPECTED or not BINDINGS["startup"]:
+        raise RuntimeError("named source/startup index is missing or differs")
     if receipt.get("authorization") != "HP114_NUMERICAL_WINDOW":
         raise RuntimeError("missing explicit root numerical-window authorization")
-    if receipt.get("baseline") != BASE:
-        raise RuntimeError("grant does not identify the approved public baseline")
+    if receipt.get("route") != BINDINGS["route"]:
+        raise RuntimeError("grant route differs from external binding")
+    if receipt.get("bindings") != BINDINGS:
+        raise RuntimeError("grant differs from actual final bindings; BASE is historical only")
+    if receipt.get("candidate") != BINDINGS["candidate"]:
+        raise RuntimeError("grant candidate differs from external binding candidate")
+    if receipt.get("binding_receipt") != dict(path=BINDING_RECEIPT[0], sha256=BINDING_RECEIPT[1]):
+        raise RuntimeError("later grant differs from independently pinned binding receipt")
+    context = receipt.get("context")
+    if type(context) is not dict or set(context) != {"path", "sha256"}:
+        raise RuntimeError("later grant must identify fresh root context")
+    context_path = binding_path(context["path"])
+    context_hash = binding_hash(context["sha256"])
+    immutable_paths = {str((ROOT / name).resolve()) for name in EXPECTED}
+    immutable_paths.update(BINDINGS["startup"])
+    immutable_paths.update(
+        BINDINGS[key]["path"] for key in ("default_profile", "single_profile")
+    )
+    immutable_paths.update(native["path"] for native in BINDINGS["native"].values())
+    if str(context_path) in {
+        BINDING_RECEIPT[0], BINDINGS["source"], BINDINGS["manifest"],
+        BINDINGS["grant"]["original"], BINDINGS["grant"]["copy"],
+    } | immutable_paths or digest(context_path) != context_hash:
+        raise RuntimeError("later context is not a distinct matching immutable input")
+    if GRANT_CONTEXT is not None and GRANT_CONTEXT != (str(context_path), context_hash):
+        raise RuntimeError("later grant context changed during invocation")
+    GRANT_CONTEXT = (str(context_path), context_hash)
+    if BINDINGS["route"] == "resource":
+        original, copied = (Path(BINDINGS["grant"][key]) for key in ("original", "copy"))
+        if original.stat().st_size != copied.stat().st_size:
+            raise RuntimeError("original and copied grant lengths differ")
+        with original.open("rb") as left, copied.open("rb") as right:
+            while True:
+                block = left.read(OBSERVATION_BYTES)
+                if block != right.read(OBSERVATION_BYTES):
+                    raise RuntimeError("original and copied grant bytes differ")
+                if not block:
+                    break
     for key, path in (
         ("harness_sha256", __file__),
         ("manifest_sha256", Path(__file__).with_name("manifest.md")),
@@ -243,7 +537,10 @@ def timed(label, operation):
     try:
         return operation()
     finally:
-        TIMINGS.append(dict(operation=label, seconds=(time.monotonic_ns() - start) / 1e9))
+        end = time.monotonic_ns()
+        TIMINGS.append(dict(
+            operation=label, start_ns=start, end_ns=end, seconds=(end - start) / 1e9
+        ))
 
 
 def remember(name, value):
@@ -555,10 +852,11 @@ def settings(row, background):
     return acquisition, carrier, filtering
 
 
-def make_transfer(orders):
+def make_transfer(orders, acquisition_mode):
     """Declare the complete constant complex analytic transfer."""
-    # Constant but genuinely complex, complete radial table; complex64 exact.
-    samples = np.empty((orders, 64, 64), np.complex64)
+    # Native Z1 requires K1. Keep the existing 3D table and all physical values.
+    axial_samples = 1 if acquisition_mode == "2d" else 64
+    samples = np.empty((orders, 64, axial_samples), np.complex64)
     for m in range(orders):
         samples[m] = complex(1 - m / 8, m / 32)
     remember("transfer.caller", samples)
@@ -785,8 +1083,21 @@ def exact_inverse(matrix):
 
 
 def oracle_checks(raw, analytic, baseline, row, background):
-    """Observe independent finite sums and exact finite-matrix inverses."""
+    """Observe finite anchors; full-grid/upstream review remains a separate obligation."""
     bands = baseline.bands
+    # CE02/CE06 alpha has neither P nor T in its denominator. These are
+    # independent frozen-row anchors, not values read from the returned bands.
+    denominator = {
+        "W01": 1024, "W02": 12288, "W03": 12288,
+        "W04": 12288, "W05": 49152, "W06": 12288,
+    }[row]
+    expected_alpha = 1 / denominator
+    nz, ny, nx = SHAPES[row][-3:]
+    expected_x = (np.arange(2 * nx, dtype=np.float64) - nx) * 0.05
+    expected_y = (np.arange(2 * ny, dtype=np.float64) - ny) * 0.05
+    expected_z = (np.arange(nz, dtype=np.float64) - nz // 2) * (
+        0.0 if row == "W01" else 0.2
+    )
     replay = corrected_replay(raw, bands, background)
     phase_checks = []
     p, slots = raw.shape[2], bands.quadratures.shape[2]
@@ -854,7 +1165,7 @@ def oracle_checks(raw, analytic, baseline, row, background):
             )
         )
     # Direct compensated phase/spatial sums, selected signed Fourier coordinates.
-    corrected = bands.input_scale * (raw.astype(np.float64) - background)
+    corrected = expected_alpha * (raw.astype(np.float64) - background)
     fourier_checks = []
     nz, ny, nx = raw.shape[-3:]
     for d in range(raw.shape[1]):
@@ -891,25 +1202,45 @@ def oracle_checks(raw, analytic, baseline, row, background):
             known.filtered_quadratures,
             (1, *raw.shape[1:]),
             baseline.parameters.carriers_cyc_um[t],
-            known.x_um,
-            known.y_um,
+            expected_x,
+            expected_y,
         )
         assembly_checks.append(
             dict(
                 time=t,
                 formula_replay_vs_public=error_metrics(known.image, replay_image),
                 finite_inverse_sums=witnesses,
+                coordinate_errors_um=dict(
+                    x=error_metrics(expected_x, known.x_um),
+                    y=error_metrics(expected_y, known.y_um),
+                    z=error_metrics(expected_z, known.z_um),
+                ),
             )
         )
     return dict(
+        independent_row_anchors=dict(
+            alpha_numerator=1,
+            alpha_denominator=denominator,
+            expected_alpha_binary64=expected_alpha,
+            observed_input_scale=bands.input_scale,
+            input_scale_matches_binary64_anchor=bands.input_scale == expected_alpha,
+            expected_coordinates_um=dict(x=expected_x, y=expected_y, z=expected_z),
+            workflow_coordinate_errors_um=dict(
+                x=error_metrics(expected_x, baseline.x_um),
+                y=error_metrics(expected_y, baseline.y_um),
+                z=error_metrics(expected_z, baseline.z_um),
+            ),
+        ),
         generator_float32_cast_error=error_metrics(analytic, raw),
         phase=phase_checks,
         preparation_replay_error=error_metrics(bands.quadratures, replay.quadratures),
         finite_forward_sums=fourier_checks,
         assembly=assembly_checks,
         scope=(
-            "finite sums validate mapping sign/scale, not physical recovery; "
-            "residuals require review"
+            "selected preparation sums use independent row alpha but public separators; "
+            "assembly corroboration uses independent coordinates but public filtered bands "
+            "and carriers; full-grid conditional anchor and separate upstream premises "
+            "require qualification-obligations.md assessment; no tolerance or acceptance"
         ),
     )
 
@@ -1022,13 +1353,28 @@ def public_boundaries(raw, acquisition, carrier, filtering, transfer, background
 
 def run_workflow(args):
     """Execute one finite diagnostic comparison, retaining its wider reference."""
+    setup_start_ns = time.monotonic_ns()
     raw, analytic, nominal_carriers, background = generator(args.row)
     acquisition, carrier, filtering = settings(args.row, background)
-    transfer = make_transfer(acquisition["norders"])
+    transfer = make_transfer(acquisition["norders"], acquisition["acquisition_mode"])
     KEEP.append(transfer)
+    setup_end_ns = time.monotonic_ns()
+    pre_call_high_water_rss_kib = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     baseline_start = time.monotonic_ns()
     baseline = workflow(raw, acquisition, carrier, filtering, transfer, "wider.workflow")
-    baseline_inclusive = (time.monotonic_ns() - baseline_start) / 1e9
+    baseline_end_ns = time.monotonic_ns()
+    baseline_inclusive = (baseline_end_ns - baseline_start) / 1e9
+    local_clocks = dict(
+        setup_start_ns=setup_start_ns,
+        setup_end_ns=setup_end_ns,
+        setup_seconds=(setup_end_ns - setup_start_ns) / 1e9,
+        baseline_start_ns=baseline_start,
+        baseline_end_ns=baseline_end_ns,
+        setup_to_baseline_end_seconds=(baseline_end_ns - setup_start_ns) / 1e9,
+        pre_call_high_water_rss_kib=pre_call_high_water_rss_kib,
+        pre_call_high_water_rss_bytes=pre_call_high_water_rss_kib * 1024,
+        scope="diagnostic generator/settings/transfer setup; reference remains retained",
+    )
     KEEP.append(baseline)
     if baseline.parameters.branches != expected_branches(args.row):
         raise RuntimeError("study-fixture: wider intended branches not reached")
@@ -1043,6 +1389,7 @@ def run_workflow(args):
     if args.strategy == "QUALIFY":
         qualification = dict(
             status="branch-qualified-oracle-review-required",
+            local_clocks=local_clocks,
             wider=baseline,
             nominal_generator_carriers_cyc_um=nominal_carriers,
             independent_oracles=oracle_checks(raw, analytic, baseline, args.row, background),
@@ -1078,6 +1425,10 @@ def run_workflow(args):
         KEEP.append(summary)
         qualification["summary"] = summary
         qualification["summary_compatibility"] = dict(
+            scope=(
+                "selected diagnostics only; complete exact common-contract compatibility "
+                "requires retained-record assessment in qualification-obligations.md"
+            ),
             image=error_metrics(baseline.image, summary.image),
             carrier=error_metrics(baseline.parameters.carriers_cyc_um, summary.carriers_cyc_um),
             modulation=error_metrics(baseline.parameters.modulation, summary.modulation),
@@ -1157,12 +1508,25 @@ def run_workflow(args):
     else:
         candidate = base
         scope = "existing wider full workflow baseline"
+    candidate_end_ns = time.monotonic_ns()
     inclusive = (
-        baseline_inclusive if args.strategy == "WIDER" else (time.monotonic_ns() - begin) / 1e9
+        baseline_inclusive if args.strategy == "WIDER" else (candidate_end_ns - begin) / 1e9
+    )
+    local_clocks.update(
+        candidate_start_ns=baseline_start if args.strategy == "WIDER" else begin,
+        candidate_end_ns=baseline_end_ns if args.strategy == "WIDER" else candidate_end_ns,
+        setup_to_candidate_end_seconds=(
+            (baseline_end_ns if args.strategy == "WIDER" else candidate_end_ns) - setup_start_ns
+        ) / 1e9,
+        candidate_scope=(
+            "WIDER baseline operation" if args.strategy == "WIDER" else
+            "candidate conversion and operation after retained reference and fixture guards"
+        ),
     )
     KEEP.append(candidate)
     return dict(
         status="completed",
+        local_clocks=local_clocks,
         scope=scope,
         baseline=base,
         candidate=candidate,
@@ -1461,6 +1825,8 @@ def memory_state():
         cgroup=cgroup,
         pressure=text_file("/proc/pressure/memory"),
         self_cgroup=text_file("/proc/self/cgroup"),
+        exposed_domain_scope="conditional on root-admitted host/cgroup correspondence only",
+        external_ancestors="unknown_unobservable",
     )
 
 
@@ -1590,8 +1956,13 @@ def environment():
     """Record the provisioned numerical route and material process settings."""
     binary_modules = {}
     for name in ("numpy.fft._pocketfft_umath", "scipy.fft._duccfft.pyduccfft"):
-        path = getattr(sys.modules.get(name), "__file__", None)
-        binary_modules[name] = dict(path=path, sha256=digest(path) if path else None)
+        module = sys.modules.get(name)
+        path = getattr(module, "__file__", None)
+        binary_modules[name] = dict(
+            path=path if isinstance(path, str) else None,
+            sha256=digest(path) if isinstance(path, str) else None,
+            optional_version=safe_attribute(getattr(module, "__version__", None)),
+        )
     return dict(
         python=sys.version,
         executable=sys.executable,
@@ -1623,6 +1994,30 @@ def environment():
     )
 
 
+def safe_attribute(value):
+    """Retain optional scalar metadata without serializing opaque native objects."""
+    if value is None or type(value) in (str, bool, int):
+        return value
+    if type(value) is float and math.isfinite(value):
+        return value
+    return dict(type=type(value).__module__ + "." + type(value).__qualname__)
+
+
+def required_fft_provenance():
+    """Require actual loaded FFT binaries after calls, separately from optional metadata."""
+    records = {}
+    for name in ("numpy.fft._pocketfft_umath", "scipy.fft._duccfft.pyduccfft"):
+        path = getattr(sys.modules.get(name), "__file__", None)
+        if not isinstance(path, str) or not Path(path).is_file():
+            raise RuntimeError("required post-call FFT binary unavailable: " + name)
+        resolved = str(Path(path).resolve())
+        actual = digest(resolved)
+        if BINDINGS["native"].get(name) != dict(path=resolved, sha256=actual):
+            raise RuntimeError("required post-call FFT binary differs: " + name)
+        records[name] = dict(path=resolved, sha256=actual)
+    return records
+
+
 def resource_snapshot(name):
     """Observe cumulative self high-water at one named child boundary."""
     native = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
@@ -1638,11 +2033,29 @@ def resource_snapshot(name):
 
 def resource_materials():
     """Hash the explicitly named materials, including the method sources."""
-    paths = list(EXPECTED) + [
-        str(Path(__file__).relative_to(ROOT)),
-        str(Path(__file__).with_name("manifest.md").relative_to(ROOT)),
-    ]
-    return {name: digest(ROOT / name) for name in paths}
+    if BINDING_RECEIPT is None:
+        raise RuntimeError("external binding receipt is not loaded")
+    records = {name: digest(ROOT / name) for name in EXPECTED}
+    for path in (BINDINGS["source"], BINDINGS["manifest"], BINDING_RECEIPT[0]):
+        records[path] = digest(path)
+    if records[BINDING_RECEIPT[0]] != BINDING_RECEIPT[1]:
+        raise RuntimeError("independently pinned external binding receipt changed")
+    for path in BINDINGS["startup"]:
+        records[path] = digest(path)
+    for key in ("default_profile", "single_profile"):
+        path = BINDINGS[key]["path"]
+        records[path] = digest(path)
+    if GRANT_CONTEXT is None or digest(GRANT_CONTEXT[0]) != GRANT_CONTEXT[1]:
+        raise RuntimeError("later grant context is missing or changed")
+    records[GRANT_CONTEXT[0]] = GRANT_CONTEXT[1]
+    original = BINDINGS["grant"]["original"]
+    records[original] = digest(original)
+    copied = BINDINGS["grant"]["copy"]
+    if copied is not None:
+        records[copied] = digest(copied)
+        if records[copied] != records[original]:
+            raise RuntimeError("copied grant differs from named original")
+    return records
 
 
 def resource_git():
@@ -1679,9 +2092,9 @@ def child_identity(pid):
 
 def write_once(path, value):
     """Persist one small record without overwriting an earlier attempt."""
+    serialized = json.dumps(value, indent=2, allow_nan=False) + "\n"
     with Path(path).open("x") as stream:
-        json.dump(value, stream, indent=2, allow_nan=False)
-        stream.write("\n")
+        stream.write(serialized)
         stream.flush()
         os.fsync(stream.fileno())
 
@@ -1785,7 +2198,7 @@ def refuse_quarantined_resource_launch():
 
 def resource_child(args):
     """Retain one caller and one result, with no numerical reference workflow."""
-    refuse_quarantined_resource_launch()  # Also blocks direct internal-route invocation.
+    entry_start_ns = time.monotonic_ns()
     grant = authorize(args)  # Unexecuted draft below, retained for affected-scope review.
     directory = EVIDENCE / args.run_id
     record = dict(
@@ -1797,6 +2210,8 @@ def resource_child(args):
         status="child-started",
         identity=child_identity(os.getpid()),
         snapshots={},
+        local_cold_start_ns=LOCAL_COLD_START_NS,
+        entry_start_ns=entry_start_ns,
         materials_before=resource_materials(),
     )
     started = time.monotonic_ns()
@@ -1830,12 +2245,14 @@ def resource_child(args):
                 raise ValueError("unknown lifecycle control")
             record["status"] = "lifecycle-control-only"
             return 3
+        record["numerical_import_start_ns"] = time.monotonic_ns()
         import numpy as numpy_module
         import scipy as scipy_module
         import scipy.fft
 
         import simrecon as simrecon_module
 
+        record["numerical_import_end_ns"] = time.monotonic_ns()
         np, scipy, sim = numpy_module, scipy_module, simrecon_module
         if (np.__version__, scipy.__version__) != ("2.5.3", "1.18.1"):
             raise RuntimeError("numerical dependency identity changed")
@@ -1846,18 +2263,28 @@ def resource_child(args):
         with warnings.catch_warnings(record=True) as caught, scipy.fft.set_workers(1):
             warnings.simplefilter("always")
             record["environment"]["scipy_fft_workers_during_call"] = scipy.fft.get_workers()
+            record["setup_start_ns"] = time.monotonic_ns()
+            record["setup_pack_start_ns"] = record["setup_pack_end_ns"] = None
             caller, background = resource_caller(args.row, args.strategy)
             acquisition, carrier, filtering = settings(args.row, background)
-            transfer = make_transfer(acquisition["norders"])
+            transfer = make_transfer(acquisition["norders"], acquisition["acquisition_mode"])
             if args.strategy.startswith("PREPARED_"):
                 prep_options = {k: v for k, v in acquisition.items() if k != "phase_policy"}
-                bands = sim.prepare_acquisition_bands(caller, **prep_options)
+                bands = sim.prepare_acquisition_bands(
+                    caller,
+                    **prep_options,
+                    **OPTICS,
+                    linespacing_um=carrier["linespacing_um"],
+                    phase_start_angle_rad=carrier["phase_start_angle_rad"],
+                )
                 del caller  # Raw setup caller is not a prepared-stage caller.
                 metadata = dataclasses.replace(bands, quadratures=None)
                 source = bands.quadratures
                 if args.strategy == "PREPARED_HALF":
+                    record["setup_pack_start_ns"] = time.monotonic_ns()
                     caller = np.empty((*source.shape, 2), dtype="<f2")
                     caller[..., 0], caller[..., 1] = source.real, source.imag
+                    record["setup_pack_end_ns"] = time.monotonic_ns()
                     del source, bands
                 else:
                     caller = source
@@ -1881,6 +2308,7 @@ def resource_child(args):
             ):
                 record["status"] = "nonfinite-conversion"
                 raise ValueError("nonfinite caller conversion; no numerical continuation")
+            record["setup_end_ns"] = time.monotonic_ns()
             record["snapshots"]["pre_call"] = resource_snapshot("pre_call")
             record["conversion_start_ns"] = time.monotonic_ns()
             if metadata is not None:
@@ -1946,6 +2374,7 @@ def resource_child(args):
             )
             record["branches"] = parameters.branches
             record["retained_payload"] = retained_payload()
+            record["required_fft_after_call"] = required_fft_provenance()
             record["status"] = (
                 "observed-pending-scientific-qualification"
                 if record["finite_outputs"]
@@ -1960,6 +2389,22 @@ def resource_child(args):
         record["warnings"] = [
             dict(category=w.category.__name__, message=str(w.message)) for w in caught
         ]
+        if "numerical_import_end_ns" in record:
+            record["numerical_import_seconds"] = (
+                record["numerical_import_end_ns"] - record["numerical_import_start_ns"]
+            ) / 1e9
+        if "setup_start_ns" in record:
+            record["cold_to_setup_start_seconds"] = (
+                record["setup_start_ns"] - record["local_cold_start_ns"]
+            ) / 1e9
+        if "setup_end_ns" in record:
+            record["setup_seconds"] = (
+                record["setup_end_ns"] - record["setup_start_ns"]
+            ) / 1e9
+            record["setup_pack_seconds"] = (
+                None if record["setup_pack_start_ns"] is None else
+                (record["setup_pack_end_ns"] - record["setup_pack_start_ns"]) / 1e9
+            )
         record["materials_after"] = resource_materials()
         record["material_identity_matches"] = (
             record["materials_before"] == record["materials_after"]
@@ -1969,6 +2414,12 @@ def resource_child(args):
         record["qualification_receipt_loaded"] = False
         record["reference_workflow_loaded"] = False
         if "call_end" in record["snapshots"]:
+            record["setup_to_call_seconds"] = (
+                record["call_end_ns"] - record["setup_start_ns"]
+            ) / 1e9
+            record["local_cold_to_call_end_seconds"] = (
+                record["call_end_ns"] - record["local_cold_start_ns"]
+            ) / 1e9
             record["call_only_seconds"] = (record["call_end_ns"] - record["call_start_ns"]) / 1e9
             record["conversion_and_call_seconds"] = (
                 record["call_end_ns"] - record["conversion_start_ns"]
@@ -2019,6 +2470,8 @@ def validate_resource_record(record, args, pid, materials, grant_hash):
         or record.get("material_identity_matches") is not True
     ):
         raise ValueError("changed child identities")
+    if record.get("required_fft_after_call") != BINDINGS["native"]:
+        raise ValueError("missing or changed required post-call FFT binary identities")
     times, peaks = [], []
     for name, meaning in SNAPSHOT_SCOPES.items():
         snap = record["snapshots"][name]
@@ -2110,7 +2563,7 @@ def validate_resource_record(record, args, pid, materials, grant_hash):
 
 def resource_parent(args):
     """Own one exact-PID wait4 lifecycle; never poll/wait with Popen."""
-    refuse_quarantined_resource_launch()  # Unconditional, before raw writes or any spawn.
+    load_bindings(args)  # Before EVIDENCE access, including direct internal entry.
     if not EVIDENCE.is_dir():
         raise RuntimeError("root has not prepared raw destination")
     directory = EVIDENCE / args.run_id
@@ -2132,6 +2585,62 @@ def resource_parent(args):
     terminal = None
     wait_lost = False
     grant = {}
+    opened_fds = set()
+    ready_data = bytearray()
+    ready_read = None
+    ready = None
+    ready_eof = False
+    startup_deadline = None
+
+    def close_fd(fd):
+        if fd in opened_fds:
+            os.close(fd)
+            opened_fds.remove(fd)
+
+    def reserve(fd):
+        copied = fcntl.fcntl(fd, fcntl.F_DUPFD_CLOEXEC, 3)
+        opened_fds.add(copied)
+        return copied
+
+    def drain_readiness():
+        nonlocal ready, ready_eof
+        if ready is not None:
+            return ready
+        while not ready_eof:
+            try:
+                chunk = os.read(
+                    ready_read, min(OBSERVATION_BYTES, grant["readiness_bytes"] + 1)
+                )
+            except BlockingIOError:
+                break
+            if not chunk:
+                ready_eof = True
+                close_fd(ready_read)
+                break
+            if len(ready_data) + len(chunk) > grant["readiness_bytes"]:
+                raise ValueError("readiness exceeds root-bound protocol bytes")
+            ready_data.extend(chunk)
+        if ready_eof:
+            if ready_data.count(b"\n") != 1 or not ready_data.endswith(b"\n"):
+                raise ValueError("readiness absent/malformed/multiple")
+            value = json.loads(ready_data.decode())
+            if not isinstance(value, dict) or any(
+                value.get(key) != expected
+                for key, expected in dict(
+                    pid=pid, ppid=os.getpid(), process_group=pid, session=pid,
+                    nonce=nonce, executable=str(Path(sys.executable).resolve()),
+                ).items()
+            ):
+                raise ValueError("unverified same-PID session readiness")
+            observed = time.monotonic()
+            receipt["readiness_observed_monotonic"] = observed
+            receipt["readiness"] = value
+            if observed >= startup_deadline:
+                receipt.setdefault("stop_reason", "startup-readiness-timeout")
+                receipt["late_readiness"] = True
+                raise TimeoutError("readiness observed after startup deadline")
+            ready = value
+        return ready
 
     def collect():
         nonlocal terminal, wait_lost
@@ -2173,7 +2682,8 @@ def resource_parent(args):
             reaped_monotonic_ns=time.monotonic_ns(),
             scope=(
                 "maximum resident direct-child process size through exit/JSON/teardown; "
-                "excludes external observer; no concurrent tree aggregate"
+                "excludes external observer; exec-transition high-water retention unresolved; "
+                "same PID does not guarantee bootstrap peak retention; no subtraction/aggregate/benefit"
             ),
         )
         return terminal
@@ -2181,10 +2691,10 @@ def resource_parent(args):
     def stop(signum):
         if collect() is None:
             try:
-                os.killpg(pid, signum)  # Unreaped exact child, with new session from spawn.
-                delivery = "sent"
+                os.kill(pid, signum)  # Still-owned exact direct PID, before/after readiness.
+                delivery = "direct-pid-sent"
             except ProcessLookupError:
-                delivery = "group-absent-race"
+                delivery = "direct-pid-absent-race"
                 collect()  # Preserve terminal usage if exit raced with the signal.
             receipt.setdefault("signals", []).append(
                 dict(signal=signum, delivery=delivery, monotonic_ns=time.monotonic_ns())
@@ -2229,13 +2739,17 @@ def resource_parent(args):
             raise ValueError(
                 "supported observer cancellation requires Python default SIGINT handler"
             )
-        for key in ("deadline_seconds", "term_grace_seconds", "kill_reap_seconds"):
+        for key in (
+            "deadline_seconds", "term_grace_seconds", "kill_reap_seconds", "startup_seconds"
+        ):
             if (
                 type(grant.get(key)) not in (int, float)
                 or not math.isfinite(grant[key])
                 or grant[key] <= 0
             ):
                 raise ValueError("root must supply positive finite lifecycle bound: " + key)
+        if type(grant.get("readiness_bytes")) is not int or grant["readiness_bytes"] <= 0:
+            raise ValueError("root must freeze a positive finite readiness byte bound")
         # This source guard is necessary, not sufficient; root admission must
         # explain unknown workspaces/ancestor/caller/OS reserves with actual facts.
         receipt["headroom_before_spawn"] = guard_resource(args.row, args.strategy)
@@ -2261,6 +2775,10 @@ def resource_parent(args):
             "resource-child",
             "--grant",
             str(directory / "grant.original.json"),
+            "--binding-receipt",
+            args.binding_receipt,
+            "--binding-sha256",
+            args.binding_sha256,
             "--row",
             args.row,
             "--strategy",
@@ -2269,6 +2787,20 @@ def resource_parent(args):
             str(args.repetition),
             "--run-id",
             args.run_id,
+        ]
+        if argv != expanded_binding_argv(BINDINGS["target_argv_shape"], args.binding_sha256):
+            raise ValueError("constructed direct target differs from final argv binding")
+        raw_read, raw_write = os.pipe2(os.O_CLOEXEC)
+        opened_fds.update((raw_read, raw_write))
+        ready_read, write_source = reserve(raw_read), reserve(raw_write)
+        close_fd(raw_read)
+        close_fd(raw_write)
+        ready_destination = reserve(write_source)
+        os.set_blocking(ready_read, False)
+        nonce = os.urandom(16).hex()  # Protocol nonce only; scientific generator unchanged.
+        bootstrap_argv = [
+            sys.executable, "-c", SESSION_BOOTSTRAP, str(ready_destination), nonce,
+            json.dumps(argv), str(grant["readiness_bytes"]),
         ]
         actions = [
             (
@@ -2280,25 +2812,51 @@ def resource_parent(args):
             )
             for fd, name in ((1, "child.stdout"), (2, "child.stderr"))
         ]
+        actions.extend([
+            (os.POSIX_SPAWN_OPEN, 0, "/dev/null", os.O_RDONLY, 0),
+            (os.POSIX_SPAWN_DUP2, write_source, ready_destination),
+            (os.POSIX_SPAWN_CLOSE, ready_read),
+            (os.POSIX_SPAWN_CLOSE, write_source),
+        ])
+        receipt["launch"] = dict(
+            target_argv=argv, bootstrap_argv=bootstrap_argv,
+            bootstrap_sha256=hashlib.sha256(SESSION_BOOTSTRAP.encode()).hexdigest(),
+            fd_plan=dict(read=ready_read, source=write_source, destination=ready_destination),
+            capture_scope="raw child stdout/stderr from bootstrap startup through final exec exit",
+        )
         receipt["phase"] = "spawn-requested"
         receipt["spawn_call_start_ns"] = time.monotonic_ns()
+        deadline = time.monotonic() + grant["deadline_seconds"]
+        startup_deadline = time.monotonic() + grant["startup_seconds"]
         pid = os.posix_spawn(
             sys.executable,
-            argv,
+            bootstrap_argv,
             dict(os.environ),
             file_actions=actions,
-            setsid=True,
             setsigdef=(signal.SIGTERM, signal.SIGINT),
         )
+        # collect() is the sole owner from the returned PID onward; no helper reaps.
+        close_fd(write_source)
+        close_fd(ready_destination)
         receipt["spawn_return_ns"] = time.monotonic_ns()
         receipt["phase"] = "child-owned"
         receipt["owned_child"] = child_identity(pid)
         write_once(directory / "owned-child.json", receipt["owned_child"])
-        deadline = time.monotonic() + grant["deadline_seconds"]
-        while collect() is None:
+        while True:
+            collect()  # Cached terminal usage does not skip buffered readiness draining.
             if time.monotonic() >= deadline:
+                receipt.setdefault("stop_reason", "timeout")
                 receipt["status"] = "timeout"
                 bounded_cleanup()
+                break
+            if ready is None and time.monotonic() >= startup_deadline:
+                receipt.setdefault("stop_reason", "startup-readiness-timeout")
+            drain_readiness()
+            if receipt.get("stop_reason"):
+                raise TimeoutError(receipt["stop_reason"])
+            if terminal is not None:
+                if ready is None:
+                    raise ValueError("terminal exit without verified readiness")
                 break
             # No parent process-RSS sampling is commissioned. This live
             # headroom check is separate from child native peak observation.
@@ -2326,11 +2884,14 @@ def resource_parent(args):
                         if any(
                             owned.get(key) is None
                             or record.get("identity", {}).get(key) != owned[key]
-                            for key in ("pid", "boot_id", "start_ticks", "process_group", "session")
+                            for key in ("pid", "boot_id", "start_ticks")
                         ):
                             raise ValueError(
                                 "child birth identity missing or differs from owned marker"
                             )
+                        if any(record["identity"].get(key) != ready[key]
+                               for key in ("process_group", "session")):
+                            raise ValueError("child session differs from verified bootstrap")
                     receipt["status"] = validate_resource_record(
                         record, args, pid, receipt["materials_before"], receipt["grant_sha256"]
                     )
@@ -2355,11 +2916,25 @@ def resource_parent(args):
             else "observer-or-record-failure"
         )
         receipt["failure"] = dict(exception=type(error).__name__, message=str(error))
+        receipt.setdefault("stop_reason", receipt["status"])
+        receipt["status"] = receipt["stop_reason"]  # Preserve an earlier deadline/stop.
     finally:
         try:
             bounded_cleanup()
         except BaseException as error:
             receipt["cleanup_failure"] = dict(exception=type(error).__name__, message=str(error))
+        if ready_read is not None:
+            try:
+                drain_readiness()  # Even after cached terminal exit or cleanup failure.
+            except BaseException as error:
+                receipt["readiness_failure"] = dict(
+                    exception=type(error).__name__, message=str(error)
+                )
+        for fd in tuple(opened_fds):
+            close_fd(fd)
+        if ready_read is not None:
+            with (directory / "startup-readiness.bin").open("xb") as stream:
+                stream.write(ready_data)
         receipt["terminal"] = terminal  # None means unknown, never zero RSS.
         if terminal is not None:
             receipt["spawn_to_terminal_observed_seconds"] = (
@@ -2589,8 +3164,11 @@ def finite_controls(directory):
 
 def main():
     """Authorize, execute and retain one future finite numerical attempt."""
+    entry_start_ns = time.monotonic_ns()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--grant", required=True)
+    parser.add_argument("--binding-receipt", required=True)
+    parser.add_argument("--binding-sha256", required=True)
     parser.add_argument("--row", choices=(*SHAPES, "K01", "K02", "K03", "K04"), required=True)
     parser.add_argument(
         "--strategy",
@@ -2608,6 +3186,7 @@ def main():
     args = parser.parse_args()
     if not args.run_id.replace("-", "").replace("_", "").isalnum():
         raise RuntimeError("run id must contain only letters, numbers, hyphens, underscores")
+    load_bindings(args)  # Before route dispatch/raw mkdir; no inference from this folder.
     if args.route == "resource":
         return resource_parent(args)
     if args.route == "resource-child":
@@ -2625,7 +3204,10 @@ def main():
         run_id=args.run_id,
         grant=grant,
         grant_sha256=digest(args.grant),
+        materials_before=resource_materials(),
         status="started",
+        local_cold_start_ns=LOCAL_COLD_START_NS,
+        entry_start_ns=entry_start_ns,
         identities={
             "baseline": BASE,
             "harness": digest(__file__),
@@ -2638,12 +3220,14 @@ def main():
     global np, scipy, sim
     caught = []
     try:
+        record["numerical_import_start_ns"] = time.monotonic_ns()
         import numpy as numpy_module
         import scipy as scipy_module
         import scipy.fft
 
         import simrecon as simrecon_module
 
+        record["numerical_import_end_ns"] = time.monotonic_ns()
         np, scipy, sim = numpy_module, scipy_module, simrecon_module
         if (np.__version__, scipy.__version__) != ("2.5.3", "1.18.1"):
             raise RuntimeError("pinned numerical dependency versions differ")
@@ -2656,6 +3240,7 @@ def main():
         record["pre_call_high_water_rss_kib"] = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         with warnings.catch_warnings(record=True) as caught, scipy.fft.set_workers(1):
             warnings.simplefilter("always")
+            record["operation_start_ns"] = time.monotonic_ns()
             if args.route == "controls":
                 record["result"] = finite_controls(target)
             elif args.row in SHAPES:
@@ -2664,6 +3249,7 @@ def main():
                 record["result"] = cpu_feasibility()
             else:
                 record["result"] = run_kernel(args.row)
+            record["operation_end_ns"] = time.monotonic_ns()
             record["warnings"] = [
                 dict(
                     category=w.category.__name__,
@@ -2673,6 +3259,7 @@ def main():
                 )
                 for w in caught
             ]
+        record["required_fft_after_call"] = required_fft_provenance()
         record["status"] = (
             record["result"].get("status", "completed")
             if isinstance(record["result"], dict)
@@ -2683,6 +3270,21 @@ def main():
         record["failure"] = failure(error, "diagnosis-required")
         record["traceback"] = traceback.format_exc()
     finally:
+        if "numerical_import_end_ns" in record:
+            record["numerical_import_seconds"] = (
+                record["numerical_import_end_ns"] - record["numerical_import_start_ns"]
+            ) / 1e9
+        if "operation_start_ns" in record:
+            record["cold_to_operation_start_seconds"] = (
+                record["operation_start_ns"] - record["local_cold_start_ns"]
+            ) / 1e9
+        if "operation_end_ns" in record:
+            record["operation_seconds"] = (
+                record["operation_end_ns"] - record["operation_start_ns"]
+            ) / 1e9
+            record["local_cold_to_operation_end_seconds"] = (
+                record["operation_end_ns"] - record["local_cold_start_ns"]
+            ) / 1e9
         record["warnings"] = [
             dict(
                 category=w.category.__name__,
@@ -2729,7 +3331,14 @@ def main():
             encoded["native_peak_rss_kib_after_export"] * 1024
         )
         encoded["including_export_seconds"] = (time.monotonic_ns() - start) / 1e9
-        (target / "run.json").write_text(json.dumps(encoded, indent=2, allow_nan=False) + "\n")
+        try:
+            encoded["materials_after"] = resource_materials()
+            if encoded["materials_before"] != encoded["materials_after"]:
+                encoded["status"] = record["status"] = "changed-identities"
+        except BaseException as error:
+            encoded["identity_observation_failure"] = type(error).__name__ + ": " + str(error)
+            encoded["status"] = record["status"] = "identity-observer-failure"
+        write_once(target / "run.json", encoded)
         print(
             json.dumps(
                 {
@@ -2739,7 +3348,9 @@ def main():
                 }
             )
         )
-    return 2 if record["status"] == "failed-retained" else 0
+    return 2 if record["status"] in (
+        "failed-retained", "changed-identities", "identity-observer-failure"
+    ) else 0
 
 
 if __name__ == "__main__":
