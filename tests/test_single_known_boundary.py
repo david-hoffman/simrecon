@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import FrozenInstanceError, fields, replace
 from fractions import Fraction
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import pytest
@@ -992,7 +993,8 @@ def test_result_schema_values_and_success_immutability() -> None:
 
 def test_signature_binding_stays_python_type_error() -> None:
     reconstruction: Any = sr.reconstruct_known
-    declaration = sr.declare_prepared_bands32
+    # Deliberately omit required keywords to exercise Python's runtime binding.
+    declaration = cast(Callable[..., sr.PreparedBands32], sr.declare_prepared_bands32)
     with pytest.raises(TypeError):
         reconstruction(declare(), transfer())
     with pytest.raises(TypeError):

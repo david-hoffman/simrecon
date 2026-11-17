@@ -5,7 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 from dataclasses import fields, replace
 from fractions import Fraction
-from typing import Any
+from typing import Any, TypedDict, cast
 
 import numpy as np
 import pytest
@@ -36,6 +36,17 @@ from single_known_fixture import (
     transfer,
 )
 from test_single_known_boundary import rejected
+
+
+class _AllocationDeclaration(TypedDict):
+    """Exact keyword types for the valid constructor allocation control."""
+
+    input_shape: tuple[int, int, int, int, int, int]
+    dxy_um: float
+    dz_um: float
+    lateral_zoom: int
+    axial_zoom: int
+    provenance: tuple[tuple[str, str], ...]
 
 
 def test_correlated_dc_exact_and_near_cancellation_with_preregistered_bound(
@@ -164,7 +175,7 @@ def test_nonfft_allocation_failure_at_reached_external_interfaces(
     bands = declare(q, v)
     otf = transfer()
     options = known_options(bands)
-    declaration = dict(
+    declaration: _AllocationDeclaration = _AllocationDeclaration(
         input_shape=(1, 1, 3, 2, 1, 2),
         dxy_um=1.0,
         dz_um=1.0,
@@ -256,7 +267,7 @@ def test_nonfft_allocation_failure_at_reached_external_interfaces(
     restored = entry()
     assert type(restored) is type(positive)
     if entry_kind == "reconstruction":
-        assert np.all(restored.image == 0)
+        assert np.all(cast(sr.KnownReconstruction32, restored).image == 0)
     assert snapshot(*originals) == before
 
 
