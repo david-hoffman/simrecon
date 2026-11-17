@@ -1,0 +1,9 @@
+# Final scientific reviewer accounting
+
+One different fresh independent final SCI review, one frozen own primary then phase2. No delegation, runtime/product/scientific execution or source/data repair. Seven named one-off retained-file analysis sources were created: primary-static,primary-counterpart,retention,phase2-binding,table-and-terminal,kernel-word(failed),kernel-word2(completed). These are fixed read/hash/arithmetic/archive analyses,not product tests,benchmarks or experiments. All retained diagnostic errors and scope corrections are in read-ledger.md and kernel-word-analysis-failed-status.md. No invented failure count resets or duplicated child/cumulative charges.
+
+Independently checked137 raw diagnostic JSONs,32167 indexed NPYs,126 image pairs,149 primary identities,1134 error-table rows/6804 values,60 common full/summary arrays,23490 completed peer mapping entries scoped as reuse,18 H1 controls,42 repetition image identities,12×8 exact own-arm resource identities and all37074 logical archive members. Counts describe overlapping checks,not additive distinct scientific observations or spending.
+
+Requested role model/effort/freshness follows ROOT packet:gpt-6.1-sol/high/fork-none. Actual serving model/effective effort/input/cached/output/reasoning tokens/cache/verified monetary cost/complete elapsed UNKNOWN. Human numerical quota NOT SET. Capability and role labels are not scientific calibration. Shared filesystem/permissions/prompt constraints are not engineered isolation;separate optional memory/sandbox controls unavailable.
+
+No persistent experimental process,fixture or worktree was created. All own scripts/results/reports are retained evidence under reviewer1. No deletion/cleanup of source/raw/archive/material/history occurred. ROOT owns all integration/full13/freshD/current/publication and application of this verdict. This completed final SCI provides no runtime/backend/precision activation or gate waiver.
