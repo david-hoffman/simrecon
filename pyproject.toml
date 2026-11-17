@@ -69,6 +69,7 @@ source = ["src/simrecon", "devtools/src/simrecon_devtools", "scripts"]
 patch = ["subprocess"]
 
 [tool.coverage.report]
+exclude_lines = []
 fail_under = 0
 show_missing = true
 skip_empty = false
