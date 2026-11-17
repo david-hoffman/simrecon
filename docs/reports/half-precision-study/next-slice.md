@@ -1,55 +1,37 @@
-# HP114 next implementation slice — decision pending
+# HP114 next implementation decision
 
-No product activation or implementation slice is justified yet. This is a
-preparation-stage recommendation to keep existing precision behavior until the
-finite study and independent review establish a useful boundary. It is not an
-evidence-backed negative conclusion about half storage or native half arithmetic.
+**Recommend no product precision/backend implementation slice from this study.**
+Keep existing default wider workflow behavior. This is an evidence-backed bounded
+noactivation outcome: independent whole-grid/upstream/physical usefulness is
+unresolved, and the only matched prepared-storage protocol produced higher
+terminal RSS/retained payload for half in both measured rows. It is not a universal
+negative about all half-storage designs or hardware.
 
-The narrow candidate to assess is caller-owned half real samples promoted at the
-existing acquisition/workflow boundary, or explicit paired-half prepared-band
-storage unpacked before public estimation/reconstruction. Selection between them
-must follow the frozen matrix, rather than a favorable isolated case.
+The selected12 result includes packing, unpacking, wider downstream work, actual
+caller/result retention and through-exit native usage. Half median peaks are
+83480 versus83308 LinuxKiB at W02 and86160 versus85980 at W05. Half setup→call
+medians were lower but timing ranges overlap, so no general speed benefit is
+proposed. Other H1/H2 sites and other-row standalone resource benefits remain
+UNMEASURED under§8A; numerical data cannot substitute for those measurements.
 
-A later bounded handoff must name one site/API, retained source units and signed
-semantics, explicit packed format/ownership/lifetimes, all wider reductions,
-phase generation/solves, fits, transfer division, modulation products and signed
-accumulation, expected measured benefit including conversions and retained callers,
-and numerical/decision acceptance justified by actual evidence. It must exclude
-unsupported fixtures, half phase/fit/final accumulation, GPU adoption, new failure
-fallbacks and full-volume/16 GiB guarantees not measured here.
+Half prepared storage is technically demonstrated as an explicit four-byte paired
+encoding with wider operations, including actual signed underflow and finite
+image/parameter changes. H1 storage/promotion and isolated replay sites answer
+different questions. No native-half CPU FFT was established; optional cuFFT Xt
+remains restricted documentary GPU feasibility with actual device/ABI/plan/runtime/
+memory unobserved. No new dependency, wrapper, GPU or public precision API is selected.
 
-Required evidence is still pending: qualified W01–W06 signed/phase/search/reuse
-witnesses; H1 dtype-isolation comparisons; site-by-site H2 errors and decision
-changes; K01–K04 range/failure observers; fresh-process timing/RSS/lifetime evidence;
-full/summary compatibility; backend constraints; independent scientific review.
-The current comparison harness retains wider baseline before candidate and is
-not a matched resource experiment. Its diagnostic peaks/times cannot support a
-storage-benefit or speed claim. A separate standalone full WIDER/H1/H1-promoted
-method and prepared-band wider/paired-half stage pair are now source-authored.
-They still require fresh static review, final-parent reconciliation and runtime
-qualification before any resource benefit can support a product slice. Stage
-setup/native high-water and actual caller conversions remain included; corrected,
-filtered and embedded formula replay retain their isolated diagnostic scope.
-If errors, branch instability or conversion lifetime eliminate the benefit,
-recommend no activation with the actual named failing cases and measurements.
-No guessed acceptance cutoff or human-required new tolerance is introduced.
+The [acceptance proposal](acceptance-proposal.md) declines a guessed scientific
+tolerance and keeps exact representation/failure/signed/decision evidence separate
+from usefulness. There is no bounded product acceptance domain justified for
+activation yet. If a future task is commissioned, name one site/API and intended
+physical use, independently justify its reference/error uncertainty, preserve
+wider reductions/fits/phase/denominators/modulation/signed accumulation and explicit
+format/ownership/conversion lifetimes, and state unsupported cases before tests.
+Do not launch a universal upstream/capture framework merely to force a positive
+outcome, use this report harness as a product test checkpoint, or rerun data because
+report-only HEAD changed. Any future precision/backend behavior requires separately
+scoped high-risk intake and fresh A/B/C/D as applicable.
 
-Finite range/cancellation, independent noise/phase, generation equivalence,
-canonical hash, signed-zero/nonfinite serialization, record failure and FFT-policy
-controls are frozen in the source manifest. None has run. Missing terminal usage
-or process ownership blocks reliance and requires root identity-checked recovery;
-zero exit or static method review does not establish scientific success. No
-activation, evidence-backed negative outcome or completed implementation handoff
-is asserted at this preparation stage.
-
-Any future precision/backend product change returns to separately scoped high-risk
-intake with fresh A/B/C/D as applicable. This report-only harness is neither its
-test checkpoint nor authorization to implement it.
-
-Resource launch is now unconditionally quarantined. Campaign root's actual #116
-Q1 in the same interpreter rejected `posix_spawn(..., setsid=True)` before a child
-PID. HP114 did not retry it. Narrow AST/compile/Ruff passes neither repair this
-capability nor justify resource readiness. A later root-supplied diagnosed working
-route needs accepted affected-scope evidence and explicit HP114 launch/wait/status/
-identity/recovery reconciliation. No new launcher or fallback is adopted here.
-PID1 sleep/no-init remains planning context; no abrupt-loss/orphan experiment ran.
+Final SCI is a different fresh reviewer after completed exact report/evidence.
+This author proposes no activation or independent acceptance of its own work.

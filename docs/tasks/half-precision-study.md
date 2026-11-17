@@ -95,14 +95,63 @@ returns to intake. This is not formal executable test design.
 
 ## Current state
 
-- **W02 direct-call fixture correction; six current-source qualifications pending.** Publication parent is accepted #113 [PR128](https://github.com/david-hoffman/simrecon/pull/128), head `274c71912afba4f976f0b7ec248af6347c2addde`. Its exact full Ubuntu13, fresh D and observed CI passed. All public runtime, tests, configuration and lock remain byte-identical to that parent. No product precision mode is introduced by this study.
-- **Source transition:** study `24682974` adds one local `int(options["lateral_zoom"])` assignment at the W02 direct `prepare_bands` call, derived from source `d4239c63`. Global workflow zoom stays `2.0`; the direct API receives the same declared value as integer `2`. Manifest `ddf038c0`, obligations `d02b904f`, all scientific values/formulas/cases/guards and the native measurement mechanism remain unchanged. Completed affected independent source review and ROOT application are recorded externally; this status is installed only after that acceptance.
-- **Preserved actual method evidence:** M01 finite controls and the normal direct-Python GNUtime terminal route were independently qualified (report `ec015355`, distinct final `d6e094c0`). M02–M09 selected adverse predicates and M10 attempt3 single ordinary observer interruption were independently qualified (report `005b2d14`, final `b834a291`). Failed intended SIGINT attempts1/2 remain timeouts without signals. The attempt3 inherited rationale label has external erratum `12ed21b0`; original grants are unchanged. Ordinary FD, one-interruption, check-to-signal race, native exec/high-water and unknown physical-reserve limits remain explicit. Changed-source applicability is limited to the affected review's substantive retention decision.
-- **Preserved old-source qualifications:** on clean historical `b4c600a4`/source `d4239c63`, W01 completed its intended branches and exported70 indexed arrays with normal terminal capture; scientific/common-projection assessment is distinct. W02 failed at the direct API integer-type guard before completing qualification. Its16 indexed arrays, failure/traceback, abnormal raw native capture and exact process closures remain retained (`ROOT` diagnosis `608c2b41`). This is a fixture adapter failure, not evidence against half precision or a product defect. W03–W06 and the numerical matrix/resource experiment were not started on that source. Old W01 cannot be relabeled as a current-source qualification: the genuine exact-harness-hash guard remains unchanged.
-- **Frozen finite design:** six NEW current-source QUALIFY observations;126 W diagnostics (six rows, seven modes, three fresh successful repetitions); four kernels; one CPU transform observation; twelve additional W02/W05 PREPARED_WIDER/PREPARED_HALF observations in the accepted wider/half, half/wider, wider/half order. Every actual attempt gets fresh B/C/G/L/current admission, its own output/capture and whole closure. No shared grant, automatic retry or human approval per case is required. Other standalone benefits remain UNMEASURED.
-- **Scientific boundaries:** first assess actual retained qualifications, complete all six full/summary common-value projections, and reuse only precisely applicable accepted public evidence. Missing independent premises may remain scoped UNRESOLVED/noactivation; no full upstream recreation or new oracle/capture framework is commissioned. W02/W05 raw/used-seed/prepared/consumed-field/operation applicability precedes the selected resource children. No arbitrary tolerance, physical recovery, native-half inference, speed/RAM or16GiB promise is made. The optional cuFFT note is documentary only, with final SCI pending.
-- **Next action:** ROOT freezes the new clean source/material/candidate bindings, then separately admits the six current-source QUALIFY observations. The numerical matrix and resources remain held until actual row dispositions apply. Final report/matrix/numerical-acceptance proposal/recommendation, fresh independent SCI, exact clean full local Ubuntu13, fresh D and authorized PR/observed CI remain pending. Final identities and results remain outside these determining tracked bytes. All earlier attempts/costs remain retained; human quota NOT SET and actual serving/token/cache/money/complete elapsed UNKNOWN.
-
+- The finite study is complete: six current-source qualifications, 126 workflow
+  comparisons, four kernels, one CPU transform observation and twelve selected
+  standalone resource observations. All 149 children completed and their owned
+  processes closed. The completed [study](../reports/half-precision-study/study.md),
+  [matrix](../reports/half-precision-study/matrix.md),
+  [acceptance proposal](../reports/half-precision-study/acceptance-proposal.md) and
+  [next-slice disposition](../reports/half-precision-study/next-slice.md) recommend
+  **no product activation**, preserving unresolved independent scientific premises.
+  This is a finite result, not a universal negative or a 16 GiB guarantee.
+- Actual measurements retain revision `c43913c75446272c5fc9c63aeb007dd9644568d0`,
+  tree `d8810579d7b4a93d9bb2b1dd924b2ba0ebb5a350`, actual direct parent
+  `b4c600a4a8ee5a2b1645308a4a775dfe651bcb8d` and study SHA256
+  `246829749f356344fcd8e363e359039984da1911ee20b74a45637a6ff3226635`.
+  Manifest `ddf038c0` and obligations `d02b904f` remain unchanged. The reporting
+  integration does not relabel those observations as measurements of its new HEAD.
+  Public runtime, tests, tools, configuration and lock remain byte-identical to
+  accepted #113/PR128, `274c71912afba4f976f0b7ec248af6347c2addde`, the immediate
+  stack base. Its existing acceptance and observed CI remain prerequisite evidence.
+- The one-line W02 direct-API integer adapter preserves zoom value two and global
+  workflow `2.0`; all six current-source qualifications passed after independent
+  affected-source review. Historical old-source W01 and W02 fixture failure,
+  incomplete controls and both failed intended interruption controllers remain
+  retained and classified. They are not current qualifications or precision failures.
+- Independent method, six-row common-projection, prepared-counterpart and actual
+  resource reviews were completed and applied by ROOT. All 192 full/summary field
+  instances, 23,490 mapping checks and 60 original common-array comparisons passed.
+  All twelve own-arm resource callers and seven outputs per child match their
+  reviewed counterparts. Generic public structure/ownership evidence and conditional
+  source-supported standalone metadata applicability have their explicit limits.
+- The completed author handoff and exact 75 publication payloads passed ROOT's
+  input/output/publication hash checks. The conventional 18-part archive retains
+  all 37,074 scoped original filenames and bytes: 589,675,161 logical bytes in
+  56,125,830 compressed bytes. ROOT independently verified every logical member,
+  original manifest and same-part earlier-regular hardlink. See
+  [retention](../reports/half-precision-study/retention.md); runtime binaries and
+  unexported CPU/resource arrays are distinguished from retained raw study arrays.
+- The different fresh final [scientific review](../reports/half-precision-study/SCI-REVIEW.md)
+  is completed and ROOT applied its exact verdict: suitable for the finite report,
+  evidence retention and bounded noactivation proposal, with no blocking finding.
+  Its [distinct final](../reports/half-precision-study/SCI-FINAL.md),
+  [primary](../reports/half-precision-study/SCI-PRIMARY.md) and
+  [disposition](../reports/half-precision-study/SCI-DISPOSITION.json) remain verbatim.
+  The as-read Task Current hash resolves to immutable measured c439 bytes; this
+  ROOT reporting update does not change the reviewed scientific target or ledger.
+  No final gate, D, #114 push, PR or CI pass is claimed by that scientific verdict.
+- Next: freeze the clean reporting candidate, run canonical full local Ubuntu verification with
+  all 13 phases, obtain fresh post-gate D, publish against accepted #113 and observe
+  actual CI. Final candidate/check/review/publication identities live outside these
+  determining tracked bytes at `/workspace/work/campaign/evidence/114` and its final
+  evidence record; ROOT owns those transitions and publication.
+- Accounting: historical role launches, corrections, failed/partial checks and
+  measurements remain in this ledger, the report history and campaign evidence.
+  No human numeric quota is set. Missing serving-model, effective-effort, token,
+  cache, monetary and complete elapsed measurements remain unknown. The original
+  temporary preparation directory was removed after exact archival; preserve this
+  worktree, pinned environments, durable evidence and required dependencies. No
+  uncertain cleanup target is selected and no owned numerical process remains.
 
 ## PR presentation
 

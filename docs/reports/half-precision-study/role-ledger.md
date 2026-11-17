@@ -149,3 +149,55 @@ Resumed independentfileidentitychecks:342file-bearingloadedrowsquiet-c0/indexa40
 Coordinatorreadactualrootcontext/proofmatchingouter+innerexposeddirectory/current/maxdevice-inodesandwrapperinnerrecheck;actualcandidate/source/command/grant/material/backgroundfactsbound,externalancestorsunknown_unobservable,nofreshnessbooleanaloneorhiddenlimitcertainty. Full executedproposal3+transport+study cp-a preserved undercontrol-attempt2-preserved,3diff-qr0,index84ae7981535b50a5c916dba5be10067a4fce91c3b9ab427703ff52c646784f43;oldattempt1/fullarchivesuntouched. No disposablefixtures/activeprocess;temporarytaskrefresh moved into task thenemptyworkremoved.
 
 Conjunctionmet: exactboundedmethod/dependencycontrol2SCOPEDQUALIFICATIONPASS only;receipt control-attempt2-scoped-qualification.json SHA434198b6e10e2df1fd60fd7c20e81fc7225a22e7b5ce21b23457a6b65a42691f pluscompanionMD(finalhashoutside). Attempt1stillINCOMPLETE. No phase/noisewitness/physicalrecovery/fullW/resource/nativehalfarithmetic/precisionutility/memoryspeed16GiB/globalstudyacceptance/fullgate/D. Methodreviewverdicts4across2sessions(twoINCOMPLETE,twoaffectedACCEPT),S1historyunchanged;actualnativecontrolattempts2(oneincomplete,onescopedpass),puremetadatahelpers areinspectionnotnewcontrols,focusedserdecheck1pass. Allfailures/repairs/chargesretained,absentmetersunknown. Rootfuturefullstudyawaitsaccepted113/qualified116method/materialrenewal+newgrants+independentscientificreview; no source/product/helper/gate/dependencychange,rebase/push/PR/closure. Finalsafeholdcommit/treeoutsidecandidatebytes.
+
+## ROOT final collection and reporting integration
+
+The campaign continued through the fresh combined issue coordinator
+`/root/issue_114_combined_source_preparation`. Its exact source/method correction,
+actual negative controls, six qualifications, counterpart and resource assessments
+are retained externally, with whole completed report and distinct final-message
+intakes before ROOT application. All149 primary observations completed on source
+24682974 / actual c43913c7; no publication revision is substituted for that measured
+identity. Original failed controls, old-source fixture error, historical observations
+and every correction charge remain retained in the finite report history and
+campaign evidence, rather than reset by coordinator/session continuation.
+
+Completed final author report f1106cb4 and distinct final5dae6159 pin37149 inputs,
+185 outputs and75 publication payloads (plus the separate transport ledger).
+ROOT verified their actual hashes and independently decoded all18 conventional
+parts:37074 original names/bytes,589675161 logical bytes,56125830 compressed bytes,
+5728 regular members and31346 same-part earlier-regular hardlinks. An initial ROOT
+reader assumed an optional decoded-tar field on supplementary18 and failed; its
+corrected read-only reader independently computed that field. Original source,
+index, archive and numerical data were unchanged; no experiment was rerun.
+Whole-author application b21dc648 and byte proof ed164ab2 remain external evidence,
+not scientific acceptance. Exact completed author payloads were copied into the
+report-only integration while fresh final SCI remained pending. This does not
+change source2468/manifestddf0/obligationsd02b or accepted113 product/tests/config.
+
+Fresh final SCI is a different fork-none requestedSol/high session from the author
+and prior method reviewer, with no delegation. Its own primary assessment preceded
+prior opinions; final verdict is pending at this entry. Optional separate memory
+and filesystem controls remain unavailable; prompt restrictions are not isolation.
+Final D has only a prepared scaffold and is not launched before the exact clean
+full Ubuntu13 passes. #114 full-gate attempts, D verdict, push/PR and CI are pending.
+No human quota is set; unavailable serving/effort/tokens/cache/money/time remain
+unknown. All earlier role/check/repair charges remain cumulative by reference.
+
+### Completed final SCI and ROOT application
+
+Fresh different finalSCI completed report855919db, distinctfinalaf4a14a8,
+disposition1d59cfc7 and independentprimary7eb41f96. Its verdict is suitable for the
+exact finite report/evidence retention/bounded noactivation proposal, no blocking
+finding or target correction. ROOT wholly read report/final/disposition/primary/read
+provenance and verified all30 outputs plus37176 current input files; one as-read
+Task Current entry exactly resolves to immutable c439 bytes b131b7bc because ROOT
+updated its reporting Current while the reviewer finished. Initial current-path
+assertions failed honestly; original ledgers/verdict/target/source remain unchanged.
+A separate provenance resolution records that delta, not37177 live-current matches.
+Reviewer schema/locator failures and initial r1-only counterpart query correction
+are disclosed in its original report. No experiment rerun or new activation follows.
+Verbatim SCI documents are separate ROOT completion additions, preserving all75
+author payloads and their original transport ledger. Exact clean full13 and fresh
+post-gate D remain required before push/PR. All prior charges and missing meters
+remain retained; this continuation does not reset accounting.

@@ -1,0 +1,29 @@
+[
+  {
+    "file": "kernel-filedata.json.gz",
+    "compressed_bytes": 21373,
+    "compressed_sha256": "c7c8413a53f7cbe68a6c91a7727ac931c589645b81885837241f047ae38f3909",
+    "original_author_artifact": "/workspace/work/campaign/evidence/114/report-preparation-and-completion-1/author/kernel-slice-1/file-arithmetic-results.json",
+    "original_bytes": 229369,
+    "original_sha256": "cde941af6c3211402753ccf21174ef284e59c85f0aa9afb99fa5697f7c6b6f31",
+    "kind": "derived retained-file analysis, not a new experimental observation"
+  },
+  {
+    "file": "W01-W02-filedata.json.gz",
+    "compressed_bytes": 880410,
+    "compressed_sha256": "8ef774148b14c75afff611d48b3864ad56f74b86c622cd6033772cfd2285990b",
+    "original_author_artifact": "/workspace/work/campaign/evidence/114/report-preparation-and-completion-1/author/closed-W01-W02-slice-1/closed-row-results.json",
+    "original_bytes": 10444340,
+    "original_sha256": "8dfbfd77f8d799ed158158dec84ddceec9dffa1af89668c5ff34cec174c4ca4a",
+    "kind": "derived retained-file analysis, not a new experimental observation"
+  },
+  {
+    "file": "W03-W06-filedata.json.gz",
+    "compressed_bytes": 3378624,
+    "compressed_sha256": "d9023eef25b3801c509a568cd06f4450bd65d4b7acb03719bbed7437f10596ff",
+    "original_author_artifact": "/workspace/work/campaign/evidence/114/report-preparation-and-completion-1/author/closed-W03-W06-slice-1/closed-row-results.json",
+    "original_bytes": 41070745,
+    "original_sha256": "e76d4688311c2f7030e5fe4a0562cb93e1461fe8a13e4617b48aae00281e7e0f",
+    "kind": "derived retained-file analysis, not a new experimental observation"
+  }
+]

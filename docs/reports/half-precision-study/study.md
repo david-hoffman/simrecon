@@ -1,227 +1,235 @@
-# HP114 half precision study — pending measurements
+# Half-storage and half-compute feasibility
 
-The study has source-prepared methods, but resource parent/child launch is
-unconditionally quarantined after the same interpreter's known #116 capability
-failure. Narrow AST/compile/Ruff preparation checks passed. No numerical run or precision
-recommendation is complete. Source inspection supports a distinction between
-half caller storage, packed intermediate storage with wider computation, and
-native half transforms. It does not establish scientific suitability, speed or
-workstation feasibility.
+The finite study collected and closed all149 nominal observations. **Recommend no
+product precision/backend activation.** Half storage produced finite, measurable
+changes across the six workflow fixtures; the selected prepared-storage protocol
+did not reduce observed terminal process peak. Independent full-grid/upstream
+science and physical usefulness remain unresolved, so these observations do not
+justify an accuracy tolerance or a safe implementation boundary. This is a bounded
+noactivation result, not a theorem that half storage can never help.
 
-The [manifest](manifest.md) freezes a finite analytic generator, all ten matrix
-rows, public paths, four H2 sites, independent observers and resource protocol.
-The [standalone harness](study.py) preserves raw failures, warnings, arrays and
-identities, with one run per fresh process and explicit coordinator receipts.
-No product behavior, test checkpoint, dependency or gate is changed.
+No product precision mode, dependency/backend migration, changed scientific
+normalization or numerical tolerance was implemented. The existing default
+float64/complex128 workflow remains the reference. Public opt-in
+`single-mixed-v1` known reconstruction is a separate accepted interface; HP114
+selects neither that profile nor a new single-precision matrix.
 
-## Evidence and finite disposition matrix
+## Scope and exact measured materials
 
-The initial public baseline is `b344e41a8b52de76d7cbbf8450319893904c3b8f`.
-All seven packet source/lock SHA256 values matched on read-only inspection.
-Contract and packet matched their launch hashes. The coordinator subsequently
-refreshed task execution state; the initial task identity is retained in the
-manifest and this author did not edit task or ledger.
+The149 primary observations are six current QUALIFY full/summary pairs,
+126 diagnostics (six W rows × seven modes × three fresh repetitions), four kernel
+rows, one bounded CPU route and12 matched prepared-stage resource observations.
+Controls, historical failed/partial/refused attempts and fixture corrections are
+additional evidence, not replacement repetitions. No human numerical quota, error
+tolerance, latency ratio or memory ceiling was selected. A16GiB workstation with
+caller/OS reserves is an objective, not a measured fit or promised support.
 
-Preparation source facts:
+All current149 observations belong to measured source SHA256
+`246829749f356344fcd8e363e359039984da1911ee20b74a45637a6ff3226635`,
+candidate`c43913c75446272c5fc9c63aeb007dd9644568d0`,
+tree`d8810579d7b4a93d9bb2b1dd924b2ba0ebb5a350`, actual parent
+`b4c600a4a8ee5a2b1645308a4a775dfe651bcb8d`. Accepted113/integration base
+`274c71912afba4f976f0b7ec248af6347c2addde` is distinct. Manifest
+`ddf038c074f6ed0d927da0cf704163d81083bc9733a428dc62e967a6c44020ba`, obligations
+`d02b904f4d08d347d30a23a85762f50d3bf57ab628a7ace012209885ec680527` and contract
+`9367ed8c9b4b28d3d65a69839a98f104ffb8513ff78164d35183e30c3439a3ef` retain their
+original identities. Current143-material changes from the earlier phase were
+Source+Task only; no product/test/config/lock change supplies a new behavior claim.
 
-- `_array_metadata` accepts half storage; preparation copies numerical work to
-  float64. The raw boundary additionally requires exact float32 representation.
-  The generator explicitly casts analytic values to float32 and records cast error.
-- Camera normalization is `1/(X*Y*Z*L^2*A*D)`; camera and reductions are wider.
-- Phase solves/residuals, complex energies/cross products, search/refinement and
-  modulation adjustments remain wider. Input quantization can still change them.
-- Assembly uses an unnormalized inverse and signed float64 accumulation.
-- Installed SciPy source uses `_duccfft`; its helper promotes float16 to float32.
-  This is source-only evidence, not a measured CPU transform or H3 result.
+The pinned observed environment was Ubuntu24.04.5, CPython3.13.12,
+NumPy2.5.3/SciPy1.18.1, six thread variables1 and SciPy workers1. Actual per-attempt
+executable/startup/default/native/tool, B/C/G/L/admission and before/after identities
+remain in raw records. Post-call module hashes establish loaded-file provenance,
+not every native kernel's execution, internal arithmetic/workspace precision or ABI.
+A later report/docs/archive integration creates a new reporting candidate; it
+must preserve these measured labels and historical d423/b4c records. No reporting-
+driven rerun or retrospective relabeling is warranted.
 
-| Row | Wider/reference qualification | H1 caller storage | H2 corrected / prepared / filtered / embedded | H3 |
-| --- | --- | --- | --- | --- |
-| W01 native 2D | Pending | Unmeasured | All four unmeasured | No workflow claim |
-| W02 native 3D | Pending | Unmeasured | All four unmeasured | No workflow claim |
-| W03 search | Pending intended search/fit/floor branches | Unmeasured | All four unmeasured | No workflow claim |
-| W04 t0 reuse | Pending search/reuse/time-specific factors | Unmeasured | All four unmeasured | No workflow claim |
-| W05 spatial step | Pending | Unmeasured | All four unmeasured | No workflow claim |
-| W06 phase/cancellation | Pending full-rank/signed witness | Unmeasured | All four unmeasured | No workflow claim |
-| K01 binary16 range | Pending | Unmeasured | Paired encoding unmeasured | CPU transform-only pending |
-| K02 alpha range | Pending | Unmeasured | Normalized storage unmeasured | Not evaluated |
-| K03 products/reductions | Pending exact-dyadic observers | Unmeasured | Quantized operand/wider and explicit half formula experiments pending | Not evaluated |
-| K04 inverse/decisions/phase | Pending frozen formula witnesses | Unmeasured | Formula experiments pending | Not evaluated |
+## Strategies and complete numerical evidence
 
-“Pending” is no demonstrated support or scientific failure. H2 corrected/filtered/
-embedded experiments are explicitly formula replay; prepared quadratures can use
-public record composition. These scopes cannot establish a product half mode.
-The CPU source promotion route does not imply impossibility on all backends.
-NVIDIA cuFFT Xt documentary constraints and GPU runtime remain unmeasured/pending.
+H1 supplies half real callers to the existing wider public workflow;
+H1_PROMOTED supplies the same quantized values in a wider caller to isolate dtype
+routing. Their candidate image hashes matched in each of the18 row/repetition
+pairs. That is finite evidence for these values, not general dtype equivalence or
+half computation. Input/storage acceptance is distinct from computation, entry
+compatibility, scientific usefulness and lifetime benefit.
 
-## Numerical and resource results
+H2 corrected uses the frozen corrected-frame/separation formula replay and public
+wider downstream stages. H2 prepared packs real then imaginary binary16 components
+in explicit little-endian(...,2) storage, unpacks complex128 and invokes wider
+downstream estimation/reconstruction. Its non-quadrature preparation metadata and
+trace are frozen wider records. Filtered/embedded H2 are isolated assembly replay
+with wider parameters/filtering fixed. Their inherited zero parameter fields are
+not newly fitted factors or a public half pipeline. Wider sums/energies/cross
+products/phase solves/fits/ratios/modulation products/signed accumulation remain.
 
-Unknown until authorized execution: public half acceptance at each chosen path,
-actual transform dtypes/internal precision, binary16 rounding/flush/signed zero,
-range/nonfinite/zero-loss counts, image/stage/parameter errors, fit/alias/tie/floor/
-reuse/phase decisions, full/summary compatibility, independent residuals, runtime,
-RSS, live headroom and retained payload. No missing metric is zero.
+All126 diagnostic cases completed normally with0 warnings, with three successful
+collection repetitions for every row/mode. Recorded discrete decision projections
+matched the actual wider reference in every case. Continuous fitted values and
+images changed; source projection equality does not mean all trace objectives,
+parameters or science are unchanged. All six rows retain signed outputs; no clipping,
+gain fit, altered units/phase/noise/threshold/order/normalization or favorable cutoff
+was used. The complete error, signed/zero, carrier cycles/um/bin, modulation/
+amplitude/phase, metadata and lifecycle tables are retained in numerical-details/.
 
-The existing signed detector-count mapping is the wider reference; compensated
-finite Fourier/inverse sums and exact rational phase-design inverses provide
-separate observers. They do not certify physical image recovery. No acceptance
-threshold is guessed from machine epsilon or selected before observations.
-A future acceptance proposal must identify units/use, observed error and decision
-exceptions. No activation is recommended while evidence is pending.
+| Row | Wider question | H1 image max absolute / relative L2 | H2 prepared image max absolute / relative L2 |
+| --- | --- | --- | --- |
+| W01 | Native2D/O2 known | .12296786860351716 / .0015392927141950243 | .006425823808266173 / .00012827353576743217 |
+| W02 | Native3D known | .12621438627606096 / .0016640651202784883 | .007727666926540699 / .0001599748671431994 |
+| W03 | Searched/floored/replaced | .06325606131220951 / .0013674627876317266 | .004073078970433741 / .0001275001074501031 |
+| W04 | Time-zero search/reuse, later factors | .12542948650082764 / .0016381891504661024 | .00788693516315675 / .00016515249335538335 |
+| W05 | Only Y/X spatial step from W02 | .1310071264566659 / .0015888874516590355 | .007547728172440316 / .0001591205388300825 |
+| W06 | Nonuniform phase/signed cancellation | .056220105550861287 / .019978077714797954 | .00029862393900992323 / .00019434618780069977 |
 
-The protocol retains originals, packed/promoted conversions, baseline and candidate
-records, full diagnostics, hashes and export work. Baseline-before-candidate
-comparison runs and baseline-only WIDER runs have unmatched lifetimes and warmup.
-Their RSS/times remain diagnostic observations only. The continuation now authors
-a separate one-caller/one-result resource method for full WIDER/H1/H1-promoted and
-a prepared-band wider/paired-half stage pair. It has not been executed, checked or
-accepted. Actual memory benefit and speed ratio remain **UNMEASURED**.
-Unknown workspaces, metadata, external callers
-and OS reserves limit conclusions. Fixed small geometries and metadata-only alpha
-cannot demonstrate full-volume feasibility or a 16 GiB workstation guarantee.
+Absolute image errors use signed detector-count output units; relative L2 is
+dimensionless. Each displayed source metric is stable across its three repetitions;
+all raw/RMS/ranges, other H2 modes and independent exact-array Fraction sums remain
+available. Independent norm rounding is kept separate from source floating
+reduction. No tolerance is introduced to force equality. Both-zero reference/error
+gives0; nonzero error against zero reference is undefined/null. Modulation phase
+is undefined at zero, with actual phase-defined masks retained. Source WIDER
+self-comparison phase can have tiny finite arithmetic residuals; these were not
+silently set to0. Missing/empty/nonfinite/shape/error states remain explicit.
 
-## Preparation checks and accounting
+Half prepared storage loses source-nonzero components to zero in all six rows:
+189,11050,11050,22167,56067,15458 respectively. These are component counts,
+not image losses or acceptance thresholds. All original/packed/promoted signed
+zeros, subnormals, extrema and bytes/hashes are retained. H1/H1_PROMOTED image
+nonzero sign changes per repetition are1,2,3,8,18,21 for W01…W06; some other H2
+sites also change signed pixels. Finite images and unchanged discrete projections
+do not remove these effects or establish physical utility.
 
-Investigator launch S1/attempt 1; no scientific execution, failed scientific trial,
-report review, scientific correction or product test/gate attempt by this role.
-Source-preparation edits and checks are not experimental repetitions.
+## Independent science and full/summary compatibility
 
-Initial hard hold permitted shell/Git/source/document reads and authoring only.
-No Python was used during that phase. Coordinator later granted only syntax
-compilation and Ruff check/format of the owned harness in pinned Ubuntu; no
-scientific imports, product execution, tests, probes or benchmarks were granted.
+Completed same-peer Q2 assessment2abdffda… and eligibility2ac7d2e0… establish all
+six actual32-field full/summary common projections, with original scalar/array
+bits/order/identities and precise accepted-public RM84 type/structure/ownership/
+retention applicability. They are not merely the harness's selected equality
+metrics. Full-debug writable/extra arrays and summary declared omissions retain
+their separate contracts; JSON/NPY alone is not a live heap/type/alias proof.
 
-Syntax attempt 1 passed (exit 0) using the root's exact docker route and
-`.venv/bin/python -c` with `compile(Path(...).read_bytes(), ..., "exec")`.
-This compiles source without importing or executing the harness. Ruff check 1
-failed with 95 findings; import-fix pass fixed 2 and retained 93; format-check 1
-reported unformatted; formatting pass 1 succeeded. Ruff check 2 retained 60
-findings. Source edits supplied docstrings, bound immediate-call loop variables,
-made zip lengths explicit, renamed the half-range observer, corrected the phase
-observer comment, and wrapped long lines. Formatting pass 2 and Ruff check 3
-passed. Final syntax attempt 2 and format-check attempt 2 passed (exit 0).
-Final artifact digests are in the author handoff.
-These are preparation repairs, not scientific trials or hidden scientific retries.
+The same completed assessment leaves **every** complete independent analytic
+trigonometric uncertainty, prepared coefficient/phase/noise premise, transfer/
+filter stencil, estimator/search/floating interpretation and full-grid assembly
+reference with justified uncertainty UNRESOLVED/noactivation. Selected finite
+sums, exact alpha/coordinates, signed pixels, mode-to-mode agreement and generic
+RM84 reuse are useful corroboration, not a complete scientific oracle or physical
+recovery certificate. No universal upstream/capture/polynomial framework is
+required or commissioned to force this study positive.
 
-Those passes apply to original source SHA256
-`c905bcbd194d70bb07d378316af837c090808deb0d4ce01a75db0f07f744bd04`, retained in
-Git at the original preparation commit `e42f978b10396fc1f015880c0fe82db786a76011`.
-They are historical and do not qualify the changed source. Same S1 author resumed
-under supplemental packet SHA256
-`558a02160711c50d309d32c3df2d99677b2b5ec9694d8ca24d6cebc9950661f6` on clean
-`f2d15d38026da4a8b58bd8eca94b798660618608`; coordinator task/ledger-only commit
-`135c8403260cd407b59d8f4247fc0ebf1242fa1c` changed no scientific input.
-The source-method-only continuation ran **no Python, syntax/format/lint, probe,
-import, type check, test, installation, numerical control, benchmark or resource
-experiment**. A subsequent narrow preparation-check packet allowed only the
-AST/Ruff commands recorded below; no source import/execution followed.
-All prior launches, failures/style repairs and unavailable meters remain charged;
-this is a continuation, not a fresh scientific launch or reset. No independent
-method/scientific review verdict is claimed by this author.
+Known/T1 resource applicability uses actual retained initial-versus-returned
+carrier component bytes and consumed-operation provenance, not nominal generator
+vectors or a universal scalar/vector-libm theorem. Completed counterpart assessment
+286c6b2b…/map5e340a9a… supplies actual repetition-specific wider/prepared-half
+callers and seven outputs with full diagnostic record/metadata/seed scope. WIDER
+candidate aliases the baseline snapshot; H2 recomputes downstream on quantized
+quadratures while metadata stays wider. Resource identity matches cannot export
+all standalone metadata/trace/live ownership or fill independent science.
 
-## Narrow preparation checks and launch quarantine
+## Kernels and CPU/GPU compute boundary
 
-Same S1 resumed under `preparation-checks-launch-hold.md`, SHA256
-`69f7c25e754135f510866f4d5e716462041681a0786bdfc3278b94de8f00c00a`.
-Coordinator archived exact pre-check files and continuation scratch at
-`/workspace/work/campaign/evidence/114/source-method-v2-before-checks/`.
-All commands used pinned Ubuntu `uv run --locked --no-sync`, owned study.py only:
+K01 independently checked original words and nearest-even conversion: ±2^-25
+become signed zero, ±2^-24 remain subnormal, ±2^-14 normal, ±65504 finite,
+±65520/70000 become signed infinity. Four real/eight paired components overflow;
+two real/four paired nonzero components underflow. Nonfinite whole-vector metrics
+remain classified nonfinite, with all3 cast-overflow warnings preserved.
 
-| Preparation command | Attempts and outcomes |
-| --- | --- |
-| AST parse plus compile source bytes, no import/execution | Attempts 1 and 2 passed, exit 0 |
-| Ruff check | Attempt 1 failed with 46 findings; attempt 2 failed with 3 long strings; attempt 3 passed |
-| Ruff import fix | Pass 1 fixed one import finding, retained 45, exit 1 |
-| Ruff formatting mutation | Pass 1 reformatted, exit 0; pass 2 unchanged, exit 0 |
-| Ruff format check | Attempt 1 failed; attempt 2 passed |
+K02 uses only three eight-value normalized vectors. Source relative errors are
+.0002441480750117083,.000244259797927459,.01746874808256023, with2/2/4 nonzero
+losses. Its large metadata geometry changes alpha only, not allocated volume,
+workstation feasibility or full-pipeline error. K03 covers all16 exact dyadic
+cases: retained quantized operands with wider reductions match their finite exact
+formulas, while explicit-half operations show underflow, overflow and alternating
+Inf cancellation toNaN. All16 multiply/reduction warnings remain visible.
 
-Corrections were import ordering, formatting and wrapping three strings without
-changing their content. Scientific constants/formulas were not changed. All raw
-finding/check logs and exact commands are retained in owned scratch. No report,
-product or scientific module was imported; no route/control/probe/test/benchmark
-executed. These passes are preparation evidence only, not method/science acceptance.
+K04 retains LIMITED scalar inverse/fit/tie/regression/phase witnesses. Quantization
+can turn strict improvement into a tie, change curvature status, make unequal
+energies equal or a finite near-conditioned design singular. Scalar formulas do
+not prove public combined-fit branch reach; an outside1.5-bin formula is not
+demonstrated reachable from a coarse global peak. Public phase/noise guards and
+residual criteria remain unchanged. Exact retained3×3 determinant/rounded-inverse
+checks are distinct from source-observed condition/residual statistics.
 
-Root reports actual #116 Q1 on this same CPython 3.13.12 failed before any child
-PID with `NotImplementedError: posix_spawn: setsid unavailable on this platform`.
-This is external tooling/capability context, not HP114 data or an investigator
-trial. Source now refuses unconditionally at both resource parent and child entry,
-before raw writes/spawn; this refusal itself was not executed. No independent
-retry, Popen fallback, new interpreter/install or replacement launcher was attempted.
-AST/style passing does not clear this blocker. Resource launch is **quarantined
-and not ready** until root supplies a diagnosed working route and its accepted
-affected-scope evidence, followed by explicit HP114 reconciliation/review.
+The separate primary CPU observation records f2 input→complex64 storage/f4 inverse
+for NumPy/SciPy public16-point rfft/irfft and TypeError for complex32/ValueError for
+unsupported norm. **FFT output arrays were not retained.** Recorded inverse max
+2.384185791015625e-7/RMS1.0323827311807139e-7/relative2.226493858211125e-8 are source
+statistics, not independently decoded output accuracy or an internal-half theorem.
 
-The manifest freezes that narrow future boundary: launch/readiness/exec errors,
-sole exact-PID wait4 ownership, receipt/status/terminal usage, PID birth/group
-identity and bounded cleanup/recovery. Scientific meanings/lifetimes do not change
-automatically. Root's PID1-sleep/no-init context reinforces the abrupt-loss gap;
-no orphan was created and no disappearance was treated as proof of child exit.
-Coordinator-only status commits `20bae8e` and
-`fa27a8e0445499f11e50588e9a81e6337093a666` did not edit the four artifacts.
+Optional cuFFT Xt is documentary feasibility only. Archived CUDA13.0.3/cuFFT
+12.0.0.61 differs from observed live13.5/cuFFT12.5.0.14. Exact half/API/SM75+/
+power-of-two/stride/rank/batch/size/paired-ABI, normalization/workspace/JIT/transfer,
+version-specific bug, driver/licensing/portability restrictions remain in
+backend.md with saved primary citations. Device/driver/ABI/plan/internal precision,
+numerical utility, synchronized runtime and host/device peak remain UNOBSERVED/
+UNMEASURED. Saved excerpts/403 transfer metadata are not complete unreceived HTML
+hashes. No backend refetch/install/adapter/experiment or GPU absence claim occurred.
 
-## Source-method continuation and review boundary
+## Matched prepared-stage resources
 
-The [manifest](manifest.md#standalone-matched-resource-method-v2--unexecuted)
-freezes exact comparable paths. Standalone full workflow children generate only
-one raw representation using bounded x-row setup; H1 does not hold an unnecessary
-promoted caller, and H1-promoted holds only that declared caller. Prepared-stage
-children use public acquisition setup without a baseline workflow; metadata and
-initial seeds derive from declarations. Packed caller plus required unpacked work
-coexist. Prepared setup high-water cannot be subtracted to claim isolated savings.
-Corrected, filtered and embedded formula replay remain diagnostic only.
+All12 actual resource observations used the fixed order W02 thenW05, rep1
+wider/half, rep2 half/wider, rep3 wider/half, each in a fresh sole direct child.
+The caller and seven output identities/statistics match their own actual
+row/arm/repetition diagnostic counterpart; half is compared to H2_PREPARED,
+not assumed equal wider. All12 completed normally with0 warnings. Exact raw clocks,
+units, grant-copy/readiness/birth/FD/status/wholeclose and independent completed
+method disposition are retained in resource evidence.
 
-The parent is a source candidate for Linux `posix_spawn` plus one exact-PID wait4
-owner. Child pre-call, call-end and post-observation cumulative native snapshots
-are distinct from parent terminal usage through exit/JSON/teardown. Missing usage
-is unknown. Direct-child maximum process RSS excludes external observer and is
-not aggregate concurrent memory. Nominal wait sleeps do not bound real polling
-gaps. Exit/status/parser/identity/recovery outcomes remain separate; zero exit is
-never scientific qualification. TERM/KILL grace, one-shot SIGINT handling and
-PID/boot/start/group markers support bounded cleanup, with explicit abrupt-death,
-marker/durability and lost-usage gaps requiring identity-checked root recovery.
+Completed independent actual-resource assessment540094b9…/DISTINCT finale55aff98…
+checks264 raw files,96 own-arm identities and1638 statistic fields with0 mismatches.
+Its exact scope and all unexported-array/metadata/native/clock limits are retained
+in resource-assessment.md. It is completed data assessment, not final SCI or ROOT
+activation/publication authority.
 
-Bounded C-order canonical hashes, finite/range/error observers and serialization
-controls preserve dtype/shape/endian/content and signed zeros. Buffer size is a
-per-buffer parameter with multiple coexisting buffers and unknown native/metadata
-costs. The independent finite phase/noise observer is now source-authored; range,
-dyadic cancellation, raw-generation equivalence, scalar/NPY roundtrip, incomplete
-record and explicit FFT-policy controls are frozen but unexecuted. SciPy uses
-the recorded `_duccfft` route; loaded binary/source identities, actual precision,
-workers and control results remain runtime evidence to collect later.
+| Row/arm | Terminal peak KiB, median [range] | Retained payload bytes | Setup→call seconds, median [range] |
+| --- | --- | ---: | --- |
+| W02 wider | 83308 [83228,83316] | 859224 | 3.398015324 [3.21036486,3.57517747] |
+| W02 half | 83480 [83396,83624] | 893784 | 3.200541831 [2.48617294,3.304661647] |
+| W05 wider | 85980 [85920,86044] | 3053144 | 9.068337222 [7.844488612,10.376878054] |
+| W05 half | 86160 [86120,86296] | 3183704 | 8.151881026 [7.767687415,9.993446785] |
 
-The named #116 drafts were read only as nonblind source cautions. Their method
-reviews, acceptance, runtime data, schema or thresholds are not adopted here.
-Root-reported accepted #112/#115 context does not change this worktree's ancestry
-or import any scientific witness/data. Final #113/material applicability remains
-pending root reconciliation. Fresh static review must challenge the seven concrete
-questions in the manifest; it is not report acceptance or post-gate D readiness.
+Observed half terminal peaks and retained payloads are higher in this exact
+protocol. This demonstrates no peak-memory reduction for these two measured
+prepared-stage lifecycles; it does not prove no half-storage benefit elsewhere.
+Median timings are lower for half here but ranges overlap; three observations
+and host/order/measurement context do not justify a general speed claim.
 
-Read-only discovery included harmless missing-path reads for initially guessed
-workflow filenames and inherited SciPy `_pocketfft` paths; corrected discovery
-found actual public supporting modules and `_duccfft`. No dependency repair or
-numerical inference followed. Full shell command/status detail is retained in
-historical owned scratch `work/half-precision-study/preparation.md`, archived by
-coordinator. That scratch root was absent at continuation admission; no old log
-has been recreated or relabeled as a new check.
+Setup includes public preparation and source/packed coexistence. Half unpacking
+and packed caller remain live with wider work/results; its retained payload is not
+the four-byte storage payload alone. Setup→call includes setup packing, unpacking
+and downstream calls. Conversion+call excludes setup packing; call-only excludes
+unpack/setup/observers. Wider packing clocks are null because no separate operation
+occurs, not measured0. Every local interval and native quantity is reported with
+its scope in resource-tables.md, including all raw repetitions/medians/ranges.
 
-Requested model/effort: fresh `gpt-6.1-sol`/high as supplied by coordinator; actual
-serving attribution, effort, token/cache/cost/time meters unknown. Separate memory,
-delegation and read-only controls unavailable; shared filesystem and prompt scope
-are not technical isolation. No delegation, install, commit or product edit.
+Resource native peak uses the source parent's sole exact-child wait4 through
+exit/JSON/teardown, unwrapped. Diagnostics instead retain wider baseline beside
+candidate/observers and use normal direct-Python GNU time. Their cross-mode peaks/
+times are unmatched for optimized benefit. Source post-export/call snapshots are
+preJSON, not terminal. LinuxKiB×1024 is explicit. No baseline/high-water subtraction,
+causal late-allocation/observer-tree sum, descendant/bootstrap-exec inheritance,
+native workspace/precision theorem or16GiB extrapolation is claimed. H1/other H2
+sites/other-row standalone benefits are UNMEASURED under§8A, not proved absent.
 
-Current owned scratch: continuation ledger, `preparation-checks.md` and named v2
-AST/Ruff logs under `work/half-precision-study/`; prior
-preparation/check logs remain coordinator-archived historical evidence. No background
-process or fixture created by this role. Durable raw destination has not been
-written by this role. Preserve the four report artifacts and scratch until root
-captures command/digest handoff; no cleanup authority is inferred.
+## Decision, reproducibility and remaining delivery gates
 
-## Remaining work
+The [numerical-acceptance proposal](acceptance-proposal.md) adopts no activation
+tolerance from these finite errors. The [next-slice decision](next-slice.md) is
+no precision/backend implementation from this study; keep existing defaults and
+exact failure/signed semantics. A future useful boundary requires a separately
+scoped high-risk intake and justified use/reference uncertainty, not this harness
+as a product test checkpoint or a blanket new reference framework.
 
-Root must pin/reconcile the actual candidate/base/parent, prepare raw destination and explicitly
-grant numerical scheduling. Qualify wider fixtures and intended branches first;
-retain and diagnose any failure before comparisons. Complete frozen modes, three
-fresh repetitions for successful W comparisons, kernels and documentary backend
-assessment; aggregate raw evidence and propose numerical acceptance or a supported
-negative outcome. Fresh independent scientific review precedes final exact gate
-and fresh D readiness. Publication parent #113 and final integration remain root
-responsibilities. [Next slice](next-slice.md) remains deliberately pending.
+The raw retention record identifies concrete original-byte archives/manifests,
+available original filenames and missing data such as CPU FFT outputs. Archive
+transport verification is separate from independent science and publication;
+owned publishable artifacts are candidates until ROOT integrates/publishes them.
+Historical source/quarantine/style/provisioning/method failures, old W01 and W02
+fixture-adapter failure, all corrections and costs remain retained. Old no-data/
+unconditional-quarantine prose is historical, superseded by actual current149
+collection and these scoped conclusions, not silently erased or relabeled.
+
+This authored report supplies no final SCI selfacceptance, runtime authority,
+activation, exact final gate/D or publication. Final SCI must be a different fresh
+independent session on the completed exact artifacts; ROOT owns later reporting
+candidate/applicability, full Ubuntu gate, fresh D, integration and publication.

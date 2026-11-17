@@ -1,0 +1,60 @@
+{
+  "completed": true,
+  "role": "DIFFERENT_FRESH_FINAL_INDEPENDENT_SCI_REVIEWER",
+  "verdict": "SUITABLE_EXACT_FINITE_REPORT_RETENTION_AND_BOUNDED_NOACTIVATION_PROPOSAL",
+  "blocking_findings": [],
+  "target_base": "/workspace/work/campaign/evidence/114/report-preparation-and-completion-1/author/final-completion-1/publishable-artifacts-v2",
+  "target_hashes": {
+    "PUBLICATION.sha256": "bd2e2b794afe2ad7e8113d2640a8049f9e60c21cbb5dbd5ffa89cb4f9b8e2585",
+    "docs/reports/half-precision-study/study.md": "90fdcde558852bb5164b269b527c7f677952df437ec7168673fd8d52cd0ebafb",
+    "docs/reports/half-precision-study/matrix.md": "e49bf1167465693ea1a150b236e8c6b5f48b6da721f0f033466450e6ff3e79d0",
+    "docs/reports/half-precision-study/acceptance-proposal.md": "b3c98b6738c2915750d8f7f91f3fcdd6f345bace59552646c904cf051520bccc",
+    "docs/reports/half-precision-study/next-slice.md": "1a4e1e5ff5e54302b6bb488ee2722de997f0a43a7c309afff5d8e7afcdb8ad26",
+    "docs/reports/half-precision-study/retention.md": "ad9874a3d904645348676e3c5d17283129276b85892ab0067286acd50c218768",
+    "docs/reports/half-precision-study/attempts.md": "1f43e3a5a36d4ecd051d15d7b0d4d30747ae08c28472e96bab6889a3d5aeee10",
+    "docs/reports/half-precision-study/history-and-accounting.md": "080947c59b507af82f72f212dbc54a31b6b3b0da9613a70a974ba1f24d7f2174",
+    "docs/reports/half-precision-study/README.md": "0d0049c158a90e82f94ccc6c09f265aaf1c958125996e368a937e6210223430b",
+    "docs/reports/half-precision-study/evidence/final-publication-index.json": "ec63de5f8893637d3f708e6c3ffc54f9f7b4dcb35a65708f73e0738a5477d6db"
+  },
+  "packet_sha256": "e381e96c1bc6beb511f43706bb69038e6aee8259a5c6b60a1694d8b3603871ab",
+  "primary_sha256": "7eb41f96f6130067d81db9c746c7be2a10c1301d8b20929a5702639c325b883b",
+  "recommendation": "NO_PRODUCT_PRECISION_OR_BACKEND_ACTIVATION",
+  "independent_fullgrid_upstream_science": "UNRESOLVED_NOACTIVATION",
+  "unselected_standalone_resource_benefit": "UNMEASURED_EXACT_SECTION_8A",
+  "physical_recovery": "NOT_CERTIFIED",
+  "native_internal_precision": "UNKNOWN",
+  "complete_elapsed_money_serving_meters": "UNKNOWN",
+  "human_quota": "NOT_SET",
+  "root_remaining": [
+    "apply_verdict",
+    "report_only_integration_and_applicability",
+    "exact_Ubuntu_full13",
+    "fresh_D",
+    "publication"
+  ],
+  "source_or_report_repair_requested": false,
+  "new_capture_or_controls_requested": false,
+  "runtime_activation": false,
+  "source_native_numpy_scipy_execution": false,
+  "delegation": false,
+  "writes_only_new_reviewer1": true,
+  "exact_input_files": 37177,
+  "analyses": [
+    "primary-static-results.json",
+    "primary-counterpart-results.json",
+    "retention-results.json",
+    "phase2-binding-results.json",
+    "table-and-terminal-results.json",
+    "kernel-word-results.json"
+  ],
+  "own_failed_query_preserved": "kernel-word-analysis.py;kernel-word-analysis-failed-status.md",
+  "other_own_read_errors_and_scope_correction": "read-ledger.md",
+  "root_reported_postprimary_doc_copy": {
+    "attribution": "ROOT incoming material context;not independently probed",
+    "worktree": "report_only_dirty_after_identical75_author_payload_copy",
+    "HEAD": "c43913c75446272c5fc9c63aeb007dd9644568d0",
+    "external_target_changed": false,
+    "executed_dirty_reporting_tree_claim": false,
+    "scientific_reexecution_required": false
+  }
+}
