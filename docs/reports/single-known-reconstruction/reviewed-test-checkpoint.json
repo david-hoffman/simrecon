@@ -1,0 +1,62 @@
+{
+  "accepted_test_checkpoint": "726c174cac936aaa3947da2a6a5eb54e18a3d77b",
+  "execution": {
+    "exact_three_corrected": "3 passed,1.46seconds",
+    "fresh_full_compatible_selection": "795 passed,57.68seconds",
+    "fresh_full_compatible_stdout_sha256": "10dbc348cccb27bfc44bcde00c7c9ff1b3f6ff72036a7cef511f606271cb5f3d",
+    "installed_tests": "Canonical nonblind route2 passed,6.47seconds; separate actual isolated wheel checker passed41 exports",
+    "installed_tests_stdout_sha256": "a2b0545e9f8cfc697ec2dfd088c695ce7a91ea947029894cced0b57bfc64e407",
+    "original_selection": "3 failed,792 passed,56.15seconds; preserved"
+  },
+  "files": [
+    {
+      "byte_count": 57646,
+      "path": "tests/single_known_fixture.py",
+      "sha256": "a693da50394c158716148d4dca5c9435b4b1518461efb51ebed4837b86fe462b"
+    },
+    {
+      "byte_count": 36998,
+      "path": "tests/test_single_known_boundary.py",
+      "sha256": "fb40dac8e0100c31acc701b7fb4586fbb9cecf8bf8ee4b1912fadccc9bc2ab50"
+    },
+    {
+      "byte_count": 26843,
+      "path": "tests/test_single_known_filter.py",
+      "sha256": "e3c1c16382380d0d65e2b4dff3d547ec893413ab5734b754452b1b5df9972932"
+    },
+    {
+      "byte_count": 31439,
+      "path": "tests/test_single_known_assembly.py",
+      "sha256": "a52fa0172e092187e1b0fc53a660c9a747e13de898e43e181aaeab819d89955f"
+    },
+    {
+      "byte_count": 25736,
+      "path": "tests/test_single_known_precision.py",
+      "sha256": "c401e6532a1cda31e35664580b2fde136f197f5961a379bd0be53d08228cb7b3"
+    },
+    {
+      "byte_count": 7656,
+      "path": "tests/test_single_known_typing.py",
+      "sha256": "cc6a7313f99132361e8a755926f2e326e9f3d1dc039e63ba65895df622417f30"
+    },
+    {
+      "byte_count": 3735,
+      "path": "tests/test_module_migration.py",
+      "sha256": "a44ec49fa55971fdf9c799774432ff5cd51e5929ab3bac0ca4fe0579f3e48804"
+    },
+    {
+      "byte_count": 3080,
+      "path": "tests/test_installed_wheels.py",
+      "sha256": "ee7cb892b5dffaca29e4ac56fee69ad64a01343fb2f2d1c3bd83c2f7dfd1602e"
+    }
+  ],
+  "independent_B": {
+    "primary_sha256": "429017c782ba11aa2146d0af9fc038876d0731cb9dc3fa56b86df9e0fac3e02c",
+    "report_sha256": "160abaf1f395f67b73c0a4d98a1e48078efa747db2303dea54afad5ae5ee0b39",
+    "scope": "Whole eight test/fixture/dependency retention and exact three local test-body corrections, static own primary before A opinions; no tolerance/shared fixture/product change"
+  },
+  "limits": "Supplemental post-implementation TEST corrections are not retroactive product-red; original failures/attempts retained. Native/material/full13/finalD/CI acceptance distinct.",
+  "schema": "SP113-reviewed-test-checkpoint-v1",
+  "status": "Accepted affected TEST correction scope; final candidate/fullgate/freshD separate",
+  "test_manifest_sha256": "c37a07167f8fdc408b91547a359f8975b57a2db11843f407886e1e37eba97249"
+}

@@ -101,3 +101,30 @@ The [fixed numerical control](../reports/c-known-control.md) provides registered
 inputs, independent finite-sum expectations, observed signed images and normalized
 spectra on fixed scales. It distinguishes mathematical agreement from recovery
 and historical executable agreement.
+
+## Opt-in single-storage known reconstruction
+
+Pass `precision="single-mixed-v1"` to `reconstruct_known` with a
+`PreparedBands32` created by `declare_prepared_bands32`. The constructor accepts
+explicit native complex64 quadratures with axes `(T,D,Q,Z,Y,X//2+1)` and
+float64 noise factors with axes `(T,D,O)`, plus the declared input shape,
+spacing, integer zoom and provenance. It snapshots independent, owned,
+read-only arrays. It performs no acquisition preparation or parameter search;
+callers must supply valid bands and their normalization metadata.
+
+The result is `KnownReconstruction32`: complex64 filtered quadratures and a
+signed float32 image. The image accumulator and coordinates remain float64;
+small parameter calculations retain the precision specified by the
+[single-profile contract](../contracts/single-known-reconstruction-v1.md).
+FFT input/output dtype does not establish every internal backend arithmetic or
+workspace dtype. Double remains the default. Passing single bands to double,
+or existing double bands to the single profile, raises `ReconstructionError`
+instead of implicitly converting them.
+
+This profile supports the contracted stationary 3D known-parameter slice.
+Native 2D/Z1, fractional zoom and nondefault CE06 modes are outside it. There
+is no precision option on acquisition preparation, estimation, workflow or
+summary. See the contract for exact options, rounding, finite-domain and
+failure rules, and the [execution report](../reports/single-known-reconstruction/execution-report.md)
+for workload-specific observations and limits. No process-memory ceiling,
+speed ratio, physical recovery or 16 GiB feasibility follows from the profile.
